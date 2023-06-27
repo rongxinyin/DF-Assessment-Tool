@@ -1,12 +1,18 @@
-import './App.css';
+import React, { Suspense } from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
-function App() {
+import Home from "./components/Home";
+
+
+export default function App() {
+
   return (
-    <div className="App">
-      <h1>Test</h1>
-
-    </div>
+    <BrowserRouter>
+      <Suspense>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
   );
 }
-
-export default App;
