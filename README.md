@@ -4,7 +4,7 @@ Web-based demand respones assessment tool.
 
 ## Setup/Installation
 
-Install [Node.js](https://nodejs.org)
+Install [Node.js](https://nodejs.org) 18.
 
 ## Available Scripts
 
@@ -13,10 +13,10 @@ NOTE: Scripts are directory dependent. Certain scripts will not work in other di
 ### `npm start`
 
 Client Directory: Runs the client in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 Server Directory: Runs the server in the development mode.\
-Open [http://localhost:8080](http://localhost:8080) to view it in your browser.\
+Open [http://localhost:8080](http://localhost:8080) to view it in your browser.
 
 ### `npm install`
 
