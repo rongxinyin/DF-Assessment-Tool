@@ -1,4 +1,3 @@
-
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
@@ -12,10 +11,10 @@ const app = express();
 app.use(morgan("dev"));
 app.use(cors({ origin: true, credentials: true }));
 
-
 //routes
-
 
 //listener
 const port = 8080;
-const server = app.listen(port, () => console.log(`Server is running on port ${port}`));
+const server = app.listen(port, () =>
+  console.log(`Server is running on port ${port}`)
+);
