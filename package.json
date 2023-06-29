@@ -1,5 +1,5 @@
 {
-  "name": "DR Estimation Tool",
+  "name": "dr-estimation-tool",
   "version": "1.0.0",
   "scripts": {
     "format": "prettier ./ --write",
