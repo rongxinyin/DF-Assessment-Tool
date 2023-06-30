@@ -19,7 +19,6 @@ app.use("/analytics", analyticsRoutes);
 
 //connect
 mongoose.connect(process.env.CONNECTION_URL);
-console.log(process.env.CONNECTION_URL);
 const db = mongoose.connection;
 db.once("open", () => console.log(`Connected to database`));
 
