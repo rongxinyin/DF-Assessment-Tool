@@ -11,7 +11,7 @@ const app = express();
 //middleware
 app.use(morgan("dev"));
 app.use(cors({ origin: true, credentials: true }));
-app.use(express.json()); 
+app.use(express.json());
 dotenv.config();
 
 //routes
@@ -21,7 +21,7 @@ app.use("/analytics", analyticsRoutes);
 mongoose.connect(process.env.CONNECTION_URL);
 console.log(process.env.CONNECTION_URL);
 const db = mongoose.connection;
-db.once('open', () => console.log(`Connected to database`));
+db.once("open", () => console.log(`Connected to database`));
 
 //listener
 const port = 8080;
