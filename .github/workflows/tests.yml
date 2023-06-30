@@ -1,4 +1,4 @@
-name: On Pull Request
+name: Tests
 
 on:
   push:
