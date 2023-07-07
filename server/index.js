@@ -3,7 +3,9 @@ import mongoose from "mongoose";
 import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
+
 import analyticsRoutes from "./routes/analytics.js";
+import stateRoutes from "./routes/states.js"
 
 // app
 const app = express();
@@ -16,6 +18,7 @@ dotenv.config();
 
 //routes
 app.use("/analytics", analyticsRoutes);
+app.use("/states", stateRoutes);
 
 //connect
 mongoose.connect(process.env.CONNECTION_URL);
