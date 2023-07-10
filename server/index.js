@@ -5,7 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import analyticsRoutes from "./routes/analytics.js";
-import stateRoutes from "./routes/states.js"
+import stateRoutes from "./routes/states.js";
 
 // app
 const app = express();
