@@ -12,7 +12,7 @@ router.post("/createStateData", async (req, res) => {
         res.json(state);
       })
       .catch((err) => {
-        console.log(err);
+        res.json(err);
       });
   });
 

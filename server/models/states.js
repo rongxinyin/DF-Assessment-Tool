@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 const stateSchema = mongoose.Schema(
     {
         stateName: {type: String, required: true},
-        //IDAR_Meter_Data only if available to the user, otherwise
-        // it will be input based.
+        //IDAR_Meter_Data only if available to the user, otherwise it will be input based.
         IDARMeterData: [
             {
                 date: Date,
@@ -19,7 +18,10 @@ const stateSchema = mongoose.Schema(
             }
         ],
         outsideTemp: [
-            //TBD
+            {
+                date: Date,
+                temp: Number
+            }
         ],
         climateZones: [
             {
