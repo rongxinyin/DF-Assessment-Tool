@@ -25,20 +25,34 @@ router.patch("/:stateName/new/:fieldName", async (req, res) => {
 
 //Gets the LoadShed data for a given caseID in a given state.
 router.get("/:stateName/loadShedDatabase/:case_ID", async (req, res) => {
-  StateModel.findOne({stateName: req.params.stateName})
+  StateModel.findOne({ stateName: req.params.stateName })
     .then((docs) => {
-      res.json(docs.loadShedDatabase.find(obj => obj.case_ID == req.params.case_ID));
+      res.json(
+        docs.loadShedDatabase.find((obj) => obj.case_ID == req.params.case_ID)
+      );
     })
     .catch((err) => res.json(err));
 });
 
 //Gets the county name based on zipcode.
 router.get("/:stateName/countyName/:zipcode", async (req, res) => {
-  StateModel.findOne({stateName: req.params.stateName})
+  StateModel.findOne({ stateName: req.params.stateName })
     .then((docs) => {
-      res.json(docs.climateZones.find(obj => obj.zipcode == req.params.zipcode).county_name);
+      res.json(
+        docs.climateZones.find((obj) => obj.zipcode == req.params.zipcode)
+          .county_name
+      );
     })
     .catch((err) => res.json(err));
-})
+});
+
+//Gets an entire field for a given state.
+router.get("/:stateName/:fieldName", async (req, res) => {
+  StateModel.findOne({ stateName: req.params.stateName })
+    .then((docs) => {
+      res.json(docs[req.params.fieldName]);
+    })
+    .catch((err) => res.json(err));
+});
 
 export default router;
