@@ -32,4 +32,13 @@ router.get("/:stateName/loadShedDatabase/:case_ID", async (req, res) => {
     .catch((err) => res.json(err));
 });
 
+//Gets the county name based on zipcode.
+router.get("/:stateName/countyName/:zipcode", async (req, res) => {
+  StateModel.findOne({stateName: req.params.stateName})
+    .then((docs) => {
+      res.json(docs.climateZones.find(obj => obj.zipcode == req.params.zipcode).county_name);
+    })
+    .catch((err) => res.json(err));
+})
+
 export default router;
