@@ -36,7 +36,7 @@ const stateSchema = mongoose.Schema(
         case_ID: String,
         equations: [
           {
-            tempCategory: String, // OAT<=75, 75<OAT<95, OAT>=95
+            temp_category: String, // OAT<=75, 75<OAT<95, OAT>=95
             equation_slope: Number,
             equation_intercept: Number,
           },
