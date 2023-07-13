@@ -1,9 +1,11 @@
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import ButtonGroup from '@mui/material/ButtonGroup';
+import { Container } from "@mui/material";
 
 export default function Home() {
   return (
+    <Container maxWidth="lg">
     <div id="Home">
       <div className="basic-calculator">
       <div className="overlap-wrapper">
@@ -81,5 +83,6 @@ export default function Home() {
         </div>
       </div>
     </div>
+    </Container>
   );
 }
