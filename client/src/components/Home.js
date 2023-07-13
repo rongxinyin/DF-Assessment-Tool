@@ -9,8 +9,8 @@ export default function Home() {
     <div id="Home">
       <div className="basic-calculator">
       <div className="overlap-wrapper">
-        <div className="overlap">
-          <div className="scroll-frame">
+        
+        <div className="scroll-frame">
           <div className="overlap-group">
               <div className="rectangle" />
               <div className="visualization-area">
@@ -86,7 +86,7 @@ export default function Home() {
           <div className="text-wrapper-20">Calculate</div>
           </div>
           </div>
-        </div>
+      
       </div>
     </div>
     </Container>
