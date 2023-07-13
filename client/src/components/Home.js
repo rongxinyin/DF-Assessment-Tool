@@ -5,13 +5,13 @@ import { Container } from "@mui/material";
 
 export default function Home() {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
     <div id="Home">
       <div className="basic-calculator">
       <div className="overlap-wrapper">
         
         <div className="scroll-frame">
-          <div className="overlap-group">
+            <div className="overlap-group">
               <div className="rectangle" />
               <div className="visualization-area">
                 Visualization
@@ -43,7 +43,7 @@ export default function Home() {
           </div>
           </div>
           <div className="dark-background">
-            <h1 className="h-1">Basic Calculator</h1>
+            <h1 className="h-1">Calculator</h1>
             <div className="basic-advanced-buttons">
             <ButtonGroup disableElevation variant="contained" aria-label="Disabled elevation buttons">
               <Button>Basic</Button>
@@ -65,19 +65,13 @@ export default function Home() {
           <br></br>
            <TextField id="outlined-basic" label="Outlined" variant="outlined" />
           </div>
-
           <p className="text-wrapper-21">HVAC Temp DR Shed Capacity Calculation</p>
-          <br></br>
-          <div><p className="p">% of Building Floor Area that Temp Reset will Apply</p>
-          </div>
-          <div className="text-wrapper-16">
-          <TextField id="outlined-basic" label="Outlined" variant="outlined"/>0-100</div>
-          <div className="text-wrapper-7">Pre-Cool Period Temp Offset (°F)
-          </div>
-          <div className="text-wrapper-14"> 
-          <TextField id="outlined-basic" label="Outlined" variant="outlined"/>°F</div>
+          <p className="p">% of Building Floor Area that Temp Reset will Apply</p>
+          <div className="text-wrapper-16">0-100</div>
+          <p className="text-wrapper-7">Pre-Cool Period Temp Offeset (°F)</p>
+          <div className="text-wrapper-14">°F</div>
           <p className="text-wrapper-8">DR Event Period Temp Offset (°F)</p>
-          <div className="text-wrapper-15"><TextField id="outlined-basic" label="Outlined" variant="outlined"/> °F</div>
+          <div className="text-wrapper-15">°F</div>
          
           <p className="reset-download">
             <span className="span">Reset&nbsp;&nbsp;|&nbsp;&nbsp;</span>
