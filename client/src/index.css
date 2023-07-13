@@ -13,9 +13,9 @@ code {
 }
 
 .basic-advanced-buttons {
-  position: absolute;
-  top: 150px;
-  left: 100px;
+  position:absolute;
+  top: 50px;
+  left: 50px;
 }
 
 .basic-calculator {
@@ -184,11 +184,16 @@ code {
 
 .basic-calculator .dark-background {
   background-color: #00303c;
-  height: 1181px;
+  height: 1400px;
   left: 35px;
   position: absolute;
   top: 180px;
   width: 600px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .basic-calculator .img {
@@ -271,13 +276,13 @@ code {
   font-family: "Open Sans-Bold", Helvetica;
   font-size: 20px;
   font-weight: 700;
-  left: 18px;
   letter-spacing: 1px;
   line-height: 25px;
-  position: absolute;
-  text-align: center;
+  text-align: left;
   text-decoration: underline;
-  top: 353px;
+  position: absolute;
+  top: 150px;
+  left: 0px;
   white-space: nowrap;
   width: 250px;
 }
@@ -287,15 +292,15 @@ code {
   font-family: "Open Sans-SemiBold", Helvetica;
   font-size: 20px;
   font-weight: 600;
-  left: 12px;
   letter-spacing: 1px;
   line-height: 25px;
-  position: absolute;
-  text-align: center;
-  text-decoration: underline;
-  top: 463px;
   white-space: nowrap;
   width: 250px;
+  text-align: left;
+  text-decoration: underline;
+  position: absolute;
+  top: 250px;
+  left: 0px;
 }
 
 .basic-calculator .text-wrapper-11 {
@@ -303,15 +308,15 @@ code {
   font-family: "Open Sans-SemiBold", Helvetica;
   font-size: 20px;
   font-weight: 600;
-  left: 272px;
   letter-spacing: 1px;
   line-height: 25px;
-  position: absolute;
-  text-align: center;
-  text-decoration: underline;
-  top: 464px;
   white-space: nowrap;
   width: 250px;
+  text-align: center;
+  text-decoration: underline;
+  position: absolute;
+  top: 250px;
+  left: 250px;
 }
 
 .basic-calculator .text-wrapper-12 {
@@ -319,15 +324,15 @@ code {
   font-family: "Open Sans-SemiBold", Helvetica;
   font-size: 20px;
   font-weight: 600;
-  left: 0;
   letter-spacing: 1px;
   line-height: 25px;
-  position: absolute;
-  text-align: center;
-  text-decoration: underline;
-  top: 578px;
   white-space: nowrap;
   width: 250px;
+  text-align: left;
+  text-decoration: underline;
+  position: absolute;
+  top: 400px;
+  left: 50px;
 }
 
 .basic-calculator .text-wrapper-13 {
@@ -335,14 +340,15 @@ code {
   font-family: "Open Sans-SemiBold", Helvetica;
   font-size: 20px;
   font-weight: 600;
-  left: 61px;
   letter-spacing: 1px;
   line-height: 25px;
-  position: absolute;
-  text-align: center;
-  text-decoration: underline;
-  top: 703px;
   white-space: nowrap;
+  width: 250px;
+  text-align: left;
+  text-decoration: underline;
+  position: absolute;
+  top: 500px;
+  left: 50px;
 }
 
 .basic-calculator .rectangle-3 {
@@ -520,12 +526,12 @@ code {
   font-family: "Open Sans-Bold", Helvetica;
   font-size: 40px;
   font-weight: 700;
-  left: 150px;
+  left: 50px;
   letter-spacing: 2px;
   line-height: 90px;
   position: absolute;
   text-align: left;
-  top: 263px;
+  top: 70px;
   white-space: nowrap;
 }
 
