@@ -6,6 +6,7 @@
     "format-check": "prettier ./ --check"
   },
   "dependencies": {
+    "axios": "^1.4.0",
     "prettier": "^2.8.8"
   }
 }
