@@ -27,11 +27,26 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Advanced() {
 
+  // dropdown forms
   const [buildingType, setBuildingType] = React.useState('');
+  const [state, setState] = React.useState('');
+  const [hvacType, setHVACType] = React.useState('');
 
-  const handleChange = (event) => {
+
+
+  const chooseBuildingType = (event) => {
     setBuildingType(event.target.value);
   };
+
+  const chooseState = (event) => {
+    setState(event.target.value);
+  };
+
+  const chooseHVACType = (event) => {
+    setHVACType(event.target.value);
+  };
+
+
 
   return (
 
@@ -55,7 +70,7 @@ export default function Advanced() {
             id="demo-simple-select"
             value={buildingType}
             label="Building Type"
-            onChange={handleChange}
+            onChange={chooseBuildingType}
           >
             <MenuItem value={10}>Office</MenuItem>
             <MenuItem value={"Retail"}>Retail</MenuItem>
