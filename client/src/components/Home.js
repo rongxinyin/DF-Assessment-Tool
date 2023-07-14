@@ -2,18 +2,33 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { Container } from "@mui/material";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      // medium blue
+      main: '#007681',
+    },
+    secondary: {
+      // darker blue
+      main: '#00303C',
+    },
+  },
+});
 
 
 export default function Home() {
-  
   return (
-    <Container maxWidth = "xl">
+    <ThemeProvider theme={theme}>
+    <Container maxWidth="xl">
     <div id="Home">
       <div className="basic-calculator">
       <div className="overlap-wrapper">
         <div className="scroll-frame">
-          <div className="overlap-group">
+            <div className="overlap-group">
               <div className="rectangle" />
               <div className="visualization-area">
                 Visualization
@@ -45,28 +60,40 @@ export default function Home() {
           </div>
           </div>
           <div className="dark-background">
-            <h1 className="h-1">Calculator</h1>
             <div className="basic-advanced-buttons">
-            <ButtonGroup disableElevation variant="contained" aria-label="Disabled elevation buttons">
+            <ButtonGroup disableElevation color="primary" variant="contained" aria-label="Disabled elevation buttons">
               <Button>Basic</Button>
               <Button>Advanced</Button>
             </ButtonGroup>
-          <div className="text-wrapper-9">Building Name
+            <h1 className="h-1">Calculator</h1>
+          <div className="textAndInput">
+            <div className="text-wrapper-9">Building Name
+            <br></br>
+            <TextField id="filled-basic" label="Enter" variant="filled" color="primary"/></div>
+          </div>
+          <div className="textAndInput">
+            <div className="text-wrapper-10">Building Type
+            <br></br>
+            <TextField id="filled-basic" label="Dropdown" variant="filled" color="primary"/></div>
+          </div>
+          <div className="textAndInput">
+           <div className="text-wrapper-11">Zipcode
+            <br></br>
+            <TextField id="filled-basic" label="Enter" variant="filled" color="primary"/></div></div>
+          </div>
+          <div className="textAndInput">
+            <div className="text-wrapper-12">HVAC Type
+            <br></br>
+            <TextField id="filled-basic" label="Enter" variant="filled" color="primary"/></div>
+          </div>
+          <div className="text-wrapper-13">15 minute IDAR Meter Data
           <br></br>
-          <TextField id="filled-basic" label="Building Name" variant="filled" /></div>
-          <div className="text-wrapper-10">Building Type
-          <br></br> 
-          <TextField id="filled-basic" label="Building Type" variant="filled" /></div></div>
-          <div className="text-wrapper-11">Zipcode
-          <br></br>
-          <TextField id="filled-basic" label="Zipcode" variant="filled" /></div></div>
-          <div className="text-wrapper-12">HVAC Type
-          <br></br>
-          <TextField id="filled-basic" label="HVAC Type" variant="filled" /></div>
+          <TextField id="filled-basic" label="Enter" variant="filled" color="primary"/>
+          </div>
           <p className="text-wrapper-21">HVAC Temp DR Shed Capacity Calculation</p>
           <p className="p">% of Building Floor Area that Temp Reset will Apply</p>
-          <div className="text-wrapper-16">0-100</div>
-          <p className="text-wrapper-7">Pre-Cool Period Temp Offeset (°F)</p>
+          <div className="text-wrapper-16"><TextField id="filled-basic" label="0-100" variant="filled" color="primary"/></div>
+          <p className="text-wrapper-7">Pre-Cool Period Temp Offset (°F)</p>
           <div className="text-wrapper-14">°F</div>
           <p className="text-wrapper-8">DR Event Period Temp Offset (°F)</p>
           <div className="text-wrapper-15">°F</div>
@@ -78,9 +105,9 @@ export default function Home() {
           <div className="text-wrapper-20">Calculate</div>
           </div>
           </div>
-      
       </div>
-      </Container>
-      
+    </div>
+    </Container>
+    </ThemeProvider>
   );
 }

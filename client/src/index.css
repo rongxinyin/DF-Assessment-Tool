@@ -194,6 +194,8 @@ code {
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: scroll;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .basic-calculator .img {
@@ -271,6 +273,10 @@ code {
   width: 306px;
 }
 
+.textAndInput {
+
+}
+
 .basic-calculator .text-wrapper-9 {
   color: #ffffff;
   font-family: "Open Sans-Bold", Helvetica;
@@ -278,13 +284,13 @@ code {
   font-weight: 700;
   letter-spacing: 1px;
   line-height: 25px;
-  text-align: left;
   text-decoration: underline;
-  position: absolute;
+  /*position: absolute;
+  text-align: left;
   top: 150px;
   left: 0px;
   white-space: nowrap;
-  width: 250px;
+  width: 250px;*/
 }
 
 .basic-calculator .text-wrapper-10 {
@@ -295,12 +301,13 @@ code {
   letter-spacing: 1px;
   line-height: 25px;
   white-space: nowrap;
-  width: 250px;
-  text-align: left;
   text-decoration: underline;
+  /*
   position: absolute;
+  text-align: left;
+  width: 250px;
   top: 250px;
-  left: 0px;
+  left: 0px;*/
 }
 
 .basic-calculator .text-wrapper-11 {
@@ -311,12 +318,12 @@ code {
   letter-spacing: 1px;
   line-height: 25px;
   white-space: nowrap;
-  width: 250px;
   text-align: center;
   text-decoration: underline;
   position: absolute;
   top: 250px;
   left: 250px;
+  width: 250px;
 }
 
 .basic-calculator .text-wrapper-12 {
@@ -327,9 +334,9 @@ code {
   letter-spacing: 1px;
   line-height: 25px;
   white-space: nowrap;
+  text-decoration: underline;
   width: 250px;
   text-align: left;
-  text-decoration: underline;
   position: absolute;
   top: 400px;
   left: 50px;
@@ -526,13 +533,13 @@ code {
   font-family: "Open Sans-Bold", Helvetica;
   font-size: 40px;
   font-weight: 700;
-  left: 50px;
   letter-spacing: 2px;
   line-height: 90px;
-  position: absolute;
+  /*position: absolute;
   text-align: left;
+  left: 50px;
   top: 70px;
-  white-space: nowrap;
+  white-space: nowrap;*/
 }
 
 .basic-calculator .text-wrapper-21 {
