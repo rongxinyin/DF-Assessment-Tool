@@ -3,8 +3,6 @@ import TextField from "@mui/material/TextField";
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { Container } from "@mui/material";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 
 const theme = createTheme({
   palette: {
@@ -94,9 +92,9 @@ export default function Home() {
           <p className="p">% of Building Floor Area that Temp Reset will Apply</p>
           <div className="text-wrapper-16"><TextField id="filled-basic" label="0-100" variant="filled" color="primary"/></div>
           <p className="text-wrapper-7">Pre-Cool Period Temp Offset (°F)</p>
-          <div className="text-wrapper-14">°F</div>
+          <div className="text-wrapper-14"><TextField id="filled-basic" label="°F" variant="filled" color="primary"/></div>
           <p className="text-wrapper-8">DR Event Period Temp Offset (°F)</p>
-          <div className="text-wrapper-15">°F</div>
+          <div className="text-wrapper-15"><TextField id="filled-basic" label="°F" variant="filled" color="primary"/></div>
          
           <p className="reset-download">
             <span className="span">Reset&nbsp;&nbsp;|&nbsp;&nbsp;</span>
