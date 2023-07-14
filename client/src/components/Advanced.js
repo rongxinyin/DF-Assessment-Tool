@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { styled } from '@mui/material/styles';
-
+import * as React from 'react';
 import TextField from "@mui/material/TextField";
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { Container } from "@mui/material";
@@ -27,10 +27,10 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Advanced() {
 
-  const [age, setAge] = React.useState('');
+  const [buildingType, setBuildingType] = React.useState('');
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+  const handleChange = (event) => {
+    setBuildingType(event.target.value);
   };
 
   return (
@@ -47,31 +47,40 @@ export default function Advanced() {
         <p>Building Name</p>
         <TextField id="outlined-basic" label="Outlined" variant="outlined" />
 
-        <Grid container spacing={2}>
-          <Grid item xs={4}>
-            <p>Building Type</p>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Age</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={age}
-                label="Age"
-                onChange={handleChange}
-              >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
+        <p>Building Type</p>
+        <FormControl sx={{ m: 1, minWidth: 200 }}>
+          <InputLabel id="demo-simple-select-label">Building Type</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={buildingType}
+            label="Building Type"
+            onChange={handleChange}
+          >
+            <MenuItem value={10}>Office</MenuItem>
+            <MenuItem value={"Retail"}>Retail</MenuItem>
+            <MenuItem value={"School"}>School</MenuItem>
+          </Select>
+        </FormControl>
 
-          </Grid>
-          <Grid item xs={4}>
-            <p>Zipcode</p>
-            <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+        <p>Floor Area</p>
+        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
 
-          </Grid>
-        </Grid>
+        <p>HVAC Type</p>
+
+        <p>Summer Peak Demand</p>
+        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+
+
+
+
+
+        <p>Zipcode</p>
+        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+
+        <p>State</p>
+
+
 
 
 
