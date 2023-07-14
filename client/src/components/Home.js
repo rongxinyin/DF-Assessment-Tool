@@ -84,10 +84,6 @@ export default function Home() {
             <br></br>
             <TextField id="filled-basic" label="Enter" variant="filled" color="primary"/></div>
           </div>
-          <div className="text-wrapper-13">15 minute IDAR Meter Data
-          <br></br>
-          <TextField id="filled-basic" label="Enter" variant="filled" color="primary"/>
-          </div>
           <p className="text-wrapper-21">HVAC Temp DR Shed Capacity Calculation</p>
           <p className="p">% of Building Floor Area that Temp Reset will Apply</p>
           <div className="text-wrapper-16"><TextField id="filled-basic" label="0-100" variant="filled" color="primary"/></div>
