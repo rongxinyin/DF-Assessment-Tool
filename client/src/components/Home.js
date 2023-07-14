@@ -3,15 +3,17 @@ import TextField from "@mui/material/TextField";
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { Container } from "@mui/material";
 
+
+
 export default function Home() {
+  
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth = "xl">
     <div id="Home">
       <div className="basic-calculator">
       <div className="overlap-wrapper">
-        
         <div className="scroll-frame">
-            <div className="overlap-group">
+          <div className="overlap-group">
               <div className="rectangle" />
               <div className="visualization-area">
                 Visualization
@@ -51,20 +53,16 @@ export default function Home() {
             </ButtonGroup>
           <div className="text-wrapper-9">Building Name
           <br></br>
-          <TextField id="outlined-basic" label="Outlined" variant="outlined"/></div>
+          <TextField id="filled-basic" label="Building Name" variant="filled" /></div>
           <div className="text-wrapper-10">Building Type
-          <br></br>
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" /></div>
+          <br></br> 
+          <TextField id="filled-basic" label="Building Type" variant="filled" /></div></div>
           <div className="text-wrapper-11">Zipcode
           <br></br>
-           <TextField id="outlined-basic" label="Outlined" variant="outlined" /></div></div>
+          <TextField id="filled-basic" label="Zipcode" variant="filled" /></div></div>
           <div className="text-wrapper-12">HVAC Type
           <br></br>
-           <TextField id="outlined-basic" label="Outlined" variant="outlined" /></div>
-          <div className="text-wrapper-13">15 minute IDAR Meter Data
-          <br></br>
-           <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-          </div>
+          <TextField id="filled-basic" label="HVAC Type" variant="filled" /></div>
           <p className="text-wrapper-21">HVAC Temp DR Shed Capacity Calculation</p>
           <p className="p">% of Building Floor Area that Temp Reset will Apply</p>
           <div className="text-wrapper-16">0-100</div>
@@ -82,7 +80,7 @@ export default function Home() {
           </div>
       
       </div>
-    </div>
-    </Container>
+      </Container>
+      
   );
 }
