@@ -58,6 +58,7 @@ export default function Advanced() {
           variant="contained"
           aria-label="Disabled elevation buttons"
           color="secondary"
+          sx={{ marginTop: 2 }}
         >
           <Button>Basic</Button>
           <Button>Advanced</Button>
@@ -77,7 +78,9 @@ export default function Advanced() {
             color="secondary"
             sx={{
               width: "100%", marginBottom: 1,
+
             }}
+
           />
           <FormControl sx={{ width: "100%", marginBottom: 1 }}>
             <InputLabel id="demo-simple-select-label" color="secondary">Building Type</InputLabel>

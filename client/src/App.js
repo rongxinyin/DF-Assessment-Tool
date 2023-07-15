@@ -4,6 +4,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import Home from "./components/Home";
 import Advanced from "./components/Advanced";
+import AppBar from './components/SiteAppBar';
+
 
 const theme = createTheme({
   palette: {
@@ -15,6 +17,9 @@ const theme = createTheme({
     },
     tertiary: {
       main: "#BED7DD",
+    },
+    white: {
+      main: "#FFFFFF",
     },
   },
   typography: {
@@ -35,6 +40,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+        <AppBar />
         <Suspense>
           <Routes>
             <Route path="/" element={<Home />} />
