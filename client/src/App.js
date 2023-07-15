@@ -17,6 +17,17 @@ const theme = createTheme({
       main: "#BED7DD",
     },
   },
+  typography: {
+    primary: {
+      main: "#00303C",
+    },
+    secondary: {
+      main: "#007681",
+    },
+    tertiary: {
+      main: "#BED7DD",
+    }
+  }
 });
 
 

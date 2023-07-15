@@ -4,7 +4,7 @@ import { styled } from "@mui/material/styles";
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
@@ -42,8 +42,17 @@ export default function Advanced() {
   const textFieldVariant = "outlined";
 
   return (
-    <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
-      <Box gridColumn="span 5" bgcolor="primary.main">
+
+
+    <Grid container spacing={0}>
+      <Grid item md={6} xs={12}
+        container
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        bgcolor="primary.main"
+        width={1}
+      >
         <ButtonGroup
           disableElevation
           variant="contained"
@@ -54,96 +63,332 @@ export default function Advanced() {
           <Button>Advanced</Button>
         </ButtonGroup>
 
-        <h1>Advanced Calculator</h1>
+        <Typography variant="h4" color="#BED7DD" sx={{ fontWeight: 'bold', m: 1 }}>Advanced Calculator</Typography>
 
-        <p>Building Name</p>
-        <TextField
-          id="outlined-basic"
-          label="Building Name"
-          variant={textFieldVariant}
-          autoComplete="off"
-        />
+        <form>
 
-        <p>Building Type</p>
-        <FormControl sx={{ m: 1, minWidth: 200 }}>
-          <InputLabel id="demo-simple-select-label">Building Type</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={buildingType}
-            label="Building Type"
-            onChange={chooseBuildingType}
-          >
-            <MenuItem value={"Office"}>Office</MenuItem>
-            <MenuItem value={"Retail"}>Retail</MenuItem>
-            <MenuItem value={"School"}>School</MenuItem>
-          </Select>
-        </FormControl>
+          <Typography variant="h6" color="#BED7DD" sx={{ fontWeight: 'bold', m: 1 }}>Basic Inputs</Typography>
 
-        <p>Floor Area</p>
-        <TextField
-          id="outlined-basic"
-          label="Floor Area"
-          variant={textFieldVariant}
-          autoComplete="off"
-        />
+          <TextField
+            id="outlined-basic"
+            label="Building Name"
+            variant={textFieldVariant}
+            autoComplete="off"
+            color="secondary"
+            sx={{
+              width: "100%", marginBottom: 1,
+            }}
+          />
+          <FormControl sx={{ width: "100%", marginBottom: 1 }}>
+            <InputLabel id="demo-simple-select-label" color="secondary">Building Type</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={buildingType}
+              label="Building Type"
+              color="secondary"
+              onChange={chooseBuildingType}
+            >
+              <MenuItem value={"Office"}>Office</MenuItem>
+              <MenuItem value={"Retail"}>Retail</MenuItem>
+              <MenuItem value={"School"}>School</MenuItem>
+            </Select>
+          </FormControl>
 
-        <p>HVAC Type</p>
-        <FormControl sx={{ m: 1, minWidth: 200 }}>
-          <InputLabel id="demo-simple-select-label">HVAC Type</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hvacType}
-            label="HVAC Type"
-            onChange={chooseHVACType}
-          >
-            <MenuItem value={"Package RTU"}>Package RTU</MenuItem>
-            <MenuItem value={"Package RTU + VAC"}>Package RTU + VAC</MenuItem>
-            <MenuItem value={"Chiller + VAC"}>Chiller + VAC</MenuItem>
-          </Select>
-        </FormControl>
+          <TextField
+            id="outlined-basic"
+            label="Floor Area (ft²)"
+            variant={textFieldVariant}
+            autoComplete="off"
+            type="number"
+            color="secondary"
+          />
 
-        <p>Summer Peak Demand</p>
-        <TextField
-          id="outlined-basic"
-          label="Summer Peak Demand"
-          variant={textFieldVariant}
-          autoComplete="off"
-        />
+          <TextField
+            id="outlined-basic"
+            label="Floor Height (ft)"
+            variant={textFieldVariant}
+            autoComplete="off"
+            type="number"
+            color="secondary"
+          />
 
-        <p>Zipcode</p>
-        <TextField
-          id="outlined-basic"
-          label="Zipcode"
-          variant={textFieldVariant}
-          type="number"
-          autoComplete="off"
-        />
 
-        <p>State</p>
-        <FormControl sx={{ m: 1, minWidth: 200 }}>
-          <InputLabel id="demo-simple-select-label">State</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={state}
-            label="State"
-            onChange={chooseState}
-          >
-            <MenuItem value={"CA"}>California</MenuItem>
-            <MenuItem value={"MA"}>Massachusetts</MenuItem>
-            <MenuItem value={"NY"}>New York</MenuItem>
-            <MenuItem value={"TX"}>Texas</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
-      <Box gridColumn="span 7">
+          <FormControl sx={{ width: "100%", marginBottom: 1 }}>
+            <InputLabel id="demo-simple-select-label" color="secondary">HVAC Type</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={hvacType}
+              label="HVAC Type"
+              onChange={chooseHVACType}
+              color="secondary"
+            >
+              <MenuItem value={"Package RTU"}>Package RTU</MenuItem>
+              <MenuItem value={"Package RTU + VAC"}>Package RTU + VAC</MenuItem>
+              <MenuItem value={"Chiller + VAC"}>Chiller + VAC</MenuItem>
+            </Select>
+          </FormControl>
+
+          <TextField
+            id="outlined-basic"
+            label="Summer Peak Demand (kW)"
+            variant={textFieldVariant}
+            autoComplete="off"
+            type="number"
+            color="secondary"
+          />
+
+          <TextField
+            id="outlined-basic"
+            label="Zipcode"
+            variant={textFieldVariant}
+            type="number"
+            autoComplete="off"
+            color="secondary"
+          />
+
+          <FormControl sx={{ m: 1, minWidth: 200 }}>
+            <InputLabel id="demo-simple-select-label" color="secondary">State</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={state}
+              label="State"
+              onChange={chooseState}
+              color="secondary"
+            >
+              <MenuItem value={"CA"}>California</MenuItem>
+              <MenuItem value={"MA"}>Massachusetts</MenuItem>
+              <MenuItem value={"NY"}>New York</MenuItem>
+              <MenuItem value={"TX"}>Texas</MenuItem>
+            </Select>
+          </FormControl>
+
+          <Typography variant="h6" color="#BED7DD" sx={{ fontWeight: 'bold', m: 1 }}>Advanced HVAC Inputs</Typography>
+          <TextField
+            id="outlined-basic"
+            label="Name"
+            variant={textFieldVariant}
+            autoComplete="off"
+            color="secondary"
+          />
+
+          <TextField
+            id="outlined-basic"
+            label="Supply Air Flow (CFM)"
+            variant={textFieldVariant}
+            type="number"
+            autoComplete="off"
+            color="secondary"
+          />
+
+          <TextField
+            id="outlined-basic"
+            label="Supply Fan Motor (hp)"
+            variant={textFieldVariant}
+            type="number"
+            autoComplete="off"
+            color="secondary"
+          />
+
+          <TextField
+            id="outlined-basic"
+            label="Sensible Cooling Capacity (tons)"
+            variant={textFieldVariant}
+            type="number"
+            autoComplete="off"
+            color="secondary"
+          />
+
+          <TextField
+            id="outlined-basic"
+            label="Total Cooling Capacity (tons)"
+            variant={textFieldVariant}
+            type="number"
+            autoComplete="off"
+            color="secondary"
+          />
+
+          <TextField
+            id="outlined-basic"
+            label="Minimum OA Flow (CFM)"
+            variant={textFieldVariant}
+            type="number"
+            autoComplete="off"
+            color="secondary"
+          />
+
+          <TextField
+            id="outlined-basic"
+            label="Fan Efficiency (%)"
+            variant={textFieldVariant}
+            type="number"
+            autoComplete="off"
+            color="secondary"
+          />
+
+          <TextField
+            id="outlined-basic"
+            label="Motor Efficiency (%)"
+            variant={textFieldVariant}
+            type="number"
+            autoComplete="off"
+            color="secondary"
+          />
+
+          <TextField
+            id="outlined-basic"
+            label="Package AC Unit Efficiency"
+            variant={textFieldVariant}
+            type="number"
+            autoComplete="off"
+            color="secondary"
+          />
+
+          <Typography variant="h6" color="#BED7DD" sx={{ fontWeight: 'bold', m: 1 }}>Static Inputs</Typography>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </form>
+
+      </Grid>
+      <Grid item md={6} xs={12}>
         <Item>xs=4</Item>
-      </Box>
-      <Box gridColumn="span 4">
-        <Item>xs=4</Item>
-      </Box>
-    </Box>
+      </Grid>
+    </Grid>
+
+
+    // <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={0}>
+    //   <Box gridColumn="span 6 " bgcolor="primary.main">
+    //     <Grid
+    //       container
+    //       direction="column"
+    //       alignItems="center"
+    //       justifyContent="center"
+    //       width={1}
+
+    //     >
+    //       <ButtonGroup
+    //         disableElevation
+    //         variant="contained"
+    //         aria-label="Disabled elevation buttons"
+    //         color="secondary"
+    //       >
+    //         <Button>Basic</Button>
+    //         <Button>Advanced</Button>
+    //       </ButtonGroup>
+
+    //       <Typography variant="h4" color="#BED7DD" sx={{ fontWeight: 'bold', m: 1 }}>Advanced Calculator</Typography>
+
+    //       <form>
+
+    //         <TextField
+    //           id="outlined-basic"
+    //           label="Building Name"
+    //           variant={textFieldVariant}
+    //           autoComplete="off"
+    //           color="secondary"
+    //           sx={{
+    //             width: "100%", marginBottom: 1,
+    //           }}
+    //         />
+    //         <FormControl sx={{ width: "100%", marginBottom: 1 }}>
+    //           <InputLabel id="demo-simple-select-label" color="secondary">Building Type</InputLabel>
+    //           <Select
+    //             labelId="demo-simple-select-label"
+    //             id="demo-simple-select"
+    //             value={buildingType}
+    //             label="Building Type"
+    //             color="secondary"
+    //             onChange={chooseBuildingType}
+    //           >
+    //             <MenuItem value={"Office"}>Office</MenuItem>
+    //             <MenuItem value={"Retail"}>Retail</MenuItem>
+    //             <MenuItem value={"School"}>School</MenuItem>
+    //           </Select>
+    //         </FormControl>
+
+    //         <TextField
+    //           id="outlined-basic"
+    //           label="Floor Area"
+    //           variant={textFieldVariant}
+    //           autoComplete="off"
+    //           color="secondary"
+    //         />
+
+    //         <FormControl sx={{ width: "100%", marginBottom: 1 }}>
+    //           <InputLabel id="demo-simple-select-label" color="secondary">HVAC Type</InputLabel>
+    //           <Select
+    //             labelId="demo-simple-select-label"
+    //             id="demo-simple-select"
+    //             value={hvacType}
+    //             label="HVAC Type"
+    //             onChange={chooseHVACType}
+    //             color="secondary"
+    //           >
+    //             <MenuItem value={"Package RTU"}>Package RTU</MenuItem>
+    //             <MenuItem value={"Package RTU + VAC"}>Package RTU + VAC</MenuItem>
+    //             <MenuItem value={"Chiller + VAC"}>Chiller + VAC</MenuItem>
+    //           </Select>
+    //         </FormControl>
+
+    //         <TextField
+    //           id="outlined-basic"
+    //           label="Summer Peak Demand"
+    //           variant={textFieldVariant}
+    //           autoComplete="off"
+    //           color="secondary"
+    //         />
+
+    //         <TextField
+    //           id="outlined-basic"
+    //           label="Zipcode"
+    //           variant={textFieldVariant}
+    //           type="number"
+    //           autoComplete="off"
+    //           color="secondary"
+    //         />
+
+    //         <FormControl sx={{ m: 1, minWidth: 200 }}>
+    //           <InputLabel id="demo-simple-select-label" color="secondary">State</InputLabel>
+    //           <Select
+    //             labelId="demo-simple-select-label"
+    //             id="demo-simple-select"
+    //             value={state}
+    //             label="State"
+    //             onChange={chooseState}
+    //             color="secondary"
+    //           >
+    //             <MenuItem value={"CA"}>California</MenuItem>
+    //             <MenuItem value={"MA"}>Massachusetts</MenuItem>
+    //             <MenuItem value={"NY"}>New York</MenuItem>
+    //             <MenuItem value={"TX"}>Texas</MenuItem>
+    //           </Select>
+    //         </FormControl>
+
+
+    //       </form>
+
+    //     </Grid>
+
+
+    //   </Box>
+    //   <Box gridColumn="span 6">
+    //     <Item>xs=4</Item>
+    //     <Item>xs=4</Item>
+
+    //   </Box>
+    // </Box>
   );
 }
