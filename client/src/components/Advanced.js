@@ -41,11 +41,24 @@ export default function Advanced() {
 
   const textFieldVariant = "outlined";
 
+  const textFieldInputPropsSX = {
+    sx: {
+      color: "tertiary.main",
+    },
+  };
+
+  const textFieldSX = {
+    width: "100%",
+    marginBottom: 1,
+    border: "0.05px solid #BED7DD",
+  };
+
   return (
-
-
     <Grid container spacing={0}>
-      <Grid item md={6} xs={12}
+      <Grid
+        item
+        md={6}
+        xs={12}
         container
         direction="column"
         alignItems="center"
@@ -64,31 +77,50 @@ export default function Advanced() {
           <Button>Advanced</Button>
         </ButtonGroup>
 
-        <Typography variant="h4" color="#BED7DD" sx={{ fontWeight: 'bold', m: 1 }}>Advanced Calculator</Typography>
+        <Typography
+          variant="h4"
+          color="tertiary.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+        >
+          Advanced Calculator
+        </Typography>
 
         <form>
+          <Typography
+            variant="h6"
+            color="tertiary.main"
+            sx={{ fontWeight: "bold", m: 1 }}
+          >
+            Basic Inputs
+          </Typography>
 
-          <Typography variant="h6" color="#BED7DD" sx={{ fontWeight: 'bold', m: 1 }}>Basic Inputs</Typography>
-
+          <Typography
+            variant="body2"
+            color="tertiary.main"
+            sx={{ fontWeight: "bold", marginLeft: 1 }}
+          >
+            Building Name
+          </Typography>
           <TextField
             id="outlined-basic"
-            label="Building Name"
             variant={textFieldVariant}
             autoComplete="off"
             color="secondary"
-            sx={{
-              width: "100%", marginBottom: 1,
-
-            }}
-
+            sx={textFieldSX}
+            inputProps={textFieldInputPropsSX}
           />
           <FormControl sx={{ width: "100%", marginBottom: 1 }}>
-            <InputLabel id="demo-simple-select-label" color="secondary">Building Type</InputLabel>
+            <Typography
+              variant="body2"
+              color="tertiary.main"
+              sx={{ fontWeight: "bold", marginLeft: 1 }}
+            >
+              Building Type
+            </Typography>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={buildingType}
-              label="Building Type"
               color="secondary"
               onChange={chooseBuildingType}
             >
@@ -98,32 +130,52 @@ export default function Advanced() {
             </Select>
           </FormControl>
 
+          <Typography
+            variant="body2"
+            color="tertiary.main"
+            sx={{ fontWeight: "bold", marginLeft: 1 }}
+          >
+            Floor Area (ft²)
+          </Typography>
           <TextField
             id="outlined-basic"
-            label="Floor Area (ft²)"
             variant={textFieldVariant}
             autoComplete="off"
             type="number"
             color="secondary"
+            sx={textFieldSX}
+            inputProps={textFieldInputPropsSX}
           />
 
+          <Typography
+            variant="body2"
+            color="tertiary.main"
+            sx={{ fontWeight: "bold", marginLeft: 1 }}
+          >
+            Floor Height (ft²)
+          </Typography>
           <TextField
             id="outlined-basic"
-            label="Floor Height (ft)"
             variant={textFieldVariant}
             autoComplete="off"
             type="number"
             color="secondary"
+            sx={textFieldSX}
+            inputProps={textFieldInputPropsSX}
           />
-
 
           <FormControl sx={{ width: "100%", marginBottom: 1 }}>
-            <InputLabel id="demo-simple-select-label" color="secondary">HVAC Type</InputLabel>
+            <Typography
+              variant="body2"
+              color="tertiary.main"
+              sx={{ fontWeight: "bold", marginLeft: 1 }}
+            >
+              HVAC Type
+            </Typography>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={hvacType}
-              label="HVAC Type"
               onChange={chooseHVACType}
               color="secondary"
             >
@@ -140,6 +192,8 @@ export default function Advanced() {
             autoComplete="off"
             type="number"
             color="secondary"
+            sx={textFieldSX}
+            inputProps={textFieldInputPropsSX}
           />
 
           <TextField
@@ -149,10 +203,14 @@ export default function Advanced() {
             type="number"
             autoComplete="off"
             color="secondary"
+            sx={textFieldSX}
+            inputProps={textFieldInputPropsSX}
           />
 
           <FormControl sx={{ m: 1, minWidth: 200 }}>
-            <InputLabel id="demo-simple-select-label" color="secondary">State</InputLabel>
+            <InputLabel id="demo-simple-select-label" color="secondary">
+              State
+            </InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -168,7 +226,13 @@ export default function Advanced() {
             </Select>
           </FormControl>
 
-          <Typography variant="h6" color="#BED7DD" sx={{ fontWeight: 'bold', m: 1 }}>Advanced HVAC Inputs</Typography>
+          <Typography
+            variant="h6"
+            color="#BED7DD"
+            sx={{ fontWeight: "bold", m: 1 }}
+          >
+            Advanced HVAC Inputs
+          </Typography>
           <TextField
             id="outlined-basic"
             label="Name"
@@ -249,28 +313,19 @@ export default function Advanced() {
             color="secondary"
           />
 
-          <Typography variant="h6" color="#BED7DD" sx={{ fontWeight: 'bold', m: 1 }}>Static Inputs</Typography>
-
-
-
-
-
-
-
-
-
-
-
-
-
+          <Typography
+            variant="h6"
+            color="#BED7DD"
+            sx={{ fontWeight: "bold", m: 1 }}
+          >
+            Static Inputs
+          </Typography>
         </form>
-
       </Grid>
       <Grid item md={6} xs={12}>
         <Item>xs=4</Item>
       </Grid>
     </Grid>
-
 
     // <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={0}>
     //   <Box gridColumn="span 6 " bgcolor="primary.main">
@@ -380,11 +435,9 @@ export default function Advanced() {
     //           </Select>
     //         </FormControl>
 
-
     //       </form>
 
     //     </Grid>
-
 
     //   </Box>
     //   <Box gridColumn="span 6">
