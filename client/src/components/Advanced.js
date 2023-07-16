@@ -57,7 +57,7 @@ export default function Advanced() {
     <Grid container spacing={0}>
       <Grid
         item
-        md={6}
+        md={5}
         xs={12}
         container
         direction="column"
@@ -322,129 +322,17 @@ export default function Advanced() {
           </Typography>
         </form>
       </Grid>
-      <Grid item md={6} xs={12}>
-        <Item>xs=4</Item>
+      <Grid
+        item md={7} xs={12}
+        container
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        bgcolor="tertiary.main"
+        width={1}
+      >
       </Grid>
     </Grid>
 
-    // <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={0}>
-    //   <Box gridColumn="span 6 " bgcolor="primary.main">
-    //     <Grid
-    //       container
-    //       direction="column"
-    //       alignItems="center"
-    //       justifyContent="center"
-    //       width={1}
-
-    //     >
-    //       <ButtonGroup
-    //         disableElevation
-    //         variant="contained"
-    //         aria-label="Disabled elevation buttons"
-    //         color="secondary"
-    //       >
-    //         <Button>Basic</Button>
-    //         <Button>Advanced</Button>
-    //       </ButtonGroup>
-
-    //       <Typography variant="h4" color="#BED7DD" sx={{ fontWeight: 'bold', m: 1 }}>Advanced Calculator</Typography>
-
-    //       <form>
-
-    //         <TextField
-    //           id="outlined-basic"
-    //           label="Building Name"
-    //           variant={textFieldVariant}
-    //           autoComplete="off"
-    //           color="secondary"
-    //           sx={{
-    //             width: "100%", marginBottom: 1,
-    //           }}
-    //         />
-    //         <FormControl sx={{ width: "100%", marginBottom: 1 }}>
-    //           <InputLabel id="demo-simple-select-label" color="secondary">Building Type</InputLabel>
-    //           <Select
-    //             labelId="demo-simple-select-label"
-    //             id="demo-simple-select"
-    //             value={buildingType}
-    //             label="Building Type"
-    //             color="secondary"
-    //             onChange={chooseBuildingType}
-    //           >
-    //             <MenuItem value={"Office"}>Office</MenuItem>
-    //             <MenuItem value={"Retail"}>Retail</MenuItem>
-    //             <MenuItem value={"School"}>School</MenuItem>
-    //           </Select>
-    //         </FormControl>
-
-    //         <TextField
-    //           id="outlined-basic"
-    //           label="Floor Area"
-    //           variant={textFieldVariant}
-    //           autoComplete="off"
-    //           color="secondary"
-    //         />
-
-    //         <FormControl sx={{ width: "100%", marginBottom: 1 }}>
-    //           <InputLabel id="demo-simple-select-label" color="secondary">HVAC Type</InputLabel>
-    //           <Select
-    //             labelId="demo-simple-select-label"
-    //             id="demo-simple-select"
-    //             value={hvacType}
-    //             label="HVAC Type"
-    //             onChange={chooseHVACType}
-    //             color="secondary"
-    //           >
-    //             <MenuItem value={"Package RTU"}>Package RTU</MenuItem>
-    //             <MenuItem value={"Package RTU + VAC"}>Package RTU + VAC</MenuItem>
-    //             <MenuItem value={"Chiller + VAC"}>Chiller + VAC</MenuItem>
-    //           </Select>
-    //         </FormControl>
-
-    //         <TextField
-    //           id="outlined-basic"
-    //           label="Summer Peak Demand"
-    //           variant={textFieldVariant}
-    //           autoComplete="off"
-    //           color="secondary"
-    //         />
-
-    //         <TextField
-    //           id="outlined-basic"
-    //           label="Zipcode"
-    //           variant={textFieldVariant}
-    //           type="number"
-    //           autoComplete="off"
-    //           color="secondary"
-    //         />
-
-    //         <FormControl sx={{ m: 1, minWidth: 200 }}>
-    //           <InputLabel id="demo-simple-select-label" color="secondary">State</InputLabel>
-    //           <Select
-    //             labelId="demo-simple-select-label"
-    //             id="demo-simple-select"
-    //             value={state}
-    //             label="State"
-    //             onChange={chooseState}
-    //             color="secondary"
-    //           >
-    //             <MenuItem value={"CA"}>California</MenuItem>
-    //             <MenuItem value={"MA"}>Massachusetts</MenuItem>
-    //             <MenuItem value={"NY"}>New York</MenuItem>
-    //             <MenuItem value={"TX"}>Texas</MenuItem>
-    //           </Select>
-    //         </FormControl>
-
-    //       </form>
-
-    //     </Grid>
-
-    //   </Box>
-    //   <Box gridColumn="span 6">
-    //     <Item>xs=4</Item>
-    //     <Item>xs=4</Item>
-
-    //   </Box>
-    // </Box>
   );
 }
