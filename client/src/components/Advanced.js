@@ -11,6 +11,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
+import { useNavigate } from "react-router-dom";
 
 // visualization for boxes. will delete later
 const Item = styled(Paper)(({ theme }) => ({
@@ -22,6 +23,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Advanced() {
+  let navigate = useNavigate(); // navigate to diff pages
   // dropdown forms
   const [buildingType, setBuildingType] = React.useState("");
   const [state, setState] = React.useState("");
@@ -73,8 +75,8 @@ export default function Advanced() {
           color="secondary"
           sx={{ marginTop: 2 }}
         >
-          <Button>Basic</Button>
-          <Button>Advanced</Button>
+          <Button onClick={() => navigate("/basic")}>Basic</Button>
+          <Button onClick={() => navigate("/advanced")}>Advanced</Button>
         </ButtonGroup>
 
         <Typography

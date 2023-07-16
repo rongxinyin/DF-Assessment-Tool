@@ -14,7 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { ReactComponent as Logo } from "./berkeleylablogo.svg";
+import { ReactComponent as Logo } from "./images/lbnlgridintegrationgroup.svg";
 import { useNavigate } from "react-router-dom";
 
 
@@ -72,7 +72,7 @@ export default function SiteAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Logo></Logo>
+          <Logo style={{ width: 450, height: 450 }}></Logo>
           <Typography
             variant="h6"
             component="div"

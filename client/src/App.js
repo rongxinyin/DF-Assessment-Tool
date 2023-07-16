@@ -10,7 +10,6 @@ import About from "./components/About";
 import Basic from "./components/Basic";
 import NotFound from "./components/NotFound";
 
-
 import AppBar from "./components/SiteAppBar";
 
 const theme = createTheme({
