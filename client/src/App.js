@@ -8,6 +8,8 @@ import FAQ from "./components/FAQ";
 import UserGuide from "./components/UserGuide";
 import About from "./components/About";
 import Basic from "./components/Basic";
+import NotFound from "./components/NotFound";
+
 
 import AppBar from "./components/SiteAppBar";
 
@@ -53,6 +55,7 @@ export default function App() {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/userguide" element={<UserGuide />} />
             <Route path="/about" element={<About />} />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
