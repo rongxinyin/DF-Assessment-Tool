@@ -1,5 +1,15 @@
 import axios from "axios";
 
+//Generate caseID based on user inputs
+const createCaseIDs = (state, buildingType, buildYear, precool, reset) => {
+  let caseIDs = [];
+  for (var eventHour = 1; eventHour <= 4; eventHour++) {
+    let caseID = state + "-" + buildingType + "-" + buildYear + "-GTA-" + precool + "-" + reset + "-" + eventHour;
+    caseIDs.push(caseID);
+  }
+  return caseIDs;
+}
+
 // Calculates DR percentage and DR (KW) for a given caseID and inputted CSSB data.
 const gtaCalculation = async (state, caseIDs, CSSB) => {
   let DR_output = [];
@@ -47,4 +57,4 @@ const gtaCalculation = async (state, caseIDs, CSSB) => {
   }
 };
 
-export { gtaCalculation };
+export { gtaCalculation, createCaseIDs };

@@ -1,6 +1,6 @@
 import express from "express";
 import StateModel from "../models/states.js";
-import { gtaCalculation } from "../../client/src/logic/DR_Calculations.js";
+import { createCaseIDs, gtaCalculation } from "../../client/src/logic/DR_Calculations.js";
 
 const router = express.Router();
 
@@ -84,6 +84,11 @@ router.get("/testGTA", async (req, res) => {
   ];
   let result = await gtaCalculation("Massachusetts", caseIDs, CSSB);
   res.json(result);
+});
+
+//Route to test createCaseIDs
+router.get("/testCaseIDs", async(req, res) => {
+  res.json(createCaseIDs("MA", "SmallOffice", 2004, 0, 5));
 });
 
 export default router;
