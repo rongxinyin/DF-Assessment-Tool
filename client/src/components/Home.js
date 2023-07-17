@@ -1,33 +1,16 @@
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
 import * as React from "react";
-import TextField from "@mui/material/TextField";
-<<<<<<< Updated upstream
-import ButtonGroup from '@mui/material/ButtonGroup';
-=======
 import ButtonGroup from "@mui/material/ButtonGroup";
+import Grid from "@mui/material/Grid";
+import { useNavigate } from "react-router-dom";
 import { Container, Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import { useNavigate } from "react-router-dom";
->>>>>>> Stashed changes
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
-import * as React from "react";
-import { Container, Typography } from "@mui/material";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import { useNavigate } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material";
+import TextField from "@mui/material/TextField";
 
 const theme = createTheme({
   palette: {
@@ -77,19 +60,21 @@ export default function Home() {
   };
 
   return (
-    <Grid container spacing={0}>
+    <ThemeProvider theme={theme}>
+    <Container maxWidth="xl">
+  <Grid container spacing={4}>
     <Grid
       item
       md={5}
       xs={12}
       container
       direction="column"
-      alignItems="center"
+      alignItems="left"
       justifyContent="center"
       bgcolor="primary.main"
       width={1}
     >
-      <ButtonGroup
+<ButtonGroup
         disableElevation
         variant="contained"
         aria-label="Disabled elevation buttons"
@@ -99,166 +84,136 @@ export default function Home() {
         <Button onClick={() => navigate("/basic")}>Basic</Button>
         <Button onClick={() => navigate("/advanced")}>Advanced</Button>
       </ButtonGroup>
-      </Grid>
-      </Grid>
-  )
-
-  /*return (
-    <ThemeProvider theme={theme}>
-    <Container maxWidth="xl">
-    <Grid container spacing={4}>
-      <Grid
-        item
-        md={5}
-        xs={12}
-        container
-        direction="column"
-        alignItems="left"
-        justifyContent="center"
-        bgcolor="primary.main"
-        width={1}
+      <Typography
+        variant="h4"
+        color="tertiary.main"
+        sx={{ fontWeight: "bold", m: 1 }}
       >
- <ButtonGroup
-          disableElevation
-          variant="contained"
-          aria-label="Disabled elevation buttons"
-          color="secondary"
-          sx={{ marginTop: 2 }}
-        >
-          <Button onClick={() => navigate("/basic")}>Basic</Button>
-          <Button onClick={() => navigate("/advanced")}>Advanced</Button>
-        </ButtonGroup>
+        Basic Calculator
+      </Typography>
+
+      <form>
         <Typography
-          variant="h4"
+          variant="h6"
           color="tertiary.main"
           sx={{ fontWeight: "bold", m: 1 }}
         >
-          Basic Calculator
+          Basic Inputs
         </Typography>
 
-        <form>
-          <Typography
-            variant="h6"
-            color="tertiary.main"
-            sx={{ fontWeight: "bold", m: 1 }}
-          >
-            Basic Inputs
-          </Typography>
-
-          <Typography
-            variant="body2"
-            color="tertiary.main"
-            sx={{ fontWeight: "bold", marginLeft: 1 }}
-          >
-            Building Name
-          </Typography>
-          <TextField
-            id="outlined-basic"
-            variant={textFieldVariant}
-            autoComplete="off"
-            color="secondary"
-            sx={textFieldSX}
-            inputProps={textFieldInputPropsSX}
-          />
-          <FormControl sx={{ width: "50%", marginBottom: 1 }}>
-            <Typography
-              variant="body2"
-              color="tertiary.main"
-              sx={{ fontWeight: "bold", marginLeft: 1 }}
-            >
-              Building Type
-            </Typography>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={buildingType}
-              color="secondary"
-              onChange={chooseBuildingType}
-            >
-              <MenuItem value={"Office"}>Office</MenuItem>
-              <MenuItem value={"Retail"}>Retail</MenuItem>
-              <MenuItem value={"School"}>School</MenuItem>
-            </Select>
-          </FormControl>
-
+        <Typography
+          variant="body2"
+          color="tertiary.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          Building Name
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          color="secondary"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+        <FormControl sx={{ width: "50%", marginBottom: 1 }}>
           <Typography
             variant="body2"
             color="tertiary.main"
             sx={{ fontWeight: "bold", marginLeft: 1 }}
           >
-            Floor Area (ft²)
+            Building Type
           </Typography>
-          <TextField
-            id="outlined-basic"
-            variant={textFieldVariant}
-            autoComplete="off"
-            type="number"
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={buildingType}
             color="secondary"
-            sx={textFieldSX}
-            inputProps={textFieldInputPropsSX}
-          />
+            onChange={chooseBuildingType}
+          >
+            <MenuItem value={"Office"}>Office</MenuItem>
+            <MenuItem value={"Retail"}>Retail</MenuItem>
+            <MenuItem value={"School"}>School</MenuItem>
+          </Select>
+        </FormControl>
 
+        <Typography
+          variant="body2"
+          color="tertiary.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          Floor Area (ft²)
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          color="secondary"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+
+        <Typography
+          variant="body2"
+          color="tertiary.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          Floor Height (ft²)
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          color="secondary"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+
+        <FormControl sx={{ width: "50%", marginBottom: 1 }}>
           <Typography
             variant="body2"
             color="tertiary.main"
             sx={{ fontWeight: "bold", marginLeft: 1 }}
           >
-            Floor Height (ft²)
+            HVAC Type
           </Typography>
-          <TextField
-            id="outlined-basic"
-            variant={textFieldVariant}
-            autoComplete="off"
-            type="number"
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={hvacType}
+            onChange={chooseHVACType}
             color="secondary"
-            sx={textFieldSX}
-            inputProps={textFieldInputPropsSX}
-          />
+          >
+            <MenuItem value={"Package RTU"}>Package RTU</MenuItem>
+            <MenuItem value={"Package RTU + VAC"}>Package RTU + VAC</MenuItem>
+            <MenuItem value={"Chiller + VAC"}>Chiller + VAC</MenuItem>
+          </Select>
+        </FormControl>
 
-          <FormControl sx={{ width: "50%", marginBottom: 1 }}>
-            <Typography
-              variant="body2"
-              color="tertiary.main"
-              sx={{ fontWeight: "bold", marginLeft: 1 }}
-            >
-              HVAC Type
-            </Typography>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={hvacType}
-              onChange={chooseHVACType}
-              color="secondary"
-            >
-              <MenuItem value={"Package RTU"}>Package RTU</MenuItem>
-              <MenuItem value={"Package RTU + VAC"}>Package RTU + VAC</MenuItem>
-              <MenuItem value={"Chiller + VAC"}>Chiller + VAC</MenuItem>
-            </Select>
-          </FormControl>
+        <TextField
+          id="outlined-basic"
+          label="Summer Peak Demand (kW)"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          color="secondary"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
 
-          <TextField
-            id="outlined-basic"
-            label="Summer Peak Demand (kW)"
-            variant={textFieldVariant}
-            autoComplete="off"
-            type="number"
-            color="secondary"
-            sx={textFieldSX}
-            inputProps={textFieldInputPropsSX}
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Zipcode"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-            sx={textFieldSX}
-            inputProps={textFieldInputPropsSX}
-          />
-
-          <FormControl sx={{ m: 1, minWidth: 200 }}>
+        <TextField
+          id="outlined-basic"
+          label="Zipcode"
+          variant={textFieldVariant}
+          type="number"
+          autoComplete="off"
+          color="secondary"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+        <FormControl sx={{ m: 1, minWidth: 200 }}>
             <InputLabel id="demo-simple-select-label" color="secondary">
               State
             </InputLabel>
@@ -276,24 +231,16 @@ export default function Home() {
               <MenuItem value={"TX"}>Texas</MenuItem>
             </Select>
           </FormControl>      
-
+          
+          <Typography
+          variant="h6"
+          color="tertiary.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+        >
+          HVAC Temp DR Shed Capacity Calculation
+        </Typography>
         </form>
-
-          <p className="text-wrapper-21">HVAC Temp DR Shed Capacity Calculation</p>
-          <p className="p">% of Building Floor Area that Temp Reset will Apply</p>
-          <div className="text-wrapper-16"><TextField id="filled-basic" label="0-100" variant="filled" color="primary"/></div>
-          <p className="text-wrapper-7">Pre-Cool Period Temp Offset (°F)</p>
-          <div className="text-wrapper-14"><TextField id="filled-basic" label="°F" variant="filled" color="primary"/></div>
-          <p className="text-wrapper-8">DR Event Period Temp Offset (°F)</p>
-          <div className="text-wrapper-15"><TextField id="filled-basic" label="°F" variant="filled" color="primary"/></div>
-         
-          <p className="reset-download">
-            <span className="span">Reset&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-            <span className="text-wrapper-19">Download </span>
-          </p>
-          <div className="text-wrapper-20">Calculate</div>
-
-    </Grid>
+        </Grid>
     <Grid
         item
         md={7}
@@ -308,5 +255,6 @@ export default function Home() {
     </Grid>
     </Container>
     </ThemeProvider>
-  );*/
+  );
+
   }
