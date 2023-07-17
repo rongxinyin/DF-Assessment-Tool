@@ -11,15 +11,30 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { createTheme, ThemeProvider } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import createTypography from "@mui/material/styles/createTypography";
 
 const theme = createTheme({
   palette: {
     primary: {
-      // medium blue
+      // darker blue
       main: '#00303C',
     },
     secondary: {
-      // darker blue
+      // medium blue
+      main: '#007681',
+    },
+    white: {
+      main:'#FFFFFF',
+    }
+  },
+
+  typography: {
+    primary: {
+      // white
+      main: '#FFFFFF',
+    },
+    secondary: {
+      // medium blue
       main: '#007681',
     },
   },
@@ -62,6 +77,7 @@ export default function Home() {
   return (
     <ThemeProvider theme={theme}>
     <Container maxWidth="xl">
+
   <Grid container spacing={4}>
     <Grid
       item
@@ -74,7 +90,7 @@ export default function Home() {
       bgcolor="primary.main"
       width={1}
     >
-<ButtonGroup
+      <ButtonGroup
         disableElevation
         variant="contained"
         aria-label="Disabled elevation buttons"
@@ -84,9 +100,10 @@ export default function Home() {
         <Button onClick={() => navigate("/basic")}>Basic</Button>
         <Button onClick={() => navigate("/advanced")}>Advanced</Button>
       </ButtonGroup>
+
       <Typography
         variant="h4"
-        color="tertiary.main"
+        color="white.main"
         sx={{ fontWeight: "bold", m: 1 }}
       >
         Basic Calculator
@@ -95,7 +112,7 @@ export default function Home() {
       <form>
         <Typography
           variant="h6"
-          color="tertiary.main"
+          color="white.main"
           sx={{ fontWeight: "bold", m: 1 }}
         >
           Basic Inputs
@@ -103,7 +120,7 @@ export default function Home() {
 
         <Typography
           variant="body2"
-          color="tertiary.main"
+          color="white.main"
           sx={{ fontWeight: "bold", marginLeft: 1 }}
         >
           Building Name
@@ -119,7 +136,7 @@ export default function Home() {
         <FormControl sx={{ width: "50%", marginBottom: 1 }}>
           <Typography
             variant="body2"
-            color="tertiary.main"
+            color="white.main"
             sx={{ fontWeight: "bold", marginLeft: 1 }}
           >
             Building Type
@@ -139,7 +156,7 @@ export default function Home() {
 
         <Typography
           variant="body2"
-          color="tertiary.main"
+          color="white.main"
           sx={{ fontWeight: "bold", marginLeft: 1 }}
         >
           Floor Area (ft²)
@@ -156,7 +173,7 @@ export default function Home() {
 
         <Typography
           variant="body2"
-          color="tertiary.main"
+          color="white.main"
           sx={{ fontWeight: "bold", marginLeft: 1 }}
         >
           Floor Height (ft²)
@@ -174,7 +191,7 @@ export default function Home() {
         <FormControl sx={{ width: "50%", marginBottom: 1 }}>
           <Typography
             variant="body2"
-            color="tertiary.main"
+            color="white.main"
             sx={{ fontWeight: "bold", marginLeft: 1 }}
           >
             HVAC Type
@@ -234,11 +251,12 @@ export default function Home() {
           
           <Typography
           variant="h6"
-          color="tertiary.main"
+          color="white.main"
           sx={{ fontWeight: "bold", m: 1 }}
         >
           HVAC Temp DR Shed Capacity Calculation
         </Typography>
+
         </form>
         </Grid>
     <Grid
@@ -251,7 +269,9 @@ export default function Home() {
         justifyContent="center"
         bgcolor="#BED7DD"
         width={1}
-      ></Grid>
+      >
+      
+      </Grid>
     </Grid>
     </Container>
     </ThemeProvider>
