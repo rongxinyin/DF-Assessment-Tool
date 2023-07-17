@@ -256,6 +256,57 @@ export default function Home() {
         >
           HVAC Temp DR Shed Capacity Calculation
         </Typography>
+        
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          Percentage of Bldg Floor Area that GTA will Apply (0-100)
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          color="secondary"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          Precool Period Temp Offset (°F) 
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          color="secondary"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          DR Event Period Temp Offset (°F) 
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          color="secondary"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
 
         </form>
         </Grid>
