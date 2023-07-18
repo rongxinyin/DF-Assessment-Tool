@@ -14,6 +14,7 @@ import TextField from "@mui/material/TextField";
 import createTypography from "@mui/material/styles/createTypography";
 import Box from "@mui/material/Box";
 
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -70,7 +71,7 @@ export default function Home() {
   };
 
   const textFieldSX = {
-    width: "100%",
+    width: "95%",
     marginBottom: 1,
     border: "0.05px solid #BED7DD",
   };
@@ -354,6 +355,8 @@ export default function Home() {
           sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
         />
+        
+        <box sx= {{flexDirection:"row"}}> 
 
         <Typography
           variant="h6"
@@ -362,7 +365,213 @@ export default function Home() {
         >
           OAT and kW During the DR Event Hours
         </Typography>
-      
+
+        <Typography
+          variant="h5"
+          color="white.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+        >
+          Hour 1
+        </Typography>
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         OAT(°F) 
+        </Typography>
+
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          color="secondary"
+          sx={{
+            width: "50%",
+            marginBottom: 1,
+            border: "0.05px solid #BED7DD",
+          }
+          }
+          inputProps={textFieldInputPropsSX}
+        />
+              <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         Meter kW
+        </Typography>
+
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          color="secondary"
+          sx={{
+            width: "50%",
+            marginBottom: 1,
+            border: "0.05px solid #BED7DD",
+          }
+          }
+          inputProps={textFieldInputPropsSX}
+        />
+        <Typography
+          variant="h5"
+          color="white.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+        >
+          Hour 2
+        </Typography>
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         OAT(°F) 
+        </Typography>
+
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          color="secondary"
+          sx={{
+            width: "50%",
+            marginBottom: 1,
+            border: "0.05px solid #BED7DD",
+          }
+          }
+          inputProps={textFieldInputPropsSX}
+        />
+              <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         Meter kW
+        </Typography>
+
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          color="secondary"
+          sx={{
+            width: "50%",
+            marginBottom: 1,
+            border: "0.05px solid #BED7DD",
+          }
+          }
+          inputProps={textFieldInputPropsSX} />
+        <Typography
+          variant="h5"
+          color="white.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+        >
+          Hour 3
+        </Typography>
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         OAT(°F) 
+        </Typography>
+
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          color="secondary"
+          sx={{
+            width: "50%",
+            marginBottom: 1,
+            border: "0.05px solid #BED7DD",
+          }
+          }
+          inputProps={textFieldInputPropsSX}
+        />
+              <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         Meter kW
+        </Typography>
+
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          color="secondary"
+          sx={{
+            width: "50%",
+            marginBottom: 1,
+            border: "0.05px solid #BED7DD",
+          }
+          }
+          inputProps={textFieldInputPropsSX}
+        />
+        <Typography
+          variant="h5"
+          color="white.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+        >
+          Hour 4
+        </Typography>
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         OAT(°F) 
+        </Typography>
+
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          color="secondary"
+          sx={{
+            width: "50%",
+            marginBottom: 1,
+            border: "0.05px solid #BED7DD",
+          }
+          }
+          inputProps={textFieldInputPropsSX}
+        />
+              <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         Meter kW
+        </Typography>
+
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          color="secondary"
+          sx={{
+            width: "50%",
+            marginBottom: 1,
+            border: "0.05px solid #BED7DD",
+          }
+          }
+          inputProps={textFieldInputPropsSX}
+        />
+
+        </box>
+
 
         </form>
         </Grid>
