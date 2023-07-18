@@ -12,6 +12,7 @@ import FormControl from "@mui/material/FormControl";
 import { createTheme, ThemeProvider } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import createTypography from "@mui/material/styles/createTypography";
+import Box from "@mui/material/Box";
 
 const theme = createTheme({
   palette: {
@@ -354,6 +355,15 @@ export default function Home() {
           inputProps={textFieldInputPropsSX}
         />
 
+        <Typography
+          variant="h6"
+          color="white.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+        >
+          OAT and kW During the DR Event Hours
+        </Typography>
+      
+
         </form>
         </Grid>
     <Grid
@@ -363,10 +373,37 @@ export default function Home() {
         container
         direction="column"
         alignItems="center"
-        justifyContent="center"
+        justifyContent="flex-start"
         bgcolor="#BED7DD"
         width={1}
       >
+      <Typography
+        variant="h4"
+        color="primary.main"
+        sx={{ fontWeight: "bold", m: 1 }}
+      >
+        HVAC Temp Reset DR Shed Estimates (kW) for Different Peak Temps in Building's Climate Zone
+      </Typography>
+
+      <Grid
+        item
+        md={7}
+        xs={12}
+        container 
+        direction="column"
+        alignItems="center"
+        justifyContent="flex-start"
+        bgcolor="#BED7DD"
+        width={1}
+      >
+        <Typography
+        variant="h4"
+        color="primary.main"
+        sx={{ fontWeight: "bold", m: 1 }}
+      >
+        Estimated kW Shed during the Dr Event Hours
+      </Typography>
+      </Grid>
       
       </Grid>
     </Grid>
