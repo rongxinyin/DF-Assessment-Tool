@@ -66,21 +66,24 @@ export default function Home() {
 
   const textFieldInputPropsSX = {
     sx: {
-      color: "tertiary.main",
+      color: "#FFFFFF",
     },
   };
 
   const textFieldSX = {
-    width: "95%",
+    width: "50%",
     marginBottom: 1,
-    border: "0.05px solid #BED7DD",
+    marginTop: 1,
+    border: "2px solid #F0F0F0",
+    backgroundColor: "secondary.main",
+    borderRadius: "10px",
   };
 
   return (
     <ThemeProvider theme={theme}>
     <Container maxWidth="xl">
 
-  <Grid container spacing={4}>
+  <Grid container spacing={4} width='100%' height='100%'>
     <Grid
       item
       md={5}
@@ -91,6 +94,7 @@ export default function Home() {
       justifyContent="center"
       bgcolor="primary.main"
       width={1}
+      sx={{overflow:'scroll'}}
     >
       <ButtonGroup
         disableElevation
@@ -106,7 +110,7 @@ export default function Home() {
       <Typography
         variant="h4"
         color="white.main"
-        sx={{ fontWeight: "bold", m: 1 }}
+        sx={{ fontWeight: "bold", m: 1, marginTop: 2,}}
       >
         Basic Calculator
       </Typography>
@@ -119,7 +123,7 @@ export default function Home() {
         >
           Basic Inputs
         </Typography>
-
+        <div /*style={{width:'50%'}}*/>
         <Typography
           variant="body2"
           color="white.main"
@@ -131,11 +135,10 @@ export default function Home() {
           id="outlined-basic"
           variant={textFieldVariant}
           autoComplete="off"
-          color="secondary"
           sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
         />
-        <FormControl sx={{ width: "50%", marginBottom: 1 }}>
+        <FormControl sx={{ width: "75%", marginBottom: 1 }}>
           <Typography
             variant="body2"
             color="white.main"
@@ -147,8 +150,8 @@ export default function Home() {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={buildingType}
-            color="secondary"
             onChange={chooseBuildingType}
+            sx={textFieldSX}
           >
             <MenuItem value={"Office"}>Office</MenuItem>
             <MenuItem value={"Retail"}>Retail</MenuItem>
@@ -168,7 +171,6 @@ export default function Home() {
           variant={textFieldVariant}
           autoComplete="off"
           type="number"
-          color="secondary"
           sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
         />
@@ -185,12 +187,11 @@ export default function Home() {
           variant={textFieldVariant}
           autoComplete="off"
           type="number"
-          color="secondary"
           sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
         />
 
-        <FormControl sx={{ width: "50%", marginBottom: 1 }}>
+        <FormControl sx={{ width: "75%", marginBottom: 1 }}>
           <Typography
             variant="body2"
             color="white.main"
@@ -204,6 +205,7 @@ export default function Home() {
             value={hvacType}
             onChange={chooseHVACType}
             color="secondary"
+            sx={textFieldSX}
           >
             <MenuItem value={"Package RTU"}>Package RTU</MenuItem>
             <MenuItem value={"Package RTU + VAC"}>Package RTU + VAC</MenuItem>
@@ -211,91 +213,61 @@ export default function Home() {
           </Select>
         </FormControl>
 
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          Summer Peak Demand (kW)
+        </Typography>
+
         <TextField
           id="outlined-basic"
-          label="Summer Peak Demand (kW)"
           variant={textFieldVariant}
           autoComplete="off"
           type="number"
-          color="secondary"
           sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
         />
 
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          Zipcode
+        </Typography>
         <TextField
           id="outlined-basic"
-          label="Zipcode"
           variant={textFieldVariant}
           type="number"
           autoComplete="off"
-          color="secondary"
           sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
         />
-        <FormControl sx={{ m: 1, minWidth: 200 }}>
-            <InputLabel id="demo-simple-select-label" color="secondary">
-              State
-            </InputLabel>
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          State
+        </Typography>
+        <FormControl sx={{ width: "50%",}}>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={state}
-              label="State"
               onChange={chooseState}
               color="secondary"
+              sx={textFieldSX}
             >
-              <MenuItem value={"AL"}>Alabama</MenuItem>
-              <MenuItem value={"AK"}>Alaska</MenuItem>
-              <MenuItem value={"AZ"}>Arizona</MenuItem>
-              <MenuItem value={"AR"}>Arkansas</MenuItem>
               <MenuItem value={"CA"}>California</MenuItem>
-              <MenuItem value={"CO"}>Colorado</MenuItem>
-              <MenuItem value={"CT"}>Connecticut</MenuItem>
-              <MenuItem value={"DE"}>Delaware</MenuItem>
-              <MenuItem value={"FL"}>Florida</MenuItem>
-              <MenuItem value={"GA"}>Georgia</MenuItem>
-              <MenuItem value={"HI"}>Hawaii</MenuItem>
-              <MenuItem value={"ID"}>Idaho</MenuItem>
-              <MenuItem value={"IL"}>Illinois</MenuItem>
-              <MenuItem value={"IN"}>Indiana</MenuItem>
-              <MenuItem value={"IA"}>Iowa</MenuItem>
-              <MenuItem value={"KS"}>Kansas</MenuItem>
-              <MenuItem value={"KY"}>Kentucky</MenuItem>
-              <MenuItem value={"LA"}>Louisiana</MenuItem>
-              <MenuItem value={"ME"}>Maine</MenuItem>
               <MenuItem value={"MD"}>Maryland</MenuItem>
-              <MenuItem value={"MA"}>Massachusetts</MenuItem>
-              <MenuItem value={"MI"}>Michigan</MenuItem>
-              <MenuItem value={"MN"}>Minnesota</MenuItem>
-              <MenuItem value={"MS"}>Mississippi</MenuItem>
-              <MenuItem value={"MO"}>Missouri</MenuItem>
-              <MenuItem value={"MT"}>Montana</MenuItem>
-              <MenuItem value={"NE"}>Nebraska</MenuItem>
-              <MenuItem value={"NV"}>Nevada</MenuItem>
-              <MenuItem value={"NH"}>New Hampshire</MenuItem>
-              <MenuItem value={"NJ"}>New Jersey</MenuItem>
-              <MenuItem value={"NM"}>New Mexico</MenuItem>
               <MenuItem value={"NY"}>New York</MenuItem>
-              <MenuItem value={"NC"}>North Carolina</MenuItem>
-              <MenuItem value={"ND"}>NOrth Dakota</MenuItem>
-              <MenuItem value={"OH"}>Ohio</MenuItem>
-              <MenuItem value={"OK"}>Oklahoma</MenuItem>
-              <MenuItem value={"OR"}>Oregon</MenuItem>
-              <MenuItem value={"PA"}>Pennsylvania</MenuItem>
-              <MenuItem value={"RI"}>Rhode Island</MenuItem>
-              <MenuItem value={"SC"}>South Carolina</MenuItem>
-              <MenuItem value={"SD"}>South Dakota</MenuItem>
-              <MenuItem value={"TN"}>Tennessee</MenuItem>
               <MenuItem value={"TX"}>Texas</MenuItem>
-              <MenuItem value={"UT"}>Utah</MenuItem>
-              <MenuItem value={"VT"}>Vermont</MenuItem>
-              <MenuItem value={"VA"}>Virginia</MenuItem>
-              <MenuItem value={"WA"}>Washington</MenuItem>
-              <MenuItem value={"WV"}>West Virginia</MenuItem>
-              <MenuItem value={"WI"}>Wisconsin</MenuItem>
-              <MenuItem value={"WY"}>Wyoming</MenuItem>
             </Select>
-          </FormControl>      
+          </FormControl> 
+          </div>     
           
           <Typography
           variant="h6"
@@ -317,7 +289,6 @@ export default function Home() {
           variant={textFieldVariant}
           autoComplete="off"
           type="number"
-          color="secondary"
           sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
         />
@@ -333,10 +304,9 @@ export default function Home() {
           id="outlined-basic"
           variant={textFieldVariant}
           autoComplete="off"
-          type="number"
-          color="secondary"
           sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
+          type="number"
         />
 
         <Typography
@@ -351,7 +321,6 @@ export default function Home() {
           variant={textFieldVariant}
           autoComplete="off"
           type="number"
-          color="secondary"
           sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
         />
@@ -382,17 +351,11 @@ export default function Home() {
         </Typography>
 
         <TextField
+          type="number"
           id="outlined-basic"
           variant={textFieldVariant}
           autoComplete="off"
-          type="number"
-          color="secondary"
-          sx={{
-            width: "50%",
-            marginBottom: 1,
-            border: "0.05px solid #BED7DD",
-          }
-          }
+          sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
         />
               <Typography
@@ -404,17 +367,11 @@ export default function Home() {
         </Typography>
 
         <TextField
+          type="number"
           id="outlined-basic"
           variant={textFieldVariant}
           autoComplete="off"
-          type="number"
-          color="secondary"
-          sx={{
-            width: "50%",
-            marginBottom: 1,
-            border: "0.05px solid #BED7DD",
-          }
-          }
+          sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
         />
         <Typography
@@ -433,17 +390,11 @@ export default function Home() {
         </Typography>
 
         <TextField
+          type="number" 
           id="outlined-basic"
           variant={textFieldVariant}
           autoComplete="off"
-          type="number"
-          color="secondary"
-          sx={{
-            width: "50%",
-            marginBottom: 1,
-            border: "0.05px solid #BED7DD",
-          }
-          }
+          sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
         />
               <Typography
@@ -455,18 +406,13 @@ export default function Home() {
         </Typography>
 
         <TextField
+          type="number" 
           id="outlined-basic"
           variant={textFieldVariant}
           autoComplete="off"
-          type="number"
-          color="secondary"
-          sx={{
-            width: "50%",
-            marginBottom: 1,
-            border: "0.05px solid #BED7DD",
-          }
-          }
+          sx={textFieldSX}
           inputProps={textFieldInputPropsSX} />
+
         <Typography
           variant="h5"
           color="white.main"
@@ -474,6 +420,7 @@ export default function Home() {
         >
           Hour 3
         </Typography>
+
         <Typography
           variant="body2"
           color="white.main"
@@ -483,20 +430,15 @@ export default function Home() {
         </Typography>
 
         <TextField
+          type="number" 
           id="outlined-basic"
           variant={textFieldVariant}
           autoComplete="off"
-          type="number"
-          color="secondary"
-          sx={{
-            width: "50%",
-            marginBottom: 1,
-            border: "0.05px solid #BED7DD",
-          }
-          }
+          sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
         />
-              <Typography
+
+        <Typography
           variant="body2"
           color="white.main"
           sx={{ fontWeight: "bold", marginLeft: 1 }}
@@ -505,17 +447,11 @@ export default function Home() {
         </Typography>
 
         <TextField
+         type="number" 
           id="outlined-basic"
           variant={textFieldVariant}
           autoComplete="off"
-          type="number"
-          color="secondary"
-          sx={{
-            width: "50%",
-            marginBottom: 1,
-            border: "0.05px solid #BED7DD",
-          }
-          }
+          sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
         />
         <Typography
@@ -534,18 +470,12 @@ export default function Home() {
         </Typography>
 
         <TextField
-          id="outlined-basic"
-          variant={textFieldVariant}
-          autoComplete="off"
-          type="number"
-          color="secondary"
-          sx={{
-            width: "50%",
-            marginBottom: 1,
-            border: "0.05px solid #BED7DD",
-          }
-          }
-          inputProps={textFieldInputPropsSX}
+         type="number" 
+         id="outlined-basic"
+         variant={textFieldVariant}
+         autoComplete="off"
+         sx={textFieldSX}
+         inputProps={textFieldInputPropsSX}
         />
               <Typography
           variant="body2"
@@ -556,23 +486,26 @@ export default function Home() {
         </Typography>
 
         <TextField
+          type="number" 
           id="outlined-basic"
           variant={textFieldVariant}
           autoComplete="off"
-          type="number"
-          color="secondary"
-          sx={{
-            width: "50%",
-            marginBottom: 1,
-            border: "0.05px solid #BED7DD",
-          }
-          }
+          sx={textFieldSX}
           inputProps={textFieldInputPropsSX}
         />
-
+        <br></br>
+        <Button 
+        variant="contained"
+        color="secondary"
+        sx={{
+          marginTop: 2,
+          marginBottom: 3,
+          width: "25%",
+          height: "50px"
+        }}
+        >Calculate</Button>
         </box>
-
-
+        
         </form>
         </Grid>
     <Grid
@@ -585,34 +518,56 @@ export default function Home() {
         justifyContent="flex-start"
         bgcolor="#BED7DD"
         width={1}
+        sx={{overflow:'scroll'}}
       >
-      <Typography
+        <Typography
         variant="h4"
+        color="primary.main"
+        sx={{ fontWeight: "bold", m: 1, marginTop: 2,}}
+      >
+        Visualizations
+      </Typography>
+
+      <Typography
+        variant="h5"
         color="primary.main"
         sx={{ fontWeight: "bold", m: 1 }}
       >
         HVAC Temp Reset DR Shed Estimates (kW) for Different Peak Temps in Building's Climate Zone
       </Typography>
-
-      <Grid
-        item
-        md={7}
-        xs={12}
-        container 
-        direction="column"
-        alignItems="center"
-        justifyContent="flex-start"
-        bgcolor="#BED7DD"
-        width={1}
-      >
-        <Typography
-        variant="h4"
+      <Box
+      sx={{
+        width: 500,
+        height: 300,
+        backgroundColor: 'white.main',
+        '&:hover': {
+          backgroundColor: 'white.main',
+          opacity: [0.9, 0.8, 0.7],
+        },
+        marginTop: 3,
+        marginBottom: 3,
+      }}
+    />
+    <Typography
+        variant="h5"
         color="primary.main"
         sx={{ fontWeight: "bold", m: 1 }}
       >
-        Estimated kW Shed during the Dr Event Hours
+        Estimated kW Shed during the DR Event Hours
       </Typography>
-      </Grid>
+      <Box
+      sx={{
+        width: 500,
+        height: 300,
+        backgroundColor: 'white.main',
+        '&:hover': {
+          backgroundColor: 'white.main',
+          opacity: [0.9, 0.8, 0.7],
+        },
+        marginTop: 3,
+        marginBottom: 3,
+      }}
+    />
       
       </Grid>
     </Grid>
