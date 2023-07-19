@@ -1,16 +1,35 @@
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
 import * as React from "react";
-import TextField from "@mui/material/TextField";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import { Container, Typography } from "@mui/material";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
+
+import {
+  Button,
+  Box,
+  styled,
+  TextField,
+  ButtonGroup,
+  Container,
+  Typography,
+  Paper,
+  Grid,
+  Select,
+  SelectChangeEvent,
+  InputLabel,
+  MenuItem,
+  FormControl,
+} from "@mui/material";
+
+// import Button from "@mui/material/Button";
+// import Box from "@mui/material/Box";
+// import { styled } from "@mui/material/styles";
+// import TextField from "@mui/material/TextField";
+// import ButtonGroup from "@mui/material/ButtonGroup";
+// import { Container, Typography } from "@mui/material";
+// import Paper from "@mui/material/Paper";
+// import Grid from "@mui/material/Grid";
+// import Select, { SelectChangeEvent } from "@mui/material/Select";
+// import InputLabel from "@mui/material/InputLabel";
+// import MenuItem from "@mui/material/MenuItem";
+// import FormControl from "@mui/material/FormControl";
+
 import { useNavigate } from "react-router-dom";
 
 // visualization for boxes. will delete later
@@ -325,16 +344,16 @@ export default function Advanced() {
         </form>
       </Grid>
       <Grid
-        item md={7} xs={12}
+        item
+        md={7}
+        xs={12}
         container
         direction="column"
         alignItems="center"
         justifyContent="center"
         bgcolor="tertiary.main"
         width={1}
-      >
-      </Grid>
+      ></Grid>
     </Grid>
-
   );
 }

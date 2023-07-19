@@ -1,16 +1,16 @@
 import React, { Suspense } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material";
 
-import Home from "./components/Home";
-import Advanced from "./components/Advanced";
-import FAQ from "./components/FAQ";
-import UserGuide from "./components/UserGuide";
-import About from "./components/About";
-import Basic from "./components/Basic";
-import NotFound from "./components/NotFound";
+import Home from "./components/Home.js";
+import Advanced from "./components/Advanced.js";
+import FAQ from "./components/FAQ.js";
+import UserGuide from "./components/UserGuide.js";
+import About from "./components/About.js";
+import Basic from "./components/Basic.js";
+import NotFound from "./components/NotFound.js";
 
-import AppBar from "./components/SiteAppBar";
+import AppBar from "./components/SiteAppBar.js";
 
 const theme = createTheme({
   palette: {

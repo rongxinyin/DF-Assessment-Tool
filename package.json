@@ -6,6 +6,10 @@
     "format-check": "prettier ./ --check"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.0",
+    "axios": "^1.4.0",
     "prettier": "^2.8.8"
   }
 }
