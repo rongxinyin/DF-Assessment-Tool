@@ -1,153 +1,578 @@
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+import * as React from "react";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import { Container } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import { useNavigate } from "react-router-dom";
+import { Container, Typography } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import { createTheme, ThemeProvider } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import createTypography from "@mui/material/styles/createTypography";
+import Box from "@mui/material/Box";
+
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      // darker blue
+      main: '#00303C',
+    },
+    secondary: {
+      // medium blue
+      main: '#007681',
+    },
+    white: {
+      main:'#FFFFFF',
+    }
+  },
+
+  typography: {
+    primary: {
+      // white
+      main: '#FFFFFF',
+    },
+    secondary: {
+      // medium blue
+      main: '#007681',
+    },
+  },
+});
+
 
 export default function Home() {
+  let navigate = useNavigate(); // navigate to diff pages
+  // dropdown forms
+  const [buildingType, setBuildingType] = React.useState("");
+  const [state, setState] = React.useState("");
+  const [hvacType, setHVACType] = React.useState("");
+
+  const chooseBuildingType = (event) => {
+    setBuildingType(event.target.value);
+  };
+
+  const chooseState = (event) => {
+    setState(event.target.value);
+  };
+
+  const chooseHVACType = (event) => {
+    setHVACType(event.target.value);
+  };
+
+  const textFieldVariant = "outlined";
+
+  const textFieldInputPropsSX = {
+    sx: {
+      color: "#FFFFFF",
+    },
+  };
+
+  const textFieldSX = {
+    width: "50%",
+    marginBottom: 1,
+    marginTop: 1,
+    border: "2px solid #F0F0F0",
+    backgroundColor: "secondary.main",
+    borderRadius: "10px",
+  };
+
   return (
-    <Container maxWidth="lg">
-      <div id="Home">
-        <div className="basic-calculator">
-          <div className="overlap-wrapper">
-            <div className="scroll-frame">
-              <div className="overlap-group">
-                <div className="rectangle" />
-                <div className="visualization-area">
-                  Visualization
-                  <br />
-                  Area
-                </div>
-                <p className="text-wrapper">
-                  HVAC Temp Reset DR Shed Estimates (kW) for Peak Temps
-                </p>
-              </div>
-              <div className="div">
-                <div className="text-wrapper-2">Calculator Result area</div>
-                <div className="text-wrapper-3">Temperature Range</div>
-                <div className="text-wrapper-4">Peak OAT (°F)</div>
-                <div className="text-wrapper-5">Estimated kW Shed</div>
-              </div>
-            </div>
-            <div className="top-bar">
-              <img
-                className="lawrence-berkeley"
-                alt="Lawrence berkeley"
-                src="lawrence-berkeley-national-laboratory-logo-2.png"
-              />
-              <div className="navigation">
-                <div className="navbar">
-                  <div className="text-wrapper-26">FAQ</div>
-                  <div className="text-wrapper-27">User Guide</div>
-                  <div className="text-wrapper-28">About</div>
-                  <div className="text-wrapper-29">Calculator</div>
-                </div>
-              </div>
-            </div>
-            <div className="dark-background">
-              <h1 className="h-1">Basic Calculator</h1>
-              <div className="basic-advanced-buttons">
-                <ButtonGroup
-                  disableElevation
-                  variant="contained"
-                  aria-label="Disabled elevation buttons"
-                >
-                  <Button>Basic</Button>
-                  <Button>Advanced</Button>
-                </ButtonGroup>
-                <div className="text-wrapper-9">
-                  Building Name
-                  <br></br>
-                  <TextField
-                    id="outlined-basic"
-                    label="Outlined"
-                    variant="outlined"
-                  />
-                </div>
-                <div className="text-wrapper-10">
-                  Building Type
-                  <br></br>
-                  <TextField
-                    id="outlined-basic"
-                    label="Outlined"
-                    variant="outlined"
-                  />
-                </div>
-                <div className="text-wrapper-11">
-                  Zipcode
-                  <br></br>
-                  <TextField
-                    id="outlined-basic"
-                    label="Outlined"
-                    variant="outlined"
-                  />
-                </div>
-              </div>
-              <div className="text-wrapper-12">
-                HVAC Type
-                <br></br>
-                <TextField
-                  id="outlined-basic"
-                  label="Outlined"
-                  variant="outlined"
-                />
-              </div>
-              <div className="text-wrapper-13">
-                15 minute IDAR Meter Data
-                <br></br>
-                <TextField
-                  id="outlined-basic"
-                  label="Outlined"
-                  variant="outlined"
-                />
-              </div>
+    <ThemeProvider theme={theme}>
+    <Container maxWidth="xl">
 
-              <p className="text-wrapper-21">
-                HVAC Temp DR Shed Capacity Calculation
-              </p>
-              <br></br>
-              <div>
-                <p className="p">
-                  % of Building Floor Area that Temp Reset will Apply
-                </p>
-              </div>
-              <div className="text-wrapper-16">
-                <TextField
-                  id="outlined-basic"
-                  label="Outlined"
-                  variant="outlined"
-                />
-                0-100
-              </div>
-              <div className="text-wrapper-7">
-                Pre-Cool Period Temp Offset (°F)
-              </div>
-              <div className="text-wrapper-14">
-                <TextField
-                  id="outlined-basic"
-                  label="Outlined"
-                  variant="outlined"
-                />
-                °F
-              </div>
-              <p className="text-wrapper-8">DR Event Period Temp Offset (°F)</p>
-              <div className="text-wrapper-15">
-                <TextField
-                  id="outlined-basic"
-                  label="Outlined"
-                  variant="outlined"
-                />{" "}
-                °F
-              </div>
+  <Grid container spacing={4} width='100%' height='100%'>
+    <Grid
+      item
+      md={5}
+      xs={12}
+      container
+      direction="column"
+      alignItems="left"
+      justifyContent="center"
+      bgcolor="primary.main"
+      width={1}
+      sx={{overflow:'scroll'}}
+    >
+      <ButtonGroup
+        disableElevation
+        variant="contained"
+        aria-label="Disabled elevation buttons"
+        color="secondary"
+        sx={{ marginTop: 2 }}
+      >
+        <Button onClick={() => navigate("/basic")}>Basic</Button>
+        <Button onClick={() => navigate("/advanced")}>Advanced</Button>
+      </ButtonGroup>
 
-              <p className="reset-download">
-                <span className="span">Reset&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                <span className="text-wrapper-19">Download </span>
-              </p>
-              <div className="text-wrapper-20">Calculate</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Typography
+        variant="h4"
+        color="white.main"
+        sx={{ fontWeight: "bold", m: 1, marginTop: 2,}}
+      >
+        Basic Calculator
+      </Typography>
+
+      <form>
+        <Typography
+          variant="h6"
+          color="white.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+        >
+          Basic Inputs
+        </Typography>
+        <div /*style={{width:'50%'}}*/>
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          Building Name
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+        <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+          <Typography
+            variant="body2"
+            color="white.main"
+            sx={{ fontWeight: "bold", marginLeft: 1 }}
+          >
+            Building Type
+          </Typography>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={buildingType}
+            onChange={chooseBuildingType}
+            sx={textFieldSX}
+          >
+            <MenuItem value={"Office"}>Office</MenuItem>
+            <MenuItem value={"Retail"}>Retail</MenuItem>
+            <MenuItem value={"School"}>School</MenuItem>
+          </Select>
+        </FormControl>
+
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          Floor Area (ft²)
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          Floor Height (ft²)
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+
+        <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+          <Typography
+            variant="body2"
+            color="white.main"
+            sx={{ fontWeight: "bold", marginLeft: 1 }}
+          >
+            HVAC Type
+          </Typography>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={hvacType}
+            onChange={chooseHVACType}
+            color="secondary"
+            sx={textFieldSX}
+          >
+            <MenuItem value={"Package RTU"}>Package RTU</MenuItem>
+            <MenuItem value={"Package RTU + VAC"}>Package RTU + VAC</MenuItem>
+            <MenuItem value={"Chiller + VAC"}>Chiller + VAC</MenuItem>
+          </Select>
+        </FormControl>
+
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          Summer Peak Demand (kW)
+        </Typography>
+
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          Zipcode
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          type="number"
+          autoComplete="off"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          State
+        </Typography>
+        <FormControl sx={{ width: "50%",}}>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={state}
+              onChange={chooseState}
+              color="secondary"
+              sx={textFieldSX}
+            >
+              <MenuItem value={"CA"}>California</MenuItem>
+              <MenuItem value={"MD"}>Maryland</MenuItem>
+              <MenuItem value={"NY"}>New York</MenuItem>
+              <MenuItem value={"TX"}>Texas</MenuItem>
+            </Select>
+          </FormControl> 
+          </div>     
+          
+          <Typography
+          variant="h6"
+          color="white.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+        >
+          HVAC Temp DR Shed Capacity Calculation
+        </Typography>
+        
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          Percentage of Bldg Floor Area that GTA will Apply (0-100)
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          Precool Period Temp Offset (°F) 
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+          type="number"
+        />
+
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+          DR Event Period Temp Offset (°F) 
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          type="number"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+        
+        <box sx= {{flexDirection:"row"}}> 
+
+        <Typography
+          variant="h6"
+          color="white.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+        >
+          OAT and kW During the DR Event Hours
+        </Typography>
+
+        <Typography
+          variant="h5"
+          color="white.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+        >
+          Hour 1
+        </Typography>
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         OAT(°F) 
+        </Typography>
+
+        <TextField
+          type="number"
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+              <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         Meter kW
+        </Typography>
+
+        <TextField
+          type="number"
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+        <Typography
+          variant="h5"
+          color="white.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+        >
+          Hour 2
+        </Typography>
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         OAT(°F) 
+        </Typography>
+
+        <TextField
+          type="number" 
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+              <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         Meter kW
+        </Typography>
+
+        <TextField
+          type="number" 
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX} />
+
+        <Typography
+          variant="h5"
+          color="white.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+        >
+          Hour 3
+        </Typography>
+
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         OAT(°F) 
+        </Typography>
+
+        <TextField
+          type="number" 
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         Meter kW
+        </Typography>
+
+        <TextField
+         type="number" 
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+        <Typography
+          variant="h5"
+          color="white.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+        >
+          Hour 4
+        </Typography>
+        <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         OAT(°F) 
+        </Typography>
+
+        <TextField
+         type="number" 
+         id="outlined-basic"
+         variant={textFieldVariant}
+         autoComplete="off"
+         sx={textFieldSX}
+         inputProps={textFieldInputPropsSX}
+        />
+              <Typography
+          variant="body2"
+          color="white.main"
+          sx={{ fontWeight: "bold", marginLeft: 1 }}
+        >
+         Meter kW
+        </Typography>
+
+        <TextField
+          type="number" 
+          id="outlined-basic"
+          variant={textFieldVariant}
+          autoComplete="off"
+          sx={textFieldSX}
+          inputProps={textFieldInputPropsSX}
+        />
+        <br></br>
+        <Button 
+        variant="contained"
+        color="secondary"
+        sx={{
+          marginTop: 2,
+          marginBottom: 3,
+          width: "25%",
+          height: "50px"
+        }}
+        >Calculate</Button>
+        </box>
+        
+        </form>
+        </Grid>
+    <Grid
+        item
+        md={7}
+        xs={12}
+        container
+        direction="column"
+        alignItems="center"
+        justifyContent="flex-start"
+        bgcolor="#BED7DD"
+        width={1}
+        sx={{overflow:'scroll'}}
+      >
+        <Typography
+        variant="h4"
+        color="primary.main"
+        sx={{ fontWeight: "bold", m: 1, marginTop: 2,}}
+      >
+        Visualizations
+      </Typography>
+
+      <Typography
+        variant="h5"
+        color="primary.main"
+        sx={{ fontWeight: "bold", m: 1 }}
+      >
+        HVAC Temp Reset DR Shed Estimates (kW) for Different Peak Temps in Building's Climate Zone
+      </Typography>
+      <Box
+      sx={{
+        width: 500,
+        height: 300,
+        backgroundColor: 'white.main',
+        '&:hover': {
+          backgroundColor: 'white.main',
+          opacity: [0.9, 0.8, 0.7],
+        },
+        marginTop: 3,
+        marginBottom: 3,
+      }}
+    />
+    <Typography
+        variant="h5"
+        color="primary.main"
+        sx={{ fontWeight: "bold", m: 1 }}
+      >
+        Estimated kW Shed during the DR Event Hours
+      </Typography>
+      <Box
+      sx={{
+        width: 500,
+        height: 300,
+        backgroundColor: 'white.main',
+        '&:hover': {
+          backgroundColor: 'white.main',
+          opacity: [0.9, 0.8, 0.7],
+        },
+        marginTop: 3,
+        marginBottom: 3,
+      }}
+    />
+      
+      </Grid>
+    </Grid>
     </Container>
+    </ThemeProvider>
   );
-}
+
+  }
