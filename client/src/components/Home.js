@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState} from 'react';
 import {
   Button,
   ButtonGroup,
@@ -18,6 +18,7 @@ import {
   Box,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { createCaseIDs, gtaCalculation } from '../logic/DR_Calculations.js';
 
 const theme = createTheme({
   palette: {
@@ -49,9 +50,13 @@ const theme = createTheme({
 export default function Home() {
   let navigate = useNavigate(); // navigate to diff pages
   // dropdown forms
-  const [buildingType, setBuildingType] = React.useState("");
-  const [state, setState] = React.useState("");
-  const [hvacType, setHVACType] = React.useState("");
+  const [buildingType, setBuildingType] = useState("");
+  const [state, setState] = useState("");
+  const [hvacType, setHVACType] = useState("");
+  const [CSSB, setCSSB] = useState([{}, {}, {}, {}]);
+  const [precool, setPrecool] = useState();
+  const [tempReset, setTempReset] = useState();
+  const [peakDemand, setPeakDemand] = useState();
 
   const chooseBuildingType = (event) => {
     setBuildingType(event.target.value);
@@ -64,6 +69,70 @@ export default function Home() {
   const chooseHVACType = (event) => {
     setHVACType(event.target.value);
   };
+
+  const inputPrecool = (event) => {
+    setPrecool(event.target.value);
+  };
+
+  const inputTempReset = (event) => {
+    setTempReset(event.target.value);
+  };
+
+  const inputPeakDemand = (event) => {
+    setPeakDemand(event.target.value);
+  }
+
+  const inputCSSBData = (inputInfo, event) => {
+    let CSSB_Type = inputInfo[0];
+    let eventHour = inputInfo[1] - 1;
+
+    let CSSB_Data = Number(event.target.value);
+
+    let newCSSB = CSSB;
+    let CSSB_Obj = newCSSB[eventHour];
+
+    if (CSSB_Type == "OAT") {
+      CSSB_Obj["avg_temp"] = CSSB_Data;
+    } else {
+      CSSB_Obj["avg_demand"] = CSSB_Data;
+    }
+
+    newCSSB[eventHour] = CSSB_Obj;
+    setCSSB(newCSSB);
+  }
+
+  const submitInputs = async () => {
+    //Validate inputs, make sure everything is entered
+
+    //Generate caseID
+    let buildingTypeSize = "";
+    if (buildingType == "Office") {
+      if (peakDemand < 200) {
+        buildingTypeSize = "SmallOffice";
+      } else if (peakDemand < 500) {
+        buildingTypeSize = "MediumOffice";
+      } else {
+        buildingTypeSize = "LargeOffice"
+      }
+    } else {
+      buildingTypeSize = buildingType;
+    }
+    let caseIDs = createCaseIDs(state, buildingTypeSize, 2004, precool, tempReset);
+
+    //Testing; 
+    //caseIDs.map((caseID) => console.log(caseID));
+    document.getElementById("testingCaseIDs").innerHTML = caseIDs[0] + "<br/> " + caseIDs[1] + "<br/> " + caseIDs[2] + "<br/> " + caseIDs[3];
+
+    let fullStateName = "";
+    if (state == "MA") {
+      fullStateName = "Massachusetts";
+    }
+    let DR_output = await gtaCalculation(fullStateName, caseIDs, CSSB);
+    console.log(DR_output); 
+    
+    //document.getElementById("testingDR_Output").innerHTML = DR_output[0].DR_PCT;
+  };
+  
 
   const textFieldVariant = "outlined";
 
@@ -229,6 +298,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
+                  onChange={inputPeakDemand}
                   type="number"
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
@@ -266,7 +336,7 @@ export default function Home() {
                     sx={textFieldSX}
                   >
                     <MenuItem value={"CA"}>California</MenuItem>
-                    <MenuItem value={"MD"}>Maryland</MenuItem>
+                    <MenuItem value={"MA"}>Massachusetts</MenuItem>
                     <MenuItem value={"NY"}>New York</MenuItem>
                     <MenuItem value={"TX"}>Texas</MenuItem>
                   </Select>
@@ -308,6 +378,7 @@ export default function Home() {
                 id="outlined-basic"
                 variant={textFieldVariant}
                 autoComplete="off"
+                onChange={inputPrecool}
                 sx={textFieldSX}
                 inputProps={textFieldInputPropsSX}
                 type="number"
@@ -324,6 +395,7 @@ export default function Home() {
                 id="outlined-basic"
                 variant={textFieldVariant}
                 autoComplete="off"
+                onChange={inputTempReset}
                 type="number"
                 sx={textFieldSX}
                 inputProps={textFieldInputPropsSX}
@@ -350,7 +422,7 @@ export default function Home() {
                   color="white.main"
                   sx={{ fontWeight: "bold", marginLeft: 1 }}
                 >
-                  OAT(°F)
+                  OAT (°F)
                 </Typography>
 
                 <TextField
@@ -358,6 +430,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
+                  onChange={ (event) => inputCSSBData(["OAT", 1], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -374,6 +447,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
+                  onChange={ (event) => inputCSSBData(["Demand", 1], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -389,7 +463,7 @@ export default function Home() {
                   color="white.main"
                   sx={{ fontWeight: "bold", marginLeft: 1 }}
                 >
-                  OAT(°F)
+                  OAT (°F)
                 </Typography>
 
                 <TextField
@@ -397,6 +471,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
+                  onChange={ (event) => inputCSSBData(["OAT", 2], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -413,6 +488,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
+                  onChange={ (event) => inputCSSBData(["Demand", 2], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -430,7 +506,7 @@ export default function Home() {
                   color="white.main"
                   sx={{ fontWeight: "bold", marginLeft: 1 }}
                 >
-                  OAT(°F)
+                  OAT (°F)
                 </Typography>
 
                 <TextField
@@ -438,6 +514,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
+                  onChange={ (event) => inputCSSBData(["OAT", 3], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -455,6 +532,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
+                  onChange={ (event) => inputCSSBData(["Demand", 3], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -470,7 +548,7 @@ export default function Home() {
                   color="white.main"
                   sx={{ fontWeight: "bold", marginLeft: 1 }}
                 >
-                  OAT(°F)
+                  OAT (°F)
                 </Typography>
 
                 <TextField
@@ -478,6 +556,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
+                  onChange={ (event) => inputCSSBData(["OAT", 4], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -494,6 +573,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
+                  onChange={ (event) => inputCSSBData(["Demand", 4], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -501,6 +581,7 @@ export default function Home() {
                 <Button
                   variant="contained"
                   color="secondary"
+                  onClick={submitInputs}
                   sx={{
                     marginTop: 2,
                     marginBottom: 3,
@@ -561,6 +642,8 @@ export default function Home() {
             >
               Estimated kW Shed during the DR Event Hours
             </Typography>
+            <Typography id = "testingCaseIDs"> </Typography>
+            <Typography id = "testingDR_Output"></Typography>
             <Box
               sx={{
                 width: 500,
