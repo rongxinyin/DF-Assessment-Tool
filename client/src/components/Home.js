@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Button,
   ButtonGroup,
@@ -18,7 +18,8 @@ import {
   Box,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { createCaseIDs, gtaCalculation } from '../logic/DR_Calculations.js';
+import { createCaseIDs, gtaCalculation } from "../logic/DR_Calculations.js";
+import { abbreviationToFullName } from "../logic/stateAbbreviations.js";
 
 const theme = createTheme({
   palette: {
@@ -80,7 +81,7 @@ export default function Home() {
 
   const inputPeakDemand = (event) => {
     setPeakDemand(event.target.value);
-  }
+  };
 
   const inputCSSBData = (inputInfo, event) => {
     let CSSB_Type = inputInfo[0];
@@ -99,7 +100,7 @@ export default function Home() {
 
     newCSSB[eventHour] = CSSB_Obj;
     setCSSB(newCSSB);
-  }
+  };
 
   const submitInputs = async () => {
     //Validate inputs, make sure everything is entered
@@ -112,27 +113,50 @@ export default function Home() {
       } else if (peakDemand < 500) {
         buildingTypeSize = "MediumOffice";
       } else {
-        buildingTypeSize = "LargeOffice"
+        buildingTypeSize = "LargeOffice";
       }
     } else {
       buildingTypeSize = buildingType;
     }
-    let caseIDs = createCaseIDs(state, buildingTypeSize, 2004, precool, tempReset);
+    let caseIDs = createCaseIDs(
+      state,
+      buildingTypeSize,
+      2004,
+      precool,
+      tempReset
+    );
 
-    //Testing; 
+    //Testing caseIDs;
     //caseIDs.map((caseID) => console.log(caseID));
-    document.getElementById("testingCaseIDs").innerHTML = caseIDs[0] + "<br/> " + caseIDs[1] + "<br/> " + caseIDs[2] + "<br/> " + caseIDs[3];
+    document.getElementById("testingCaseIDs").innerHTML =
+      caseIDs[0] +
+      "<br/> " +
+      caseIDs[1] +
+      "<br/> " +
+      caseIDs[2] +
+      "<br/> " +
+      caseIDs[3];
 
-    let fullStateName = "";
-    if (state == "MA") {
-      fullStateName = "Massachusetts";
-    }
+    let fullStateName = abbreviationToFullName(state);
+
+    //GTA calculations
     let DR_output = await gtaCalculation(fullStateName, caseIDs, CSSB);
-    console.log(DR_output); 
-    
-    //document.getElementById("testingDR_Output").innerHTML = DR_output[0].DR_PCT;
+    console.log(DR_output);
+
+    //Display the output
+    let outputDisplay = "";
+    for (var hour = 1; hour <= 4; hour++) {
+      outputDisplay +=
+        "Hour: " +
+        hour +
+        ", Estimated DR %: " +
+        DR_output[hour - 1].DR_PCT * 100 +
+        ", Estimated kW Shed: " +
+        DR_output[hour - 1].DR_KW +
+        "<br/>";
+    }
+    document.getElementById("testingDR_Output").innerHTML = outputDisplay;
   };
-  
 
   const textFieldVariant = "outlined";
 
@@ -401,7 +425,7 @@ export default function Home() {
                 inputProps={textFieldInputPropsSX}
               />
 
-              <box sx={{ flexDirection: "row" }}>
+              <Box sx={{ flexDirection: "row" }}>
                 <Typography
                   variant="h6"
                   color="white.main"
@@ -430,7 +454,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
-                  onChange={ (event) => inputCSSBData(["OAT", 1], event)}
+                  onChange={(event) => inputCSSBData(["OAT", 1], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -447,7 +471,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
-                  onChange={ (event) => inputCSSBData(["Demand", 1], event)}
+                  onChange={(event) => inputCSSBData(["Demand", 1], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -471,7 +495,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
-                  onChange={ (event) => inputCSSBData(["OAT", 2], event)}
+                  onChange={(event) => inputCSSBData(["OAT", 2], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -488,7 +512,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
-                  onChange={ (event) => inputCSSBData(["Demand", 2], event)}
+                  onChange={(event) => inputCSSBData(["Demand", 2], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -514,7 +538,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
-                  onChange={ (event) => inputCSSBData(["OAT", 3], event)}
+                  onChange={(event) => inputCSSBData(["OAT", 3], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -532,7 +556,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
-                  onChange={ (event) => inputCSSBData(["Demand", 3], event)}
+                  onChange={(event) => inputCSSBData(["Demand", 3], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -556,7 +580,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
-                  onChange={ (event) => inputCSSBData(["OAT", 4], event)}
+                  onChange={(event) => inputCSSBData(["OAT", 4], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -573,7 +597,7 @@ export default function Home() {
                   id="outlined-basic"
                   variant={textFieldVariant}
                   autoComplete="off"
-                  onChange={ (event) => inputCSSBData(["Demand", 4], event)}
+                  onChange={(event) => inputCSSBData(["Demand", 4], event)}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -591,7 +615,7 @@ export default function Home() {
                 >
                   Calculate
                 </Button>
-              </box>
+              </Box>
             </form>
           </Grid>
           <Grid
@@ -642,8 +666,8 @@ export default function Home() {
             >
               Estimated kW Shed during the DR Event Hours
             </Typography>
-            <Typography id = "testingCaseIDs"> </Typography>
-            <Typography id = "testingDR_Output"></Typography>
+            <Typography id="testingCaseIDs"> </Typography>
+            <Typography id="testingDR_Output"></Typography>
             <Box
               sx={{
                 width: 500,
