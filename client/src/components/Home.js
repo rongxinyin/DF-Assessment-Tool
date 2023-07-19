@@ -20,6 +20,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { createCaseIDs, gtaCalculation } from "../logic/DR_Calculations.js";
 import { abbreviationToFullName } from "../logic/stateAbbreviations.js";
+import BarChart from "./Visualizations.js";
 
 const theme = createTheme({
   palette: {
@@ -58,6 +59,8 @@ export default function Home() {
   const [precool, setPrecool] = useState();
   const [tempReset, setTempReset] = useState();
   const [peakDemand, setPeakDemand] = useState();
+
+  const [graphs, setGraphs] = useState([]);
 
   const chooseBuildingType = (event) => {
     setBuildingType(event.target.value);
@@ -102,6 +105,38 @@ export default function Home() {
     setCSSB(newCSSB);
   };
 
+  const createVisualizations = (chartLabels, chartTitle, data) => {
+    let key = graphs.length;
+    setGraphs(
+      graphs.concat(
+        <div key={key}>
+          <Typography
+            variant="h5"
+            color="primary.main"
+            sx={{ fontWeight: "bold", m: 1 }}
+          >
+            {chartTitle}
+          </Typography>
+          <Box
+            sx={{
+              width: 500,
+              height: 300,
+              backgroundColor: "white.main",
+              "&:hover": {
+                backgroundColor: "white.main",
+                opacity: [0.9, 0.8, 0.7],
+              },
+              marginTop: 3,
+              marginBottom: 3,
+            }}
+          >
+            <BarChart labels={chartLabels} data={data} />
+          </Box>{" "}
+        </div>
+      )
+    );
+  };
+
   const submitInputs = async () => {
     //Validate inputs, make sure everything is entered
 
@@ -126,17 +161,6 @@ export default function Home() {
       tempReset
     );
 
-    //Testing caseIDs;
-    //caseIDs.map((caseID) => console.log(caseID));
-    document.getElementById("testingCaseIDs").innerHTML =
-      caseIDs[0] +
-      "<br/> " +
-      caseIDs[1] +
-      "<br/> " +
-      caseIDs[2] +
-      "<br/> " +
-      caseIDs[3];
-
     let fullStateName = abbreviationToFullName(state);
 
     //GTA calculations
@@ -145,17 +169,31 @@ export default function Home() {
 
     //Display the output
     let outputDisplay = "";
+    let kW_Shed = [];
+
+    let kW_sum = 0;
+
     for (var hour = 1; hour <= 4; hour++) {
+      let hourkW = DR_output[hour - 1].DR_KW;
+      kW_sum += hourkW;
+      kW_Shed.push(hourkW);
       outputDisplay +=
         "Hour: " +
         hour +
         ", Estimated DR %: " +
         DR_output[hour - 1].DR_PCT * 100 +
         ", Estimated kW Shed: " +
-        DR_output[hour - 1].DR_KW +
+        hourkW +
         "<br/>";
     }
     document.getElementById("testingDR_Output").innerHTML = outputDisplay;
+
+    kW_Shed.push(kW_sum / 4);
+    createVisualizations(
+      [1, 2, 3, 4, "Average"],
+      "Estimated kW Shed per Hour:",
+      kW_Shed
+    );
   };
 
   const textFieldVariant = "outlined";
@@ -638,7 +676,9 @@ export default function Home() {
               Visualizations
             </Typography>
 
-            <Typography
+            {graphs}
+
+            {/* <Typography
               variant="h5"
               color="primary.main"
               sx={{ fontWeight: "bold", m: 1 }}
@@ -650,7 +690,7 @@ export default function Home() {
               sx={{
                 width: 500,
                 height: 300,
-                backgroundColor: "white.main",
+
                 "&:hover": {
                   backgroundColor: "white.main",
                   opacity: [0.9, 0.8, 0.7],
@@ -658,7 +698,13 @@ export default function Home() {
                 marginTop: 3,
                 marginBottom: 3,
               }}
-            />
+            >
+<BarChart 
+    labels = {[1, 3, 4, 5]}
+    chartTitle = "HVAC Temp Reset DR Shed Estimates (kW) for Different Peak Temps in Building's Climate Zone"
+    data = {[32, 19, 28, 22]} 
+  />
+            </Box> */}
             <Typography
               variant="h5"
               color="primary.main"
