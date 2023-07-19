@@ -62,10 +62,10 @@ router.get("/:stateName/:fieldName", async (req, res) => {
 //Route to test GTA calculation function (using hardcoded values).
 router.get("/testGTA", async (req, res) => {
   let caseIDs = [
-    "MAMediumOffice021",
-    "MAMediumOffice022",
-    "MAMediumOffice023",
-    "MAMediumOffice024",
+    "MA-MediumOffice-2004-GTA-0-2-1",
+    "MA-MediumOffice-2004-GTA-0-2-2",
+    "MA-MediumOffice-2004-GTA-0-2-3",
+    "MA-MediumOffice-2004-GTA-0-2-4",
   ];
   let CSSB = [
     {
