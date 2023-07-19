@@ -18,15 +18,6 @@ import {
   Box,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-// import Paper from "@mui/material/Paper";
-// import Select, { SelectChangeEvent } from "@mui/material/Select";
-// import InputLabel from "@mui/material/InputLabel";
-// import MenuItem from "@mui/material/MenuItem";
-// import FormControl from "@mui/material/FormControl";
-// import { createTheme, ThemeProvider } from "@mui/material";
-// import TextField from "@mui/material/TextField";
-// import createTypography from "@mui/material/styles/createTypography";
-// import Box from "@mui/material/Box";
 
 const theme = createTheme({
   palette: {

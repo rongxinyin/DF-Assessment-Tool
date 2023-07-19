@@ -8,14 +8,8 @@ import {
   Container,
   Typography,
 } from "@mui/material";
-// import { styled } from '@mui/material/styles';
-// import Box from '@mui/material/Box';
-// import Paper from '@mui/material/Paper';
-// import Grid from '@mui/material/Grid';
 import { ReactComponent as Logo } from "./images/lbnlgridintegrationgroup.svg";
-// import CssBaseline from "@mui/material/CssBaseline";
 import graphic from "./images/windmills_grid.jpg";
-// import { Container, Typography } from "@mui/material";
 
 // visualization. will delete later
 const Item = styled(Paper)(({ theme }) => ({
