@@ -20,7 +20,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { createCaseIDs, gtaCalculation } from "../logic/DR_Calculations.js";
 import { abbreviationToFullName } from "../logic/stateAbbreviations.js";
-import BarChart from "./Visualizations.js";
+import {createVisualizations} from "./calculator-components/Visualizations.js";
 
 const theme = createTheme({
   palette: {
@@ -105,38 +105,6 @@ export default function Home() {
     setCSSB(newCSSB);
   };
 
-  const createVisualizations = (chartLabels, chartTitle, data) => {
-    let key = graphs.length;
-    setGraphs(
-      graphs.concat(
-        <div key={key}>
-          <Typography
-            variant="h5"
-            color="primary.main"
-            sx={{ fontWeight: "bold", m: 1 }}
-          >
-            {chartTitle}
-          </Typography>
-          <Box
-            sx={{
-              width: 500,
-              height: 300,
-              backgroundColor: "white.main",
-              "&:hover": {
-                backgroundColor: "white.main",
-                opacity: [0.9, 0.8, 0.7],
-              },
-              marginTop: 3,
-              marginBottom: 3,
-            }}
-          >
-            <BarChart labels={chartLabels} data={data} />
-          </Box>{" "}
-        </div>
-      )
-    );
-  };
-
   const submitInputs = async () => {
     //Validate inputs, make sure everything is entered
 
@@ -189,11 +157,11 @@ export default function Home() {
     document.getElementById("testingDR_Output").innerHTML = outputDisplay;
 
     kW_Shed.push(kW_sum / 4);
-    createVisualizations(
+    setGraphs(graphs.concat(createVisualizations(
       [1, 2, 3, 4, "Average"],
       "Estimated kW Shed per Hour:",
       kW_Shed
-    );
+    )));
   };
 
   const textFieldVariant = "outlined";
@@ -675,36 +643,7 @@ export default function Home() {
             >
               Visualizations
             </Typography>
-
             {graphs}
-
-            {/* <Typography
-              variant="h5"
-              color="primary.main"
-              sx={{ fontWeight: "bold", m: 1 }}
-            >
-              HVAC Temp Reset DR Shed Estimates (kW) for Different Peak Temps in
-              Building's Climate Zone
-            </Typography>
-            <Box
-              sx={{
-                width: 500,
-                height: 300,
-
-                "&:hover": {
-                  backgroundColor: "white.main",
-                  opacity: [0.9, 0.8, 0.7],
-                },
-                marginTop: 3,
-                marginBottom: 3,
-              }}
-            >
-<BarChart 
-    labels = {[1, 3, 4, 5]}
-    chartTitle = "HVAC Temp Reset DR Shed Estimates (kW) for Different Peak Temps in Building's Climate Zone"
-    data = {[32, 19, 28, 22]} 
-  />
-            </Box> */}
             <Typography
               variant="h5"
               color="primary.main"
