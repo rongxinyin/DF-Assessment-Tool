@@ -217,7 +217,7 @@ export default function Home() {
 
             <form>
               <Typography
-                variant="h6"
+                variant="h5"
                 color="white.main"
                 sx={{ fontWeight: "bold", m: 1 }}
               >
@@ -376,7 +376,7 @@ export default function Home() {
               </Grid>
 
               <Typography
-                variant="h6"
+                variant="h5"
                 color="white.main"
                 sx={{ fontWeight: "bold", m: 1 }}
               >
@@ -613,9 +613,9 @@ export default function Home() {
             </Typography>
 
             <Typography
-              variant="h5"
-              color="primary.main"
-              sx={{ fontWeight: "bold", m: 1 }}
+                variant="h5"
+                color="primary.main"
+                sx={{ fontWeight: "bold", m: 1 }}
             >
               HVAC Temp Reset DR Shed Estimates (kW) for Different Peak Temps in
               Building's Climate Zone
