@@ -151,7 +151,7 @@ const calculations = ({
     baseline_chiller_power *
     (1 -
       percent_reduction_per_degree *
-      (reset_space_temp_setting - normal_space_temp_setting));
+        (reset_space_temp_setting - normal_space_temp_setting));
   let chiller_power_reduction = baseline_chiller_power - dr_chiller_power;
 
   // Total Direct Load Reduction
