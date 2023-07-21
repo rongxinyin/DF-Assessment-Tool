@@ -15,9 +15,14 @@ import {
   InputLabel,
   MenuItem,
   FormControl,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Checkbox,
 } from "@mui/material";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Checkbox } from '@mui/material';
-
 
 import { useNavigate } from "react-router-dom";
 
@@ -66,12 +71,11 @@ export default function Advanced() {
   };
 
   const [data, setData] = useState([
-    ['RTU-1', '', '', '', '', '', '', '', ''], // Row 1: Initialize with empty strings
-    ['RTU-2', '', '', '', '', '', '', '', ''], // Row 2: Initialize with empty strings
+    ["RTU-1", "", "", "", "", "", "", "", ""], // Row 1: Initialize with empty strings
+    ["RTU-2", "", "", "", "", "", "", "", ""], // Row 2: Initialize with empty strings
   ]);
 
   const [showSecondRow, setShowSecondRow] = useState(false);
-
 
   const handleInputChange = (rowIndex, columnIndex, event) => {
     const newData = [...data];
@@ -87,15 +91,14 @@ export default function Advanced() {
       // Clear inputs in the second row if the checkbox is unchecked
       const newData = [...data];
       for (let i = 1; i < newData[1].length; i++) {
-        newData[1][i] = '';
+        newData[1][i] = "";
       }
       setData(newData);
     }
-
   };
 
   const tableCellStyle = {
-    borderCollapse: 'collapse',
+    borderCollapse: "collapse",
     border: "none",
     color: "white.main",
     minWidth: "150px",
@@ -103,13 +106,11 @@ export default function Advanced() {
 
   const staticInputTypograhyStyle = {
     m: 1,
-    width: "300px"
+    width: "300px",
   };
 
-
-
   return (
-    <Grid container spacing={0} >
+    <Grid container spacing={0}>
       <Grid
         item
         md={5}
@@ -148,22 +149,43 @@ export default function Advanced() {
           >
             Advanced HVAC Inputs
           </Typography>
-          <div >
+          <div>
             <Box sx={{ overflow: "auto" }}>
-              <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
-                <TableContainer component={Paper} sx={{ backgroundColor: "secondary.main", }} >
-                  <Table sx={{ borderCollapse: 'collapse', border: "none" }}>
+              <Box
+                sx={{ width: "100%", display: "table", tableLayout: "fixed" }}
+              >
+                <TableContainer
+                  component={Paper}
+                  sx={{ backgroundColor: "secondary.main" }}
+                >
+                  <Table sx={{ borderCollapse: "collapse", border: "none" }}>
                     <TableHead>
                       <TableRow>
                         <TableCell sx={tableCellStyle}>HVAC Device</TableCell>
-                        <TableCell sx={tableCellStyle}>Supply Air Flow (CFM)</TableCell>
-                        <TableCell sx={tableCellStyle}>Supply Fan Motor (HP)</TableCell>
-                        <TableCell sx={tableCellStyle}>Sensible Cooling Capacity (Tons)</TableCell>
-                        <TableCell sx={tableCellStyle}>Total Cooling Capacity (Tons)</TableCell>
-                        <TableCell sx={tableCellStyle}>Minimum OA Flow (CFM)</TableCell>
-                        <TableCell sx={tableCellStyle}>Fan Efficiency (%)</TableCell>
-                        <TableCell sx={tableCellStyle}>Motor Efficiency (%)</TableCell>
-                        <TableCell sx={tableCellStyle}>Packaged AC Unit Efficiency</TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Supply Air Flow (CFM)
+                        </TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Supply Fan Motor (HP)
+                        </TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Sensible Cooling Capacity (Tons)
+                        </TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Total Cooling Capacity (Tons)
+                        </TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Minimum OA Flow (CFM)
+                        </TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Fan Efficiency (%)
+                        </TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Motor Efficiency (%)
+                        </TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Packaged AC Unit Efficiency
+                        </TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -180,7 +202,13 @@ export default function Advanced() {
                                     value={cell}
                                     type="number"
                                     sx={textFieldSX}
-                                    onChange={(event) => handleInputChange(rowIndex, columnIndex, event)}
+                                    onChange={(event) =>
+                                      handleInputChange(
+                                        rowIndex,
+                                        columnIndex,
+                                        event
+                                      )
+                                    }
                                     disabled={rowIndex === 1 && !showSecondRow}
                                   />
                                 )}
@@ -190,9 +218,14 @@ export default function Advanced() {
                           {rowIndex === 0 && (
                             <TableRow>
                               <TableCell sx={tableCellStyle}>
-                                <Checkbox checked={showSecondRow} onChange={handleCheckboxChange} />
+                                <Checkbox
+                                  checked={showSecondRow}
+                                  onChange={handleCheckboxChange}
+                                />
                               </TableCell>
-                              <TableCell sx={tableCellStyle} colSpan={4}>Add 2nd HVAC Device</TableCell>
+                              <TableCell sx={tableCellStyle} colSpan={4}>
+                                Add 2nd HVAC Device
+                              </TableCell>
                             </TableRow>
                           )}
                         </React.Fragment>
@@ -202,11 +235,7 @@ export default function Advanced() {
                 </TableContainer>
               </Box>
             </Box>
-
-
           </div>
-
-
 
           <Typography
             variant="h6"
@@ -216,57 +245,61 @@ export default function Advanced() {
             Static Inputs
           </Typography>
 
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <Typography
               variant="body6"
               color="white.main"
-              sx={staticInputTypograhyStyle}>
+              sx={staticInputTypograhyStyle}
+            >
               Cooling Coil Leaving Air Temperature (°F)
             </Typography>
             <TextField
-              style={{ marginRight: '5px' }}
+              style={{ marginRight: "5px" }}
               variant="outlined"
               sx={textFieldSX}
             />
           </div>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <Typography
               variant="body6"
               color="white.main"
               type="number"
-              sx={staticInputTypograhyStyle}>
+              sx={staticInputTypograhyStyle}
+            >
               AC Load Factor (%)
             </Typography>
             <TextField
-              style={{ marginRight: '5px' }}
+              style={{ marginRight: "5px" }}
               variant="outlined"
               type="number"
               sx={textFieldSX}
             />
           </div>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <Typography
               variant="body6"
               color="white.main"
-              sx={staticInputTypograhyStyle}>
+              sx={staticInputTypograhyStyle}
+            >
               Air system minimum OSA (%)
             </Typography>
             <TextField
-              style={{ marginRight: '5px' }}
+              style={{ marginRight: "5px" }}
               variant="outlined"
               type="number"
               sx={textFieldSX}
             />
           </div>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <Typography
               variant="body6"
               color="white.main"
-              sx={staticInputTypograhyStyle}>
+              sx={staticInputTypograhyStyle}
+            >
               Air system Return Air (%)
             </Typography>
             <TextField
-              style={{ marginRight: '5px' }}
+              style={{ marginRight: "5px" }}
               variant="outlined"
               type="number"
               sx={textFieldSX}
@@ -280,29 +313,31 @@ export default function Advanced() {
           >
             Static Pressure Reset Inputs
           </Typography>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <Typography
               variant="body6"
               color="white.main"
-              sx={staticInputTypograhyStyle}>
+              sx={staticInputTypograhyStyle}
+            >
               Total SF Static Pressure in H2O (inches)
             </Typography>
             <TextField
-              style={{ marginRight: '5px' }}
+              style={{ marginRight: "5px" }}
               variant="outlined"
               type="number"
               sx={textFieldSX}
             />
           </div>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <Typography
               variant="body6"
               color="white.main"
-              sx={staticInputTypograhyStyle}>
+              sx={staticInputTypograhyStyle}
+            >
               Reset Static Pressure Value in H2O (inches)
             </Typography>
             <TextField
-              style={{ marginRight: '5px' }}
+              style={{ marginRight: "5px" }}
               variant="outlined"
               type="number"
               sx={textFieldSX}
@@ -316,40 +351,36 @@ export default function Advanced() {
           >
             GTA Strategies Inputs
           </Typography>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <Typography
               variant="body6"
               color="white.main"
-              sx={staticInputTypograhyStyle}>
+              sx={staticInputTypograhyStyle}
+            >
               Normal Space Temperature Setpoint (°F)
             </Typography>
             <TextField
-              style={{ marginRight: '5px' }}
+              style={{ marginRight: "5px" }}
               variant="outlined"
               type="number"
               sx={textFieldSX}
             />
           </div>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <Typography
               variant="body6"
               color="white.main"
-              sx={staticInputTypograhyStyle}>
+              sx={staticInputTypograhyStyle}
+            >
               Reset Space Temperature Setpoint (°F)
             </Typography>
             <TextField
-              style={{ marginRight: '5px' }}
+              style={{ marginRight: "5px" }}
               variant="outlined"
               type="number"
               sx={textFieldSX}
             />
           </div>
-
-
-
-
-
-
         </form>
       </Grid>
       <Grid
