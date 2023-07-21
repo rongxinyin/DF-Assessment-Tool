@@ -1,4 +1,4 @@
-import { Button, Grid, Container, Typography, createTheme, ThemeProvider} from "@mui/material";
+import { Button, Grid, Container, Typography, createTheme, ThemeProvider, Box} from "@mui/material";
 import { styled } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import image from "./images/berkeleylab.png"; 
@@ -45,11 +45,12 @@ export default function Home() {
 
   return (
     <ThemeProvider theme={theme}>
-    return <Background />;
+      return <Background />;
     <Grid 
-    container spacing={0}
+    container spacing={2}
     width="100%" 
     height="100%"
+    padding={10}
      marginTop={1}
      item
      md={12}
@@ -60,11 +61,41 @@ export default function Home() {
     >
       <Typography
       variant="h4"
-      color="primary.main"
+      color="white.main"
      sx={{ fontWeight: "bold", m: 1, marginTop: 4 }}
       >
       Demand Flexibility Assessment Tool
     </Typography>
+    <Grid item xs={4}>
+      <Typography
+       variant="h6"
+        color="white.main"
+        sx={{ fontWeight: "bold", m: 1, marginTop: 4 , textAlign:"center"}}
+        >
+        Welcome to the Demand Flexibility Assessment Tool, made by the Grid Integration Group at Lawrence Berkeley National Lab.
+        The estimation tool provides demand response shed magnitudes for a range of OATs for one of the major DR strategies:
+        HVAC Temp Reset (Precool with Zone Temp Setback). 
+     </Typography>
+    </Grid>
+
+    <Box sx={{ flexDirection: "row" }}>
+    <Grid container spacing = {2}>
+      <Grid item xs={6}>
+      <Button
+      variant="contained" color="secondary" onClick={() => navigate("/UserGuide")}
+      sx={{width: "200px",height: "50px", marginTop: 5}}>
+        Estimation Tool
+      </Button>
+      </Grid>
+      <Grid item xs={6}>
+      <Button
+      variant="contained" color="secondary"
+      sx={{width: "200px",height: "50px", marginTop: 5}}>
+        Benchmarking Tool
+      </Button>
+      </Grid>
+    </Grid>
+    </Box>
     </Grid>
     </ThemeProvider>
   );
