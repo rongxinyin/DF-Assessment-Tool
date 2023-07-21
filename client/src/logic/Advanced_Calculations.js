@@ -85,7 +85,6 @@ const calculations = ({
   ac_load_factor = 0,
   size_of_conditioned_space = 0,
   height_of_conditioned_space = 0,
-  percent_reduction_per_degree = 0,
   coast = 0,
 }) => {
   let ahu_max_airflow = rtu1cfm + rtu2cfm;
@@ -144,6 +143,7 @@ const calculations = ({
     chiller_capacity_offset_by_dr_event * ac_efficiency; // kW
 
   // Calculate Chiller Direct Reduction
+  const percent_reduction_per_degree = 0.025;
   let total_capacity = rtu1_total_space + rtu2_total_space; // tons
 
   let baseline_chiller_power = total_capacity * ac_efficiency * ac_load_factor;
@@ -151,7 +151,7 @@ const calculations = ({
     baseline_chiller_power *
     (1 -
       percent_reduction_per_degree *
-        (reset_space_temp_setting - normal_space_temp_setting));
+      (reset_space_temp_setting - normal_space_temp_setting));
   let chiller_power_reduction = baseline_chiller_power - dr_chiller_power;
 
   // Total Direct Load Reduction
@@ -219,6 +219,5 @@ const calculations = ({
 //     ac_load_factor: 0.75,
 //     size_of_conditioned_space: 140000,
 //     height_of_conditioned_space: 8,
-//     percent_reduction_per_degree: 0.025,
 //     coast: 1,
 // }))
