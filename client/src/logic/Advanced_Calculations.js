@@ -197,8 +197,6 @@ const calculations = (
     let total_dr_load_reduction =
         (dr_event_direct_kw_reduction * 2 + coast_dr_power_reduction) / 2; // kW
 
-    // console.log(cfm_reduction_from_space_temp_adjust);
-    console.log(total_dr_load_reduction);
 };
 
 
