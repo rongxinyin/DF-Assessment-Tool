@@ -309,6 +309,14 @@ export default function Advanced() {
             />
           </div>
 
+          <Typography
+            variant="h6"
+            color="white.main"
+            sx={{ fontWeight: "bold", m: 1 }}
+          >
+            GTA Strategies Inputs
+          </Typography>
+
 
 
 
