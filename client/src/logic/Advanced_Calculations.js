@@ -65,7 +65,7 @@ const getEnthalpyAtTempSetting = (tempSetting) => {
   }
 };
 
-const calculations = (
+const calculations = ({
   rtu1cfm = 0,
   rtu2cfm = 0,
   normal_space_temp_setting = 0,
@@ -86,8 +86,8 @@ const calculations = (
   size_of_conditioned_space = 0,
   height_of_conditioned_space = 0,
   percent_reduction_per_degree = 0,
-  coast = 0
-) => {
+  coast = 0,
+}) => {
   let ahu_max_airflow = rtu1cfm + rtu2cfm;
   let fan_efficiency =
     (rtu1_total_space * rtu1_fan_efficiency +
@@ -222,29 +222,3 @@ const calculations = (
 //     percent_reduction_per_degree: 0.025,
 //     coast: 1,
 // }))
-
-// console.log(
-//   calculations(
-//     70000,
-//     70000,
-//     72,
-//     53.5,
-//     76,
-//     180,
-//     180,
-//     4.25,
-//     4,
-//     0.55,
-//     0.55,
-//     0.917,
-//     0.917,
-//     0.25,
-//     1.23,
-//     1.23,
-//     0.75,
-//     140000,
-//     8,
-//     0.025,
-//     1
-//   )
-// );
