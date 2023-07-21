@@ -1,5 +1,5 @@
 import React from "react";
-import { Chart } from "chart.js/auto";
+import "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import { Typography, Box } from "@mui/material";
 
@@ -10,37 +10,47 @@ const BarChart = (props) => {
     labels: labels,
     datasets: [
       {
-        label: props.dataLabel,
-        backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgb(255, 99, 132)",
+        label: "Estimated Shed Results",
+        backgroundColor: "#f5ca0a",
         data: props.data,
       },
     ],
   };
+  let options = {
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Hours",
+          font: {
+            size: 18
+          }
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: props.yAxisLabel,
+          font: {
+            size: 18
+          }
+        }
+      }
+    }
+  }
   return (
     <div>
       <Bar
         data={data}
-        options={{
-          plugins: {
-            title: {
-              display: true,
-              text: chartTitle,
-              font: {
-                size: 24,
-              },
-              align: "center",
-            },
-          },
-        }}
+        options={options}
       />
     </div>
   );
 };
 
-const createVisualizations = (chartLabels, chartTitle, data) => {
+const createVisualizations = (chartLabels, chartTitle, yAxisLabel, data, key) => {
   return (
-      <div>
+      <div key = {key}>
         <Typography
           variant="h5"
           color="primary.main"
@@ -50,18 +60,22 @@ const createVisualizations = (chartLabels, chartTitle, data) => {
         </Typography>
         <Box
           sx={{
-            width: 500,
-            height: 300,
+            width: 525,
+            height: 275,
             backgroundColor: "white.main",
+            boxShadow: 3,
+            borderRadius: "8px",
             "&:hover": {
               backgroundColor: "white.main",
               opacity: [0.9, 0.8, 0.7],
             },
             marginTop: 3,
             marginBottom: 3,
+            paddingRight: 5,
+            paddingTop: 2
           }}
         >
-          <BarChart labels={chartLabels} data={data} />
+          <BarChart labels={chartLabels} data={data} yAxisLabel = {yAxisLabel} />
         </Box>{" "}
       </div>
     )

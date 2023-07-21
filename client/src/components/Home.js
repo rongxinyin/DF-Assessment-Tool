@@ -53,6 +53,7 @@ export default function Home() {
   let navigate = useNavigate(); // navigate to diff pages
   // dropdown forms
   const [buildingType, setBuildingType] = useState("");
+  const [floorArea, setFloorArea] = useState();
   const [state, setState] = useState("");
   const [hvacType, setHVACType] = useState("");
   const [CSSB, setCSSB] = useState([{}, {}, {}, {}]);
@@ -86,6 +87,10 @@ export default function Home() {
     setPeakDemand(event.target.value);
   };
 
+  const inputFloorArea = (event) => {
+    setFloorArea(event.target.value);
+  }
+
   const inputCSSBData = (inputInfo, event) => {
     let CSSB_Type = inputInfo[0];
     let eventHour = inputInfo[1] - 1;
@@ -108,6 +113,7 @@ export default function Home() {
   const submitInputs = async () => {
     //Validate inputs, make sure everything is entered
 
+    setGraphs([]);
     //Generate caseID
     let buildingTypeSize = "";
     if (buildingType == "Office") {
@@ -133,35 +139,65 @@ export default function Home() {
 
     //GTA calculations
     let DR_output = await gtaCalculation(fullStateName, caseIDs, CSSB);
-    console.log(DR_output);
 
-    //Display the output
+    //Display the graphs
     let outputDisplay = "";
     let kW_Shed = [];
+    let W_ft2 = [];
+    let shedPercentage = [];
 
     let kW_sum = 0;
+    let shedPercentageSum = 0;
 
     for (var hour = 1; hour <= 4; hour++) {
       let hourkW = DR_output[hour - 1].DR_KW;
       kW_sum += hourkW;
       kW_Shed.push(hourkW);
-      outputDisplay +=
-        "Hour: " +
-        hour +
-        ", Estimated DR %: " +
-        DR_output[hour - 1].DR_PCT * 100 +
-        ", Estimated kW Shed: " +
-        hourkW +
-        "<br/>";
-    }
-    document.getElementById("testingDR_Output").innerHTML = outputDisplay;
 
-    kW_Shed.push(kW_sum / 4);
-    setGraphs(graphs.concat(createVisualizations(
+      let hourW_ft2 = 1000 * hourkW / floorArea;
+      W_ft2.push(hourW_ft2);
+
+      let hourShedPercentage = DR_output[hour-1].DR_PCT * 100
+      shedPercentage.push(hourShedPercentage);
+      shedPercentageSum += hourShedPercentage;
+
+    }
+
+    //add average values to data
+    let avg_kW_Shed = kW_sum / 4;
+    kW_Shed.push(avg_kW_Shed);
+
+    let avg_W_ft2 = 1000 * avg_kW_Shed /floorArea;
+    W_ft2.push(avg_W_ft2);
+
+    shedPercentage.push(shedPercentageSum / 4);
+
+    //kW shed per hour
+    setGraphs(prev => ([...prev, createVisualizations(
       [1, 2, 3, 4, "Average"],
-      "Estimated kW Shed per Hour:",
-      kW_Shed
-    )));
+      "Estimated Kilowatt Shed per Hour",
+      "Power (kW)",
+      kW_Shed,
+      graphs.length
+    )]));
+    
+    //Watt shed per sq. ft. per hour
+    setGraphs(prev => ([...prev, createVisualizations(
+      [1, 2, 3, 4, "Average"],
+      "Estimated Watt Shed per Square Foot per Hour",
+      "Power (Watts)",
+      W_ft2,
+      graphs.length
+    )]));
+
+    //kW percent shed per hour
+    setGraphs(prev => ([...prev, createVisualizations(
+      [1, 2, 3, 4, "Average"],
+      "Estimated Kilowatt Percent Shed per Hour",
+      "Percentage Shed",
+      shedPercentage,
+      graphs.length
+    )]));
   };
 
   const textFieldVariant = "outlined";
@@ -272,6 +308,7 @@ export default function Home() {
                   variant={textFieldVariant}
                   autoComplete="off"
                   type="number"
+                  onChange={inputFloorArea}
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
@@ -644,28 +681,6 @@ export default function Home() {
               Visualizations
             </Typography>
             {graphs}
-            <Typography
-              variant="h5"
-              color="primary.main"
-              sx={{ fontWeight: "bold", m: 1 }}
-            >
-              Estimated kW Shed during the DR Event Hours
-            </Typography>
-            <Typography id="testingCaseIDs"> </Typography>
-            <Typography id="testingDR_Output"></Typography>
-            <Box
-              sx={{
-                width: 500,
-                height: 300,
-                backgroundColor: "white.main",
-                "&:hover": {
-                  backgroundColor: "white.main",
-                  opacity: [0.9, 0.8, 0.7],
-                },
-                marginTop: 3,
-                marginBottom: 3,
-              }}
-            />
           </Grid>
         </Grid>
       </Container>
