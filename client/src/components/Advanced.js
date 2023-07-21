@@ -98,7 +98,7 @@ export default function Advanced() {
     borderCollapse: 'collapse',
     border: "none",
     color: "white.main",
-    width: 100,
+    minWidth: "150px",
   };
 
 
@@ -147,7 +147,7 @@ export default function Advanced() {
           <div >
             <Box sx={{ overflow: "auto" }}>
               <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
-                <TableContainer component={Paper} sx={{ backgroundColor: "secondary.main" }} >
+                <TableContainer component={Paper} sx={{ backgroundColor: "secondary.main", }} >
                   <Table sx={{ borderCollapse: 'collapse', border: "none" }}>
                     <TableHead>
                       <TableRow>
