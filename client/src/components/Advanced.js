@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import {
   Button,
   Box,
@@ -15,6 +16,8 @@ import {
   MenuItem,
   FormControl,
 } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Checkbox } from '@mui/material';
+
 
 import { useNavigate } from "react-router-dom";
 
@@ -57,11 +60,52 @@ export default function Advanced() {
   const textFieldSX = {
     width: "100%",
     marginBottom: 1,
-    border: "0.05px solid #BED7DD",
+    border: "2px solid #F0F0F0",
+    backgroundColor: "secondary.main",
+    borderRadius: "10px",
   };
 
+  const [data, setData] = useState([
+    ['RTU-1', '', '', '', '', '', '', '', ''], // Row 1: Initialize with empty strings
+    ['RTU-2', '', '', '', '', '', '', '', ''], // Row 2: Initialize with empty strings
+  ]);
+
+  const [showSecondRow, setShowSecondRow] = useState(false);
+
+
+  const handleInputChange = (rowIndex, columnIndex, event) => {
+    const newData = [...data];
+    newData[rowIndex][columnIndex] = event.target.value;
+    setData(newData);
+  };
+
+  const handleCheckboxChange = (event) => {
+    const newShowSecondRow = event.target.checked;
+    setShowSecondRow(newShowSecondRow);
+
+    if (!newShowSecondRow) {
+      // Clear inputs in the second row if the checkbox is unchecked
+      const newData = [...data];
+      for (let i = 1; i < newData[1].length; i++) {
+        newData[1][i] = '';
+      }
+      setData(newData);
+    }
+
+  };
+
+  const tableCellStyle = {
+    borderCollapse: 'collapse',
+    border: "none",
+    color: "white.main",
+    width: 100,
+  };
+
+
+
+
   return (
-    <Grid container spacing={0}>
+    <Grid container spacing={0} >
       <Grid
         item
         md={5}
@@ -100,6 +144,66 @@ export default function Advanced() {
           >
             Advanced HVAC Inputs
           </Typography>
+          <div >
+            <Box sx={{ overflow: "auto" }}>
+              <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
+                <TableContainer component={Paper} sx={{ backgroundColor: "secondary.main" }} >
+                  <Table sx={{ borderCollapse: 'collapse', border: "none" }}>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell sx={tableCellStyle}>HVAC Device</TableCell>
+                        <TableCell sx={tableCellStyle}>Supply Air Flow (CFM)</TableCell>
+                        <TableCell sx={tableCellStyle}>Supply Fan Motor (HP)</TableCell>
+                        <TableCell sx={tableCellStyle}>Sensible Cooling Capacity (Tons)</TableCell>
+                        <TableCell sx={tableCellStyle}>Total Cooling Capacity (Tons)</TableCell>
+                        <TableCell sx={tableCellStyle}>Minimum OA Flow (CFM)</TableCell>
+                        <TableCell sx={tableCellStyle}>Fan Efficiency (%)</TableCell>
+                        <TableCell sx={tableCellStyle}>Motor Efficiency (%)</TableCell>
+                        <TableCell sx={tableCellStyle}>Packaged AC Unit Efficiency</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {data.map((row, rowIndex) => (
+                        <React.Fragment key={rowIndex}>
+                          <TableRow>
+                            {row.map((cell, columnIndex) => (
+                              <TableCell sx={tableCellStyle} key={columnIndex}>
+                                {columnIndex === 0 ? (
+                                  <strong>{cell}</strong>
+                                ) : (
+                                  <TextField
+                                    variant="outlined"
+                                    value={cell}
+                                    type="number"
+                                    sx={textFieldSX}
+                                    onChange={(event) => handleInputChange(rowIndex, columnIndex, event)}
+                                    disabled={rowIndex === 1 && !showSecondRow}
+                                  />
+                                )}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          {rowIndex === 0 && (
+                            <TableRow>
+                              <TableCell sx={tableCellStyle}>
+                                <Checkbox checked={showSecondRow} onChange={handleCheckboxChange} />
+                              </TableCell>
+                              <TableCell sx={tableCellStyle} colSpan={4}>Add 2nd HVAC Device</TableCell>
+                            </TableRow>
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Box>
+            </Box>
+
+
+
+          </div>
+
+
           <TextField
             id="outlined-basic"
             label="Name"
