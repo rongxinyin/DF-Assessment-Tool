@@ -101,6 +101,10 @@ export default function Advanced() {
     minWidth: "150px",
   };
 
+  const staticInputTypograhyStyle = {
+    m: 1,
+    width: "300px"
+  };
 
 
 
@@ -200,97 +204,116 @@ export default function Advanced() {
             </Box>
 
 
-
           </div>
 
 
-          <TextField
-            id="outlined-basic"
-            label="Name"
-            variant={textFieldVariant}
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Supply Air Flow (CFM)"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Supply Fan Motor (hp)"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Sensible Cooling Capacity (tons)"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Total Cooling Capacity (tons)"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Minimum OA Flow (CFM)"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Fan Efficiency (%)"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Motor Efficiency (%)"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Package AC Unit Efficiency"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
 
           <Typography
             variant="h6"
-            color="#BED7DD"
+            color="white.main"
             sx={{ fontWeight: "bold", m: 1 }}
           >
             Static Inputs
           </Typography>
+
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              sx={staticInputTypograhyStyle}>
+              Cooling Coil Leaving Air Temperature (°F)
+            </Typography>
+            <TextField
+              style={{ marginRight: '5px' }}
+              variant="outlined"
+              sx={textFieldSX}
+            />
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              type="number"
+              sx={staticInputTypograhyStyle}>
+              AC Load Factor (%)
+            </Typography>
+            <TextField
+              style={{ marginRight: '5px' }}
+              variant="outlined"
+              type="number"
+              sx={textFieldSX}
+            />
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              sx={staticInputTypograhyStyle}>
+              Air system minimum OSA (%)
+            </Typography>
+            <TextField
+              style={{ marginRight: '5px' }}
+              variant="outlined"
+              type="number"
+              sx={textFieldSX}
+            />
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              sx={staticInputTypograhyStyle}>
+              Air system Return Air (%)
+            </Typography>
+            <TextField
+              style={{ marginRight: '5px' }}
+              variant="outlined"
+              type="number"
+              sx={textFieldSX}
+            />
+          </div>
+
+          <Typography
+            variant="h6"
+            color="white.main"
+            sx={{ fontWeight: "bold", m: 1 }}
+          >
+            Static Pressure Reset Inputs
+          </Typography>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              sx={staticInputTypograhyStyle}>
+              Total SF Static Pressure in H2O (inches)
+            </Typography>
+            <TextField
+              style={{ marginRight: '5px' }}
+              variant="outlined"
+              type="number"
+              sx={textFieldSX}
+            />
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              sx={staticInputTypograhyStyle}>
+              Reset Static Pressure Value in H2O (inches)
+            </Typography>
+            <TextField
+              style={{ marginRight: '5px' }}
+              variant="outlined"
+              type="number"
+              sx={textFieldSX}
+            />
+          </div>
+
+
+
+
+
+
         </form>
       </Grid>
       <Grid
