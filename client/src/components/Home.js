@@ -452,7 +452,7 @@ export default function Home() {
                 container
                 spacing = {2}
                 >
-              <Grid item xs={4}>
+              <Grid item xs={3}>
                   <br></br>
                   <Typography
                   variant="h6"
