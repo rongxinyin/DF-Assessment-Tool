@@ -44,14 +44,14 @@ export default function Home() {
   let navigate = useNavigate(); // navigate to diff pages
 
   return (
-    <div style={{backgroundImage : `url(${image})`}}>
+    <div style={{backgroundImage : `url(${image})`, height: '100vh'}}>
     <ThemeProvider theme={theme}>
     <Grid 
     container spacing={2}
     width="100%" 
     height="100%"
     padding={10}
-     marginTop={1}
+     marginTop={0}
      item
      md={12}
      xs={12}
@@ -83,14 +83,14 @@ export default function Home() {
       <Grid item xs={6}>
       <Button
       variant="contained" color="secondary" onClick={() => navigate("/UserGuide")}
-      sx={{width: "200px",height: "50px", marginTop: 5}}>
+      sx={{width: "200px",height: "50px", marginTop: 1}}>
         Estimation Tool
       </Button>
       </Grid>
       <Grid item xs={6}>
       <Button
       variant="contained" color="secondary"
-      sx={{width: "200px",height: "50px", marginTop: 5}}>
+      sx={{width: "200px",height: "50px", marginTop: 1}}>
         Benchmarking Tool
       </Button>
       </Grid>
