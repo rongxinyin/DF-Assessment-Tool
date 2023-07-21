@@ -316,6 +316,34 @@ export default function Advanced() {
           >
             GTA Strategies Inputs
           </Typography>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              sx={staticInputTypograhyStyle}>
+              Normal Space Temperature Setpoint (°F)
+            </Typography>
+            <TextField
+              style={{ marginRight: '5px' }}
+              variant="outlined"
+              type="number"
+              sx={textFieldSX}
+            />
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              sx={staticInputTypograhyStyle}>
+              Reset Space Temperature Setpoint (°F)
+            </Typography>
+            <TextField
+              style={{ marginRight: '5px' }}
+              variant="outlined"
+              type="number"
+              sx={textFieldSX}
+            />
+          </div>
 
 
 
