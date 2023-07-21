@@ -1,26 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Button,
   ButtonGroup,
   Grid,
   Container,
   Typography,
-  Paper,
   Select,
-  SelectChangeEvent,
-  InputLabel,
   MenuItem,
   FormControl,
   createTheme,
   ThemeProvider,
   TextField,
-  createTypography,
   Box,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { createCaseIDs, gtaCalculation } from "../logic/DR_Calculations.js";
 import { abbreviationToFullName } from "../logic/stateAbbreviations.js";
-import {createVisualizations} from "./calculator-components/Visualizations.js";
+import { createVisualizations } from "./calculator-components/Visualizations.js";
 
 const theme = createTheme({
   palette: {
@@ -52,9 +48,9 @@ const theme = createTheme({
 export default function Home() {
   let navigate = useNavigate(); // navigate to diff pages
   // dropdown forms
-  const [buildingType, setBuildingType] = useState("");
+  const [buildingType, setBuildingType] = useState();
   const [floorArea, setFloorArea] = useState();
-  const [state, setState] = useState("");
+  const [state, setState] = useState();
   const [hvacType, setHVACType] = useState("");
   const [CSSB, setCSSB] = useState([{}, {}, {}, {}]);
   const [precool, setPrecool] = useState();
@@ -89,7 +85,7 @@ export default function Home() {
 
   const inputFloorArea = (event) => {
     setFloorArea(event.target.value);
-  }
+  };
 
   const inputCSSBData = (inputInfo, event) => {
     let CSSB_Type = inputInfo[0];
@@ -110,94 +106,129 @@ export default function Home() {
     setCSSB(newCSSB);
   };
 
-  const submitInputs = async () => {
-    //Validate inputs, make sure everything is entered
-
-    setGraphs([]);
-    //Generate caseID
-    let buildingTypeSize = "";
-    if (buildingType == "Office") {
-      if (peakDemand < 200) {
-        buildingTypeSize = "SmallOffice";
-      } else if (peakDemand < 500) {
-        buildingTypeSize = "MediumOffice";
-      } else {
-        buildingTypeSize = "LargeOffice";
-      }
-    } else {
-      buildingTypeSize = buildingType;
-    }
-    let caseIDs = createCaseIDs(
-      state,
-      buildingTypeSize,
-      2004,
-      precool,
-      tempReset
-    );
-
-    let fullStateName = abbreviationToFullName(state);
-
-    //GTA calculations
-    let DR_output = await gtaCalculation(fullStateName, caseIDs, CSSB);
-
-    //Display the graphs
-    let outputDisplay = "";
-    let kW_Shed = [];
-    let W_ft2 = [];
-    let shedPercentage = [];
-
-    let kW_sum = 0;
-    let shedPercentageSum = 0;
-
-    for (var hour = 1; hour <= 4; hour++) {
-      let hourkW = DR_output[hour - 1].DR_KW;
-      kW_sum += hourkW;
-      kW_Shed.push(hourkW);
-
-      let hourW_ft2 = 1000 * hourkW / floorArea;
-      W_ft2.push(hourW_ft2);
-
-      let hourShedPercentage = DR_output[hour-1].DR_PCT * 100
-      shedPercentage.push(hourShedPercentage);
-      shedPercentageSum += hourShedPercentage;
-
-    }
-
-    //add average values to data
-    let avg_kW_Shed = kW_sum / 4;
-    kW_Shed.push(avg_kW_Shed);
-
-    let avg_W_ft2 = 1000 * avg_kW_Shed /floorArea;
-    W_ft2.push(avg_W_ft2);
-
-    shedPercentage.push(shedPercentageSum / 4);
-
-    //kW shed per hour
-    setGraphs(prev => ([...prev, createVisualizations(
-      [1, 2, 3, 4, "Average"],
-      "Estimated Kilowatt Shed per Hour",
-      "Power (kW)",
-      kW_Shed,
-      graphs.length
-    )]));
+  const checkIsValid = () => {
+    //Function just checking for completeness for now. Will add range checks later.
+    let inputValidity = "valid";
     
-    //Watt shed per sq. ft. per hour
-    setGraphs(prev => ([...prev, createVisualizations(
-      [1, 2, 3, 4, "Average"],
-      "Estimated Watt Shed per Square Foot per Hour",
-      "Power (Watts)",
-      W_ft2,
-      graphs.length
-    )]));
+    //validate CSSB
+    let CSSB_IsValid = true;
+    for (var hour = 0; hour < 4; hour++) {
+      if (
+        !CSSB[hour].hasOwnProperty("avg_temp") ||
+        !CSSB[hour].hasOwnProperty("avg_demand") ||
+        !CSSB[hour].avg_temp ||
+        !CSSB[hour].avg_demand
+      ) {
+        CSSB_IsValid = false;
+      }
+    }
 
-    //kW percent shed per hour
-    setGraphs(prev => ([...prev, createVisualizations(
-      [1, 2, 3, 4, "Average"],
-      "Estimated Kilowatt Percent Shed per Hour",
-      "Percentage Shed",
-      shedPercentage,
-      graphs.length
-    )]));
+    if (!buildingType || !floorArea || !peakDemand || !state || !precool || !tempReset || !CSSB_IsValid) {
+      inputValidity = "missing input";
+    }
+
+    return (inputValidity);
+  }
+
+  const submitInputs = async () => {
+    let inputValidity = checkIsValid()
+    if (inputValidity == "valid") { //If inputs are valid
+      setGraphs([]);
+      //Generate caseID
+      let buildingTypeSize = "";
+      if (buildingType == "Office") {
+        if (peakDemand < 200) {
+          buildingTypeSize = "SmallOffice";
+        } else if (peakDemand < 500) {
+          buildingTypeSize = "MediumOffice";
+        } else {
+          buildingTypeSize = "LargeOffice";
+        }
+      } else {
+        buildingTypeSize = buildingType;
+      }
+      let caseIDs = createCaseIDs(
+        state,
+        buildingTypeSize,
+        2004,
+        precool,
+        tempReset
+      );
+
+      let fullStateName = abbreviationToFullName(state);
+
+      //GTA calculations
+      let DR_output = await gtaCalculation(fullStateName, caseIDs, CSSB);
+
+      //Display the graphs
+      let outputDisplay = "";
+      let kW_Shed = [];
+      let W_ft2 = [];
+      let shedPercentage = [];
+
+      let kW_sum = 0;
+      let shedPercentageSum = 0;
+
+      for (var hour = 1; hour <= 4; hour++) {
+        let hourkW = DR_output[hour - 1].DR_KW;
+        kW_sum += hourkW;
+        kW_Shed.push(hourkW);
+
+        let hourW_ft2 = (1000 * hourkW) / floorArea;
+        W_ft2.push(hourW_ft2);
+
+        let hourShedPercentage = DR_output[hour - 1].DR_PCT * 100;
+        shedPercentage.push(hourShedPercentage);
+        shedPercentageSum += hourShedPercentage;
+      }
+
+      //add average values to data
+      let avg_kW_Shed = kW_sum / 4;
+      kW_Shed.push(avg_kW_Shed);
+
+      let avg_W_ft2 = (1000 * avg_kW_Shed) / floorArea;
+      W_ft2.push(avg_W_ft2);
+
+      shedPercentage.push(shedPercentageSum / 4);
+
+      //kW shed per hour
+      setGraphs((prev) => [
+        ...prev,
+        createVisualizations(
+          [1, 2, 3, 4, "Average"],
+          "Estimated Kilowatt Shed per Hour",
+          "Power (kW)",
+          kW_Shed,
+          graphs.length
+        ),
+      ]);
+
+      //Watt shed per sq. ft. per hour
+      setGraphs((prev) => [
+        ...prev,
+        createVisualizations(
+          [1, 2, 3, 4, "Average"],
+          "Estimated Watt Shed per Square Foot per Hour",
+          "Power (Watts)",
+          W_ft2,
+          graphs.length
+        ),
+      ]);
+
+      //kW percent shed per hour
+      setGraphs((prev) => [
+        ...prev,
+        createVisualizations(
+          [1, 2, 3, 4, "Average"],
+          "Estimated Kilowatt Percent Shed per Hour",
+          "Percentage Shed",
+          shedPercentage,
+          graphs.length
+        ),
+      ]);
+    } else if (inputValidity == "missing input"){ //Inputs are incomplete
+      alert("Please enter all the required inputs.") 
+    }
   };
 
   const textFieldVariant = "outlined";
