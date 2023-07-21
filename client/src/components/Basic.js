@@ -45,7 +45,7 @@ const theme = createTheme({
   },
 });
 
-export default function Home() {
+export default function Basic() {
   let navigate = useNavigate(); // navigate to diff pages
   // dropdown forms
   const [buildingType, setBuildingType] = useState();
