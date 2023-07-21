@@ -44,8 +44,8 @@ export default function Home() {
   let navigate = useNavigate(); // navigate to diff pages
 
   return (
+    <div style={{backgroundImage : `url(${image})`}}>
     <ThemeProvider theme={theme}>
-      return <Background />;
     <Grid 
     container spacing={2}
     width="100%" 
@@ -97,7 +97,7 @@ export default function Home() {
     </Grid>
     </Box>
     </Grid>
-    </ThemeProvider>
+    </ThemeProvider></div>
   );
 }
 
