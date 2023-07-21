@@ -178,7 +178,7 @@ export default function Home() {
   return (
     <ThemeProvider theme={theme}>
       
-        <Grid container spacing={0} width="100%" height="100%">
+        <Grid container spacing={0} width="100%" height="100%" marginTop={1}>
           
           <Grid
             item
@@ -190,7 +190,6 @@ export default function Home() {
             justifyContent="center"
             bgcolor="primary.main"
             width={1}
-            sx={{ overflow: "scroll" }}
             paddingLeft={4}
             paddingTop={4}
             paddingBottom={4}
@@ -210,7 +209,7 @@ export default function Home() {
             <Typography
               variant="h4"
               color="white.main"
-              sx={{ fontWeight: "bold", m: 1, marginTop: 2 }}
+              sx={{ fontWeight: "bold", m: 1, marginTop: 4 }}
             >
               Basic Calculator
             </Typography>
@@ -378,7 +377,7 @@ export default function Home() {
               <Typography
                 variant="h5"
                 color="white.main"
-                sx={{ fontWeight: "bold", m: 1 }}
+                sx={{ fontWeight: "bold", m: 1, marginTop: 3 }}
               >
                 HVAC Temp DR Shed Capacity Calculation
               </Typography>
@@ -444,7 +443,7 @@ export default function Home() {
                 <Typography
                   variant="h5"
                   color="white.main"
-                  sx={{ fontWeight: "bold", m: 1 }}
+                  sx={{ fontWeight: "bold", m: 1, marginTop: 3 }}
                 >
                   OAT and kW During the DR Event Hours
                 </Typography>
@@ -602,12 +601,13 @@ export default function Home() {
             justifyContent="flex-start"
             bgcolor="#BED7DD"
             width={1}
-            sx={{ overflow: "scroll" }}
+            padding={2}
+            paddingLeft={4}
           >
             <Typography
               variant="h4"
               color="primary.main"
-              sx={{ fontWeight: "bold", m: 1, marginTop: 2 }}
+              sx={{ fontWeight: "bold", m: 1, marginTop: 4 }}
             >
               Visualizations
             </Typography>
