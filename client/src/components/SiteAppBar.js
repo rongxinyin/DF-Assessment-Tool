@@ -55,13 +55,13 @@ export default function SiteAppBar(props) {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex"}}>
       <CssBaseline />
       <AppBar
         component="nav"
-        position="static"
+        position="fixed"
         color="white"
-        sx={{ height: 85 }}
+        sx={{ height: 90 }}
       >
         <Toolbar>
           <IconButton
@@ -105,6 +105,7 @@ export default function SiteAppBar(props) {
           </Box>
         </Toolbar>
       </AppBar>
+      <Toolbar/>
       <Box component="nav">
         <Drawer
           container={container}

@@ -240,7 +240,7 @@ export default function Home() {
   };
 
   const textFieldSX = {
-    width: "50%",
+    width: "100%",
     marginBottom: 1,
     marginTop: 1,
     border: "2px solid #F0F0F0",
@@ -250,8 +250,9 @@ export default function Home() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container maxWidth="xl">
-        <Grid container spacing={4} width="100%" height="100%">
+      
+        <Grid container spacing={0} width="100%" height="100%" marginTop={1}>
+          
           <Grid
             item
             md={5}
@@ -262,7 +263,10 @@ export default function Home() {
             justifyContent="center"
             bgcolor="primary.main"
             width={1}
-            sx={{ overflow: "scroll" }}
+            paddingLeft={4}
+            paddingTop={4}
+            paddingBottom={4}
+            paddingRight={4}
           >
             <ButtonGroup
               disableElevation
@@ -278,21 +282,23 @@ export default function Home() {
             <Typography
               variant="h4"
               color="white.main"
-              sx={{ fontWeight: "bold", m: 1, marginTop: 2 }}
+              sx={{ fontWeight: "bold", m: 1, marginTop: 4 }}
             >
               Basic Calculator
             </Typography>
 
             <form>
               <Typography
-                variant="h6"
+                variant="h5"
                 color="white.main"
                 sx={{ fontWeight: "bold", m: 1 }}
               >
                 Basic Inputs
               </Typography>
-              <div /*style={{width:'50%'}}*/>
-                <Typography
+
+              <Grid container spacing = {2}>
+              <Grid item xs={6}>
+              <Typography
                   variant="body2"
                   color="white.main"
                   sx={{ fontWeight: "bold", marginLeft: 1 }}
@@ -306,28 +312,7 @@ export default function Home() {
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
-                <FormControl sx={{ width: "75%", marginBottom: 1 }}>
-                  <Typography
-                    variant="body2"
-                    color="white.main"
-                    sx={{ fontWeight: "bold", marginLeft: 1 }}
-                  >
-                    Building Type
-                  </Typography>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={buildingType}
-                    onChange={chooseBuildingType}
-                    sx={textFieldSX}
-                  >
-                    <MenuItem value={"Office"}>Office</MenuItem>
-                    <MenuItem value={"Retail"}>Retail</MenuItem>
-                    <MenuItem value={"School"}>School</MenuItem>
-                  </Select>
-                </FormControl>
-
-                <Typography
+                                <Typography
                   variant="body2"
                   color="white.main"
                   sx={{ fontWeight: "bold", marginLeft: 1 }}
@@ -343,7 +328,68 @@ export default function Home() {
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
-
+                  <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+                  <Typography
+                    variant="body2"
+                    color="white.main"
+                    sx={{ fontWeight: "bold", marginLeft:1}}
+                  >
+                    HVAC Type
+                  </Typography>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={hvacType}
+                    onChange={chooseHVACType}
+                    color="secondary"
+                    sx={textFieldSX}
+                    inputProps={textFieldInputPropsSX}
+                  >
+                    <MenuItem value={"Package RTU"}>Package RTU</MenuItem>
+                    <MenuItem value={"Package RTU + VAC"}>
+                      Package RTU + VAC
+                    </MenuItem>
+                    <MenuItem value={"Chiller + VAC"}>Chiller + VAC</MenuItem>
+                  </Select>
+                </FormControl>
+                <Typography
+                  variant="body2"
+                  color="white.main"
+                  sx={{ fontWeight: "bold", marginLeft: 1 }}
+                >
+                  Zipcode
+                </Typography>
+                <TextField
+                  id="outlined-basic"
+                  variant={textFieldVariant}
+                  type="number"
+                  autoComplete="off"
+                  sx={textFieldSX}
+                  inputProps={textFieldInputPropsSX}
+                />
+              </Grid>
+              <Grid item xs={6}>
+              <FormControl sx={{ width: "75%"}}>
+                  <Typography
+                    variant="body2"
+                    color="white.main"
+                    sx={{ fontWeight: "bold", marginLeft: 1 }}
+                  >
+                    Building Type
+                  </Typography>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={buildingType}
+                    onChange={chooseBuildingType}
+                    sx={textFieldSX}
+                    inputProps={textFieldInputPropsSX}
+                  >
+                    <MenuItem value={"Office"}>Office</MenuItem>
+                    <MenuItem value={"Retail"}>Retail</MenuItem>
+                    <MenuItem value={"School"}>School</MenuItem>
+                  </Select>
+                </FormControl>
                 <Typography
                   variant="body2"
                   color="white.main"
@@ -359,31 +405,6 @@ export default function Home() {
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
-
-                <FormControl sx={{ width: "75%", marginBottom: 1 }}>
-                  <Typography
-                    variant="body2"
-                    color="white.main"
-                    sx={{ fontWeight: "bold", marginLeft: 1 }}
-                  >
-                    HVAC Type
-                  </Typography>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={hvacType}
-                    onChange={chooseHVACType}
-                    color="secondary"
-                    sx={textFieldSX}
-                  >
-                    <MenuItem value={"Package RTU"}>Package RTU</MenuItem>
-                    <MenuItem value={"Package RTU + VAC"}>
-                      Package RTU + VAC
-                    </MenuItem>
-                    <MenuItem value={"Chiller + VAC"}>Chiller + VAC</MenuItem>
-                  </Select>
-                </FormControl>
-
                 <Typography
                   variant="body2"
                   color="white.main"
@@ -401,30 +422,14 @@ export default function Home() {
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
-
                 <Typography
                   variant="body2"
                   color="white.main"
-                  sx={{ fontWeight: "bold", marginLeft: 1 }}
-                >
-                  Zipcode
-                </Typography>
-                <TextField
-                  id="outlined-basic"
-                  variant={textFieldVariant}
-                  type="number"
-                  autoComplete="off"
-                  sx={textFieldSX}
-                  inputProps={textFieldInputPropsSX}
-                />
-                <Typography
-                  variant="body2"
-                  color="white.main"
-                  sx={{ fontWeight: "bold", marginLeft: 1 }}
+                  sx={{ fontWeight: "bold", marginLeft: 1 , marginTop:1 }}
                 >
                   State
                 </Typography>
-                <FormControl sx={{ width: "50%" }}>
+                <FormControl sx={{ width: "75%"}}>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -432,6 +437,7 @@ export default function Home() {
                     onChange={chooseState}
                     color="secondary"
                     sx={textFieldSX}
+                    inputProps={textFieldInputPropsSX}
                   >
                     <MenuItem value={"CA"}>California</MenuItem>
                     <MenuItem value={"MA"}>Massachusetts</MenuItem>
@@ -439,36 +445,32 @@ export default function Home() {
                     <MenuItem value={"TX"}>Texas</MenuItem>
                   </Select>
                 </FormControl>
-              </div>
+              </Grid>
+              </Grid>
 
               <Typography
-                variant="h6"
+                variant="h5"
                 color="white.main"
-                sx={{ fontWeight: "bold", m: 1 }}
+                sx={{ fontWeight: "bold", m: 1, marginTop: 3 }}
               >
                 HVAC Temp DR Shed Capacity Calculation
               </Typography>
-
+              <Grid
+                container
+                spacing = {2}
+                >
+              <Grid item xs={6}>
               <Typography
                 variant="body2"
                 color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1 }}
+                sx={{ fontWeight: "bold", marginLeft: 1, marginTop:1 }}
               >
-                Percentage of Bldg Floor Area that GTA will Apply (0-100)
+                Percentage of Building Floor Area that GTA will Apply (0-100)
               </Typography>
-              <TextField
-                id="outlined-basic"
-                variant={textFieldVariant}
-                autoComplete="off"
-                type="number"
-                sx={textFieldSX}
-                inputProps={textFieldInputPropsSX}
-              />
-
               <Typography
                 variant="body2"
                 color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1 }}
+                sx={{ fontWeight: "bold", marginLeft: 1, marginTop:3.5 }}
               >
                 Precool Period Temp Offset (°F)
               </Typography>
@@ -480,6 +482,16 @@ export default function Home() {
                 sx={textFieldSX}
                 inputProps={textFieldInputPropsSX}
                 type="number"
+              />
+              </Grid>
+              <Grid item xs={6}>
+              <TextField
+                id="outlined-basic"
+                variant={textFieldVariant}
+                autoComplete="off"
+                type="number"
+                sx={textFieldSX}
+                inputProps={textFieldInputPropsSX}
               />
 
               <Typography
@@ -498,31 +510,61 @@ export default function Home() {
                 sx={textFieldSX}
                 inputProps={textFieldInputPropsSX}
               />
+              </Grid>
+              </Grid>
 
               <Box sx={{ flexDirection: "row" }}>
+                <Typography
+                  variant="h5"
+                  color="white.main"
+                  sx={{ fontWeight: "bold", m: 1, marginTop: 3 }}
+                >
+                  OAT and kW During the DR Event Hours
+                </Typography>
+              <Grid
+                container
+                spacing = {2}
+                >
+              <Grid item xs={3}>
+                  <br></br>
+                  <Typography
+                  variant="h6"
+                  color="white.main"
+                  sx={{ fontWeight: "bold", m: 1 , marginTop:6, marginBottom:2}}
+                  
+                >
+                  Hour 1
+                </Typography>
+                <Typography
+                  variant="h6"
+                  color="white.main"
+                  sx={{ fontWeight: "bold", m: 1 , marginTop:5, marginBottom:2}}
+                >
+                  Hour 2
+                </Typography>
+                <Typography
+                  variant="h6"
+                  color="white.main"
+                  sx={{ fontWeight: "bold", m: 1 , marginTop:6, marginBottom:2}}
+                >
+                  Hour 3
+                </Typography>
+                <Typography
+                  variant="h6"
+                  color="white.main"
+                  sx={{ fontWeight: "bold", m: 1, marginTop:6, marginBottom:2 }}
+                >
+                  Hour 4
+                </Typography>
+              </Grid>
+              <Grid item xs={4}>
                 <Typography
                   variant="h6"
                   color="white.main"
                   sx={{ fontWeight: "bold", m: 1 }}
                 >
-                  OAT and kW During the DR Event Hours
-                </Typography>
-
-                <Typography
-                  variant="h5"
-                  color="white.main"
-                  sx={{ fontWeight: "bold", m: 1 }}
-                >
-                  Hour 1
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="white.main"
-                  sx={{ fontWeight: "bold", marginLeft: 1 }}
-                >
                   OAT (°F)
                 </Typography>
-
                 <TextField
                   type="number"
                   id="outlined-basic"
@@ -532,38 +574,6 @@ export default function Home() {
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
-                <Typography
-                  variant="body2"
-                  color="white.main"
-                  sx={{ fontWeight: "bold", marginLeft: 1 }}
-                >
-                  Meter kW
-                </Typography>
-
-                <TextField
-                  type="number"
-                  id="outlined-basic"
-                  variant={textFieldVariant}
-                  autoComplete="off"
-                  onChange={(event) => inputCSSBData(["Demand", 1], event)}
-                  sx={textFieldSX}
-                  inputProps={textFieldInputPropsSX}
-                />
-                <Typography
-                  variant="h5"
-                  color="white.main"
-                  sx={{ fontWeight: "bold", m: 1 }}
-                >
-                  Hour 2
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="white.main"
-                  sx={{ fontWeight: "bold", marginLeft: 1 }}
-                >
-                  OAT (°F)
-                </Typography>
-
                 <TextField
                   type="number"
                   id="outlined-basic"
@@ -573,40 +583,6 @@ export default function Home() {
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
-                <Typography
-                  variant="body2"
-                  color="white.main"
-                  sx={{ fontWeight: "bold", marginLeft: 1 }}
-                >
-                  Meter kW
-                </Typography>
-
-                <TextField
-                  type="number"
-                  id="outlined-basic"
-                  variant={textFieldVariant}
-                  autoComplete="off"
-                  onChange={(event) => inputCSSBData(["Demand", 2], event)}
-                  sx={textFieldSX}
-                  inputProps={textFieldInputPropsSX}
-                />
-
-                <Typography
-                  variant="h5"
-                  color="white.main"
-                  sx={{ fontWeight: "bold", m: 1 }}
-                >
-                  Hour 3
-                </Typography>
-
-                <Typography
-                  variant="body2"
-                  color="white.main"
-                  sx={{ fontWeight: "bold", marginLeft: 1 }}
-                >
-                  OAT (°F)
-                </Typography>
-
                 <TextField
                   type="number"
                   id="outlined-basic"
@@ -616,39 +592,6 @@ export default function Home() {
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
-
-                <Typography
-                  variant="body2"
-                  color="white.main"
-                  sx={{ fontWeight: "bold", marginLeft: 1 }}
-                >
-                  Meter kW
-                </Typography>
-
-                <TextField
-                  type="number"
-                  id="outlined-basic"
-                  variant={textFieldVariant}
-                  autoComplete="off"
-                  onChange={(event) => inputCSSBData(["Demand", 3], event)}
-                  sx={textFieldSX}
-                  inputProps={textFieldInputPropsSX}
-                />
-                <Typography
-                  variant="h5"
-                  color="white.main"
-                  sx={{ fontWeight: "bold", m: 1 }}
-                >
-                  Hour 4
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="white.main"
-                  sx={{ fontWeight: "bold", marginLeft: 1 }}
-                >
-                  OAT (°F)
-                </Typography>
-
                 <TextField
                   type="number"
                   id="outlined-basic"
@@ -658,15 +601,43 @@ export default function Home() {
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
+              </Grid>
+              <Grid item xs={4}>
                 <Typography
-                  variant="body2"
+                  variant="h6"
                   color="white.main"
-                  sx={{ fontWeight: "bold", marginLeft: 1 }}
+                  sx={{ fontWeight: "bold", m: 1 }}
                 >
                   Meter kW
                 </Typography>
-
                 <TextField
+                  type="number"
+                  id="outlined-basic"
+                  variant={textFieldVariant}
+                  autoComplete="off"
+                  onChange={(event) => inputCSSBData(["Demand", 1], event)}
+                  sx={textFieldSX}
+                  inputProps={textFieldInputPropsSX}
+                />
+                  <TextField
+                  type="number"
+                  id="outlined-basic"
+                  variant={textFieldVariant}
+                  autoComplete="off"
+                  onChange={(event) => inputCSSBData(["Demand", 2], event)}
+                  sx={textFieldSX}
+                  inputProps={textFieldInputPropsSX}
+                />
+                  <TextField
+                  type="number"
+                  id="outlined-basic"
+                  variant={textFieldVariant}
+                  autoComplete="off"
+                  onChange={(event) => inputCSSBData(["Demand", 3], event)}
+                  sx={textFieldSX}
+                  inputProps={textFieldInputPropsSX}
+                />
+                  <TextField
                   type="number"
                   id="outlined-basic"
                   variant={textFieldVariant}
@@ -675,7 +646,9 @@ export default function Home() {
                   sx={textFieldSX}
                   inputProps={textFieldInputPropsSX}
                 />
-                <br></br>
+              </Grid>
+              </Grid>
+               
                 <Button
                   variant="contained"
                   color="secondary"
@@ -702,19 +675,19 @@ export default function Home() {
             justifyContent="flex-start"
             bgcolor="#BED7DD"
             width={1}
-            sx={{ overflow: "scroll" }}
+            padding={2}
+            paddingLeft={4}
           >
             <Typography
               variant="h4"
               color="primary.main"
-              sx={{ fontWeight: "bold", m: 1, marginTop: 2 }}
+              sx={{ fontWeight: "bold", m: 1, marginTop: 4 }}
             >
               Visualizations
             </Typography>
             {graphs}
           </Grid>
         </Grid>
-      </Container>
     </ThemeProvider>
   );
 }
