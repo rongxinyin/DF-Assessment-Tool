@@ -12,6 +12,8 @@ import NotFound from "./components/NotFound.js";
 
 import AppBar from "./components/SiteAppBar.js";
 
+import TestAdvanced from "./components/TestAdvanced.js";
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -51,6 +53,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/basic" element={<Basic />} />
             <Route path="/advanced" element={<Advanced />} />
+            <Route path ="/testadv" element = {<TestAdvanced/>} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/userguide" element={<UserGuide />} />
             <Route path="/about" element={<About />} />
