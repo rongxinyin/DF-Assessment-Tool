@@ -84,7 +84,7 @@ export default function TestAdvanced() {
     "Minimum OA Flow (CFM)",
     "Fan Efficiency (%)",
     "Motor Efficiency (%)",
-    "Packaged AC Unit Efficiency",
+    "Packaged AC Unit Efficiency (kW/Ton)",
   ];
 
   const handle_RTU_Inputs = (event, RTU_num, inputNum) => {
@@ -121,7 +121,7 @@ export default function TestAdvanced() {
     <Grid container spacing={0}>
       <Grid
         item
-        md={5}
+        md={6}
         xs={12}
         container
         direction="column"
@@ -169,7 +169,7 @@ export default function TestAdvanced() {
                 </div>
                 <div style={{marginTop: "8px"}}>
                     {RTU_inputs.map((input, i) => {
-                    return <TextField key = {i} onChange={(e) => handle_RTU_Inputs(e, rtu_index, i)} id="standard-basic" label={input} variant="outlined" style={{margin: "8px"}} size = "small" color = "secondary"/>
+                    return <TextField key = {i} onChange={(e) => handle_RTU_Inputs(e, rtu_index, i)} id="standard-basic" label={input} variant="outlined" style={{marginLeft: "3%", marginRight: "2%", marginTop: "8px", marginBottom: "6px", minWidth: "45%"}} size = "small" color = "secondary"/>
                     })}
                 </div>
             </div>
@@ -326,7 +326,7 @@ export default function TestAdvanced() {
       </Grid>
       <Grid
         item
-        md={7}
+        md={6}
         xs={12}
         container
         direction="column"
