@@ -65,37 +65,64 @@ const getEnthalpyAtTempSetting = (tempSetting) => {
   }
 };
 
-const calculations = ({
-  rtu1cfm = 0,
-  rtu2cfm = 0,
+const total_rtu_inputs = (rtu_input_array) => {
+  let rtu_totals = {
+    supply_air_flow_cfm: 0,
+    total_capacity: 0
+  };
+  for (var rtu in rtu_input_array) {
+    rtu_totals.supply_air_flow_cfm += rtu[0];
+    rtu_totals.total_capacity += rtu[3];
+  }
+  return rtu_totals;
+}
+
+const rtu_fan_efficiency = (rtu_input_array) => {
+  let fan_efficiency = 0;
+  for (var rtu in rtu_input_array) {
+    fan_efficiency += (rtu[3] * rtu[5]); // total_space * fan_efficiency
+  }
+  // divide by total capcity for weighted average in %
+  fan_efficiency /= total_rtu_inputs(rtu_input_array).total_capacity; 
+}
+
+const rtu_motor_efficiency = (rtu_input_array) => {
+  let motor_efficiency = 0;
+  for (var rtu in rtu_input_array) {
+    motor_efficiency += (rtu[3] * rtu[6]); // total_space * motor_efficiency
+  }
+  // divide by total capcity for weighted average in %
+  motor_efficiency /= total_rtu_inputs(rtu_input_array).total_capacity; 
+}
+
+const rtu_ac_efficiency = (rtu_input_array) => {
+  let ac_efficiency = 0;
+  for (var rtu in rtu_input_array) {
+    ac_efficiency += (rtu[3] * rtu[7]); // total_space * ac_unit_efficiency
+  }
+  // divide by total capcity for weighted average in kW/Ton
+  ac_efficiency /= total_rtu_inputs(rtu_input_array).total_capacity; 
+}
+
+const calculations = (
+  rtu_input_array,
   normal_space_temp_setting = 0,
   cooling_coil_leaving_air_temp = 0,
   reset_space_temp_setting = 0, // Calculate Reduced CFM
-  rtu1_total_space = 0,
-  rtu2_total_space = 0,
   total_static_SF_pressure = 0,
   reset_static_pressure_value = 0,
-  rtu1_fan_efficiency = 0,
-  rtu2_fan_efficiency = 0,
-  rtu1_motor_efficiency = 0,
-  rtu2_motor_efficiency = 0, // Calculate Reduced kW from CFM Reduction (SP handled next)
   air_system_minimum_osa = 0,
-  rtu1_packaged_AC_unit_efficiency = 0,
-  rtu2_packaged_AC_unit_efficiency = 0,
   ac_load_factor = 0,
   size_of_conditioned_space = 0,
   height_of_conditioned_space = 0,
   coast = 0,
-}) => {
-  let ahu_max_airflow = rtu1cfm + rtu2cfm;
-  let fan_efficiency =
-    (rtu1_total_space * rtu1_fan_efficiency +
-      rtu2_total_space * rtu2_fan_efficiency) /
-    (rtu1_total_space + rtu2_total_space); // weighted average in %
-  let motor_efficiency =
-    (rtu1_total_space * rtu1_motor_efficiency +
-      rtu2_total_space * rtu2_motor_efficiency) /
-    (rtu1_total_space + rtu2_total_space); // weighted average in %
+) => {
+  let rtu_totals = total_rtu_inputs(rtu_input_array);
+  let ahu_max_airflow = rtu_totals.supply_air_flow_cfm;
+  
+  let fan_efficiency = rtu_fan_efficiency(rtu_input_array);
+
+  let motor_efficiency = rtu_motor_efficiency(rtu_input_array);
 
   // Calculate Reduced CFM
   let btuh_normal_space_temp =
@@ -130,10 +157,7 @@ const calculations = ({
   // Note: Result is DR Event Airflow Demand Reduction + DR Event SP Demand Reduction
   let dr_event_cfm_and_sp_demand_reduction =
     dr_event_airflow_demand_reduction + dr_event_sp_demand_reduction; // kW
-  let ac_efficiency =
-    (rtu1_total_space * rtu1_packaged_AC_unit_efficiency +
-      rtu2_total_space * rtu2_packaged_AC_unit_efficiency) /
-    (rtu1_total_space + rtu2_total_space); // weighted average in kw/ton
+  let ac_efficiency = rtu_ac_efficiency(rtu_input_array);
   let percent_return_air = 1 - air_system_minimum_osa;
 
   // Calculate Interactive DR kW Due to Reducing Fan kW
@@ -144,7 +168,7 @@ const calculations = ({
 
   // Calculate Chiller Direct Reduction
   const percent_reduction_per_degree = 0.025;
-  let total_capacity = rtu1_total_space + rtu2_total_space; // tons
+  let total_capacity = rtu_totals.total_capacity; // tons
 
   let baseline_chiller_power = total_capacity * ac_efficiency * ac_load_factor;
   let dr_chiller_power =
