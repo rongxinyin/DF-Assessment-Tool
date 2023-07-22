@@ -35,6 +35,8 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+let RTU_key = 0;
+
 export default function TestAdvanced() {
   let navigate = useNavigate(); // navigate to diff pages
   // dropdown forms
@@ -71,7 +73,7 @@ export default function TestAdvanced() {
   };
 
   const [RTU_data, setRTU_Data] = useState([
-    ["", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", 0],
   ]);
 
   const RTU_inputs = [
@@ -85,39 +87,23 @@ export default function TestAdvanced() {
     "Packaged AC Unit Efficiency",
   ];
 
-
-  //const [showSecondRow, setShowSecondRow] = useState(false);
-
   const handle_RTU_Inputs = (event, RTU_num, inputNum) => {
     let tempRTU_data = RTU_data;
     tempRTU_data[RTU_num][inputNum] = event.target.value;
     setRTU_Data(tempRTU_data);
-    console.log(RTU_data);
   }
 
   const newRTU = () => {
-    setRTU_Data((RTU_data) => [...RTU_data, ["", "", "", "", "", "", "", ""]]);
+    RTU_key += 1;
+    setRTU_Data((RTU_data) => [...RTU_data, ["", "", "", "", "", "", "", "", RTU_key]]);
   }
 
-//   const handleInputChange = (rowIndex, columnIndex, event) => {
-//     const newData = [...data];
-//     newData[rowIndex][columnIndex] = event.target.value;
-//     setData(newData);
-//   };
+  const removeRTU = (index) => {
+    let tempRTU_data = [...RTU_data];
+    tempRTU_data.splice(index, 1);
+    setRTU_Data(tempRTU_data);
+  }
 
-//   const handleCheckboxChange = (event) => {
-//     const newShowSecondRow = event.target.checked;
-//     setShowSecondRow(newShowSecondRow);
-
-//     if (!newShowSecondRow) {
-//       // Clear inputs in the second row if the checkbox is unchecked
-//       const newData = [...data];
-//       for (let i = 1; i < newData[1].length; i++) {
-//         newData[1][i] = "";
-//       }
-//       setData(newData);
-//     }
-//   };
 
   const tableCellStyle = {
     //borderCollapse: "collapse",
@@ -176,106 +162,20 @@ export default function TestAdvanced() {
 
           {RTU_data.map((rtu, rtu_index) => {
             return (
-            <div style={{backgroundColor: "#bed7dd", width: "90%", marginLeft: "5%", marginTop: "10px", padding: "6px", borderRadius: "6px"}}>
+            <div key = {rtu[8]} style={{backgroundColor: "#bed7dd", width: "90%", marginLeft: "5%", marginTop: "10px", padding: "6px", borderRadius: "6px"}}>
+                {rtu_index > 0 ? <Button onClick={() => removeRTU(rtu_index)} style={{maxWidth: '25px', maxHeight: '25px', minWidth: '25px', minHeight: '25px', float: "right", borderRadius: "100%", fontSize: "15px", backgroundColor: "#007681", border: "none", color: "white", margin: "5px", boxShadow: "1px 1px 4px #fff"}}>x</Button>: ""}
                 <div style={{marginLeft: "6px", marginTop: "12px"}}>
                     <span style={{backgroundColor: "#007681", color: "white", padding: "5px", borderRadius: "8px"}}>RTU {rtu_index+1} </span>
                 </div>
                 <div style={{marginTop: "8px"}}>
                     {RTU_inputs.map((input, i) => {
-                    return <TextField onChange={(e) => handle_RTU_Inputs(e, rtu_index, i)} id="standard-basic" label={input} variant="outlined" style={{margin: "8px"}} size = "small" color = "secondary"/>
+                    return <TextField key = {i} onChange={(e) => handle_RTU_Inputs(e, rtu_index, i)} id="standard-basic" label={input} variant="outlined" style={{margin: "8px"}} size = "small" color = "secondary"/>
                     })}
                 </div>
             </div>
             )})}
 
-            <Button onClick={newRTU} size = "small" style={{float: "right", borderRadius: "100%", fontSize: "25px", backgroundColor: "#007681", border: "none", color: "white", marginRight: "5px", boxShadow: "1px 1px 4px #fff"}}>+</Button>
-          {/* <div>
-            <Box sx={{ overflow: "auto" }}>
-              <Box
-                sx={{ width: "100%", display: "table", tableLayout: "fixed" }}
-              >
-                <TableContainer
-                  component={Paper}
-                  sx={{ backgroundColor: "secondary.main" }}
-                >
-                  <Table sx={{ borderCollapse: "collapse", border: "none" }}>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell sx={tableCellStyle}>HVAC Device</TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Supply Air Flow (CFM)
-                        </TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Supply Fan Motor (HP)
-                        </TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Sensible Cooling Capacity (Tons)
-                        </TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Total Cooling Capacity (Tons)
-                        </TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Minimum OA Flow (CFM)
-                        </TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Fan Efficiency (%)
-                        </TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Motor Efficiency (%)
-                        </TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Packaged AC Unit Efficiency
-                        </TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {data.map((row, rowIndex) => (
-                        <React.Fragment key={rowIndex}>
-                          <TableRow>
-                            {row.map((cell, columnIndex) => (
-                              <TableCell sx={tableCellStyle} key={columnIndex}>
-                                {columnIndex === 0 ? (
-                                  <strong>{cell}</strong>
-                                ) : (
-                                  <TextField
-                                    variant="outlined"
-                                    value={cell}
-                                    type="number"
-                                    sx={textFieldSX}
-                                    onChange={(event) =>
-                                      handleInputChange(
-                                        rowIndex,
-                                        columnIndex,
-                                        event
-                                      )
-                                    }
-                                    disabled={rowIndex === 1 && !showSecondRow}
-                                  />
-                                )}
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          {rowIndex === 0 && (
-                            <TableRow>
-                              <TableCell sx={tableCellStyle}>
-                                <Checkbox
-                                  checked={showSecondRow}
-                                  onChange={handleCheckboxChange}
-                                />
-                              </TableCell>
-                              <TableCell sx={tableCellStyle} colSpan={4}>
-                                Add 2nd HVAC Device
-                              </TableCell>
-                            </TableRow>
-                          )}
-                        </React.Fragment>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </Box>
-            </Box>
-          </div> */}
+            <Button onClick={newRTU} style={{maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px', float: "right", borderRadius: "100%", fontSize: "24px", backgroundColor: "#007681", border: "none", color: "white", marginRight: "5px", boxShadow: "1px 1px 4px #fff"}}>+</Button>
 
           <Typography
             variant="h6"
