@@ -225,7 +225,16 @@ const calculations = ({
   let total_dr_load_reduction =
     (dr_event_direct_kw_reduction * 2 + coast_dr_power_reduction) / 2; // kW
 
-  return total_dr_load_reduction;
+  let advanced_outputs = {
+    enthalpy_coast: coast_dr_power_reduction,
+    chiller_direct_reduction: chiller_power_reduction,
+    reduced_kW_from_CFM_reduction: dr_event_airflow_demand_reduction,
+    reduced_kW_from_static_pressure_reset: dr_event_sp_demand_reduction,
+    DR_event_direct_kW_reduction: dr_event_direct_kw_reduction,
+    total_DR_load_reduction: total_dr_load_reduction,
+  };
+
+  return advanced_outputs;
 };
 
 // parameters from the spreadsheet (for testing)
