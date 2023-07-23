@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-export default function Home() {
-  return <h1>Home</h1>;
-}
-=======
 import { Button, Grid, Container, Typography, createTheme, ThemeProvider, Box} from "@mui/material";
 import { styled } from "@mui/system";
 import { useNavigate } from "react-router-dom";
@@ -108,4 +103,3 @@ export default function Home() {
 
 /*return <Background />;*/
 /*<img src={image} style={{ width: "100%", height: "100%" }}></img>*/
->>>>>>> landing-page-user-guide
