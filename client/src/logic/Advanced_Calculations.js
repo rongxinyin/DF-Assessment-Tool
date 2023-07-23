@@ -70,42 +70,46 @@ const total_rtu_inputs = (rtu_input_array) => {
     supply_air_flow_cfm: 0,
     total_capacity: 0
   };
-  for (var rtu in rtu_input_array) {
-    rtu_totals.supply_air_flow_cfm += rtu[0];
-    rtu_totals.total_capacity += rtu[3];
+  
+  for (var i = 0; i < rtu_input_array.length; i++) {
+    rtu_totals.supply_air_flow_cfm += rtu_input_array[i][0];
+    rtu_totals.total_capacity += rtu_input_array[i][3];
   }
   return rtu_totals;
 }
 
 const rtu_fan_efficiency = (rtu_input_array) => {
   let fan_efficiency = 0;
-  for (var rtu in rtu_input_array) {
-    fan_efficiency += (rtu[3] * rtu[5]); // total_space * fan_efficiency
+  for (var i = 0; i < rtu_input_array.length; i++) {
+    fan_efficiency += (rtu_input_array[i][3] * rtu_input_array[i][5]); // total_space * fan_efficiency
   }
   // divide by total capcity for weighted average in %
   fan_efficiency /= total_rtu_inputs(rtu_input_array).total_capacity; 
+  return fan_efficiency;
 }
 
 const rtu_motor_efficiency = (rtu_input_array) => {
   let motor_efficiency = 0;
-  for (var rtu in rtu_input_array) {
-    motor_efficiency += (rtu[3] * rtu[6]); // total_space * motor_efficiency
+  for (var i = 0; i < rtu_input_array.length; i++) {
+    motor_efficiency += (rtu_input_array[i][3] * rtu_input_array[i][6]); // total_space * motor_efficiency
   }
   // divide by total capcity for weighted average in %
   motor_efficiency /= total_rtu_inputs(rtu_input_array).total_capacity; 
+  return motor_efficiency;
 }
 
 const rtu_ac_efficiency = (rtu_input_array) => {
   let ac_efficiency = 0;
-  for (var rtu in rtu_input_array) {
-    ac_efficiency += (rtu[3] * rtu[7]); // total_space * ac_unit_efficiency
+  for (var i = 0; i < rtu_input_array.length; i++) {
+    ac_efficiency += (rtu_input_array[i][3] * rtu_input_array[i][7]); // total_space * ac_unit_efficiency
   }
   // divide by total capcity for weighted average in kW/Ton
   ac_efficiency /= total_rtu_inputs(rtu_input_array).total_capacity; 
+  return ac_efficiency;
 }
 
-const calculations = (
-  rtu_input_array,
+const calculations = ({
+  rtu_input_array = [],
   normal_space_temp_setting = 0,
   cooling_coil_leaving_air_temp = 0,
   reset_space_temp_setting = 0, // Calculate Reduced CFM
@@ -116,7 +120,7 @@ const calculations = (
   size_of_conditioned_space = 0,
   height_of_conditioned_space = 0,
   coast = 0,
-) => {
+}) => {
   let rtu_totals = total_rtu_inputs(rtu_input_array);
   let ahu_max_airflow = rtu_totals.supply_air_flow_cfm;
   
@@ -183,7 +187,7 @@ const calculations = (
     dr_event_cfm_and_sp_demand_reduction +
     dr_event_interactive_fan_kw_reduction +
     chiller_power_reduction; // kW
-
+  
   // The Enthalpy Coast
   let air_density_at_normal_space_temp_setting = getAirDensityAtTempSetting(
     normal_space_temp_setting
@@ -220,28 +224,21 @@ const calculations = (
   // Total 2-Hour Load Reduction
   let total_dr_load_reduction =
     (dr_event_direct_kw_reduction * 2 + coast_dr_power_reduction) / 2; // kW
+
+  return total_dr_load_reduction;
 };
 
 // parameters from the spreadsheet (for testing)
-// console.log(calculations({
-//     rtu1cfm: 70000,
-//     rtu2cfm: 70000,
-//     normal_space_temp_setting: 72,
-//     cooling_coil_leaving_air_temp: 53.5,
-//     reset_space_temp_setting: 76,
-//     rtu1_total_space: 180,
-//     rtu2_total_space: 180,
-//     total_static_SF_pressure: 4.25,
-//     reset_static_pressure_value: 4,
-//     rtu1_fan_efficiency: 0.55,
-//     rtu2_fan_efficiency: 0.55,
-//     rtu1_motor_efficiency: 0.917,
-//     rtu2_motor_efficiency: 0.917,
-//     air_system_minimum_osa: 0.25,
-//     rtu1_packaged_AC_unit_efficiency: 1.23,
-//     rtu2_packaged_AC_unit_efficiency: 1.23,
-//     ac_load_factor: 0.75,
-//     size_of_conditioned_space: 140000,
-//     height_of_conditioned_space: 8,
-//     coast: 1,
-// }))
+console.log(calculations({
+  rtu_input_array: [[70000, 200, 161, 180, 17500, 0.55, 0.917, 1.23], [70000, 200, 161, 180, 17500, 0.55, 0.917, 1.23]],  
+    normal_space_temp_setting: 72,
+    cooling_coil_leaving_air_temp: 53.5,
+    reset_space_temp_setting: 76,
+    total_static_SF_pressure: 4.25,
+    reset_static_pressure_value: 4,
+    air_system_minimum_osa: 0.25,
+    ac_load_factor: 0.75,
+    size_of_conditioned_space: 140000,
+    height_of_conditioned_space: 8,
+    coast: 1,
+}))
