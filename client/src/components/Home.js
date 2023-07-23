@@ -198,9 +198,11 @@ export default function Home() {
           createVisualizations(
             [1, 2, 3, 4, "Average"],
             "Estimated Kilowatt Shed per Hour",
+            "Hours",
             "Power (kW)",
             kW_Shed,
             graphs.length,
+            275,
             ["#f5ca0a", "#f5ca0a", "#f5ca0a", "#f5ca0a", "#05a129"]
           ),
         ]);
@@ -211,9 +213,11 @@ export default function Home() {
           createVisualizations(
             [1, 2, 3, 4, "Average"],
             "Estimated Watt Shed per Square Foot per Hour",
+            "Hours",
             "Power (Watts)",
             W_ft2,
             graphs.length,
+            275,
             ["#f5ca0a", "#f5ca0a", "#f5ca0a", "#f5ca0a", "#05a129"]
           ),
         ]);
@@ -224,9 +228,11 @@ export default function Home() {
           createVisualizations(
             [1, 2, 3, 4, "Average"],
             "Estimated Kilowatt Percent Shed per Hour",
+            "Hours",
             "Percentage Shed",
             shedPercentage,
             graphs.length,
+            275,
             ["#f5ca0a", "#f5ca0a", "#f5ca0a", "#f5ca0a", "#05a129"]
           ),
         ]);

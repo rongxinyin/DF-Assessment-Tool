@@ -22,7 +22,7 @@ const BarChart = (props) => {
       x: {
         title: {
           display: true,
-          text: "Hours",
+          text: props.xAxisLabel,
           font: {
             size: 18,
           },
@@ -49,9 +49,11 @@ const BarChart = (props) => {
 const createVisualizations = (
   chartLabels,
   chartTitle,
+  xAxisLabel,
   yAxisLabel,
   data,
   key,
+  barHeight,
   barColors
 ) => {
   return (
@@ -66,7 +68,7 @@ const createVisualizations = (
       <Box
         sx={{
           width: 525,
-          height: 275,
+          height: barHeight,
           backgroundColor: "white.main",
           boxShadow: 3,
           borderRadius: "8px",
@@ -80,7 +82,7 @@ const createVisualizations = (
           paddingTop: 2,
         }}
       >
-        <BarChart labels={chartLabels} data={data} yAxisLabel={yAxisLabel} barColors={barColors} />
+        <BarChart labels={chartLabels} data={data} xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel} barColors={barColors} />
       </Box>{" "}
     </div>
   );

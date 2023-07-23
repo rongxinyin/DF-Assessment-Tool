@@ -12,6 +12,7 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { calculations } from "../logic/Advanced_Calculations.js";
+import { createVisualizations } from "./calculator-components/Visualizations.js";
 
 // visualization for boxes. will delete later
 const Item = styled(Paper)(({ theme }) => ({
@@ -57,6 +58,7 @@ export default function TestAdvanced() {
   const [resetTempSetpoint, setResetTempSetpoint] = useState();
   const [calculationOutput, setCalculationOutput] = useState({});
   
+  const [graphs, setGraphs] = useState([]);
 
   const RTU_inputs = [
     "Supply Air Flow (CFM)",
@@ -87,6 +89,8 @@ export default function TestAdvanced() {
   }
 
   const submitInputs = () => {
+    setGraphs([]);
+
     let output = calculations({
       rtu_input_array: RTU_data,
       normal_space_temp_setting: normalTempSetpoint,
@@ -101,6 +105,28 @@ export default function TestAdvanced() {
       coast: 1,
     })
     setCalculationOutput(output);
+
+    //Create graph with output data
+    let graphData = [
+      output.enthalpy_coast,
+      output.chiller_direct_reduction,
+      output.reduced_kW_from_CFM_reduction,
+      output.reduced_kW_from_static_pressure_reset,
+      output.total_DR_load_reduction,
+    ];
+    setGraphs((prev) => [
+      ...prev,
+      createVisualizations(
+        ["Enthalpy Coast", "Chiller Direct Reduction", "Reduced kW from CFM Reduction", "Reduced kW from Static Pressure Reset", "Total DR Load Reduction"],
+        "Load Reduction Results",
+        "Shed Components",
+        "Power (kW)",
+        graphData,
+        graphs.length,
+        350,
+        ["#f5ca0a", "#f5ca0a", "#f5ca0a", "#f5ca0a", "#05a129"]
+      ),
+    ]);
   }
 
   const tableCellStyle = {
@@ -116,7 +142,7 @@ export default function TestAdvanced() {
   };
 
   return (
-    <Grid container spacing={0}>
+    <Grid container spacing={0} style={{ marginTop: "28px" }}>
       <Grid
         item
         md={6}
@@ -160,26 +186,103 @@ export default function TestAdvanced() {
 
           {RTU_data.map((rtu, rtu_index) => {
             return (
-            <div key = {rtu[8]} style={{backgroundColor: "#bed7dd", width: "90%", marginLeft: "5%", marginTop: "10px", padding: "6px", borderRadius: "6px"}}>
-                {rtu_index > 0 ? <Button onClick={() => removeRTU(rtu_index)} style={{maxWidth: '25px', maxHeight: '25px', minWidth: '25px', minHeight: '25px', float: "right", borderRadius: "100%", fontSize: "15px", backgroundColor: "#007681", border: "none", color: "white", margin: "5px", boxShadow: "1px 1px 4px #fff"}}>x</Button>: ""}
-                <div style={{marginLeft: "6px", marginTop: "12px"}}>
-                    <span style={{backgroundColor: "#007681", color: "white", padding: "5px", borderRadius: "8px"}}>RTU {rtu_index+1} </span>
+              <div
+                key={rtu[8]}
+                style={{
+                  backgroundColor: "#bed7dd",
+                  width: "90%",
+                  marginLeft: "5%",
+                  marginTop: "10px",
+                  padding: "6px",
+                  borderRadius: "6px",
+                }}
+              >
+                {rtu_index > 0 ? (
+                  <Button
+                    onClick={() => removeRTU(rtu_index)}
+                    style={{
+                      maxWidth: "25px",
+                      maxHeight: "25px",
+                      minWidth: "25px",
+                      minHeight: "25px",
+                      float: "right",
+                      borderRadius: "100%",
+                      fontSize: "15px",
+                      backgroundColor: "#007681",
+                      border: "none",
+                      color: "white",
+                      margin: "5px",
+                      boxShadow: "1px 1px 4px #fff",
+                    }}
+                  >
+                    x
+                  </Button>
+                ) : (
+                  ""
+                )}
+                <div style={{ marginLeft: "6px", marginTop: "12px" }}>
+                  <span
+                    style={{
+                      backgroundColor: "#007681",
+                      color: "white",
+                      padding: "5px",
+                      borderRadius: "8px",
+                    }}
+                  >
+                    RTU {rtu_index + 1}{" "}
+                  </span>
                 </div>
-                <div style={{marginTop: "8px"}}>
-                    {RTU_inputs.map((input, i) => {
-                    return <TextField key = {i} onChange={(e) => handle_RTU_Inputs(e, rtu_index, i)} id="standard-basic" label={input} variant="outlined" style={{marginLeft: "3%", marginRight: "2%", marginTop: "8px", marginBottom: "6px", minWidth: "45%"}} size = "small" color = "secondary"/>
-                    })}
+                <div style={{ marginTop: "8px" }}>
+                  {RTU_inputs.map((input, i) => {
+                    return (
+                      <TextField
+                        key={i}
+                        onChange={(e) => handle_RTU_Inputs(e, rtu_index, i)}
+                        id="standard-basic"
+                        label={input}
+                        variant="outlined"
+                        style={{
+                          marginLeft: "3%",
+                          marginRight: "2%",
+                          marginTop: "8px",
+                          marginBottom: "6px",
+                          minWidth: "45%",
+                        }}
+                        size="small"
+                        color="secondary"
+                      />
+                    );
+                  })}
                 </div>
-            </div>
-            )})}
+              </div>
+            );
+          })}
 
-            <Button onClick={newRTU} style={{maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px', float: "right", borderRadius: "100%", fontSize: "24px", backgroundColor: "#007681", border: "none", color: "white", marginRight: "5px", boxShadow: "1px 1px 4px #fff"}}>+</Button>
+          <Button
+            onClick={newRTU}
+            style={{
+              maxWidth: "30px",
+              maxHeight: "30px",
+              minWidth: "30px",
+              minHeight: "30px",
+              float: "right",
+              borderRadius: "100%",
+              fontSize: "24px",
+              backgroundColor: "#007681",
+              border: "none",
+              color: "white",
+              marginRight: "5px",
+              boxShadow: "1px 1px 4px #fff",
+            }}
+          >
+            +
+          </Button>
 
           <Typography
             variant="h6"
             color="white.main"
             sx={{ fontWeight: "bold", m: 1 }}
-            style={{marginTop: "50px"}}
+            style={{ marginTop: "50px" }}
           >
             Static Inputs
           </Typography>
@@ -329,18 +432,18 @@ export default function TestAdvanced() {
             />
           </div>
           <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={submitInputs}
-                  sx={{
-                    marginTop: 2,
-                    marginBottom: 3,
-                    width: "25%",
-                    height: "50px",
-                  }}
-                >
-                  Calculate
-                </Button>
+            variant="contained"
+            color="secondary"
+            onClick={submitInputs}
+            sx={{
+              marginTop: 2,
+              marginBottom: 3,
+              width: "25%",
+              height: "50px",
+            }}
+          >
+            Calculate
+          </Button>
         </form>
       </Grid>
       <Grid
@@ -354,11 +457,35 @@ export default function TestAdvanced() {
         bgcolor="tertiary.main"
         width={1}
       >
-        {Object.keys(calculationOutput).map((keyName, i) => (
-    <div key={i}>
-        <span className="input-label">{keyName}: {calculationOutput[keyName]}</span>
-    </div>
-))}
+        <Typography
+          variant="h4"
+          color="primary.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+          style={{marginTop: "24px"}}
+        >
+          Reduction Results
+        </Typography>
+        <Grid justifyContent="left" style={{marginTop: "10px"}}>
+          {Object.keys(calculationOutput).map((keyName, i) => (
+            <div key={i}>
+              <div style={{float: "left", marginRight: "30px", marginTop: "5px"}}>
+                {keyName}: 
+              </div>
+              <div style={{float: "right", marginTop: "5px"}}>
+                {calculationOutput[keyName].toFixed(2)}
+              </div>
+            </div>
+          ))}
+        </Grid>
+        <Typography
+          variant="h4"
+          color="primary.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+          style={{marginTop: "36px"}}
+        >
+          Visualizations
+        </Typography>
+        {graphs}
       </Grid>
     </Grid>
   );
