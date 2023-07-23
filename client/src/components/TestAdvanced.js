@@ -2,29 +2,16 @@ import * as React from "react";
 import { useState } from "react";
 import {
   Button,
-  Box,
   styled,
   TextField,
   ButtonGroup,
-  Container,
   Typography,
   Paper,
   Grid,
-  Select,
-  SelectChangeEvent,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Checkbox,
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
+import { calculations } from "../logic/Advanced_Calculations.js";
 
 // visualization for boxes. will delete later
 const Item = styled(Paper)(({ theme }) => ({
@@ -40,21 +27,6 @@ let RTU_key = 0;
 export default function TestAdvanced() {
   let navigate = useNavigate(); // navigate to diff pages
   // dropdown forms
-  const [buildingType, setBuildingType] = React.useState("");
-  const [state, setState] = React.useState("");
-  const [hvacType, setHVACType] = React.useState("");
-
-  const chooseBuildingType = (event) => {
-    setBuildingType(event.target.value);
-  };
-
-  const chooseState = (event) => {
-    setState(event.target.value);
-  };
-
-  const chooseHVACType = (event) => {
-    setHVACType(event.target.value);
-  };
 
   const textFieldVariant = "outlined";
 
@@ -75,6 +47,16 @@ export default function TestAdvanced() {
   const [RTU_data, setRTU_Data] = useState([
     ["", "", "", "", "", "", "", "", 0],
   ]);
+  const [coolingCoilAirTemp, setCoolingCoilAirTemp] = useState();
+  const [acLoadFactor, setAC_LoadFactor] = useState();
+  const [minOSA, setMinOSA] = useState();
+  const [returnAir, setReturnAir] = useState();
+  const [totalStaticPressure, setTotalStaticPressure] = useState();
+  const [resetStaticPressure, setResetStaticPressure] = useState();
+  const [normalTempSetpoint, setNormalTempSetpoint] = useState();
+  const [resetTempSetpoint, setResetTempSetpoint] = useState();
+  const [calculationOutput, setCalculationOutput] = useState({});
+  
 
   const RTU_inputs = [
     "Supply Air Flow (CFM)",
@@ -89,7 +71,7 @@ export default function TestAdvanced() {
 
   const handle_RTU_Inputs = (event, RTU_num, inputNum) => {
     let tempRTU_data = RTU_data;
-    tempRTU_data[RTU_num][inputNum] = event.target.value;
+    tempRTU_data[RTU_num][inputNum] = Number(event.target.value);
     setRTU_Data(tempRTU_data);
   }
 
@@ -104,6 +86,22 @@ export default function TestAdvanced() {
     setRTU_Data(tempRTU_data);
   }
 
+  const submitInputs = () => {
+    let output = calculations({
+      rtu_input_array: RTU_data,
+      normal_space_temp_setting: normalTempSetpoint,
+      cooling_coil_leaving_air_temp: coolingCoilAirTemp,
+      reset_space_temp_setting: resetTempSetpoint,
+      total_static_SF_pressure: totalStaticPressure,
+      reset_static_pressure_value: resetStaticPressure,
+      air_system_minimum_osa: minOSA,
+      ac_load_factor: acLoadFactor,
+      size_of_conditioned_space: 140000,
+      height_of_conditioned_space: 8,
+      coast: 1,
+    })
+    setCalculationOutput(output);
+  }
 
   const tableCellStyle = {
     //borderCollapse: "collapse",
@@ -198,6 +196,7 @@ export default function TestAdvanced() {
               style={{ marginRight: "5px" }}
               variant="outlined"
               sx={textFieldSX}
+              onChange={(e) => setCoolingCoilAirTemp(Number(e.target.value))}
             />
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -214,6 +213,7 @@ export default function TestAdvanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              onChange={(e) => setAC_LoadFactor(Number(e.target.value))}
             />
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -229,6 +229,7 @@ export default function TestAdvanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              onChange={(e) => setMinOSA(Number(e.target.value))}
             />
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -244,6 +245,7 @@ export default function TestAdvanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              onChange={(e) => setReturnAir(Number(e.target.value))}
             />
           </div>
 
@@ -267,6 +269,7 @@ export default function TestAdvanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              onChange={(e) => setTotalStaticPressure(Number(e.target.value))}
             />
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -282,6 +285,7 @@ export default function TestAdvanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              onChange={(e) => setResetStaticPressure(Number(e.target.value))}
             />
           </div>
 
@@ -305,6 +309,7 @@ export default function TestAdvanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              onChange={(e) => setNormalTempSetpoint(Number(e.target.value))}
             />
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -320,8 +325,22 @@ export default function TestAdvanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              onChange={(e) => setResetTempSetpoint(Number(e.target.value))}
             />
           </div>
+          <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={submitInputs}
+                  sx={{
+                    marginTop: 2,
+                    marginBottom: 3,
+                    width: "25%",
+                    height: "50px",
+                  }}
+                >
+                  Calculate
+                </Button>
         </form>
       </Grid>
       <Grid
@@ -331,10 +350,16 @@ export default function TestAdvanced() {
         container
         direction="column"
         alignItems="center"
-        justifyContent="center"
+        //justifyContent="center"
         bgcolor="tertiary.main"
         width={1}
-      ></Grid>
+      >
+        {Object.keys(calculationOutput).map((keyName, i) => (
+    <div key={i}>
+        <span className="input-label">{keyName}: {calculationOutput[keyName]}</span>
+    </div>
+))}
+      </Grid>
     </Grid>
   );
 }
