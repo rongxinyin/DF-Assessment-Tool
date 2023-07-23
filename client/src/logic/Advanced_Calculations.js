@@ -68,45 +68,45 @@ const getEnthalpyAtTempSetting = (tempSetting) => {
 const total_rtu_inputs = (rtu_input_array) => {
   let rtu_totals = {
     supply_air_flow_cfm: 0,
-    total_capacity: 0
+    total_capacity: 0,
   };
-  
+
   for (var i = 0; i < rtu_input_array.length; i++) {
     rtu_totals.supply_air_flow_cfm += rtu_input_array[i][0];
     rtu_totals.total_capacity += rtu_input_array[i][3];
   }
   return rtu_totals;
-}
+};
 
 const rtu_fan_efficiency = (rtu_input_array) => {
   let fan_efficiency = 0;
   for (var i = 0; i < rtu_input_array.length; i++) {
-    fan_efficiency += (rtu_input_array[i][3] * rtu_input_array[i][5]); // total_space * fan_efficiency
+    fan_efficiency += rtu_input_array[i][3] * rtu_input_array[i][5]; // total_space * fan_efficiency
   }
   // divide by total capcity for weighted average in %
-  fan_efficiency /= total_rtu_inputs(rtu_input_array).total_capacity; 
+  fan_efficiency /= total_rtu_inputs(rtu_input_array).total_capacity;
   return fan_efficiency;
-}
+};
 
 const rtu_motor_efficiency = (rtu_input_array) => {
   let motor_efficiency = 0;
   for (var i = 0; i < rtu_input_array.length; i++) {
-    motor_efficiency += (rtu_input_array[i][3] * rtu_input_array[i][6]); // total_space * motor_efficiency
+    motor_efficiency += rtu_input_array[i][3] * rtu_input_array[i][6]; // total_space * motor_efficiency
   }
   // divide by total capcity for weighted average in %
-  motor_efficiency /= total_rtu_inputs(rtu_input_array).total_capacity; 
+  motor_efficiency /= total_rtu_inputs(rtu_input_array).total_capacity;
   return motor_efficiency;
-}
+};
 
 const rtu_ac_efficiency = (rtu_input_array) => {
   let ac_efficiency = 0;
   for (var i = 0; i < rtu_input_array.length; i++) {
-    ac_efficiency += (rtu_input_array[i][3] * rtu_input_array[i][7]); // total_space * ac_unit_efficiency
+    ac_efficiency += rtu_input_array[i][3] * rtu_input_array[i][7]; // total_space * ac_unit_efficiency
   }
   // divide by total capcity for weighted average in kW/Ton
-  ac_efficiency /= total_rtu_inputs(rtu_input_array).total_capacity; 
+  ac_efficiency /= total_rtu_inputs(rtu_input_array).total_capacity;
   return ac_efficiency;
-}
+};
 
 const calculations = ({
   rtu_input_array = [],
@@ -123,7 +123,7 @@ const calculations = ({
 }) => {
   let rtu_totals = total_rtu_inputs(rtu_input_array);
   let ahu_max_airflow = rtu_totals.supply_air_flow_cfm;
-  
+
   let fan_efficiency = rtu_fan_efficiency(rtu_input_array);
 
   let motor_efficiency = rtu_motor_efficiency(rtu_input_array);
@@ -187,7 +187,7 @@ const calculations = ({
     dr_event_cfm_and_sp_demand_reduction +
     dr_event_interactive_fan_kw_reduction +
     chiller_power_reduction; // kW
-  
+
   // The Enthalpy Coast
   let air_density_at_normal_space_temp_setting = getAirDensityAtTempSetting(
     normal_space_temp_setting
@@ -229,8 +229,12 @@ const calculations = ({
 };
 
 // parameters from the spreadsheet (for testing)
-console.log(calculations({
-  rtu_input_array: [[70000, 200, 161, 180, 17500, 0.55, 0.917, 1.23], [70000, 200, 161, 180, 17500, 0.55, 0.917, 1.23]],  
+console.log(
+  calculations({
+    rtu_input_array: [
+      [70000, 200, 161, 180, 17500, 0.55, 0.917, 1.23],
+      [70000, 200, 161, 180, 17500, 0.55, 0.917, 1.23],
+    ],
     normal_space_temp_setting: 72,
     cooling_coil_leaving_air_temp: 53.5,
     reset_space_temp_setting: 76,
@@ -241,4 +245,5 @@ console.log(calculations({
     size_of_conditioned_space: 140000,
     height_of_conditioned_space: 8,
     coast: 1,
-}))
+  })
+);
