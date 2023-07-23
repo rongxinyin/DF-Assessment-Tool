@@ -160,6 +160,7 @@ export default function Basic() {
       //GTA calculations
       let DR_output = await gtaCalculation(fullStateName, caseIDs, CSSB);
 
+<<<<<<< HEAD
       if (Object.keys(DR_output).length != 0) { //If data was found for these inputs
 
         //Display the graphs
@@ -239,6 +240,74 @@ export default function Basic() {
       } else {//Data was not found for this set of inputs (this CaseID)
         alert("Estimates could not be made with these inputs. Please try again.")
       }
+=======
+      //Display the graphs
+      let outputDisplay = "";
+      let kW_Shed = [];
+      let W_ft2 = [];
+      let shedPercentage = [];
+
+      let kW_sum = 0;
+      let shedPercentageSum = 0;
+
+      for (var hour = 1; hour <= 4; hour++) {
+        let hourkW = DR_output[hour - 1].DR_KW;
+        kW_sum += hourkW;
+        kW_Shed.push(hourkW);
+
+        let hourW_ft2 = (1000 * hourkW) / floorArea;
+        W_ft2.push(hourW_ft2);
+
+        let hourShedPercentage = DR_output[hour - 1].DR_PCT * 100;
+        shedPercentage.push(hourShedPercentage);
+        shedPercentageSum += hourShedPercentage;
+      }
+
+      //add average values to data
+      let avg_kW_Shed = kW_sum / 4;
+      kW_Shed.push(avg_kW_Shed);
+
+      let avg_W_ft2 = (1000 * avg_kW_Shed) / floorArea;
+      W_ft2.push(avg_W_ft2);
+
+      shedPercentage.push(shedPercentageSum / 4);
+
+      //kW shed per hour
+      setGraphs((prev) => [
+        ...prev,
+        createVisualizations(
+          [1, 2, 3, 4, "Average"],
+          "Estimated Kilowatt Shed per Hour",
+          "Power (kW)",
+          kW_Shed,
+          graphs.length
+        ),
+      ]);
+
+      //Watt shed per sq. ft. per hour
+      setGraphs((prev) => [
+        ...prev,
+        createVisualizations(
+          [1, 2, 3, 4, "Average"],
+          "Estimated Watt Shed per Square Foot per Hour",
+          "Power (Watts)",
+          W_ft2,
+          graphs.length
+        ),
+      ]);
+
+      //kW percent shed per hour
+      setGraphs((prev) => [
+        ...prev,
+        createVisualizations(
+          [1, 2, 3, 4, "Average"],
+          "Estimated Kilowatt Percent Shed per Hour",
+          "Percentage Shed",
+          shedPercentage,
+          graphs.length
+        ),
+      ]);
+>>>>>>> landing-page-user-guide
     } else if (inputValidity == "missing input"){ //Inputs are incomplete
       alert("Please enter all the required inputs.") 
     }
