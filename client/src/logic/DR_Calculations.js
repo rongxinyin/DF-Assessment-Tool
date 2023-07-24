@@ -36,7 +36,8 @@ const gtaCalculation = async (state, caseIDs, CSSB) => {
         `http://localhost:8080/states/${state}/loadShedDatabase/${caseID}`
       );
 
-      if (res.data.equations) { //if caseID was valid
+      if (res.data.equations) {
+        //if caseID was valid
         if (temperature <= 75) {
           equation = res.data.equations.find(
             (eq) => eq.temp_category == "pct_OAT<=75"
@@ -51,7 +52,8 @@ const gtaCalculation = async (state, caseIDs, CSSB) => {
         DR_Obj["caseID"] = caseID;
 
         let DR_pct =
-          (temperature * equation.equation_slope + equation.equation_intercept) /
+          (temperature * equation.equation_slope +
+            equation.equation_intercept) /
           100;
         DR_Obj["DR_PCT"] = DR_pct;
 
@@ -63,7 +65,8 @@ const gtaCalculation = async (state, caseIDs, CSSB) => {
         if (DR_output.length == 4) {
           return DR_output;
         }
-      } else { //if caseID was not valid
+      } else {
+        //if caseID was not valid
         return {};
       }
     } catch (err) {

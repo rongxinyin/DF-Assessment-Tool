@@ -53,7 +53,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/basic" element={<Basic />} />
             <Route path="/advanced" element={<Advanced />} />
-            <Route path ="/testadv" element = {<TestAdvanced/>} />
+            <Route path="/testadv" element={<TestAdvanced />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/userguide" element={<UserGuide />} />
             <Route path="/about" element={<About />} />

@@ -55,7 +55,7 @@ export default function SiteAppBar(props) {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ display: "flex"}}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
         component="nav"
@@ -105,7 +105,7 @@ export default function SiteAppBar(props) {
           </Box>
         </Toolbar>
       </AppBar>
-      <Toolbar/>
+      <Toolbar />
       <Box component="nav">
         <Drawer
           container={container}

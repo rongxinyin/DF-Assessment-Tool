@@ -42,7 +42,7 @@ router.patch("/:stateName/addData/:fieldName", async (req, res) => {
       res.send(result).status(200);
     })
     .catch((err) => res.json(err));
-})
+});
 
 //Gets the LoadShed data for a given caseID in a given state.
 router.get("/:stateName/loadShedDatabase/:case_ID", async (req, res) => {

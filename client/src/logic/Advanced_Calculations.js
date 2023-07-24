@@ -257,4 +257,4 @@ const calculations = ({
 //   })
 // );
 
-export {calculations};
+export { calculations };

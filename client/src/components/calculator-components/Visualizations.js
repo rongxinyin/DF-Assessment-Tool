@@ -82,7 +82,13 @@ const createVisualizations = (
           paddingTop: 2,
         }}
       >
-        <BarChart labels={chartLabels} data={data} xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel} barColors={barColors} />
+        <BarChart
+          labels={chartLabels}
+          data={data}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          barColors={barColors}
+        />
       </Box>{" "}
     </div>
   );

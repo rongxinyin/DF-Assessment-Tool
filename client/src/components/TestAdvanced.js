@@ -57,7 +57,7 @@ export default function TestAdvanced() {
   const [normalTempSetpoint, setNormalTempSetpoint] = useState();
   const [resetTempSetpoint, setResetTempSetpoint] = useState();
   const [calculationOutput, setCalculationOutput] = useState({});
-  
+
   const [graphs, setGraphs] = useState([]);
 
   const RTU_inputs = [
@@ -75,18 +75,21 @@ export default function TestAdvanced() {
     let tempRTU_data = RTU_data;
     tempRTU_data[RTU_num][inputNum] = Number(event.target.value);
     setRTU_Data(tempRTU_data);
-  }
+  };
 
   const newRTU = () => {
     RTU_key += 1;
-    setRTU_Data((RTU_data) => [...RTU_data, ["", "", "", "", "", "", "", "", RTU_key]]);
-  }
+    setRTU_Data((RTU_data) => [
+      ...RTU_data,
+      ["", "", "", "", "", "", "", "", RTU_key],
+    ]);
+  };
 
   const removeRTU = (index) => {
     let tempRTU_data = [...RTU_data];
     tempRTU_data.splice(index, 1);
     setRTU_Data(tempRTU_data);
-  }
+  };
 
   const submitInputs = () => {
     setGraphs([]);
@@ -103,7 +106,7 @@ export default function TestAdvanced() {
       size_of_conditioned_space: 140000,
       height_of_conditioned_space: 8,
       coast: 1,
-    })
+    });
     setCalculationOutput(output);
 
     //Create graph with output data
@@ -127,7 +130,7 @@ export default function TestAdvanced() {
         ["#f5ca0a", "#f5ca0a", "#f5ca0a", "#f5ca0a", "#05a129"]
       ),
     ]);
-  }
+  };
 
   const tableCellStyle = {
     //borderCollapse: "collapse",
@@ -460,17 +463,19 @@ export default function TestAdvanced() {
           variant="h4"
           color="primary.main"
           sx={{ fontWeight: "bold", m: 1 }}
-          style={{marginTop: "24px"}}
+          style={{ marginTop: "24px" }}
         >
           Reduction Results
         </Typography>
-        <Grid justifyContent="left" style={{marginTop: "10px"}}>
+        <Grid justifyContent="left" style={{ marginTop: "10px" }}>
           {Object.keys(calculationOutput).map((keyName, i) => (
             <div key={i}>
-              <div style={{float: "left", marginRight: "30px", marginTop: "5px"}}>
-                {keyName}: 
+              <div
+                style={{ float: "left", marginRight: "30px", marginTop: "5px" }}
+              >
+                {keyName}:
               </div>
-              <div style={{float: "right", marginTop: "5px"}}>
+              <div style={{ float: "right", marginTop: "5px" }}>
                 {calculationOutput[keyName].toFixed(2)}
               </div>
             </div>
@@ -480,7 +485,7 @@ export default function TestAdvanced() {
           variant="h4"
           color="primary.main"
           sx={{ fontWeight: "bold", m: 1 }}
-          style={{marginTop: "36px"}}
+          style={{ marginTop: "36px" }}
         >
           Visualizations
         </Typography>
