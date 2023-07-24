@@ -117,7 +117,7 @@ export default function TestAdvanced() {
     setGraphs((prev) => [
       ...prev,
       createVisualizations(
-        ["Enthalpy Coast", "Chiller Direct Reduction", "Reduced kW from CFM Reduction", "Reduced kW from Static Pressure Reset", "Total DR Load Reduction"],
+        [1, 2, 3, 4, "Total"],
         "Load Reduction Results",
         "Shed Components",
         "Power (kW)",
@@ -238,7 +238,6 @@ export default function TestAdvanced() {
                       <TextField
                         key={i}
                         onChange={(e) => handle_RTU_Inputs(e, rtu_index, i)}
-                        id="standard-basic"
                         label={input}
                         variant="outlined"
                         style={{

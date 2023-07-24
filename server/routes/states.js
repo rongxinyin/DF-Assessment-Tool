@@ -27,6 +27,23 @@ router.patch("/:stateName/new/:fieldName", async (req, res) => {
   res.send(result).status(200);
 });
 
+//Adds to an existing array field for the given US State.
+router.patch("/:stateName/addData/:fieldName", async (req, res) => {
+  const fieldName = req.params.fieldName;
+  let fieldData = [];
+  StateModel.findOne({ stateName: req.params.stateName })
+    .then(async (docs) => {
+      fieldData = docs[fieldName];
+      let newFieldData = [...fieldData, ...req.body];
+      let result = await StateModel.findOneAndUpdate(
+        { stateName: req.params.stateName },
+        { [fieldName]: newFieldData }
+      );
+      res.send(result).status(200);
+    })
+    .catch((err) => res.json(err));
+})
+
 //Gets the LoadShed data for a given caseID in a given state.
 router.get("/:stateName/loadShedDatabase/:case_ID", async (req, res) => {
   StateModel.findOne({ stateName: req.params.stateName })

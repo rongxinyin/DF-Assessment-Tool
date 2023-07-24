@@ -73,7 +73,7 @@ export default function SiteAppBar(props) {
           >
             {/* <MenuIcon /> */}
           </IconButton>
-          <Logo style={{ width: 450, height: 450 }}></Logo>
+          <Logo style={{ width: 450, height: 150 }}></Logo>
           <Typography
             variant="h6"
             component="div"
