@@ -59,9 +59,9 @@ export default function SiteAppBar(props) {
       <CssBaseline />
       <AppBar
         component="nav"
-        position="static"
+        position="fixed"
         color="white"
-        sx={{ height: 85 }}
+        sx={{ height: 90 }}
       >
         <Toolbar>
           <IconButton
@@ -73,7 +73,7 @@ export default function SiteAppBar(props) {
           >
             {/* <MenuIcon /> */}
           </IconButton>
-          <Logo style={{ width: 450, height: 450 }}></Logo>
+          <Logo style={{ width: 450, height: 150 }}></Logo>
           <Typography
             variant="h6"
             component="div"
@@ -105,6 +105,7 @@ export default function SiteAppBar(props) {
           </Box>
         </Toolbar>
       </AppBar>
+      <Toolbar />
       <Box component="nav">
         <Drawer
           container={container}

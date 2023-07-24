@@ -36,31 +36,38 @@ const gtaCalculation = async (state, caseIDs, CSSB) => {
         `http://localhost:8080/states/${state}/loadShedDatabase/${caseID}`
       );
 
-      if (temperature <= 75) {
-        equation = res.data.equations.find(
-          (eq) => eq.temp_category == "pct_OAT<=75"
-        );
-      } else if (temperature > 75) {
-        equation = res.data.equations.find(
-          (eq) => eq.temp_category == "pct_75<=OAT<=95"
-        );
-      }
+      if (res.data.equations) {
+        //if caseID was valid
+        if (temperature <= 75) {
+          equation = res.data.equations.find(
+            (eq) => eq.temp_category == "pct_OAT<=75"
+          );
+        } else if (temperature > 75) {
+          equation = res.data.equations.find(
+            (eq) => eq.temp_category == "pct_75<=OAT<=95"
+          );
+        }
 
-      let DR_Obj = {};
-      DR_Obj["caseID"] = caseID;
+        let DR_Obj = {};
+        DR_Obj["caseID"] = caseID;
 
-      let DR_pct =
-        (temperature * equation.equation_slope + equation.equation_intercept) /
-        100;
-      DR_Obj["DR_PCT"] = DR_pct;
+        let DR_pct =
+          (temperature * equation.equation_slope +
+            equation.equation_intercept) /
+          100;
+        DR_Obj["DR_PCT"] = DR_pct;
 
-      let DR_kw = demand * DR_pct;
-      DR_Obj["DR_KW"] = DR_kw;
+        let DR_kw = demand * DR_pct;
+        DR_Obj["DR_KW"] = DR_kw;
 
-      DR_output.push(DR_Obj);
+        DR_output.push(DR_Obj);
 
-      if (DR_output.length == 4) {
-        return DR_output;
+        if (DR_output.length == 4) {
+          return DR_output;
+        }
+      } else {
+        //if caseID was not valid
+        return {};
       }
     } catch (err) {
       console.error(err);

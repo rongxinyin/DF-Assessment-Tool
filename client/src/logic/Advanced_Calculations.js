@@ -238,21 +238,23 @@ const calculations = ({
 };
 
 // parameters from the spreadsheet (for testing)
-console.log(
-  calculations({
-    rtu_input_array: [
-      [70000, 200, 161, 180, 17500, 0.55, 0.917, 1.23],
-      [70000, 200, 161, 180, 17500, 0.55, 0.917, 1.23],
-    ],
-    normal_space_temp_setting: 72,
-    cooling_coil_leaving_air_temp: 53.5,
-    reset_space_temp_setting: 76,
-    total_static_SF_pressure: 4.25,
-    reset_static_pressure_value: 4,
-    air_system_minimum_osa: 0.25,
-    ac_load_factor: 0.75,
-    size_of_conditioned_space: 140000,
-    height_of_conditioned_space: 8,
-    coast: 1,
-  })
-);
+// console.log(
+//   calculations({
+//     rtu_input_array: [
+//       [70000, 200, 161, 180, 17500, 0.55, 0.917, 1.23],
+//       [70000, 200, 161, 180, 17500, 0.55, 0.917, 1.23],
+//     ],
+//     normal_space_temp_setting: 72,
+//     cooling_coil_leaving_air_temp: 53.5,
+//     reset_space_temp_setting: 76,
+//     total_static_SF_pressure: 4.25,
+//     reset_static_pressure_value: 4,
+//     air_system_minimum_osa: 0.25,
+//     ac_load_factor: 0.75,
+//     size_of_conditioned_space: 140000,
+//     height_of_conditioned_space: 8,
+//     coast: 1,
+//   })
+// );
+
+export { calculations };

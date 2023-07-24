@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import {
   Button,
   Box,
@@ -14,6 +15,13 @@ import {
   InputLabel,
   MenuItem,
   FormControl,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Checkbox,
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
@@ -57,7 +65,48 @@ export default function Advanced() {
   const textFieldSX = {
     width: "100%",
     marginBottom: 1,
-    border: "0.05px solid #BED7DD",
+    border: "2px solid #F0F0F0",
+    backgroundColor: "secondary.main",
+    borderRadius: "10px",
+  };
+
+  const [data, setData] = useState([
+    ["RTU-1", "", "", "", "", "", "", "", ""], // Row 1: Initialize with empty strings
+    ["RTU-2", "", "", "", "", "", "", "", ""], // Row 2: Initialize with empty strings
+  ]);
+
+  const [showSecondRow, setShowSecondRow] = useState(false);
+
+  const handleInputChange = (rowIndex, columnIndex, event) => {
+    const newData = [...data];
+    newData[rowIndex][columnIndex] = event.target.value;
+    setData(newData);
+  };
+
+  const handleCheckboxChange = (event) => {
+    const newShowSecondRow = event.target.checked;
+    setShowSecondRow(newShowSecondRow);
+
+    if (!newShowSecondRow) {
+      // Clear inputs in the second row if the checkbox is unchecked
+      const newData = [...data];
+      for (let i = 1; i < newData[1].length; i++) {
+        newData[1][i] = "";
+      }
+      setData(newData);
+    }
+  };
+
+  const tableCellStyle = {
+    borderCollapse: "collapse",
+    border: "none",
+    color: "white.main",
+    minWidth: "150px",
+  };
+
+  const staticInputTypograhyStyle = {
+    m: 1,
+    width: "300px",
   };
 
   return (
@@ -95,238 +144,243 @@ export default function Advanced() {
         <form>
           <Typography
             variant="h6"
-            color="tertiary.main"
-            sx={{ fontWeight: "bold", m: 1 }}
-          >
-            Basic Inputs
-          </Typography>
-
-          <Typography
-            variant="body2"
-            color="tertiary.main"
-            sx={{ fontWeight: "bold", marginLeft: 1 }}
-          >
-            Building Name
-          </Typography>
-          <TextField
-            id="outlined-basic"
-            variant={textFieldVariant}
-            autoComplete="off"
-            color="secondary"
-            sx={textFieldSX}
-            inputProps={textFieldInputPropsSX}
-          />
-          <FormControl sx={{ width: "100%", marginBottom: 1 }}>
-            <Typography
-              variant="body2"
-              color="tertiary.main"
-              sx={{ fontWeight: "bold", marginLeft: 1 }}
-            >
-              Building Type
-            </Typography>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={buildingType}
-              color="secondary"
-              onChange={chooseBuildingType}
-            >
-              <MenuItem value={"Office"}>Office</MenuItem>
-              <MenuItem value={"Retail"}>Retail</MenuItem>
-              <MenuItem value={"School"}>School</MenuItem>
-            </Select>
-          </FormControl>
-
-          <Typography
-            variant="body2"
-            color="tertiary.main"
-            sx={{ fontWeight: "bold", marginLeft: 1 }}
-          >
-            Floor Area (ft²)
-          </Typography>
-          <TextField
-            id="outlined-basic"
-            variant={textFieldVariant}
-            autoComplete="off"
-            type="number"
-            color="secondary"
-            sx={textFieldSX}
-            inputProps={textFieldInputPropsSX}
-          />
-
-          <Typography
-            variant="body2"
-            color="tertiary.main"
-            sx={{ fontWeight: "bold", marginLeft: 1 }}
-          >
-            Floor Height (ft²)
-          </Typography>
-          <TextField
-            id="outlined-basic"
-            variant={textFieldVariant}
-            autoComplete="off"
-            type="number"
-            color="secondary"
-            sx={textFieldSX}
-            inputProps={textFieldInputPropsSX}
-          />
-
-          <FormControl sx={{ width: "100%", marginBottom: 1 }}>
-            <Typography
-              variant="body2"
-              color="tertiary.main"
-              sx={{ fontWeight: "bold", marginLeft: 1 }}
-            >
-              HVAC Type
-            </Typography>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={hvacType}
-              onChange={chooseHVACType}
-              color="secondary"
-            >
-              <MenuItem value={"Package RTU"}>Package RTU</MenuItem>
-              <MenuItem value={"Package RTU + VAC"}>Package RTU + VAC</MenuItem>
-              <MenuItem value={"Chiller + VAC"}>Chiller + VAC</MenuItem>
-            </Select>
-          </FormControl>
-
-          <TextField
-            id="outlined-basic"
-            label="Summer Peak Demand (kW)"
-            variant={textFieldVariant}
-            autoComplete="off"
-            type="number"
-            color="secondary"
-            sx={textFieldSX}
-            inputProps={textFieldInputPropsSX}
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Zipcode"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-            sx={textFieldSX}
-            inputProps={textFieldInputPropsSX}
-          />
-
-          <FormControl sx={{ m: 1, minWidth: 200 }}>
-            <InputLabel id="demo-simple-select-label" color="secondary">
-              State
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={state}
-              label="State"
-              onChange={chooseState}
-              color="secondary"
-            >
-              <MenuItem value={"CA"}>California</MenuItem>
-              <MenuItem value={"MA"}>Massachusetts</MenuItem>
-              <MenuItem value={"NY"}>New York</MenuItem>
-              <MenuItem value={"TX"}>Texas</MenuItem>
-            </Select>
-          </FormControl>
-
-          <Typography
-            variant="h6"
             color="#BED7DD"
             sx={{ fontWeight: "bold", m: 1 }}
           >
             Advanced HVAC Inputs
           </Typography>
-          <TextField
-            id="outlined-basic"
-            label="Name"
-            variant={textFieldVariant}
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Supply Air Flow (CFM)"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Supply Fan Motor (hp)"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Sensible Cooling Capacity (tons)"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Total Cooling Capacity (tons)"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Minimum OA Flow (CFM)"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Fan Efficiency (%)"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Motor Efficiency (%)"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="Package AC Unit Efficiency"
-            variant={textFieldVariant}
-            type="number"
-            autoComplete="off"
-            color="secondary"
-          />
+          <div>
+            <Box sx={{ overflow: "auto" }}>
+              <Box
+                sx={{ width: "100%", display: "table", tableLayout: "fixed" }}
+              >
+                <TableContainer
+                  component={Paper}
+                  sx={{ backgroundColor: "secondary.main" }}
+                >
+                  <Table sx={{ borderCollapse: "collapse", border: "none" }}>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell sx={tableCellStyle}>HVAC Device</TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Supply Air Flow (CFM)
+                        </TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Supply Fan Motor (HP)
+                        </TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Sensible Cooling Capacity (Tons)
+                        </TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Total Cooling Capacity (Tons)
+                        </TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Minimum OA Flow (CFM)
+                        </TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Fan Efficiency (%)
+                        </TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Motor Efficiency (%)
+                        </TableCell>
+                        <TableCell sx={tableCellStyle}>
+                          Packaged AC Unit Efficiency
+                        </TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {data.map((row, rowIndex) => (
+                        <React.Fragment key={rowIndex}>
+                          <TableRow>
+                            {row.map((cell, columnIndex) => (
+                              <TableCell sx={tableCellStyle} key={columnIndex}>
+                                {columnIndex === 0 ? (
+                                  <strong>{cell}</strong>
+                                ) : (
+                                  <TextField
+                                    variant="outlined"
+                                    value={cell}
+                                    type="number"
+                                    sx={textFieldSX}
+                                    onChange={(event) =>
+                                      handleInputChange(
+                                        rowIndex,
+                                        columnIndex,
+                                        event
+                                      )
+                                    }
+                                    disabled={rowIndex === 1 && !showSecondRow}
+                                  />
+                                )}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                          {rowIndex === 0 && (
+                            <TableRow>
+                              <TableCell sx={tableCellStyle}>
+                                <Checkbox
+                                  checked={showSecondRow}
+                                  onChange={handleCheckboxChange}
+                                />
+                              </TableCell>
+                              <TableCell sx={tableCellStyle} colSpan={4}>
+                                Add 2nd HVAC Device
+                              </TableCell>
+                            </TableRow>
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Box>
+            </Box>
+          </div>
 
           <Typography
             variant="h6"
-            color="#BED7DD"
+            color="white.main"
             sx={{ fontWeight: "bold", m: 1 }}
           >
             Static Inputs
           </Typography>
+
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              sx={staticInputTypograhyStyle}
+            >
+              Cooling Coil Leaving Air Temperature (°F)
+            </Typography>
+            <TextField
+              style={{ marginRight: "5px" }}
+              variant="outlined"
+              sx={textFieldSX}
+            />
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              type="number"
+              sx={staticInputTypograhyStyle}
+            >
+              AC Load Factor (%)
+            </Typography>
+            <TextField
+              style={{ marginRight: "5px" }}
+              variant="outlined"
+              type="number"
+              sx={textFieldSX}
+            />
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              sx={staticInputTypograhyStyle}
+            >
+              Air system minimum OSA (%)
+            </Typography>
+            <TextField
+              style={{ marginRight: "5px" }}
+              variant="outlined"
+              type="number"
+              sx={textFieldSX}
+            />
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              sx={staticInputTypograhyStyle}
+            >
+              Air system Return Air (%)
+            </Typography>
+            <TextField
+              style={{ marginRight: "5px" }}
+              variant="outlined"
+              type="number"
+              sx={textFieldSX}
+            />
+          </div>
+
+          <Typography
+            variant="h6"
+            color="white.main"
+            sx={{ fontWeight: "bold", m: 1 }}
+          >
+            Static Pressure Reset Inputs
+          </Typography>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              sx={staticInputTypograhyStyle}
+            >
+              Total SF Static Pressure in H2O (inches)
+            </Typography>
+            <TextField
+              style={{ marginRight: "5px" }}
+              variant="outlined"
+              type="number"
+              sx={textFieldSX}
+            />
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              sx={staticInputTypograhyStyle}
+            >
+              Reset Static Pressure Value in H2O (inches)
+            </Typography>
+            <TextField
+              style={{ marginRight: "5px" }}
+              variant="outlined"
+              type="number"
+              sx={textFieldSX}
+            />
+          </div>
+
+          <Typography
+            variant="h6"
+            color="white.main"
+            sx={{ fontWeight: "bold", m: 1 }}
+          >
+            GTA Strategies Inputs
+          </Typography>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              sx={staticInputTypograhyStyle}
+            >
+              Normal Space Temperature Setpoint (°F)
+            </Typography>
+            <TextField
+              style={{ marginRight: "5px" }}
+              variant="outlined"
+              type="number"
+              sx={textFieldSX}
+            />
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Typography
+              variant="body6"
+              color="white.main"
+              sx={staticInputTypograhyStyle}
+            >
+              Reset Space Temperature Setpoint (°F)
+            </Typography>
+            <TextField
+              style={{ marginRight: "5px" }}
+              variant="outlined"
+              type="number"
+              sx={textFieldSX}
+            />
+          </div>
         </form>
       </Grid>
       <Grid
