@@ -8,8 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 
-import { useNavigate } from "react-router-dom";
-
 //colors
 const theme = createTheme({
   palette: {

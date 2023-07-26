@@ -95,7 +95,7 @@ export default function Home() {
 
           <Box sx={{ flexDirection: "row" }}>
             <Grid container spacing={2}>
-              <Grid item xs={6}>
+              <Grid item xs={4}>
                 <Button
                   variant="contained"
                   color="secondary"
@@ -105,13 +105,23 @@ export default function Home() {
                   Estimation Tool
                 </Button>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={4}>
                 <Button
                   variant="contained"
                   color="secondary"
                   sx={{ width: "200px", height: "50px", marginTop: 5 }}
                 >
                   Benchmarking Tool
+                </Button>
+              </Grid>
+              <Grid item xs={4}>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => navigate("/userguide")}
+                  sx={{ width: "200px", height: "50px", marginTop: 5 }}
+                >
+                  User Guide
                 </Button>
               </Grid>
             </Grid>
