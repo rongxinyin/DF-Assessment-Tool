@@ -6,6 +6,7 @@ import {
   createTheme,
   ThemeProvider,
   Box,
+  Toolbar,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import { useNavigate } from "react-router-dom";
@@ -52,7 +53,7 @@ export default function Home() {
   let navigate = useNavigate(); // navigate to diff pages
 
   return (
-    <div style={{ backgroundImage: `url(${image})` }}>
+    <div style={{ backgroundImage: `url(${image})`, height: "100vh" }}>
       <ThemeProvider theme={theme}>
         <Grid
           container
@@ -60,18 +61,16 @@ export default function Home() {
           width="100%"
           height="100%"
           padding={10}
-          marginTop={1}
           item
           md={12}
           xs={12}
           direction="column"
           alignItems="center"
-          justifyContent="center"
         >
           <Typography
             variant="h4"
             color="white.main"
-            sx={{ fontWeight: "bold", m: 1, marginTop: 4 }}
+            sx={{ fontWeight: "bold", marginTop: 4 }}
           >
             Demand Flexibility Assessment Tool
           </Typography>
@@ -100,7 +99,7 @@ export default function Home() {
                 <Button
                   variant="contained"
                   color="secondary"
-                  onClick={() => navigate("/UserGuide")}
+                  onClick={() => navigate("/basic")}
                   sx={{ width: "200px", height: "50px", marginTop: 5 }}
                 >
                   Estimation Tool
