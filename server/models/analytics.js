@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const analyticsSchema = mongoose.Schema(
   {
     basicRequestCount: Number,
-    advancedRequestCount: Number
+    advancedRequestCount: Number,
   },
   { collection: "analytics" }
 );

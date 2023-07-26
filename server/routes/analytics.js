@@ -24,17 +24,17 @@ router.patch("/requestUpdate/:pageType", async (req, res) => {
       let analyticsObj = docs[0];
       if (pageType == "basic") {
         let newBasicCount = analyticsObj.basicRequestCount + 1;
-        let result  = await AnalyticsModel.findOneAndUpdate(
-          {_id: analyticsObj._id},
-          {basicRequestCount: newBasicCount}
+        let result = await AnalyticsModel.findOneAndUpdate(
+          { _id: analyticsObj._id },
+          { basicRequestCount: newBasicCount }
         );
         res.json(result);
       }
       if (pageType == "advanced") {
         let newAdvancedCount = analyticsObj.advancedRequestCount + 1;
-        let result  = await AnalyticsModel.findOneAndUpdate(
-          {_id: analyticsObj._id},
-          {advancedRequestCount: newAdvancedCount}
+        let result = await AnalyticsModel.findOneAndUpdate(
+          { _id: analyticsObj._id },
+          { advancedRequestCount: newAdvancedCount }
         );
         res.json(result);
       }
