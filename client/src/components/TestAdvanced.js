@@ -1,4 +1,5 @@
 import * as React from "react";
+import axios from "axios";
 import { useState } from "react";
 import {
   Button,
@@ -91,7 +92,12 @@ export default function TestAdvanced() {
     setRTU_Data(tempRTU_data);
   };
 
-  const submitInputs = () => {
+  const submitInputs = async () => {
+    //Update analytics
+    const res = await axios.patch(
+      `http://localhost:8080/analytics/requestUpdate/advanced`
+    );
+
     setGraphs([]);
 
     let output = calculations({

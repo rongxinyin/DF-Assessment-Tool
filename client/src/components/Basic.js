@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import {
   Button,
   ButtonGroup,
@@ -171,6 +172,11 @@ export default function Basic() {
 
       if (Object.keys(DR_output).length != 0) {
         //If data was found for these inputs
+
+        //Update analytics
+        const res = await axios.patch(
+          `http://localhost:8080/analytics/requestUpdate/basic`
+        );
 
         //Display the graphs
         let kW_Shed = [];

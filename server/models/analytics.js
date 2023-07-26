@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const analyticsSchema = mongoose.Schema(
   {
-    requestCount: Number,
+    basicRequestCount: Number,
+    advancedRequestCount: Number
   },
   { collection: "analytics" }
 );
