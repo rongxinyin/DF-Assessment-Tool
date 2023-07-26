@@ -1,30 +1,20 @@
 import * as React from "react";
+import axios from "axios";
 import { useState } from "react";
 import {
   Button,
-  Box,
   styled,
   TextField,
   ButtonGroup,
-  Container,
   Typography,
   Paper,
   Grid,
-  Select,
-  SelectChangeEvent,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Checkbox,
+  getListItemSecondaryActionClassesUtilityClass,
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
+import { calculations } from "../logic/Advanced_Calculations.js";
+import { createVisualizations } from "./calculator-components/Visualizations.js";
 
 // visualization for boxes. will delete later
 const Item = styled(Paper)(({ theme }) => ({
@@ -35,24 +25,11 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+let RTU_key = 0;
+
 export default function Advanced() {
   let navigate = useNavigate(); // navigate to diff pages
   // dropdown forms
-  const [buildingType, setBuildingType] = React.useState("");
-  const [state, setState] = React.useState("");
-  const [hvacType, setHVACType] = React.useState("");
-
-  const chooseBuildingType = (event) => {
-    setBuildingType(event.target.value);
-  };
-
-  const chooseState = (event) => {
-    setState(event.target.value);
-  };
-
-  const chooseHVACType = (event) => {
-    setHVACType(event.target.value);
-  };
 
   const textFieldVariant = "outlined";
 
@@ -70,38 +47,108 @@ export default function Advanced() {
     borderRadius: "10px",
   };
 
-  const [data, setData] = useState([
-    ["RTU-1", "", "", "", "", "", "", "", ""], // Row 1: Initialize with empty strings
-    ["RTU-2", "", "", "", "", "", "", "", ""], // Row 2: Initialize with empty strings
+  const [RTU_data, setRTU_Data] = useState([
+    ["", "", "", "", "", "", "", "", 0],
   ]);
+  const [coolingCoilAirTemp, setCoolingCoilAirTemp] = useState();
+  const [acLoadFactor, setAC_LoadFactor] = useState();
+  const [minOSA, setMinOSA] = useState();
+  const [returnAir, setReturnAir] = useState();
+  const [totalStaticPressure, setTotalStaticPressure] = useState();
+  const [resetStaticPressure, setResetStaticPressure] = useState();
+  const [normalTempSetpoint, setNormalTempSetpoint] = useState();
+  const [resetTempSetpoint, setResetTempSetpoint] = useState();
+  const [calculationOutput, setCalculationOutput] = useState({});
 
-  const [showSecondRow, setShowSecondRow] = useState(false);
+  const [graphs, setGraphs] = useState([]);
 
-  const handleInputChange = (rowIndex, columnIndex, event) => {
-    const newData = [...data];
-    newData[rowIndex][columnIndex] = event.target.value;
-    setData(newData);
+  const RTU_inputs = [
+    "Supply Air Flow (CFM)",
+    "Supply Fan Motor (HP)",
+    "Sensible Cooling Capacity (Tons)",
+    "Total Cooling Capacity (Tons)",
+    "Minimum OA Flow (CFM)",
+    "Fan Efficiency (%)",
+    "Motor Efficiency (%)",
+    "Packaged AC Unit Efficiency (kW/Ton)",
+  ];
+
+  const handle_RTU_Inputs = (event, RTU_num, inputNum) => {
+    let tempRTU_data = RTU_data;
+    if (inputNum == 5 || inputNum == 6) {
+      // convert the fan and motor efficiency to decimal
+      tempRTU_data[RTU_num][inputNum] = Number(event.target.value / 100);
+    } else {
+      tempRTU_data[RTU_num][inputNum] = Number(event.target.value);
+    }
+    setRTU_Data(tempRTU_data);
   };
 
-  const handleCheckboxChange = (event) => {
-    const newShowSecondRow = event.target.checked;
-    setShowSecondRow(newShowSecondRow);
+  const newRTU = () => {
+    RTU_key += 1;
+    setRTU_Data((RTU_data) => [
+      ...RTU_data,
+      ["", "", "", "", "", "", "", "", RTU_key],
+    ]);
+  };
 
-    if (!newShowSecondRow) {
-      // Clear inputs in the second row if the checkbox is unchecked
-      const newData = [...data];
-      for (let i = 1; i < newData[1].length; i++) {
-        newData[1][i] = "";
-      }
-      setData(newData);
-    }
+  const removeRTU = (index) => {
+    let tempRTU_data = [...RTU_data];
+    tempRTU_data.splice(index, 1);
+    setRTU_Data(tempRTU_data);
+  };
+
+  const submitInputs = async () => {
+    //Update analytics
+    const res = await axios.patch(
+      `http://localhost:8080/analytics/requestUpdate/advanced`
+    );
+
+    setGraphs([]);
+
+    let output = calculations({
+      rtu_input_array: RTU_data,
+      normal_space_temp_setting: normalTempSetpoint,
+      cooling_coil_leaving_air_temp: coolingCoilAirTemp,
+      reset_space_temp_setting: resetTempSetpoint,
+      total_static_SF_pressure: totalStaticPressure,
+      reset_static_pressure_value: resetStaticPressure,
+      air_system_minimum_osa: minOSA,
+      ac_load_factor: acLoadFactor,
+      size_of_conditioned_space: 140000,
+      height_of_conditioned_space: 8,
+      coast: 1,
+    });
+    setCalculationOutput(output);
+
+    //Create graph with output data
+    let graphData = [
+      output.enthalpy_coast,
+      output.chiller_direct_reduction,
+      output.reduced_kW_from_CFM_reduction,
+      output.reduced_kW_from_static_pressure_reset,
+      output.total_DR_load_reduction,
+    ];
+    setGraphs((prev) => [
+      ...prev,
+      createVisualizations(
+        [1, 2, 3, 4, "Total"],
+        "Load Reduction Results",
+        "Shed Components",
+        "Power (kW)",
+        graphData,
+        graphs.length,
+        300,
+        ["#f5ca0a", "#f5ca0a", "#f5ca0a", "#f5ca0a", "#05a129"]
+      ),
+    ]);
   };
 
   const tableCellStyle = {
-    borderCollapse: "collapse",
+    //borderCollapse: "collapse",
     border: "none",
     color: "white.main",
-    minWidth: "150px",
+    //minWidth: "120px",
   };
 
   const staticInputTypograhyStyle = {
@@ -110,24 +157,22 @@ export default function Advanced() {
   };
 
   return (
-    <Grid container spacing={0}>
+    <Grid container spacing={0} style={{ marginTop: "28px" }}>
       <Grid
         item
-        md={5}
+        md={6}
         xs={12}
         container
         direction="column"
-        alignItems="center"
-        justifyContent="center"
         bgcolor="primary.main"
         width={1}
+        padding={4}
       >
         <ButtonGroup
           disableElevation
           variant="contained"
           aria-label="Disabled elevation buttons"
           color="secondary"
-          sx={{ marginTop: 2 }}
         >
           <Button onClick={() => navigate("/basic")}>Basic</Button>
           <Button onClick={() => navigate("/advanced")}>Advanced</Button>
@@ -135,8 +180,8 @@ export default function Advanced() {
 
         <Typography
           variant="h4"
-          color="tertiary.main"
-          sx={{ fontWeight: "bold", m: 1 }}
+          color="white.main"
+          sx={{ fontWeight: "bold", marginTop: "36px" }}
         >
           Advanced Calculator
         </Typography>
@@ -144,103 +189,111 @@ export default function Advanced() {
         <form>
           <Typography
             variant="h6"
-            color="#BED7DD"
+            color="white.main"
             sx={{ fontWeight: "bold", m: 1 }}
           >
             Advanced HVAC Inputs
           </Typography>
-          <div>
-            <Box sx={{ overflow: "auto" }}>
-              <Box
-                sx={{ width: "100%", display: "table", tableLayout: "fixed" }}
+
+          {/* RTU Inputs */}
+
+          {RTU_data.map((rtu, rtu_index) => {
+            return (
+              <div
+                key={rtu[8]}
+                style={{
+                  backgroundColor: "#bed7dd",
+                  width: "100%",
+                  marginTop: "10px",
+                  padding: "6px",
+                  borderRadius: "6px",
+                }}
               >
-                <TableContainer
-                  component={Paper}
-                  sx={{ backgroundColor: "secondary.main" }}
-                >
-                  <Table sx={{ borderCollapse: "collapse", border: "none" }}>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell sx={tableCellStyle}>HVAC Device</TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Supply Air Flow (CFM)
-                        </TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Supply Fan Motor (HP)
-                        </TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Sensible Cooling Capacity (Tons)
-                        </TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Total Cooling Capacity (Tons)
-                        </TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Minimum OA Flow (CFM)
-                        </TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Fan Efficiency (%)
-                        </TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Motor Efficiency (%)
-                        </TableCell>
-                        <TableCell sx={tableCellStyle}>
-                          Packaged AC Unit Efficiency
-                        </TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {data.map((row, rowIndex) => (
-                        <React.Fragment key={rowIndex}>
-                          <TableRow>
-                            {row.map((cell, columnIndex) => (
-                              <TableCell sx={tableCellStyle} key={columnIndex}>
-                                {columnIndex === 0 ? (
-                                  <strong>{cell}</strong>
-                                ) : (
-                                  <TextField
-                                    variant="outlined"
-                                    value={cell}
-                                    type="number"
-                                    sx={textFieldSX}
-                                    onChange={(event) =>
-                                      handleInputChange(
-                                        rowIndex,
-                                        columnIndex,
-                                        event
-                                      )
-                                    }
-                                    disabled={rowIndex === 1 && !showSecondRow}
-                                  />
-                                )}
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                          {rowIndex === 0 && (
-                            <TableRow>
-                              <TableCell sx={tableCellStyle}>
-                                <Checkbox
-                                  checked={showSecondRow}
-                                  onChange={handleCheckboxChange}
-                                />
-                              </TableCell>
-                              <TableCell sx={tableCellStyle} colSpan={4}>
-                                Add 2nd HVAC Device
-                              </TableCell>
-                            </TableRow>
-                          )}
-                        </React.Fragment>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </Box>
-            </Box>
-          </div>
+                {rtu_index > 0 ? (
+                  <Button
+                    onClick={() => removeRTU(rtu_index)}
+                    style={{
+                      maxWidth: "25px",
+                      maxHeight: "25px",
+                      minWidth: "25px",
+                      minHeight: "25px",
+                      float: "right",
+                      borderRadius: "100%",
+                      fontSize: "15px",
+                      backgroundColor: "#007681",
+                      border: "none",
+                      color: "white",
+                      margin: "5px",
+                      boxShadow: "1px 1px 4px #fff",
+                    }}
+                  >
+                    x
+                  </Button>
+                ) : (
+                  ""
+                )}
+                <div style={{ marginLeft: "6px", marginTop: "12px" }}>
+                  <span
+                    style={{
+                      backgroundColor: "#007681",
+                      color: "white",
+                      padding: "5px",
+                      borderRadius: "8px",
+                    }}
+                  >
+                    RTU {rtu_index + 1}{" "}
+                  </span>
+                </div>
+                <div style={{ marginTop: "8px" }}>
+                  {RTU_inputs.map((input, i) => {
+                    return (
+                      <TextField
+                        key={i}
+                        onChange={(e) => handle_RTU_Inputs(e, rtu_index, i)}
+                        label={input}
+                        variant="outlined"
+                        style={{
+                          marginLeft: "3%",
+                          marginRight: "2%",
+                          marginTop: "8px",
+                          marginBottom: "6px",
+                          minWidth: "45%",
+                        }}
+                        size="small"
+                        color="secondary"
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+
+          <Button
+            onClick={newRTU}
+            style={{
+              maxWidth: "30px",
+              maxHeight: "30px",
+              minWidth: "30px",
+              minHeight: "30px",
+              float: "right",
+              borderRadius: "100%",
+              fontSize: "24px",
+              backgroundColor: "#007681",
+              border: "none",
+              color: "white",
+              marginTop: "5px",
+              boxShadow: "1px 1px 4px #fff",
+            }}
+          >
+            +
+          </Button>
 
           <Typography
             variant="h6"
             color="white.main"
             sx={{ fontWeight: "bold", m: 1 }}
+            style={{ marginTop: "50px" }}
           >
             Static Inputs
           </Typography>
@@ -257,6 +310,7 @@ export default function Advanced() {
               style={{ marginRight: "5px" }}
               variant="outlined"
               sx={textFieldSX}
+              onChange={(e) => setCoolingCoilAirTemp(Number(e.target.value))}
             />
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -273,6 +327,7 @@ export default function Advanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              onChange={(e) => setAC_LoadFactor(Number(e.target.value / 100))}
             />
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -288,21 +343,7 @@ export default function Advanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
-            />
-          </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <Typography
-              variant="body6"
-              color="white.main"
-              sx={staticInputTypograhyStyle}
-            >
-              Air system Return Air (%)
-            </Typography>
-            <TextField
-              style={{ marginRight: "5px" }}
-              variant="outlined"
-              type="number"
-              sx={textFieldSX}
+              onChange={(e) => setMinOSA(Number(e.target.value / 100))}
             />
           </div>
 
@@ -326,6 +367,7 @@ export default function Advanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              onChange={(e) => setTotalStaticPressure(Number(e.target.value))}
             />
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -341,6 +383,7 @@ export default function Advanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              onChange={(e) => setResetStaticPressure(Number(e.target.value))}
             />
           </div>
 
@@ -364,6 +407,7 @@ export default function Advanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              onChange={(e) => setNormalTempSetpoint(Number(e.target.value))}
             />
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -379,21 +423,67 @@ export default function Advanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              onChange={(e) => setResetTempSetpoint(Number(e.target.value))}
             />
           </div>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={submitInputs}
+            sx={{
+              marginTop: 2,
+              marginBottom: 3,
+              width: "25%",
+              height: "50px",
+            }}
+          >
+            Calculate
+          </Button>
         </form>
       </Grid>
       <Grid
         item
-        md={7}
+        md={6}
         xs={12}
         container
         direction="column"
         alignItems="center"
-        justifyContent="center"
+        //justifyContent="center"
         bgcolor="tertiary.main"
         width={1}
-      ></Grid>
+      >
+        <Typography
+          variant="h4"
+          color="primary.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+          style={{ marginTop: "24px" }}
+        >
+          Reduction Results
+        </Typography>
+        <Grid justifyContent="left" style={{ marginTop: "10px" }}>
+          {Object.keys(calculationOutput).map((keyName, i) => (
+            <div key={i}>
+              <div
+                style={{ float: "left", marginRight: "30px", marginTop: "5px" }}
+              >
+                {i + 1}. {keyName}:
+              </div>
+              <div style={{ float: "right", marginTop: "5px" }}>
+                {calculationOutput[keyName].toFixed(2)}
+              </div>
+            </div>
+          ))}
+        </Grid>
+        <Typography
+          variant="h4"
+          color="primary.main"
+          sx={{ fontWeight: "bold", m: 1 }}
+          style={{ marginTop: "36px" }}
+        >
+          Visualizations
+        </Typography>
+        {graphs}
+      </Grid>
     </Grid>
   );
 }

@@ -294,10 +294,7 @@ export default function Basic() {
           justifyContent="center"
           bgcolor="primary.main"
           width={1}
-          paddingLeft={4}
-          paddingTop={4}
-          paddingBottom={4}
-          paddingRight={4}
+          padding={4}
         >
           <ButtonGroup
             disableElevation
