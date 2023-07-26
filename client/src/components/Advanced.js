@@ -9,6 +9,7 @@ import {
   Typography,
   Paper,
   Grid,
+  getListItemSecondaryActionClassesUtilityClass,
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
@@ -74,7 +75,12 @@ export default function Advanced() {
 
   const handle_RTU_Inputs = (event, RTU_num, inputNum) => {
     let tempRTU_data = RTU_data;
-    tempRTU_data[RTU_num][inputNum] = Number(event.target.value);
+    if (inputNum == 5 || inputNum == 6) {
+      // convert the fan and motor efficiency to decimal
+      tempRTU_data[RTU_num][inputNum] = Number(event.target.value / 100);
+    } else {
+      tempRTU_data[RTU_num][inputNum] = Number(event.target.value);
+    }
     setRTU_Data(tempRTU_data);
   };
 
@@ -321,7 +327,7 @@ export default function Advanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
-              onChange={(e) => setAC_LoadFactor(Number(e.target.value))}
+              onChange={(e) => setAC_LoadFactor(Number(e.target.value / 100))}
             />
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -337,23 +343,7 @@ export default function Advanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
-              onChange={(e) => setMinOSA(Number(e.target.value))}
-            />
-          </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <Typography
-              variant="body6"
-              color="white.main"
-              sx={staticInputTypograhyStyle}
-            >
-              Air system Return Air (%)
-            </Typography>
-            <TextField
-              style={{ marginRight: "5px" }}
-              variant="outlined"
-              type="number"
-              sx={textFieldSX}
-              onChange={(e) => setReturnAir(Number(e.target.value))}
+              onChange={(e) => setMinOSA(Number(e.target.value / 100))}
             />
           </div>
 
