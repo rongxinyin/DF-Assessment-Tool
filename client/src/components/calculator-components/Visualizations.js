@@ -6,12 +6,13 @@ import { Typography, Box } from "@mui/material";
 const BarChart = (props) => {
   let labels = props.labels;
   let chartTitle = props.chartTitle;
+  let barColors = props.barColors;
   let data = {
     labels: labels,
     datasets: [
       {
         label: "Estimated Shed Results",
-        backgroundColor: "#f5ca0a",
+        backgroundColor: barColors,
         data: props.data,
       },
     ],
@@ -21,7 +22,7 @@ const BarChart = (props) => {
       x: {
         title: {
           display: true,
-          text: "Hours",
+          text: props.xAxisLabel,
           font: {
             size: 18,
           },
@@ -48,9 +49,12 @@ const BarChart = (props) => {
 const createVisualizations = (
   chartLabels,
   chartTitle,
+  xAxisLabel,
   yAxisLabel,
   data,
-  key
+  key,
+  barHeight,
+  barColors
 ) => {
   return (
     <div key={key}>
@@ -64,7 +68,7 @@ const createVisualizations = (
       <Box
         sx={{
           width: 525,
-          height: 275,
+          height: barHeight,
           backgroundColor: "white.main",
           boxShadow: 3,
           borderRadius: "8px",
@@ -78,7 +82,13 @@ const createVisualizations = (
           paddingTop: 2,
         }}
       >
-        <BarChart labels={chartLabels} data={data} yAxisLabel={yAxisLabel} />
+        <BarChart
+          labels={chartLabels}
+          data={data}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          barColors={barColors}
+        />
       </Box>{" "}
     </div>
   );

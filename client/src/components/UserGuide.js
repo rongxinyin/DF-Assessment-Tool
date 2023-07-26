@@ -1,9 +1,9 @@
 import * as React from "react";
 import {
   createTheme,
-  ThemeProvider, 
+  ThemeProvider,
   Box,
-  Grid, 
+  Grid,
   Button,
   Typography,
 } from "@mui/material";
@@ -25,9 +25,7 @@ const theme = createTheme({
       main: "#F0F0F0",
     },
   },
-
 });
-
 
 export default function UserGuide() {
   let navigate = useNavigate();
@@ -116,11 +114,12 @@ export default function UserGuide() {
             >
               <Typography variant="h6" color="white.main" textAlign={"left"}>
                 Start by inputing in your building name and building type.
-                Follow that up by adding your building's floor area and height in
-                square feet (ft²). Pick which type of HVAC system your builidng
-                has (most common is the Package RTU). Find your electrical meter
-                (usually found on the outside part of your house) and input the
-                peak demand (kW). Finally, input your zipcode and state.
+                Follow that up by adding your building's floor area and height
+                in square feet (ft²). Pick which type of HVAC system your
+                builidng has (most common is the Package RTU). Find your
+                electrical meter (usually found on the outside part of your
+                house) and input the peak demand (kW). Finally, input your
+                zipcode and state.
               </Typography>
             </Box>
             <Typography
@@ -144,8 +143,9 @@ export default function UserGuide() {
                 sx={{ fontWeight: "bold" }}
               >
                 Input the percentage of building floor area that GTA will apply.
-                This is how much of your room or building will be affected. Input the precool period temp offset. Finally
-                add the demand response temperature offset.
+                This is how much of your room or building will be affected.
+                Input the precool period temp offset. Finally add the demand
+                response temperature offset.
               </Typography>
             </Box>
             <Typography
@@ -168,10 +168,10 @@ export default function UserGuide() {
                 textAlign={"left"}
                 sx={{ fontWeight: "bold" }}
               >
-                For this part, input the outside air temperature (OAT)
-                and meter kW at that certain hour. For example, first
-                hour is 76°F and meter reading is 733 kW. Add these values to
-                the input table for all 4 hours.
+                For this part, input the outside air temperature (OAT) and meter
+                kW at that certain hour. For example, first hour is 76°F and
+                meter reading is 733 kW. Add these values to the input table for
+                all 4 hours.
               </Typography>
             </Box>
             <Typography
