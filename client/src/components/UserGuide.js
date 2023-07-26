@@ -5,7 +5,6 @@ import {
   Box,
   Grid, 
   Button,
-  ButtonGroup,
   Typography,
 } from "@mui/material";
 
@@ -38,26 +37,10 @@ export default function UserGuide() {
       <Box bgcolor={"primary.main"} p={2} >
         <Grid Container my={1} width="100%" height="100%" direction="column" justifyContent={"flex-start"} alignItems={"flex-start"}> 
 
-          <Grid item p={2} textAlign={"center"} mt={2}>
-            <ButtonGroup
-            variant="contained"
-            color="secondary"
-            >
-            <Button variant="contained" color="secondary" onClick={() => navigate("/UserGuide")}
-            sx={{width: "200px",height: "50px", marginTop: 1, }}>
-            Basic Guide
-            </Button>
-            <Typography variant="h6" color="white.main" textAlign={"center"} sx={{fontWeight: "bold"}}>
-            <pre> OR </pre>
+          <Grid item p={2} textAlign={"center"} mb={2} mt={2}>
+            <Typography mb={2} variant="h5" color="white.main" textAlign={"center"} sx={{fontWeight: "bold"}}>
+            Which Calculator is best for you? 
             </Typography>
-            <Button variant="contained" color="secondary" onClick={() => navigate("/UserGuide_Advance")}
-          sx={{width: "200px",height: "50px", marginTop: 1}}>
-          Advanced Guide
-            </Button>
-            </ButtonGroup>
-          </Grid>
-
-          <Grid item sm={12} p={3} mb={2} >
             <Box bgcolor="secondary.main" p={2}  sx={{ borderRadius: '5px', border: "2px solid #F0F0F0", }}>
             <Typography variant="h6" color="white.main" textAlign={"center"} >
             Basic: As the name suggests, this allows you to get up and running with the simpliest 
@@ -72,34 +55,45 @@ export default function UserGuide() {
             </Box>
           </Grid>
         </Grid>
-        
         <hr></hr>
 
         <Grid Container my={1} width="100%" height="100%" direction="column" justifyContent={"flex-start"} alignItems={"flex-start"}> 
-          <Grid item sm={12} p={3} mt={2}>
+          <Grid item sm={12} p={3} >
             <Typography variant="h4" color="white.main" textAlign={"Center"} sx={{fontWeight: "bold"}} >
             Basic Guide
             </Typography>
           </Grid>
-          <Grid item sm={12} p={2} >
+          <Grid item sm={12} p={1} >
             <Typography variant="h5" color="white.main" textAlign={"left"} sx={{fontWeight: "bold"}} >
               Basic User Inputs
             </Typography>
             <Box bgcolor="secondary.main" p={2}  sx={{ borderRadius: '5px', border: "2px solid #F0F0F0", }}>
-            <Typography variant="h6" color="white.main" textAlign={"left"} sx={{fontWeight: "bold"}} >
-              Start by inputing in your building name and building type. Follow that up by adding your buildings floor area and height in square feet (ft²)
+            <Typography variant="h6" color="white.main" textAlign={"left"} >
+              Start by inputing in your building name and building type. Follow that up by adding your buildings floor area 
+              and height in square feet (ft²). Pick which type of HVAC system your builidng has (most common is the Package RTU). Find your 
+              electrical meter (usually found on the outside part of your house) and input the peak demand (kW). Finally, input your zipcode and State!  
             </Typography>
             </Box>
             <Typography mt={3} variant="h5" color="white.main" textAlign={"left"} sx={{fontWeight: "bold"}} >
-              X, Y, & Z
+            HVAC Temp DR Shed Capacity Calculation
             </Typography>
             <Box bgcolor="secondary.main" p={2}  sx={{ borderRadius: '5px', border: "2px solid #F0F0F0", }}>
             <Typography variant="h6" color="white.main" textAlign={"left"} sx={{fontWeight: "bold"}} >
-              Explanation for input x, y, z
+              Input the percentage of building floor area that GTA will apply. This basically means how much of your room or building is getting affected. Input the precool period temp offset. Finally add 
+              the demand response temperature offeset. 
+            </Typography>
+            </Box>
+            <Typography mt={3} variant="h5" color="white.main" textAlign={"left"} sx={{fontWeight: "bold"}} >
+            OAT and kW During the DR Event Hours
+            </Typography>
+            <Box bgcolor="secondary.main" p={2}  sx={{ borderRadius: '5px', border: "2px solid #F0F0F0", }}>
+            <Typography variant="h6" color="white.main" textAlign={"left"} sx={{fontWeight: "bold"}} >
+              For this part you are inputing the outside air temperature (OAT) and meter kW at that certain hour. So if the OAT at the first hour is 76°F and then your meter reading 
+              is 733 kW. Add that to the chart and continue to do the same for the following hours. 
             </Typography>
             </Box>
             <Typography mt={5}variant="h5" color="white.main" textAlign={"Center"} sx={{fontWeight: "bold"}} >
-            Finally, Hit calculate and Analyze your Results!
+            Once all the right information have been added. Hit calculate and Analyze your Results!
             </Typography>
           </Grid>
         </Grid>
@@ -120,7 +114,7 @@ export default function UserGuide() {
           height: "50px",
           }}
           >
-          Basic calculator
+          Calculator
           </Button>
       </Grid>
       </Grid>
