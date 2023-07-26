@@ -476,7 +476,7 @@ export default function Advanced() {
               <div
                 style={{ float: "left", marginRight: "30px", marginTop: "5px" }}
               >
-                {i+1}. {keyName}:
+                {i + 1}. {keyName}:
               </div>
               <div style={{ float: "right", marginTop: "5px" }}>
                 {calculationOutput[keyName].toFixed(2)}

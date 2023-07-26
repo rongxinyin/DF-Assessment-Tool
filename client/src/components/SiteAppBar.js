@@ -73,7 +73,10 @@ export default function SiteAppBar(props) {
           >
             {/* <MenuIcon /> */}
           </IconButton>
-          <Logo onClick={() => navigate("/")} style={{ width: 450, height: 150, cursor: "pointer" }}></Logo>
+          <Logo
+            onClick={() => navigate("/")}
+            style={{ width: 450, height: 150, cursor: "pointer" }}
+          ></Logo>
           <Typography
             variant="h6"
             component="div"

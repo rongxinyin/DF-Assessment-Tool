@@ -53,7 +53,7 @@ export default function Home() {
   let navigate = useNavigate(); // navigate to diff pages
 
   return (
-    <div style={{backgroundImage : `url(${image})`, height: '100vh'}}>
+    <div style={{ backgroundImage: `url(${image})`, height: "100vh" }}>
       <ThemeProvider theme={theme}>
         <Grid
           container
