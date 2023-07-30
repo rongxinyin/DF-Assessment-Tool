@@ -375,9 +375,9 @@ export default function Basic() {
                   >
                     <MenuItem value={"Package RTU"}>Package RTU</MenuItem>
                     <MenuItem value={"Package RTU + VAC"}>
-                      Package RTU + VAC
+                      Package RTU + VAV
                     </MenuItem>
-                    <MenuItem value={"Chiller + VAC"}>Chiller + VAC</MenuItem>
+                    <MenuItem value={"Chiller + VAC"}>Chiller + VAV</MenuItem>
                   </Select>
                 </FormControl>
                 <Typography
@@ -423,7 +423,7 @@ export default function Basic() {
                   color="white.main"
                   sx={{ fontWeight: "bold", marginLeft: 1 }}
                 >
-                  Floor Height (ft²)
+                  Floor Height (ft)
                 </Typography>
                 <TextField
                   id="outlined-basic"
@@ -481,7 +481,7 @@ export default function Basic() {
               color="white.main"
               sx={{ fontWeight: "bold", m: 1, marginTop: 3 }}
             >
-              HVAC Temp DR Shed Capacity Calculation
+              DR Shed Calculation from GTA
             </Typography>
             <Grid container spacing={2}>
               <Grid item xs={6}>

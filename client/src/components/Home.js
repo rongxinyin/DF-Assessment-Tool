@@ -88,7 +88,7 @@ export default function Home() {
               Welcome to the Demand Flexibility Assessment Tool, made by the
               Grid Integration Group at Lawrence Berkeley National Lab. The
               estimation tool provides demand response shed magnitudes for a
-              range of OATs for one of the major DR strategies: HVAC Temp Reset
+              range of OATs for one of the major DR strategies: Global Temperature Adjustment
               (Precool with Zone Temp Setback).
             </Typography>
           </Grid>
