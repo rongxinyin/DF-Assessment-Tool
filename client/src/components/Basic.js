@@ -423,7 +423,7 @@ export default function Basic() {
                   color="white.main"
                   sx={{ fontWeight: "bold", marginLeft: 1 }}
                 >
-                  Floor Height (ft)
+                  Floor Height (ft²)
                 </Typography>
                 <TextField
                   id="outlined-basic"
@@ -481,7 +481,7 @@ export default function Basic() {
               color="white.main"
               sx={{ fontWeight: "bold", m: 1, marginTop: 3 }}
             >
-              DR Shed Calculation from GTA
+              HVAC Temp DR Shed Capacity Calculation
             </Typography>
             <Grid container spacing={2}>
               <Grid item xs={6}>
