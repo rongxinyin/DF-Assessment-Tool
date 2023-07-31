@@ -374,10 +374,10 @@ export default function Basic() {
                     inputProps={textFieldInputPropsSX}
                   >
                     <MenuItem value={"Package RTU"}>Package RTU</MenuItem>
-                    <MenuItem value={"Package RTU + VAC"}>
+                    <MenuItem value={"Package RTU + VAV"}>
                       Package RTU + VAV
                     </MenuItem>
-                    <MenuItem value={"Chiller + VAC"}>Chiller + VAV</MenuItem>
+                    <MenuItem value={"Chiller + VAV"}>Chiller + VAV</MenuItem>
                   </Select>
                 </FormControl>
                 <Typography
