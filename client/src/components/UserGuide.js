@@ -188,7 +188,7 @@ export default function UserGuide() {
             sx={{
               border: "2px solid #F0F0F0",
               fontWeight: "bold",
-              marginTop: 2,
+              marginTop: 0,
               marginBottom: 2,
               width: "25%",
               height: "50px",
