@@ -1,31 +1,22 @@
-import {
-  Button,
-  Grid,
-  Container,
-  Typography,
-  createTheme,
-  ThemeProvider,
-  Box,
-  Toolbar,
-} from "@mui/material";
-import { styled } from "@mui/system";
+import { Button, Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import image from "./images/berkeleylab.png";
-
 
 export default function Home() {
   let navigate = useNavigate(); // navigate to diff pages
 
   return (
-    <div style={{
-      position: "absolute",
-      width: "100%",
-      height: "100vh",
-      backgroundImage: `url(${image})`,
-      backgroundPosition: "center",
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat",
-    }}>
+    <div
+      style={{
+        position: "absolute",
+        width: "100%",
+        height: "100vh",
+        backgroundImage: `url(${image})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <Grid
         container
         spacing={2}
@@ -43,7 +34,6 @@ export default function Home() {
           >
             Demand Flexibility Assessment Tool
           </Typography>
-
         </Grid>
 
         <Grid item xs={12} align="center">
@@ -57,15 +47,13 @@ export default function Home() {
               textAlign: "center",
             }}
           >
-            Welcome to the Demand Flexibility Assessment Tool, made by the
-            Grid Integration Group at Lawrence Berkeley National Lab. The
-            estimation tool provides demand response shed magnitudes for a
-            range of OATs for one of the major DR strategies: HVAC Temp Reset
-            (Precool with Zone Temp Setback).
+            Welcome to the Demand Flexibility Assessment Tool, made by the Grid
+            Integration Group at Lawrence Berkeley National Lab. The estimation
+            tool provides demand response shed magnitudes for a range of OATs
+            for one of the major DR strategies: HVAC Temp Reset (Precool with
+            Zone Temp Setback).
           </Typography>
-
         </Grid>
-
 
         <Grid item xs={12} align="center">
           <Button
@@ -79,7 +67,12 @@ export default function Home() {
           <Button
             variant="contained"
             color="secondary"
-            sx={{ width: "200px", height: "50px", marginRight: .5, marginLeft: .5 }}
+            sx={{
+              width: "200px",
+              height: "50px",
+              marginRight: 0.5,
+              marginLeft: 0.5,
+            }}
           >
             Benchmarking Tool
           </Button>
@@ -91,21 +84,8 @@ export default function Home() {
           >
             User Guide
           </Button>
-
-
-
         </Grid>
-
-
-
-
-
-
       </Grid>
-
-
-
-
 
       {/* <Grid item xs={4}>
           <Typography
@@ -159,7 +139,6 @@ export default function Home() {
             </Grid>
           </Grid>
         </Box> */}
-
     </div>
   );
 }

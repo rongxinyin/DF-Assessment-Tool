@@ -1,14 +1,4 @@
-import * as React from "react";
-import {
-  Box,
-  styled,
-  Paper,
-  Grid,
-  CssBaseline,
-  Container,
-  Typography,
-} from "@mui/material";
-import { ReactComponent as Logo } from "./images/lbnlgridintegrationgroup.svg";
+import { Box, Grid, Paper, Typography, styled } from "@mui/material";
 import graphic from "./images/windmills_grid.jpg";
 
 // visualization. will delete later

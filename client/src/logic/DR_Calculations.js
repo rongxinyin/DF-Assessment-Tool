@@ -75,4 +75,4 @@ const gtaCalculation = async (state, caseIDs, CSSB) => {
   }
 };
 
-export { gtaCalculation, createCaseIDs };
+export { createCaseIDs, gtaCalculation };
