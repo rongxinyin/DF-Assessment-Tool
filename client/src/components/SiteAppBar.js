@@ -1,9 +1,10 @@
-import * as React from "react";
 import PropTypes from "prop-types";
+import * as React from "react";
 
 import {
   AppBar,
   Box,
+  Button,
   CssBaseline,
   Divider,
   Drawer,
@@ -14,11 +15,10 @@ import {
   ListItemText,
   Toolbar,
   Typography,
-  Button,
 } from "@mui/material";
 //import {MenuIcon} from "@mui/icons-material";
-import { ReactComponent as Logo } from "./images/lbnlgridintegrationgroup.svg";
 import { useNavigate } from "react-router-dom";
+import { ReactComponent as Logo } from "./images/lbnlgridintegrationgroup.svg";
 
 const drawerWidth = 240;
 const navItems = ["Calculator", "FAQ", "User Guide", "About"];

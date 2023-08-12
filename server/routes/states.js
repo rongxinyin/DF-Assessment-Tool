@@ -1,9 +1,9 @@
 import express from "express";
-import StateModel from "../models/states.js";
 import {
   createCaseIDs,
   gtaCalculation,
 } from "../../client/src/logic/DR_Calculations.js";
+import StateModel from "../models/states.js";
 
 const router = express.Router();
 

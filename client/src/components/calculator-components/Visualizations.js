@@ -1,7 +1,6 @@
-import React from "react";
+import { Box, Typography } from "@mui/material";
 import "chart.js/auto";
 import { Bar } from "react-chartjs-2";
-import { Typography, Box } from "@mui/material";
 
 const BarChart = (props) => {
   let labels = props.labels;

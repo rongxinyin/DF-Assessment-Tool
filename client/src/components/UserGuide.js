@@ -1,12 +1,4 @@
-import * as React from "react";
-import {
-  createTheme,
-  ThemeProvider,
-  Box,
-  Grid,
-  Button,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
 
@@ -43,9 +35,9 @@ export default function UserGuide() {
           >
             <Typography variant="h6" color="white.main" textAlign={"center"}>
               Basic: The Basic calculator uses building information (such as
-              size and build year) and local weather and meter data to
-              calculate shed potential for various precool and event
-              temperature offsets.<br></br>
+              size and build year) and local weather and meter data to calculate
+              shed potential for various precool and event temperature offsets.
+              <br></br>
               <Typography
                 variant="h6"
                 color="white.main"
@@ -97,13 +89,12 @@ export default function UserGuide() {
             sx={{ borderRadius: "5px", border: "2px solid #F0F0F0" }}
           >
             <Typography variant="h6" color="white.main" textAlign={"left"}>
-              Start by inputing in your building name and building type.
-              Follow that up by adding your building's floor area and height
-              in square feet (ft²). Pick which type of HVAC system your
-              builidng has (most common is the Package RTU). Find your
-              electrical meter (usually found on the outside part of your
-              house) and input the peak demand (kW). Finally, input your
-              zipcode and state.
+              Start by inputing in your building name and building type. Follow
+              that up by adding your building's floor area and height in square
+              feet (ft²). Pick which type of HVAC system your builidng has (most
+              common is the Package RTU). Find your electrical meter (usually
+              found on the outside part of your house) and input the peak demand
+              (kW). Finally, input your zipcode and state.
             </Typography>
           </Box>
           <Typography
@@ -127,9 +118,9 @@ export default function UserGuide() {
               sx={{ fontWeight: "bold" }}
             >
               Input the percentage of building floor area that GTA will apply.
-              This is how much of your room or building will be affected.
-              Input the precool period temp offset. Finally add the demand
-              response temperature offset.
+              This is how much of your room or building will be affected. Input
+              the precool period temp offset. Finally add the demand response
+              temperature offset.
             </Typography>
           </Box>
           <Typography
@@ -153,9 +144,9 @@ export default function UserGuide() {
               sx={{ fontWeight: "bold" }}
             >
               For this part, input the outside air temperature (OAT) and meter
-              kW at that certain hour. For example, first hour is 76°F and
-              meter reading is 733 kW. Add these values to the input table for
-              all 4 hours.
+              kW at that certain hour. For example, first hour is 76°F and meter
+              reading is 733 kW. Add these values to the input table for all 4
+              hours.
             </Typography>
           </Box>
           <Typography
@@ -165,8 +156,8 @@ export default function UserGuide() {
             textAlign={"Center"}
             sx={{ fontWeight: "bold" }}
           >
-            Once all the values have been inputted, click calculate and
-            analyze your results!
+            Once all the values have been inputted, click calculate and analyze
+            your results!
           </Typography>
         </Grid>
       </Grid>
@@ -178,8 +169,7 @@ export default function UserGuide() {
         columnSpacing={1}
         textAlign={"Left"}
       >
-        <Grid item sm={12} p={4} align="center"
-        >
+        <Grid item sm={12} p={4} align="center">
           <Button
             onClick={() => navigate("/basic")}
             variant="contained"

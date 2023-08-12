@@ -1,11 +1,10 @@
-import * as React from "react";
 import {
-  createTheme,
-  ThemeProvider,
   Box,
-  Grid,
   Button,
+  Grid,
+  ThemeProvider,
   Typography,
+  createTheme,
 } from "@mui/material";
 
 //colors

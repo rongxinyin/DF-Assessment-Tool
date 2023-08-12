@@ -1,25 +1,20 @@
-import React, { useState } from "react";
-import axios from "axios";
 import {
+  Box,
   Button,
   ButtonGroup,
-  Grid,
-  Container,
-  Typography,
-  Select,
-  MenuItem,
   FormControl,
-  createTheme,
-  ThemeProvider,
+  Grid,
+  MenuItem,
+  Select,
   TextField,
-  Box,
+  Typography,
 } from "@mui/material";
+import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createCaseIDs, gtaCalculation } from "../logic/DR_Calculations.js";
 import { abbreviationToFullName } from "../logic/stateAbbreviations.js";
 import { createVisualizations } from "./calculator-components/Visualizations.js";
-
-
 
 export default function Basic() {
   let navigate = useNavigate(); // navigate to diff pages
