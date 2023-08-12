@@ -35,7 +35,7 @@ export default function Advanced() {
 
   const textFieldInputPropsSX = {
     sx: {
-      color: "tertiary.main",
+      color: "common.white",
     },
   };
 
@@ -310,6 +310,7 @@ export default function Advanced() {
               style={{ marginRight: "5px" }}
               variant="outlined"
               sx={textFieldSX}
+              inputProps={textFieldInputPropsSX}
               onChange={(e) => setCoolingCoilAirTemp(Number(e.target.value))}
             />
           </div>
@@ -327,6 +328,7 @@ export default function Advanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              inputProps={textFieldInputPropsSX}
               onChange={(e) => setAC_LoadFactor(Number(e.target.value / 100))}
             />
           </div>
@@ -343,6 +345,7 @@ export default function Advanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              inputProps={textFieldInputPropsSX}
               onChange={(e) => setMinOSA(Number(e.target.value / 100))}
             />
           </div>
@@ -367,6 +370,7 @@ export default function Advanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              inputProps={textFieldInputPropsSX}
               onChange={(e) => setTotalStaticPressure(Number(e.target.value))}
             />
           </div>
@@ -383,6 +387,7 @@ export default function Advanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              inputProps={textFieldInputPropsSX}
               onChange={(e) => setResetStaticPressure(Number(e.target.value))}
             />
           </div>
@@ -407,6 +412,7 @@ export default function Advanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              inputProps={textFieldInputPropsSX}
               onChange={(e) => setNormalTempSetpoint(Number(e.target.value))}
             />
           </div>
@@ -423,6 +429,7 @@ export default function Advanced() {
               variant="outlined"
               type="number"
               sx={textFieldSX}
+              inputProps={textFieldInputPropsSX}
               onChange={(e) => setResetTempSetpoint(Number(e.target.value))}
             />
           </div>

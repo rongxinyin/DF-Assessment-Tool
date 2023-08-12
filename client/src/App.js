@@ -15,27 +15,27 @@ import AppBar from "./components/SiteAppBar.js";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#00303C",
+      main: "#00303C", // dark teal
     },
     secondary: {
-      main: "#007681",
+      main: "#007681", // teal
     },
     tertiary: {
-      main: "#BED7DD",
+      main: "#BED7DD", // light blue
     },
     white: {
-      main: "#FFFFFF",
+      main: "#FFFFFF", // white
     },
   },
   typography: {
     primary: {
-      main: "#00303C",
+      main: "#00303C", // dark teal
     },
     secondary: {
-      main: "#007681",
+      main: "#007681", // teal
     },
     tertiary: {
-      main: "#BED7DD",
+      main: "#BED7DD", // light blue
     },
   },
   mode: "dark",
