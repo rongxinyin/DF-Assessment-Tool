@@ -30,7 +30,11 @@ export default function Home() {
           <Typography
             variant="h4"
             color="white.main"
-            sx={{ fontWeight: "bold", marginTop: 10, textShadow: "2px 2px #000" }}
+            sx={{
+              fontWeight: "bold",
+              marginTop: 10,
+              textShadow: "2px 2px #000",
+            }}
           >
             Demand Flexibility Assessment Tool
           </Typography>
