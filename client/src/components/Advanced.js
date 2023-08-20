@@ -5,7 +5,7 @@ import {
   Paper,
   TextField,
   Typography,
-  styled,
+  styled, Table, TableBody, TableCell, TableContainer, TableHead, TableRow 
 } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
@@ -24,6 +24,10 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 let RTU_key = 0;
+
+const createTableData = (number, name, value) => {
+  return {number, name, value};
+}
 
 export default function Advanced() {
   let navigate = useNavigate(); // navigate to diff pages
@@ -59,6 +63,7 @@ export default function Advanced() {
   const [calculationOutput, setCalculationOutput] = useState({});
 
   const [graphs, setGraphs] = useState([]);
+  const [tableRows, setTableRows] = useState([]);
 
   const RTU_inputs = [
     "Supply Air Flow (CFM)",
@@ -139,6 +144,14 @@ export default function Advanced() {
         300,
         ["#f5ca0a", "#f5ca0a", "#f5ca0a", "#f5ca0a", "#05a129"]
       ),
+    ]);
+
+    setTableRows([
+      createTableData("1", "Enthalpy Coast", graphData[0]),
+      createTableData("2", "Chiller Direct Reduction", graphData[1]),
+      createTableData("3", "Reduced kW from CFM Reduction", graphData[2]),
+      createTableData("4", "Reduced kW from Static Pressure Reset", graphData[3]),
+      createTableData("5", "Total Load Reduction", graphData[4]),
     ]);
   };
 
@@ -465,7 +478,34 @@ export default function Advanced() {
         >
           Reduction Results
         </Typography>
-        <Grid justifyContent="left" style={{ marginTop: "10px" }}>
+
+        <TableContainer component={Paper} style={{width: "80%"}}>
+      <Table  aria-label="simple table">
+        <TableHead>
+          <TableRow >
+            <TableCell> </TableCell>
+            <TableCell align="center" style={{fontWeight: "bold", color: "#303030"}}>Shed Category</TableCell>
+            <TableCell align="center" style={{fontWeight: "bold"}}> Shed Result (kW)</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {tableRows.map((row) => (
+            <TableRow
+              key={row.number}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell align="center" component="th" scope="row">
+                {row.number}
+              </TableCell>
+              <TableCell align="center">{row.name}</TableCell>
+              <TableCell align="center">{(row.value).toFixed(2)}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+
+        {/* <Grid justifyContent="left" style={{ marginTop: "10px" }}>
           {Object.keys(calculationOutput).map((keyName, i) => (
             <div key={i}>
               <div
@@ -478,7 +518,7 @@ export default function Advanced() {
               </div>
             </div>
           ))}
-        </Grid>
+        </Grid> */}
         <Typography
           variant="h4"
           color="primary.main"
