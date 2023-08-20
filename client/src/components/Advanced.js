@@ -489,39 +489,43 @@ export default function Advanced() {
           Reduction Results
         </Typography>
 
-        <TableContainer component={Paper} style={{ width: "80%" }}>
-          <Table aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell> </TableCell>
-                <TableCell
-                  align="center"
-                  style={{ fontWeight: "bold", color: "#303030" }}
-                >
-                  Shed Category
-                </TableCell>
-                <TableCell align="center" style={{ fontWeight: "bold" }}>
-                  {" "}
-                  Shed Result (kW)
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {tableRows.map((row) => (
-                <TableRow
-                  key={row.number}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell align="center" component="th" scope="row">
-                    {row.number}
+        {tableRows.length > 0 ? (
+          <TableContainer component={Paper} style={{ width: "80%" }}>
+            <Table aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell> </TableCell>
+                  <TableCell
+                    align="center"
+                    style={{ fontWeight: "bold", color: "#303030" }}
+                  >
+                    Shed Category
                   </TableCell>
-                  <TableCell align="center">{row.name}</TableCell>
-                  <TableCell align="center">{row.value.toFixed(2)}</TableCell>
+                  <TableCell align="center" style={{ fontWeight: "bold" }}>
+                    {" "}
+                    Shed Result (kW)
+                  </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {tableRows.map((row) => (
+                  <TableRow
+                    key={row.number}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell align="center" component="th" scope="row">
+                      {row.number}
+                    </TableCell>
+                    <TableCell align="center">{row.name}</TableCell>
+                    <TableCell align="center">{row.value.toFixed(2)}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : (
+          ""
+        )}
 
         {/* <Grid justifyContent="left" style={{ marginTop: "10px" }}>
           {Object.keys(calculationOutput).map((keyName, i) => (
