@@ -13,6 +13,11 @@ import UserGuide from "./components/UserGuide.js";
 import AppBar from "./components/SiteAppBar.js";
 
 const theme = createTheme({
+  typography: {
+    button: {
+      textTransform: "none",
+    },
+  },
   palette: {
     primary: {
       main: "#00303C", // dark teal
