@@ -78,6 +78,7 @@ export default function Home() {
               marginRight: 0.5,
               marginLeft: 0.5,
             }}
+            onClick={() => navigate(`/benchmarking`)}
           >
             Benchmarking Tool
           </Button>
