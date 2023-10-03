@@ -2,13 +2,11 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
 
-
 export default function UserGuide() {
   let navigate = useNavigate();
 
   return (
     <Box bgcolor={"primary.main"} p={2}>
-
       <Grid
         Container
         my={1}
@@ -34,13 +32,15 @@ export default function UserGuide() {
             sx={{ borderRadius: "5px", border: "2px solid #F0F0F0" }}
           >
             <Typography variant="h6" color="white.main" textAlign={"left"}>
-              <strong>Basic</strong>: The Basic calculator uses building information (such as
-              size and build year) and local weather and meter data to calculate
-              shed potential for various precool and event temperature offsets.
+              <strong>Basic</strong>: The Basic calculator uses building
+              information (such as size and build year) and local weather and
+              meter data to calculate shed potential for various precool and
+              event temperature offsets.
               <br></br>
-              <strong>Advanced</strong>: The Advanced calculator uses information about the
-              customer's RTUs, as well as normal and reset temperature
-              setpoints, to calculate total demand response load reduction.
+              <strong>Advanced</strong>: The Advanced calculator uses
+              information about the customer's RTUs, as well as normal and reset
+              temperature setpoints, to calculate total demand response load
+              reduction.
             </Typography>
           </Box>
         </Grid>
@@ -103,11 +103,7 @@ export default function UserGuide() {
             p={2}
             sx={{ borderRadius: "5px", border: "2px solid #F0F0F0" }}
           >
-            <Typography
-              variant="h6"
-              color="white.main"
-              textAlign={"left"}
-            >
+            <Typography variant="h6" color="white.main" textAlign={"left"}>
               Input the percentage of building floor area that GTA will apply.
               This is how much of your room or building will be affected. Input
               the precool period temp offset. Finally add the demand response
@@ -128,11 +124,7 @@ export default function UserGuide() {
             p={2}
             sx={{ borderRadius: "5px", border: "2px solid #F0F0F0" }}
           >
-            <Typography
-              variant="h6"
-              color="white.main"
-              textAlign={"left"}
-            >
+            <Typography variant="h6" color="white.main" textAlign={"left"}>
               For this part, input the outside air temperature (OAT) and meter
               kW at that certain hour. For example, first hour is 76°F and meter
               reading is 733 kW. Add these values to the input table for all 4

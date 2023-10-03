@@ -1,6 +1,6 @@
-# DR-Estimation-Tool
+# Demand Flexibility Assessment Tool
 
-Web-based demand respones assessment tool.
+Web-based tool to assess the building demand flexibility of small and medium sized buildings enabling customers to estimate their demand flexibility easily and determine how to reduce their electricity usage in response to on-peak expensive electricity prices.
 
 ## Setup/Installation
 
