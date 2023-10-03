@@ -5,6 +5,8 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from 'react';
+import InfoListComponent from './InfoListComponent.js';
+
 
 const data =
   [
@@ -36,51 +38,11 @@ const data =
   ];
 
 
-const Faqcomponent = ({ data }) => {
-  const [openIndex, setOpenIndex] = useState(null);
-
-  const toggleQuestion = (index) => {
-    if (openIndex === index) {
-      setOpenIndex(null);
-    } else {
-      setOpenIndex(index);
-    }
-  };
-
-  return (
-    <div className="faq">
-      <Typography variant="h4" color="common.white" sx={{ marginTop: 5 }}>Frequently Asked Questions</Typography>
-      {data.map((item, index) => (
-        <div key={index}>
-          <Button style={{
-            borderRadius: 35,
-            backgroundColor: 'secondary',
-            color: "white",
-            fontSize: "18px",
-            padding: "18px 36px",
-            marginBottom: 5
-          }}
-            color="inherit"
-            variant="outlined"
-            onClick={() => toggleQuestion(index)}>
-            {item.question}
-          </Button>
-          {openIndex === index && <Typography
-            variant="h6"
-            color="common.white"
-            sx={{ margin: 1 }}
-          >{item.answer}</Typography>}
-        </div>
-      ))}
-    </div>
-  );
-};
-
-
 export default function FAQ() {
   return (
     <Box bgcolor={"primary.main"} p={2}>
-      <Faqcomponent data={data} />
+      <Typography variant="h4" color="common.white" sx={{ marginTop: 5 }}>Frequently Asked Questions</Typography>
+      <InfoListComponent data={data} />
     </Box>
   );
 }
