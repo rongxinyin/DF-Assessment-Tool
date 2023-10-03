@@ -71,7 +71,7 @@ export default function About() {
             <Typography
               variant="h4"
               color="primary.main"
-              sx={{ fontWeight: "bold", marginTop: 3 }}
+              sx={{ fontWeight: "bold" }}
             >
               Source Code
             </Typography>
