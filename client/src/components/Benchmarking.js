@@ -1,14 +1,19 @@
 import React from "react";
 import DeckGL from "@deck.gl/react";
 import { LineLayer } from "@deck.gl/layers";
+import { GeoJsonLayer } from "deck.gl";
 import { Map } from "react-map-gl";
+import data from "./testdata.json";
 
 import { useNavigate } from "react-router-dom";
 
 // TODO: REGISTER AND GET A FREE TOKEN.
 // FREE OF CHARGE UNTIL CERTAIN TRAFFIC IS REACHED
 // https://www.mapbox.com/pricing/
-const MAPBOX_ACCESS_TOKEN = "your_mapbox_token";
+
+const MAPBOX_ACCESS_TOKEN = ""; // ive made a token but need to set up env reading for this. ask michael for token for now
+const MAP_STYLE =
+  "https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json";
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
@@ -19,18 +24,29 @@ const INITIAL_VIEW_STATE = {
   bearing: 0,
 };
 
-// Data to be used by the LineLayer
-const data = [
-  {
-    sourcePosition: [-122.41669, 37.7853],
-    targetPosition: [-122.41669, 37.781],
-  },
-];
-
 export default function BenchMarking() {
   let navigate = useNavigate(); // navigate to diff pages
 
-  const layers = [new LineLayer({ id: "line-layer", data })];
+  const onClick = (info) => {
+    if (info.object) {
+      alert(info.object.properties.Name);
+    }
+  };
+
+  const layers = [
+    new GeoJsonLayer({
+      id: "test",
+      data: data,
+      filled: true,
+      pointRadiusMinPixels: 1,
+      pointRadiusScale: 2000,
+      getPointRadius: (f) => 1,
+      getFillColor: [86, 144, 58, 250],
+      pickable: true,
+      autoHighlight: true,
+      onClick,
+    }),
+  ];
 
   return (
     <DeckGL
@@ -38,7 +54,7 @@ export default function BenchMarking() {
       controller={true}
       layers={layers}
     >
-      <Map mapboxAccessToken={MAPBOX_ACCESS_TOKEN} />
+      <Map mapStyle={MAP_STYLE} mapboxAccessToken={MAPBOX_ACCESS_TOKEN} />
     </DeckGL>
   );
 }
