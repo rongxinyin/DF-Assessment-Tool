@@ -13,10 +13,11 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  MenuItem,
   Toolbar,
   Typography,
 } from "@mui/material";
-//import {MenuIcon} from "@mui/icons-material";
+import { Menu as MenuIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "./images/lbnlgridintegrationgroup.svg";
 
@@ -34,7 +35,7 @@ export default function SiteAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Demand Flexibility Assessment Tool
       </Typography>
       <Divider />
       <List>
@@ -71,6 +72,7 @@ export default function SiteAppBar(props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
+            <MenuIcon />
             {/* <MenuIcon /> */}
           </IconButton>
           <Logo
