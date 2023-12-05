@@ -8,7 +8,6 @@ import analyticsRoutes from "./routes/analytics.js";
 import stateRoutes from "./routes/states.js";
 import benchmarkingRoutes from "./routes/benchmarking.js";
 
-
 // app
 const app = express();
 
