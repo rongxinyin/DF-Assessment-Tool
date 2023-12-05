@@ -4,6 +4,7 @@ import { LineLayer } from "@deck.gl/layers";
 import { GeoJsonLayer } from "deck.gl";
 import { Map } from "react-map-gl";
 import data from "./testdata.json";
+import mapbox_token from "./mapbox_token.js";
 
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 // FREE OF CHARGE UNTIL CERTAIN TRAFFIC IS REACHED
 // https://www.mapbox.com/pricing/
 
-const MAPBOX_ACCESS_TOKEN = ""; // ive made a token but need to set up env reading for this. ask michael for token for now
+const MAPBOX_ACCESS_TOKEN = mapbox_token;
 const MAP_STYLE =
   "https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json";
 
