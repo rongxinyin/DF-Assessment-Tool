@@ -158,8 +158,17 @@ export default function Home() {
             color="white.main"
             sx={{ fontSize: "1.2rem" }}
           >
-            Paper citation: DFAT: A Web-Based Demand Flexibility Assessment
-            Toolkit for Building-to-Grid Integration,
+            Paper Citations:
+          </Typography>
+          <Typography
+            variant="body2"
+            color="white.main"
+            sx={{ fontSize: "1.2rem" }}
+          >
+            Yin, R., J. Liu, M.A. Piette, J. Xie, M. Pritoni, A. Casillas, L.
+            Yu, P. Schwartz, Comparing simulated demand flexibility against
+            actual performance in commercial office buildings, Building and
+            Environment, 2023.{" "}
             <a
               href="https://doi.org/10.1016/j.buildenv.2023.110663"
               target="_blank"
@@ -167,6 +176,22 @@ export default function Home() {
               style={{ color: "#2196f3" }}
             >
               https://doi.org/10.1016/j.buildenv.2023.110663
+            </a>
+          </Typography>
+          <Typography
+            variant="body2"
+            color="white.main"
+            sx={{ fontSize: "1.2rem" }}
+          >
+            DFAT: A Web-Based Demand Flexibility Assessment Toolkit for
+            Building-to-Grid Integration.{" "}
+            <a
+              href="https://doi.org/10.1016/j.buildenv.2023.110663"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#2196f3" }}
+            >
+              To be submitted to Journal of SoftwareX
             </a>
           </Typography>
         </Grid>
