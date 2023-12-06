@@ -77,8 +77,10 @@ export default function About() {
             </Typography>
             <Typography variant="h6" color="common.white" sx={{}}>
               The source code for DFAT can be found on{" "}
-              <a style={{ color: "#2196f3" }} // Inline styling
-                href="https://github.com/rongxinyin/DR-Estimation-Tool">
+              <a
+                style={{ color: "#2196f3" }} // Inline styling
+                href="https://github.com/rongxinyin/DR-Estimation-Tool"
+              >
                 GitHub
               </a>
               .
