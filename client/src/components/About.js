@@ -10,22 +10,13 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const typographySX = {
-  fontWeight: "bold",
-  m: 0,
-};
-
 export default function About() {
   return (
     <Box bgcolor="primary.main">
       <Box sx={{ flexGrow: 1, margin: 3 }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography
-              variant="h4"
-              color="common.white"
-              sx={{ fontWeight: "bold", marginTop: 3 }}
-            >
+            <Typography variant="h4" color="common.white" sx={{ marginTop: 3 }}>
               About
             </Typography>
             <Typography variant="h6" color="common.white" sx={{}}>
@@ -38,7 +29,7 @@ export default function About() {
           </Grid>
 
           <Grid item xs={12}>
-            <Typography variant="h4" color="common.white" sx={typographySX}>
+            <Typography variant="h4" color="common.white" sx={{}}>
               Thanks and Credits
             </Typography>
             <Typography variant="h6" color="common.white" sx={{}}>
@@ -68,11 +59,7 @@ export default function About() {
           </Grid>
 
           <Grid item xs={12}>
-            <Typography
-              variant="h4"
-              color="common.white"
-              sx={{ fontWeight: "bold" }}
-            >
+            <Typography variant="h4" color="common.white" sx={{}}>
               Source Code
             </Typography>
             <Typography variant="h6" color="common.white" sx={{}}>
@@ -88,7 +75,7 @@ export default function About() {
 
             <Typography variant="h6" color="common.white" sx={{}}>
               Paper citation: DFAT: A Web-Based Demand Flexibility Assessment
-              Toolkit for Building-to-Grid Integration. {" "}
+              Toolkit for Building-to-Grid Integration.{" "}
               <a
                 href="https://doi.org/10.1016/j.buildenv.2023.110663"
                 target="_blank"
