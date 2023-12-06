@@ -1,11 +1,19 @@
-import { Box, Button, Grid, Typography, Paper, styled } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Typography,
+  Paper,
+  styled,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import image from "./images/berkeleylab.png";
 import residentialIcon from "./images/residential.png";
 import commercialIcon from "./images/commercial.png";
 import benchmarkIcon from "./images/benchmarking.png";
 
-// visualization
+// Visualization
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -15,19 +23,15 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Home() {
-  let navigate = useNavigate(); // navigate to diff pages
+  let navigate = useNavigate(); // Navigate to different pages
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Check if the device is mobile
 
   return (
-    <Box bgcolor={"primary.main"} p={2}>
-      <Grid
-        container
-        spacing={2}
-        padding={10}
-        md={12}
-        xs={12}
-        //direction="row"
-        //alignItems="center"
-      >
+    <Box bgcolor={"primary.main"} p={isMobile ? 1 : 2}>
+      {" "}
+      {/* Adjust padding for mobile */}
+      <Grid container spacing={2} padding={isMobile ? 2 : 10} md={12} xs={12}>
         <Grid item xs={12} align="center">
           <Typography
             variant="h4"
@@ -35,7 +39,6 @@ export default function Home() {
             sx={{
               fontWeight: "bold",
               marginTop: 10,
-              // textShadow: "2px 2px #000",
             }}
           >
             Welcome to the Demand Flexibility Assessment Tool (DFAT)
@@ -47,12 +50,9 @@ export default function Home() {
             variant="h6"
             color="white.main"
             sx={{
-              // fontWeight: "bold",
               m: 1,
               marginTop: 1,
               textAlign: "center",
-              // backgroundColor: "tertiary.main", // Change the background color to theme primary
-              // textShadow: "1px 1px #000",
             }}
           >
             DFAT is an open-source web-based tool that estimates the demand
@@ -68,15 +68,22 @@ export default function Home() {
           item
           xs={12}
           align="center"
-          sx={{ display: "flex", justifyContent: "center", gap: "1rem" }}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "1rem",
+            flexDirection: isMobile ? "column" : "row",
+          }} /* Stack buttons vertically on mobile */
         >
+          {/* Button Components */}
+          {/* Residential Button */}
           <Button
             variant="contained"
             color="secondary"
             onClick={() => navigate("/residential")}
             sx={{
-              width: "250px",
-              height: "120px", // Increase the height of the button area
+              width: "350px",
+              height: "120px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
@@ -85,17 +92,19 @@ export default function Home() {
             <img
               src={residentialIcon}
               alt="Residential Icon"
-              style={{ maxWidth: "80%", maxHeight: "60%" }} // Reduce the image size to fit into the button area
+              style={{ maxWidth: "80%", maxHeight: "60%" }}
             />
             Residential
           </Button>
+
+          {/* Commercial Button */}
           <Button
             variant="contained"
             color="secondary"
             onClick={() => navigate("/basic")}
             sx={{
-              width: "250px",
-              height: "120px", // Increase the height of the button area
+              width: "350px",
+              height: "120px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
@@ -104,17 +113,19 @@ export default function Home() {
             <img
               src={commercialIcon}
               alt="Commercial Icon"
-              style={{ maxWidth: "80%", maxHeight: "60%" }} // Reduce the image size to fit into the button area
+              style={{ maxWidth: "80%", maxHeight: "60%" }}
             />
             Commercial
           </Button>
+
+          {/* Benchmarking Button */}
           <Button
             variant="contained"
             color="secondary"
             onClick={() => navigate("/benchmarking")}
             sx={{
-              width: "250px",
-              height: "120px", // Increase the height of the button area
+              width: "350px",
+              height: "120px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
@@ -123,7 +134,7 @@ export default function Home() {
             <img
               src={benchmarkIcon}
               alt="Benchmarking Icon"
-              style={{ maxWidth: "80%", maxHeight: "60%" }} // Reduce the image size to fit into the button area
+              style={{ maxWidth: "80%", maxHeight: "60%" }}
             />
             Benchmarking
           </Button>
@@ -134,13 +145,12 @@ export default function Home() {
           xs={12}
           align="left"
           sx={{
-            top: "auto", // Change top to "auto" to move the grid to the bottom of the box
-            bottom: 0, // Set bottom to 0 to align the grid to the bottom
-            display: "flex",
-            alignItems: "center",
-            marginTop: 20,
-            width: "100%", // Set the width to 100%
-            backgroundColor: "primary.main", // Change the background color to theme primary
+            marginTop: 5,
+            width: "100%",
+            backgroundColor: "primary.main",
+            fontSize: isMobile
+              ? "0.8rem"
+              : "1.2rem" /* Adjust font size for mobile */,
           }}
         >
           <Typography
@@ -148,9 +158,8 @@ export default function Home() {
             color="white.main"
             sx={{ fontSize: "1.2rem" }}
           >
-            {" "}
             Paper citation: DFAT: A Web-Based Demand Flexibility Assessment
-            Toolkit for Building-to-Grid Integration,{" "}
+            Toolkit for Building-to-Grid Integration,
             <a
               href="https://doi.org/10.1016/j.buildenv.2023.110663"
               target="_blank"
