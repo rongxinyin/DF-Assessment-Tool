@@ -5,7 +5,7 @@ import { GeoJsonLayer } from "deck.gl";
 import { Map } from "react-map-gl";
 import data from "./testdata.json";
 import mapbox_token from "./mapbox_token.js";
-import { IconLayer } from '@deck.gl/layers';
+import { IconLayer } from "@deck.gl/layers";
 
 import { useNavigate } from "react-router-dom";
 
@@ -24,7 +24,7 @@ const INITIAL_VIEW_STATE = {
   zoom: 1.8,
   maxZoom: 20,
   pitch: 0,
-  bearing: 0
+  bearing: 0,
 };
 
 export default function BenchMarking() {
@@ -37,24 +37,24 @@ export default function BenchMarking() {
   };
 
   const ICON_MAPPING = {
-    marker: { x: 0, y: 0, width: 120, height: 120, mask: true }
+    marker: { x: 0, y: 0, width: 120, height: 120, mask: true },
   };
 
-
   const layers = new IconLayer({
-    id: 'icon-layer',
+    id: "icon-layer",
     data,
     pickable: true,
     // iconAtlas and iconMapping are required
     // getIcon: return a string
-    iconAtlas: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png',
+    iconAtlas:
+      "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png",
     iconMapping: ICON_MAPPING,
-    getIcon: d => 'marker',
+    getIcon: (d) => "marker",
 
     sizeScale: 6,
-    getPosition: d => d.coordinates,
-    getSize: d => 5,
-    getColor: d => [Math.sqrt(d.exits), 140, 0]
+    getPosition: (d) => d.coordinates,
+    getSize: (d) => 5,
+    getColor: (d) => [Math.sqrt(d.exits), 140, 0],
   });
 
   return (

@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const benchmarkingSchema = mongoose.Schema(
   {
+    coordinates: [Number],
     siteID: { type: String, required: true },
     siteInfo: [
       {
