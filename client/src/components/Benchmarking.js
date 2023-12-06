@@ -27,6 +27,8 @@ const INITIAL_VIEW_STATE = {
   bearing: 0,
 };
 
+// https://deck.gl/docs/api-reference/layers/icon-layer
+
 export default function BenchMarking() {
   let navigate = useNavigate(); // navigate to diff pages
 
