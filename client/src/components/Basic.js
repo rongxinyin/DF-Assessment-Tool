@@ -198,7 +198,7 @@ export default function Basic() {
           ...prev,
           createVisualizations(
             [1, 2, 3, 4, "Average"],
-            "Estimated Watt Shed per Square Foot per Hour",
+            "Estimated Watt Shed per Square Foot",
             "Hours",
             "Power (Watts)",
             W_ft2,
@@ -392,7 +392,7 @@ export default function Basic() {
                 color="white.main"
                 sx={{ fontWeight: "bold", marginLeft: 1 }}
               >
-                Floor Height (ft²)
+                Floor Height (ft)
               </Typography>
               <TextField
                 id="outlined-basic"
@@ -450,7 +450,7 @@ export default function Basic() {
             color="white.main"
             sx={{ fontWeight: "bold", m: 1, marginTop: 3 }}
           >
-            HVAC Temp DR Shed Capacity Calculation
+            Demand Shed Capacity Calculation
           </Typography>
           <Grid container spacing={2}>
             <Grid item xs={6}>
@@ -466,7 +466,7 @@ export default function Basic() {
                 color="white.main"
                 sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 3.5 }}
               >
-                Precool Period Temp Offset (°F)
+                Precooling Period Temp Offset (°F)
               </Typography>
               <TextField
                 id="outlined-basic"
