@@ -57,7 +57,6 @@ export default function App() {
             <Route path="/basic" element={<Basic />} />
             <Route path="/advanced" element={<Advanced />} />
             <Route path="/faq" element={<FAQ />} />
-            <Route path="/userguide" element={<UserGuide />} />
             <Route path="/about" element={<About />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>

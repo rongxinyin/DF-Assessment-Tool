@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "./images/lbnlgridintegrationgroup.svg";
 
 const drawerWidth = 240;
-const navItems = ["Calculator", "FAQ", "User Guide", "About"];
+const navItems = ["Calculator", "FAQ", "About"];
 
 export default function SiteAppBar(props) {
   const { window } = props;
@@ -94,12 +94,6 @@ export default function SiteAppBar(props) {
             </Button>
             <Button sx={{ color: "primary" }} onClick={() => navigate(`/faq`)}>
               FAQ
-            </Button>
-            <Button
-              sx={{ color: "primary" }}
-              onClick={() => navigate(`/userguide`)}
-            >
-              User Guide
             </Button>
             <Button
               sx={{ color: "primary" }}
