@@ -1,22 +1,24 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography, Paper, styled } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import image from "./images/berkeleylab.png";
+import residentialIcon from "./images/residential.png";
+import commercialIcon from "./images/commercial.png";
+import benchmarkIcon from "./images/benchmarking.png";
+
+// visualization
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 export default function Home() {
   let navigate = useNavigate(); // navigate to diff pages
 
   return (
-    <div
-      style={{
-        position: "absolute",
-        width: "100%",
-        height: "90vh",
-        backgroundImage: `url(${image})`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
+    <Box bgcolor={"primary.main"} p={2}>
       <Grid
         container
         spacing={2}
@@ -33,10 +35,10 @@ export default function Home() {
             sx={{
               fontWeight: "bold",
               marginTop: 10,
-              textShadow: "2px 2px #000",
+              // textShadow: "2px 2px #000",
             }}
           >
-            Demand Flexibility Assessment Tool
+            Welcome to the Demand Flexibility Assessment Tool (DFAT)
           </Typography>
         </Grid>
 
@@ -45,108 +47,121 @@ export default function Home() {
             variant="h6"
             color="white.main"
             sx={{
-              fontWeight: "bold",
+              // fontWeight: "bold",
               m: 1,
               marginTop: 1,
               textAlign: "center",
-              textShadow: "1px 1px #000",
+              // backgroundColor: "tertiary.main", // Change the background color to theme primary
+              // textShadow: "1px 1px #000",
             }}
           >
-            Welcome to the Demand Flexibility Assessment Tool, made by the Grid
-            Integration Group at Lawrence Berkeley National Lab. The estimation
-            tool provides demand response shed magnitudes for a range of OATs
-            for one of the major DR strategies: HVAC Temp Reset (Precool with
-            Zone Temp Setback).
+            DFAT is an open-source web-based tool that estimates the demand
+            flexibility potential of common control strategies in residential
+            and commercial buildings. DFAT is designed to help building owners &
+            operators understand the potential of demand flexibility in their
+            buildings and to help utilities and grid operators understand the
+            potential of demand flexibility in their service territories.
           </Typography>
         </Grid>
 
-        <Grid item xs={12} align="center">
+        <Grid
+          item
+          xs={12}
+          align="center"
+          sx={{ display: "flex", justifyContent: "center", gap: "1rem" }}
+        >
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => navigate("/residential")}
+            sx={{
+              width: "250px",
+              height: "120px", // Increase the height of the button area
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            <img
+              src={residentialIcon}
+              alt="Residential Icon"
+              style={{ maxWidth: "80%", maxHeight: "60%" }} // Reduce the image size to fit into the button area
+            />
+            Residential
+          </Button>
           <Button
             variant="contained"
             color="secondary"
             onClick={() => navigate("/basic")}
-            sx={{ width: "200px", height: "50px", marginTop: 0 }}
-          >
-            Estimation Tool
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
             sx={{
-              width: "200px",
-              height: "50px",
-              marginRight: 0.5,
-              marginLeft: 0.5,
+              width: "250px",
+              height: "120px", // Increase the height of the button area
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
             }}
           >
-            Benchmarking Tool
+            <img
+              src={commercialIcon}
+              alt="Commercial Icon"
+              style={{ maxWidth: "80%", maxHeight: "60%" }} // Reduce the image size to fit into the button area
+            />
+            Commercial
           </Button>
           <Button
             variant="contained"
             color="secondary"
-            onClick={() => navigate("/userguide")}
-            sx={{ width: "200px", height: "50px", marginTop: 0 }}
+            onClick={() => navigate("/benchmarking")}
+            sx={{
+              width: "250px",
+              height: "120px", // Increase the height of the button area
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
           >
-            User Guide
+            <img
+              src={benchmarkIcon}
+              alt="Benchmarking Icon"
+              style={{ maxWidth: "80%", maxHeight: "60%" }} // Reduce the image size to fit into the button area
+            />
+            Benchmarking
           </Button>
         </Grid>
-      </Grid>
 
-      {/* <Grid item xs={4}>
+        <Grid
+          item
+          xs={12}
+          align="left"
+          sx={{
+            top: "auto", // Change top to "auto" to move the grid to the bottom of the box
+            bottom: 0, // Set bottom to 0 to align the grid to the bottom
+            display: "flex",
+            alignItems: "center",
+            marginTop: 20,
+            width: "100%", // Set the width to 100%
+            backgroundColor: "primary.main", // Change the background color to theme primary
+          }}
+        >
           <Typography
-            variant="h6"
+            variant="body2"
             color="white.main"
-            sx={{
-              fontWeight: "bold",
-              m: 1,
-              marginTop: 1,
-              textAlign: "center",
-            }}
+            sx={{ fontSize: "1.2rem" }}
           >
-            Welcome to the Demand Flexibility Assessment Tool, made by the
-            Grid Integration Group at Lawrence Berkeley National Lab. The
-            estimation tool provides demand response shed magnitudes for a
-            range of OATs for one of the major DR strategies: HVAC Temp Reset
-            (Precool with Zone Temp Setback).
+            {" "}
+            Paper citation: DFAT: A Web-Based Demand Flexibility Assessment
+            Toolkit for Building-to-Grid Integration,{" "}
+            <a
+              href="https://doi.org/10.1016/j.buildenv.2023.110663"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ color: "white.main" }}
+            >
+              https://doi.org/10.1016/j.buildenv.2023.110663
+            </a>
           </Typography>
         </Grid>
-
-        <Box sx={{ flexDirection: "row" }}>
-          <Grid container spacing={1}>
-            <Grid item xs={4}>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={() => navigate("/basic")}
-                sx={{ width: "200px", height: "50px", marginTop: -30 }}
-              >
-                Estimation Tool
-              </Button>
-            </Grid>
-            <Grid item xs={4}>
-              <Button
-                variant="contained"
-                color="secondary"
-                sx={{ width: "200px", height: "50px", marginTop: -30 }}
-              >
-                Benchmarking Tool
-              </Button>
-            </Grid>
-            <Grid item xs={4}>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={() => navigate("/userguide")}
-                sx={{ width: "200px", height: "50px", marginTop: -30 }}
-              >
-                User Guide
-              </Button>
-            </Grid>
-          </Grid>
-        </Box> */}
-    </div>
+      </Grid>
+    </Box>
   );
 }
-
-/*return <Background />;*/
-/*<img src={image} style={{ width: "100%", height: "100%" }}></img>*/
