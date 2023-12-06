@@ -4,6 +4,16 @@ import InfoListComponent from "./InfoListComponent.js";
 
 const data = [
   {
+    question: "What do the calculators do?",
+    answer:
+      "The basic calculator uses building information (such as size and build year) and local weather and meter data to calculate shed potential for various precool and event temperature offsets. The advanced calculator uses information about the customer's RTUs, as well as normal and reset temperature setpoints, to calculate total demand response load reduction.",
+  },
+  {
+    question: "How do I use the basic calculator?",
+    answer:
+      "For the basic user inputs, start by inputing in your building name and building type. Follow that up by adding your building's floor area and height in square feet (ft²). Pick which type of HVAC system your builidng has (most common is the Package RTU). Find your electrical meter (usually found on the outside part of your house) and input the peak demand (kW). Finally, input your zipcode and state. For the HVAC Temp DR Shed Capacity calculation, input the percentage of building floor area that GTA will apply. This is how much of your room or building will be affected. Input the precool period temp offset. Finally add the demand response temperature offset. For the OAT and kW during the DR event hours, input the outside air temperature (OAT) and meter kW at that certain hour. For example, first hour is 76°F and meter reading is 733 kW. Add these values to the input table for all 4 hours.",
+  },
+  {
     question: "How can solar panels help reduce building energy usage?",
     answer:
       "Solar panels can generate clean electricity from sunlight, ' allowing buildings to offset their energy consumption by using renewable energy, thereby reducing their reliance on conventional energy sources and lowering their carbon footprint.",
@@ -40,7 +50,11 @@ const data = [
 export default function FAQ() {
   return (
     <Box bgcolor={"primary.main"} p={2}>
-      <Typography variant="h4" color="common.white" sx={{ marginTop: 5 }}>
+      <Typography
+        variant="h4"
+        color="common.white"
+        sx={{ marginTop: 5, marginBottom: 1 }}
+      >
         Frequently Asked Questions
       </Typography>
       <InfoListComponent data={data} />
