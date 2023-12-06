@@ -88,14 +88,14 @@ export default function About() {
 
             <Typography variant="h6" color="common.white" sx={{}}>
               Paper citation: DFAT: A Web-Based Demand Flexibility Assessment
-              Toolkit for Building-to-Grid Integration,{" "}
+              Toolkit for Building-to-Grid Integration. {" "}
               <a
                 href="https://doi.org/10.1016/j.buildenv.2023.110663"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: "#2196f3" }} // Inline styling
               >
-                https://doi.org/10.1016/j.buildenv.2023.110663
+                To be submitted to Journal of SoftwareX
               </a>
             </Typography>
           </Grid>
