@@ -164,7 +164,7 @@ export default function Home() {
               href="https://doi.org/10.1016/j.buildenv.2023.110663"
               target="_blank"
               rel="noopener noreferrer"
-              sx={{ color: "white.main" }}
+              style={{ color: "#2196f3" }}
             >
               https://doi.org/10.1016/j.buildenv.2023.110663
             </a>
