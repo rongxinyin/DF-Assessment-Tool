@@ -1,31 +1,37 @@
-import { Button, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Typography,
+  Paper,
+  styled,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import image from "./images/berkeleylab.png";
+import residentialIcon from "./images/residential.png";
+import commercialIcon from "./images/commercial.png";
+import benchmarkIcon from "./images/benchmarking.png";
+
+// Visualization
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 export default function Home() {
-  let navigate = useNavigate(); // navigate to diff pages
+  let navigate = useNavigate(); // Navigate to different pages
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Check if the device is mobile
 
   return (
-    <div
-      style={{
-        position: "absolute",
-        width: "100%",
-        height: "90vh",
-        backgroundImage: `url(${image})`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <Grid
-        container
-        spacing={2}
-        padding={10}
-        md={12}
-        xs={12}
-        //direction="row"
-        //alignItems="center"
-      >
+    <Box bgcolor={"primary.main"} p={isMobile ? 1 : 2}>
+      {" "}
+      {/* Adjust padding for mobile */}
+      <Grid container spacing={2} padding={isMobile ? 2 : 10} md={12} xs={12}>
         <Grid item xs={12} align="center">
           <Typography
             variant="h4"
@@ -33,10 +39,9 @@ export default function Home() {
             sx={{
               fontWeight: "bold",
               marginTop: 10,
-              textShadow: "2px 2px #000",
             }}
           >
-            Demand Flexibility Assessment Tool
+            Welcome to the Demand Flexibility Assessment Tool (DFAT)
           </Typography>
         </Grid>
 
@@ -45,108 +50,152 @@ export default function Home() {
             variant="h6"
             color="white.main"
             sx={{
-              fontWeight: "bold",
               m: 1,
               marginTop: 1,
               textAlign: "center",
-              textShadow: "1px 1px #000",
             }}
           >
-            Welcome to the Demand Flexibility Assessment Tool, made by the Grid
-            Integration Group at Lawrence Berkeley National Lab. The estimation
-            tool provides demand response shed magnitudes for a range of OATs
-            for one of the major DR strategies: HVAC Temp Reset (Precool with
-            Zone Temp Setback).
+            DFAT is an open-source web-based tool that estimates the demand
+            flexibility potential of common control strategies in residential
+            and commercial buildings. DFAT is designed to help building owners &
+            operators understand the potential of demand flexibility in their
+            buildings and to help utilities and grid operators understand the
+            potential of demand flexibility in their service territories.
           </Typography>
         </Grid>
 
-        <Grid item xs={12} align="center">
+        <Grid
+          item
+          xs={12}
+          align="center"
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "1rem",
+            flexDirection: isMobile ? "column" : "row",
+          }} /* Stack buttons vertically on mobile */
+        >
+          {/* Button Components */}
+          {/* Residential Button */}
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => navigate("/residential")}
+            sx={{
+              width: "350px",
+              height: "120px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            <img
+              src={residentialIcon}
+              alt="Residential Icon"
+              style={{ maxWidth: "80%", maxHeight: "60%" }}
+            />
+            Residential
+          </Button>
+
+          {/* Commercial Button */}
           <Button
             variant="contained"
             color="secondary"
             onClick={() => navigate("/basic")}
-            sx={{ width: "200px", height: "50px", marginTop: 0 }}
-          >
-            Estimation Tool
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
             sx={{
-              width: "200px",
-              height: "50px",
-              marginRight: 0.5,
-              marginLeft: 0.5,
+              width: "350px",
+              height: "120px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
             }}
           >
-            Benchmarking Tool
+            <img
+              src={commercialIcon}
+              alt="Commercial Icon"
+              style={{ maxWidth: "80%", maxHeight: "60%" }}
+            />
+            Commercial
           </Button>
+
+          {/* Benchmarking Button */}
           <Button
             variant="contained"
             color="secondary"
-            onClick={() => navigate("/userguide")}
-            sx={{ width: "200px", height: "50px", marginTop: 0 }}
+            onClick={() => navigate("/benchmarking")}
+            sx={{
+              width: "350px",
+              height: "120px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
           >
-            User Guide
+            <img
+              src={benchmarkIcon}
+              alt="Benchmarking Icon"
+              style={{ maxWidth: "80%", maxHeight: "60%" }}
+            />
+            Benchmarking
           </Button>
         </Grid>
-      </Grid>
 
-      {/* <Grid item xs={4}>
+        <Grid
+          item
+          xs={12}
+          align="left"
+          sx={{
+            marginTop: 5,
+            width: "100%",
+            backgroundColor: "primary.main",
+            fontSize: isMobile
+              ? "0.8rem"
+              : "1.2rem" /* Adjust font size for mobile */,
+          }}
+        >
           <Typography
-            variant="h6"
+            variant="body2"
             color="white.main"
-            sx={{
-              fontWeight: "bold",
-              m: 1,
-              marginTop: 1,
-              textAlign: "center",
-            }}
+            sx={{ fontSize: "1.2rem" }}
           >
-            Welcome to the Demand Flexibility Assessment Tool, made by the
-            Grid Integration Group at Lawrence Berkeley National Lab. The
-            estimation tool provides demand response shed magnitudes for a
-            range of OATs for one of the major DR strategies: HVAC Temp Reset
-            (Precool with Zone Temp Setback).
+            Paper Citations:
+          </Typography>
+          <Typography
+            variant="body2"
+            color="white.main"
+            sx={{ fontSize: "1.2rem" }}
+          >
+            Yin, R., J. Liu, M.A. Piette, J. Xie, M. Pritoni, A. Casillas, L.
+            Yu, P. Schwartz, Comparing simulated demand flexibility against
+            actual performance in commercial office buildings, Building and
+            Environment, 2023.{" "}
+            <a
+              href="https://doi.org/10.1016/j.buildenv.2023.110663"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#2196f3" }}
+            >
+              https://doi.org/10.1016/j.buildenv.2023.110663
+            </a>
+          </Typography>
+          <Typography
+            variant="body2"
+            color="white.main"
+            sx={{ fontSize: "1.2rem" }}
+          >
+            DFAT: A Web-Based Demand Flexibility Assessment Toolkit for
+            Building-to-Grid Integration.{" "}
+            <a
+              href="https://doi.org/10.1016/j.buildenv.2023.110663"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#2196f3" }}
+            >
+              To be submitted to Journal of SoftwareX
+            </a>
           </Typography>
         </Grid>
-
-        <Box sx={{ flexDirection: "row" }}>
-          <Grid container spacing={1}>
-            <Grid item xs={4}>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={() => navigate("/basic")}
-                sx={{ width: "200px", height: "50px", marginTop: -30 }}
-              >
-                Estimation Tool
-              </Button>
-            </Grid>
-            <Grid item xs={4}>
-              <Button
-                variant="contained"
-                color="secondary"
-                sx={{ width: "200px", height: "50px", marginTop: -30 }}
-              >
-                Benchmarking Tool
-              </Button>
-            </Grid>
-            <Grid item xs={4}>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={() => navigate("/userguide")}
-                sx={{ width: "200px", height: "50px", marginTop: -30 }}
-              >
-                User Guide
-              </Button>
-            </Grid>
-          </Grid>
-        </Box> */}
-    </div>
+      </Grid>
+    </Box>
   );
 }
-
-/*return <Background />;*/
-/*<img src={image} style={{ width: "100%", height: "100%" }}></img>*/
