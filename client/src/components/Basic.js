@@ -275,7 +275,7 @@ export default function Basic() {
   const formControlSX = {
     width: "90%",
     marginBottom: 1,
-  }
+  };
 
   // JSON Object with template data
   const templateBasicData = {
