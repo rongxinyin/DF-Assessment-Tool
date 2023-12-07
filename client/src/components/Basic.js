@@ -360,7 +360,7 @@ export default function Basic() {
             Basic Inputs
           </Typography>
 
-          <Grid container spacing={2}>
+          <Grid container spacing={0}>
             <Grid item xs={6}>
               <FormControl sx={{ width: "75%", marginBottom: 1 }}>
                 <Typography
@@ -396,7 +396,7 @@ export default function Basic() {
                   value={floorArea}
                   onChange={(e) => setFloorArea(e.target.value)}
                   sx={textFieldSX}
-                  inputProps={{ min: 1 }}
+                  inputProps={textFieldInputPropsSX}
                 />
               </FormControl>
               <FormControl sx={{ width: "75%", marginBottom: 1 }}>
@@ -558,10 +558,12 @@ export default function Basic() {
                 sx={textFieldSX}
                 inputProps={textFieldInputPropsSX}
               />
+            </Grid>
+            <Grid item xs={6}>
               <Typography
                 variant="body2"
                 color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 2 }}
+                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 1 }}
               >
                 Precooling Period Temp Offset (°F)
               </Typography>
@@ -589,7 +591,7 @@ export default function Basic() {
               <Typography
                 variant="body2"
                 color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 15 }}
+                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 0 }}
               >
                 DR Event Period Temp Offset (°F)
               </Typography>
