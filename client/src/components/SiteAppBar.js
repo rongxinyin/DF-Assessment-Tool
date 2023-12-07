@@ -13,15 +13,16 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  MenuItem,
   Toolbar,
   Typography,
 } from "@mui/material";
-//import {MenuIcon} from "@mui/icons-material";
+import { Menu as MenuIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "./images/lbnlgridintegrationgroup.svg";
 
 const drawerWidth = 240;
-const navItems = ["Calculator", "FAQ", "User Guide", "About"];
+const navItems = ["Calculator", "FAQ", "About"];
 
 export default function SiteAppBar(props) {
   const { window } = props;
@@ -34,7 +35,7 @@ export default function SiteAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Demand Flexibility Assessment Tool
       </Typography>
       <Divider />
       <List>
@@ -71,6 +72,7 @@ export default function SiteAppBar(props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
+            <MenuIcon />
             {/* <MenuIcon /> */}
           </IconButton>
           <Logo
@@ -99,12 +101,6 @@ export default function SiteAppBar(props) {
 
             <Button sx={{ color: "primary" }} onClick={() => navigate(`/faq`)}>
               FAQ
-            </Button>
-            <Button
-              sx={{ color: "primary" }}
-              onClick={() => navigate(`/userguide`)}
-            >
-              User Guide
             </Button>
             <Button
               sx={{ color: "primary" }}

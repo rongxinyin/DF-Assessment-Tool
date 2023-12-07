@@ -8,7 +8,6 @@ import Basic from "./components/Basic.js";
 import FAQ from "./components/FAQ.js";
 import Home from "./components/Home.js";
 import NotFound from "./components/NotFound.js";
-import UserGuide from "./components/UserGuide.js";
 import Benchmarking from "./components/Benchmarking.js";
 
 import AppBar from "./components/SiteAppBar.js";
@@ -58,7 +57,6 @@ export default function App() {
             <Route path="/basic" element={<Basic />} />
             <Route path="/advanced" element={<Advanced />} />
             <Route path="/faq" element={<FAQ />} />
-            <Route path="/userguide" element={<UserGuide />} />
             <Route path="/about" element={<About />} />
             <Route path="/benchmarking" element={<Benchmarking />} />
             <Route path="/*" element={<NotFound />} />
