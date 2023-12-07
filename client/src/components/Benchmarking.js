@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 // FREE OF CHARGE UNTIL CERTAIN TRAFFIC IS REACHED
 // https://www.mapbox.com/pricing/
 
+// check secret keys document for instructions to import the key
 const MAPBOX_ACCESS_TOKEN = mapbox_token;
 const MAP_STYLE =
   "https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json";
