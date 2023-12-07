@@ -5,6 +5,7 @@ import {
   FormControl,
   Grid,
   MenuItem,
+  Paper,
   Select,
   TextField,
   Typography,
@@ -271,6 +272,11 @@ export default function Basic() {
     borderRadius: "10px",
   };
 
+  const formControlSX = {
+    width: "90%",
+    marginBottom: 1,
+  };
+
   // JSON Object with template data
   const templateBasicData = {
     buildingName: "Example",
@@ -360,9 +366,9 @@ export default function Basic() {
             Basic Inputs
           </Typography>
 
-          <Grid container spacing={2}>
+          <Grid container spacing={0}>
             <Grid item xs={6}>
-              <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+              <FormControl sx={formControlSX}>
                 <Typography
                   variant="body2"
                   color="white.main"
@@ -380,7 +386,7 @@ export default function Basic() {
                   inputProps={textFieldInputPropsSX}
                 />
               </FormControl>
-              <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+              <FormControl sx={formControlSX}>
                 <Typography
                   variant="body2"
                   color="white.main"
@@ -396,10 +402,10 @@ export default function Basic() {
                   value={floorArea}
                   onChange={(e) => setFloorArea(e.target.value)}
                   sx={textFieldSX}
-                  inputProps={{ min: 1 }}
+                  inputProps={textFieldInputPropsSX}
                 />
               </FormControl>
-              <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+              <FormControl sx={formControlSX}>
                 <Typography
                   variant="body2"
                   color="white.main"
@@ -423,7 +429,7 @@ export default function Basic() {
                   <MenuItem value={"Chiller + VAV"}>Chiller + VAV</MenuItem>
                 </Select>
               </FormControl>
-              <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+              <FormControl sx={formControlSX}>
                 <Typography
                   variant="body2"
                   color="white.main"
@@ -444,7 +450,7 @@ export default function Basic() {
               </FormControl>
             </Grid>
             <Grid item xs={6}>
-              <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+              <FormControl sx={formControlSX}>
                 <Typography
                   variant="body2"
                   color="white.main"
@@ -465,7 +471,7 @@ export default function Basic() {
                   <MenuItem value={"School"}>School</MenuItem>
                 </Select>
               </FormControl>
-              <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+              <FormControl sx={formControlSX}>
                 <Typography
                   variant="body2"
                   color="white.main"
@@ -487,7 +493,7 @@ export default function Basic() {
                   }}
                 />
               </FormControl>
-              <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+              <FormControl sx={formControlSX}>
                 <Typography
                   variant="body2"
                   color="white.main"
@@ -509,11 +515,11 @@ export default function Basic() {
               <Typography
                 variant="body2"
                 color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 1 }}
+                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 0 }}
               >
                 State
               </Typography>
-              <FormControl sx={{ width: "75%" }}>
+              <FormControl sx={formControlSX}>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -558,10 +564,15 @@ export default function Basic() {
                 sx={textFieldSX}
                 inputProps={textFieldInputPropsSX}
               />
+            </Grid>
+            <Grid item xs={6}>
+              <Paper></Paper>
+            </Grid>
+            <Grid item xs={6}>
               <Typography
                 variant="body2"
                 color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 2 }}
+                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 1 }}
               >
                 Precooling Period Temp Offset (°F)
               </Typography>
@@ -589,7 +600,7 @@ export default function Basic() {
               <Typography
                 variant="body2"
                 color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 15 }}
+                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 1 }}
               >
                 DR Event Period Temp Offset (°F)
               </Typography>
