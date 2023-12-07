@@ -6,7 +6,7 @@ export default function NotFound() {
 
   return (
     <div style={{ maxWidth: 350, margin: "auto" }}>
-      <Typography variant="h2" gutterBottom>
+      <Typography variant="h2" gutterBottom sx={{ marginTop: 5 }}>
         404
       </Typography>
       <Typography variant="h4" gutterBottom>

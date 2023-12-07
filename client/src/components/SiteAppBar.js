@@ -92,6 +92,13 @@ export default function SiteAppBar(props) {
             >
               Calculator
             </Button>
+            <Button
+              sx={{ color: "primary" }}
+              onClick={() => navigate(`/benchmarking`)}
+            >
+              Benchmarking
+            </Button>
+
             <Button sx={{ color: "primary" }} onClick={() => navigate(`/faq`)}>
               FAQ
             </Button>
