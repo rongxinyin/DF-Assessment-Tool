@@ -183,4 +183,9 @@ router.get("/add", async (req, res) => {
   res.send(benchmarking);
 });
 
+router.get("/getAll", async (req, res) => {
+  const result = await BenchmarkingModel.find();
+  res.send(result).status(200);
+});
+
 export default router;

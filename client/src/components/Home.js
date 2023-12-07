@@ -109,7 +109,6 @@ export default function Home() {
               flexDirection: "column",
               justifyContent: "center",
             }}
-            onClick={() => navigate(`/benchmarking`)}
           >
             <img
               src={commercialIcon}

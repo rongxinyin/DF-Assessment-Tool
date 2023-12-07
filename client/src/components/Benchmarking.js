@@ -6,6 +6,8 @@ import { Map } from "react-map-gl";
 import data from "./testdata.json";
 import mapbox_token from "./mapbox_token.js";
 import { IconLayer } from "@deck.gl/layers";
+import axios from "axios";
+import { Button } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
 
@@ -27,9 +29,19 @@ const INITIAL_VIEW_STATE = {
   bearing: 0,
 };
 
+//HELP
+// need to retrieve benchmarking data from the database and port it over to the MapGL to display all the building data
+// data is already there but idk how to get it
+const getBenchmarkingCollection = async () => {
+  const result = await fetch("http://localhost:8080/benchmarking/getAll").then(
+    (response) => response.json()
+  );
+  return result;
+};
+
 // https://deck.gl/docs/api-reference/layers/icon-layer
 
-export default function BenchMarking() {
+export default function Benchmarking() {
   let navigate = useNavigate(); // navigate to diff pages
 
   const onClick = (info) => {
@@ -68,5 +80,8 @@ export default function BenchMarking() {
     >
       <Map mapStyle={MAP_STYLE} mapboxAccessToken={MAPBOX_ACCESS_TOKEN} />
     </DeckGL>
+
+    // // test button
+    // <Button sx={{ marginTop: 10 }} onClick={() => console.log(fetch('http://localhost:8080/benchmarking/getAll'))}>hiii</Button>
   );
 }
