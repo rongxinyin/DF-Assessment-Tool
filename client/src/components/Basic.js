@@ -19,7 +19,7 @@ import { createVisualizations } from "./calculator-components/Visualizations.js"
 export default function Basic() {
   let navigate = useNavigate(); // navigate to diff pages
   // dropdown forms
-  const [buildingType, setBuildingType] = useState();
+  const [buildingType, setBuildingType] = useState("");
   const [floorArea, setFloorArea] = useState();
   const [state, setState] = useState();
   const [hvacType, setHVACType] = useState("");
@@ -251,11 +251,34 @@ export default function Basic() {
     borderRadius: "10px",
   };
 
+  // JSON Object with template data
+  const templateBasicData = {
+    buildingName: "Example",
+    buildingType: "Office",
+    floorArea: 10000,
+    floorHeight: 10,
+    hvacType: "Package RTU",
+    peakDemand: 100,
+    state: "California",
+    // Add other fields as necessary
+  };
+
+  // Function to load template data into form fields
+  const loadBasicTemplate = () => {
+    // Example: Set state for each field
+    setBuildingType(templateBasicData.buildingType);
+    setFloorArea(templateBasicData.floorArea);
+    setHVACType(templateBasicData.hvacType);
+    setPeakDemand(templateBasicData.summerPeakDemand);
+    setState(templateBasicData.state);
+    // Repeat for other fields
+  };
+
   return (
     <Grid container spacing={0} width="100%" height="100%" marginTop={1}>
       <Grid
         item
-        md={5}
+        md={6}
         xs={12}
         container
         direction="column"
@@ -283,6 +306,20 @@ export default function Basic() {
         >
           Basic Calculator
         </Typography>
+
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={loadBasicTemplate}
+          sx={{
+            marginTop: 2,
+            marginBottom: 3,
+            width: "21%",
+            height: "50px",
+          }}
+        >
+          Load Template
+        </Button>
 
         <form>
           <Typography
@@ -464,7 +501,7 @@ export default function Basic() {
               <Typography
                 variant="body2"
                 color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 3.5 }}
+                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 6 }}
               >
                 Precooling Period Temp Offset (°F)
               </Typography>
@@ -677,7 +714,7 @@ export default function Basic() {
       </Grid>
       <Grid
         item
-        md={7}
+        md={6}
         xs={12}
         container
         direction="column"
