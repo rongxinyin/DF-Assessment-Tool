@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import DeckGL from "@deck.gl/react";
 import { LineLayer } from "@deck.gl/layers";
 import { GeoJsonLayer } from "deck.gl";
@@ -22,28 +22,45 @@ const MAP_STYLE =
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
-  longitude: -35,
-  latitude: 36.7,
-  zoom: 1.8,
+  longitude: -111.90035901867124,
+  latitude: 33.505432052079726,
+  zoom: 1,
   maxZoom: 20,
   pitch: 0,
   bearing: 0,
 };
 
-//HELP
-// need to retrieve benchmarking data from the database and port it over to the MapGL to display all the building data
-// data is already there but idk how to get it
+// retrieve benchmarking collection data from database
 const getBenchmarkingCollection = async () => {
-  const result = await fetch("http://localhost:8080/benchmarking/getAll").then(
-    (response) => response.json()
-  );
-  return result;
+  try {
+    const response = await axios.get(
+      "http://localhost:8080/benchmarking/getAll"
+    );
+    if (response.data) {
+      console.log("Data received:", response.data);
+      return response.data;
+    } else {
+      console.log("No data received, response:", response);
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return null;
+  }
 };
 
 // https://deck.gl/docs/api-reference/layers/icon-layer
 
 export default function Benchmarking() {
   let navigate = useNavigate(); // navigate to diff pages
+
+  const [benchmarkingData, setBenchmarkingData] = useState();
+
+  useEffect(() => {
+    getBenchmarkingCollection().then((data) => {
+      setBenchmarkingData(data);
+    });
+  }, []);
 
   const onClick = (info) => {
     if (info.object) {
@@ -57,7 +74,7 @@ export default function Benchmarking() {
 
   const layers = new IconLayer({
     id: "icon-layer",
-    data,
+    data: benchmarkingData,
     pickable: true,
     // iconAtlas and iconMapping are required
     // getIcon: return a string
@@ -76,13 +93,14 @@ export default function Benchmarking() {
     <DeckGL
       initialViewState={INITIAL_VIEW_STATE}
       controller={true}
-      layers={layers}
+      layers={[layers]}
       getTooltip={({ object }) => object && `${object.name}\n${object.address}`}
     >
       <Map mapStyle={MAP_STYLE} mapboxAccessToken={MAPBOX_ACCESS_TOKEN} />
     </DeckGL>
 
     // // test button
-    // <Button sx={{ marginTop: 10 }} onClick={() => console.log(fetch('http://localhost:8080/benchmarking/getAll'))}>hiii</Button>
+    // <Button sx={{ marginTop: 10 }} onClick={() => console.log(layers)}
+    // >hiii</Button>
   );
 }

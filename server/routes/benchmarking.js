@@ -176,11 +176,11 @@ const siteT0363 = new BenchmarkingModel({
   ],
 });
 
-// benchmarking.save();
+siteT0363.save();
 
 // add data to database
 router.get("/add", async (req, res) => {
-  res.send(benchmarking);
+  res.send(siteT0363);
 });
 
 router.get("/getAll", async (req, res) => {
