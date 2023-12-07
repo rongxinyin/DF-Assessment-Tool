@@ -19,16 +19,24 @@ import { createVisualizations } from "./calculator-components/Visualizations.js"
 export default function Basic() {
   let navigate = useNavigate(); // navigate to diff pages
   // dropdown forms
-  const [buildingType, setBuildingType] = useState();
+  const [buildingName, setBuildingName] = useState("");
+  const [buildingType, setBuildingType] = useState("");
   const [floorArea, setFloorArea] = useState();
-  const [state, setState] = useState();
+  const [floorHeight, setFloorHeight] = useState();
+  const [state, setState] = useState("");
   const [hvacType, setHVACType] = useState("");
   const [CSSB, setCSSB] = useState([{}, {}, {}, {}]);
   const [precool, setPrecool] = useState();
   const [tempReset, setTempReset] = useState();
   const [peakDemand, setPeakDemand] = useState();
+  const [zipcode, setZipcode] = useState("");
+  const [pctFloorArea, setPctFloorArea] = useState();
 
   const [graphs, setGraphs] = useState([]);
+
+  const chooseBuildingName = (event) => {
+    setBuildingName(event.target.value);
+  };
 
   const chooseBuildingType = (event) => {
     setBuildingType(event.target.value);
@@ -56,6 +64,18 @@ export default function Basic() {
 
   const inputFloorArea = (event) => {
     setFloorArea(event.target.value);
+  };
+
+  const inputFloorHeight = (event) => {
+    setFloorHeight(event.target.value);
+  };
+
+  const inputZipcode = (event) => {
+    setZipcode(event.target.value);
+  };
+
+  const inputPctFloorArea = (event) => {
+    setPctFloorArea(event.target.value);
   };
 
   const inputCSSBData = (inputInfo, event) => {
@@ -251,11 +271,44 @@ export default function Basic() {
     borderRadius: "10px",
   };
 
+  // JSON Object with template data
+  const templateBasicData = {
+    buildingName: "Example",
+    buildingType: "Office",
+    floorArea: 10000,
+    floorHeight: 12,
+    hvacType: "Package RTU",
+    peakDemand: 100,
+    zipcode: 94720,
+    state: "CA",
+    pctFloorArea: 100,
+    precool: -2,
+    tempReset: 4,
+    // Add other fields as necessary
+  };
+
+  // Function to load template data into form fields
+  const loadBasicTemplate = () => {
+    // Example: Set state for each field
+    setBuildingName(templateBasicData.buildingName);
+    setBuildingType(templateBasicData.buildingType);
+    setFloorArea(templateBasicData.floorArea);
+    setFloorHeight(templateBasicData.floorHeight);
+    setHVACType(templateBasicData.hvacType);
+    setPeakDemand(templateBasicData.peakDemand);
+    setZipcode(templateBasicData.zipcode);
+    setState(templateBasicData.state);
+    setPctFloorArea(templateBasicData.pctFloorArea);
+    setPrecool(templateBasicData.precool);
+    setTempReset(templateBasicData.tempReset);
+    // Repeat for other fields
+  };
+
   return (
     <Grid container spacing={0} width="100%" height="100%" marginTop={1}>
       <Grid
         item
-        md={5}
+        md={6}
         xs={12}
         container
         direction="column"
@@ -284,6 +337,20 @@ export default function Basic() {
           Basic Calculator
         </Typography>
 
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={loadBasicTemplate}
+          sx={{
+            marginTop: 2,
+            marginBottom: 3,
+            width: "21%",
+            height: "50px",
+          }}
+        >
+          Load Template
+        </Button>
+
         <form>
           <Typography
             variant="h5"
@@ -295,36 +362,43 @@ export default function Basic() {
 
           <Grid container spacing={2}>
             <Grid item xs={6}>
-              <Typography
-                variant="body2"
-                color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1 }}
-              >
-                Building Name
-              </Typography>
-              <TextField
-                id="outlined-basic"
-                variant={textFieldVariant}
-                autoComplete="off"
-                sx={textFieldSX}
-                inputProps={textFieldInputPropsSX}
-              />
-              <Typography
-                variant="body2"
-                color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1 }}
-              >
-                Floor Area (ft²)
-              </Typography>
-              <TextField
-                id="outlined-basic"
-                variant={textFieldVariant}
-                autoComplete="off"
-                type="number"
-                onChange={inputFloorArea}
-                sx={textFieldSX}
-                inputProps={textFieldInputPropsSX}
-              />
+              <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+                <Typography
+                  variant="body2"
+                  color="white.main"
+                  sx={{ fontWeight: "bold", marginLeft: 1 }}
+                >
+                  Building Name
+                </Typography>
+                <TextField
+                  id="outlined-basic"
+                  variant={textFieldVariant}
+                  autoComplete="off"
+                  value={buildingName}
+                  onChange={(e) => setBuildingName(e.target.value)}
+                  sx={textFieldSX}
+                  inputProps={textFieldInputPropsSX}
+                />
+              </FormControl>
+              <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+                <Typography
+                  variant="body2"
+                  color="white.main"
+                  sx={{ fontWeight: "bold", marginLeft: 1 }}
+                >
+                  Floor Area (ft²)
+                </Typography>
+                <TextField
+                  id="outlined-basic"
+                  variant={textFieldVariant}
+                  autoComplete="off"
+                  type="number"
+                  value={floorArea}
+                  onChange={(e) => setFloorArea(e.target.value)}
+                  sx={textFieldSX}
+                  inputProps={{ min: 1 }}
+                />
+              </FormControl>
               <FormControl sx={{ width: "75%", marginBottom: 1 }}>
                 <Typography
                   variant="body2"
@@ -349,24 +423,28 @@ export default function Basic() {
                   <MenuItem value={"Chiller + VAV"}>Chiller + VAV</MenuItem>
                 </Select>
               </FormControl>
-              <Typography
-                variant="body2"
-                color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1 }}
-              >
-                Zipcode
-              </Typography>
-              <TextField
-                id="outlined-basic"
-                variant={textFieldVariant}
-                type="number"
-                autoComplete="off"
-                sx={textFieldSX}
-                inputProps={textFieldInputPropsSX}
-              />
+              <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+                <Typography
+                  variant="body2"
+                  color="white.main"
+                  sx={{ fontWeight: "bold", marginLeft: 1 }}
+                >
+                  Zipcode
+                </Typography>
+                <TextField
+                  id="outlined-basic"
+                  variant={textFieldVariant}
+                  type="number"
+                  autoComplete="off"
+                  value={zipcode}
+                  onChange={(e) => setZipcode(e.target.value)}
+                  sx={textFieldSX}
+                  inputProps={textFieldInputPropsSX}
+                />
+              </FormControl>
             </Grid>
             <Grid item xs={6}>
-              <FormControl sx={{ width: "75%" }}>
+              <FormControl sx={{ width: "75%", marginBottom: 1 }}>
                 <Typography
                   variant="body2"
                   color="white.main"
@@ -387,38 +465,47 @@ export default function Basic() {
                   <MenuItem value={"School"}>School</MenuItem>
                 </Select>
               </FormControl>
-              <Typography
-                variant="body2"
-                color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1 }}
-              >
-                Floor Height (ft)
-              </Typography>
-              <TextField
-                id="outlined-basic"
-                variant={textFieldVariant}
-                autoComplete="off"
-                type="number"
-                sx={textFieldSX}
-                inputProps={textFieldInputPropsSX}
-              />
-              <Typography
-                variant="body2"
-                color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1 }}
-              >
-                Summer Peak Demand (kW)
-              </Typography>
-
-              <TextField
-                id="outlined-basic"
-                variant={textFieldVariant}
-                autoComplete="off"
-                onChange={inputPeakDemand}
-                type="number"
-                sx={textFieldSX}
-                inputProps={textFieldInputPropsSX}
-              />
+              <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+                <Typography
+                  variant="body2"
+                  color="white.main"
+                  sx={{ fontWeight: "bold", marginLeft: 1 }}
+                >
+                  Floor Height (ft)
+                </Typography>
+                <TextField
+                  id="outlined-basic"
+                  variant={textFieldVariant}
+                  autoComplete="off"
+                  type="number"
+                  value={floorHeight}
+                  onChange={(e) => setFloorHeight(e.target.value)}
+                  sx={textFieldSX}
+                  inputProps={{
+                    ...textFieldInputPropsSX,
+                    min: 1, // Set the minimum value to 0
+                  }}
+                />
+              </FormControl>
+              <FormControl sx={{ width: "75%", marginBottom: 1 }}>
+                <Typography
+                  variant="body2"
+                  color="white.main"
+                  sx={{ fontWeight: "bold", marginLeft: 1 }}
+                >
+                  Summer Peak Demand (kW)
+                </Typography>
+                <TextField
+                  id="outlined-basic"
+                  variant={textFieldVariant}
+                  autoComplete="off"
+                  value={peakDemand}
+                  onChange={(e) => setPeakDemand(e.target.value)}
+                  type="number"
+                  sx={textFieldSX}
+                  inputProps={textFieldInputPropsSX}
+                />
+              </FormControl>
               <Typography
                 variant="body2"
                 color="white.main"
@@ -461,10 +548,20 @@ export default function Basic() {
               >
                 Percentage of Building Floor Area that GTA will Apply (0-100)
               </Typography>
+              <TextField
+                id="outlined-basic"
+                variant={textFieldVariant}
+                autoComplete="off"
+                value={pctFloorArea}
+                type="number"
+                onChange={inputPctFloorArea}
+                sx={textFieldSX}
+                inputProps={textFieldInputPropsSX}
+              />
               <Typography
                 variant="body2"
                 color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 3.5 }}
+                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 2 }}
               >
                 Precooling Period Temp Offset (°F)
               </Typography>
@@ -472,6 +569,7 @@ export default function Basic() {
                 id="outlined-basic"
                 variant={textFieldVariant}
                 autoComplete="off"
+                value={precool}
                 onChange={inputPrecool}
                 sx={textFieldSX}
                 inputProps={textFieldInputPropsSX}
@@ -479,19 +577,19 @@ export default function Basic() {
               />
             </Grid>
             <Grid item xs={6}>
-              <TextField
+              {/* <TextField
                 id="outlined-basic"
                 variant={textFieldVariant}
                 autoComplete="off"
                 type="number"
                 sx={textFieldSX}
                 inputProps={textFieldInputPropsSX}
-              />
+              /> */}
 
               <Typography
                 variant="body2"
                 color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1 }}
+                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 15 }}
               >
                 DR Event Period Temp Offset (°F)
               </Typography>
@@ -499,6 +597,7 @@ export default function Basic() {
                 id="outlined-basic"
                 variant={textFieldVariant}
                 autoComplete="off"
+                value={tempReset}
                 onChange={inputTempReset}
                 type="number"
                 sx={textFieldSX}
@@ -677,7 +776,7 @@ export default function Basic() {
       </Grid>
       <Grid
         item
-        md={7}
+        md={6}
         xs={12}
         container
         direction="column"
