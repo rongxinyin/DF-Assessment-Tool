@@ -5,6 +5,7 @@ import {
   FormControl,
   Grid,
   MenuItem,
+  Paper,
   Select,
   TextField,
   Typography,
@@ -560,6 +561,9 @@ export default function Basic() {
               />
             </Grid>
             <Grid item xs={6}>
+              <Paper></Paper>
+            </Grid>
+            <Grid item xs={6}>
               <Typography
                 variant="body2"
                 color="white.main"
@@ -591,7 +595,7 @@ export default function Basic() {
               <Typography
                 variant="body2"
                 color="white.main"
-                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 0 }}
+                sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 1 }}
               >
                 DR Event Period Temp Offset (°F)
               </Typography>
