@@ -94,7 +94,9 @@ export default function Benchmarking() {
       initialViewState={INITIAL_VIEW_STATE}
       controller={true}
       layers={[layers]}
-      getTooltip={({ object }) => object && `${object.name}\n${object.address}`}
+      getTooltip={({ object }) =>
+        object && `${object.siteID}\n${object.siteInfo[0].doe_climate_zone}`
+      }
     >
       <Map mapStyle={MAP_STYLE} mapboxAccessToken={MAPBOX_ACCESS_TOKEN} />
     </DeckGL>
