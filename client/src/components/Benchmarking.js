@@ -11,11 +11,6 @@ import { Button } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
 
-// TODO: REGISTER AND GET A FREE TOKEN.
-// FREE OF CHARGE UNTIL CERTAIN TRAFFIC IS REACHED
-// https://www.mapbox.com/pricing/
-
-// check secret keys document for instructions to import the key
 const MAPBOX_ACCESS_TOKEN = mapbox_token;
 const MAP_STYLE =
   "https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json";
@@ -50,7 +45,6 @@ const getBenchmarkingCollection = async () => {
 };
 
 // https://deck.gl/docs/api-reference/layers/icon-layer
-
 export default function Benchmarking() {
   let navigate = useNavigate(); // navigate to diff pages
 
@@ -100,9 +94,5 @@ export default function Benchmarking() {
     >
       <Map mapStyle={MAP_STYLE} mapboxAccessToken={MAPBOX_ACCESS_TOKEN} />
     </DeckGL>
-
-    // // test button
-    // <Button sx={{ marginTop: 10 }} onClick={() => console.log(layers)}
-    // >hiii</Button>
   );
 }
