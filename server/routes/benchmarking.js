@@ -4,8 +4,12 @@ import BenchmarkingModel from "../models/benchmarking.js";
 const router = express.Router();
 
 // example test data
+
+// coordinates: [longitude, latitude]]
+// Longitude values range between -180 and 180 degrees.
+// The latitude of any point on Earth must be within the range of -90 degrees (South Pole) to +90 degrees (North Pole).
 const siteT0363 = new BenchmarkingModel({
-  coordinates: [33.505432052079726, -111.90035901867124],
+  coordinates: [-111.90035901867124, 33.505432052079726],
   siteID: "T0363",
   siteInfo: [
     {
@@ -176,11 +180,75 @@ const siteT0363 = new BenchmarkingModel({
   ],
 });
 
+const siteT0950 = new BenchmarkingModel({
+  coordinates: [-112.074, 33.4484],
+  siteID: "T0950",
+  siteInfo: [
+    {
+      doe_climate_zone: "2B",
+      city: "Phoenix",
+      state: "AZ",
+      zip: 85018,
+      number_of_floor: 1,
+      total_building_area_ft2: 122482,
+      net_selling_area_ft2: 79393,
+      total_stock_area_ft2: 15561,
+      number_of_HVAC: 20,
+      program: "SRP Business Demand Response",
+      utility: "Salt River Project/80062",
+    },
+  ],
+  fieldMetricBaselineRegression: [
+    // TODO: add data
+  ],
+});
+
+const siteT2365 = new BenchmarkingModel({
+  coordinates: [-111.6377, 33.2486],
+  siteID: "T2365",
+  siteInfo: [
+    {
+      doe_climate_zone: "2B",
+      city: "Queen Creek",
+      state: "AZ",
+      zip: 85142,
+      number_of_floor: 1,
+      total_building_area_ft2: 177961,
+      net_selling_area_ft2: 96354,
+      total_stock_area_ft2: 27727,
+      number_of_HVAC: 23,
+      program: "SRP Business Demand Response",
+      utility: "Salt River Project/80062",
+    },
+  ],
+  fieldMetricBaselineRegression: [
+    // TODO: add data
+  ],
+});
+
 siteT0363.save();
+siteT0950.save();
+siteT2365.save();
+
+// add or update a site
+async function addOrUpdateSite(siteData) {
+  try {
+    await BenchmarkingModel.findOneAndUpdate(
+      { siteID: siteData.siteID }, // find a document with the same siteID
+      siteData,
+      { upsert: true, new: true } // upsert and return the new document
+    );
+  } catch (error) {
+    console.error("Error adding/updating site:", error);
+  }
+}
 
 // add data to database
 router.get("/add", async (req, res) => {
-  res.send(siteT0363);
+  await addOrUpdateSite(siteT0363);
+  await addOrUpdateSite(siteT0950);
+  await addOrUpdateSite(siteT2365);
+  res.send("Sites added/updated").status(200);
 });
 
 router.get("/getAll", async (req, res) => {

@@ -3,7 +3,6 @@ import DeckGL from "@deck.gl/react";
 import { LineLayer } from "@deck.gl/layers";
 import { GeoJsonLayer } from "deck.gl";
 import { Map } from "react-map-gl";
-import data from "./testdata.json";
 import mapbox_token from "./mapbox_token.js";
 import { IconLayer } from "@deck.gl/layers";
 import axios from "axios";
@@ -13,15 +12,15 @@ import { useNavigate } from "react-router-dom";
 
 const MAPBOX_ACCESS_TOKEN = mapbox_token;
 const MAP_STYLE =
-  "https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json";
+  "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
-  longitude: -111.90035901867124,
-  latitude: 33.505432052079726,
-  zoom: 1,
+  longitude: -111,
+  latitude: 33,
+  zoom: 5.5,
   maxZoom: 20,
-  pitch: 0,
+  pitch: 30,
   bearing: 0,
 };
 
@@ -89,7 +88,10 @@ export default function Benchmarking() {
       controller={true}
       layers={[layers]}
       getTooltip={({ object }) =>
-        object && `${object.siteID}\n${object.siteInfo[0].doe_climate_zone}`
+        object &&
+        `${object.siteInfo[0].city}, ${object.siteInfo[0].state} \
+        \nSite ID: ${object.siteID} \
+        \nDOE Climate Zone: ${object.siteInfo[0].doe_climate_zone}`
       }
     >
       <Map mapStyle={MAP_STYLE} mapboxAccessToken={MAPBOX_ACCESS_TOKEN} />
