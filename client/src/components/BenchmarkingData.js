@@ -9,8 +9,10 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-
+import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -19,9 +21,40 @@ function createData(name, calories, fat, carbs, protein) {
 const rows = [createData("Frozen yoghurt", 159, 6.0, 24, 4.0)];
 
 export default function BenchmarkingData() {
+
+  const siteID = useParams(); // get siteID from url
+  const [siteData, setSiteData] = useState();
+
+
+  const getSiteData = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/benchmarking/${siteID.site_id}`
+      );
+      if (response.data) {
+        console.log("Data received:", response.data);
+        return response.data;
+      } else {
+        console.log("No data received, response:", response);
+        return null;
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return null;
+    }
+  };
+
+
+  useEffect(() => {
+    getSiteData().then((data) => {
+      setSiteData(data);
+    });
+  }, []);
+
+
   return (
     <Box sx={{ margin: 3, marginTop: 5, flexGrow: 1 }}>
-      <Typography variant="h4" sx={{}}>
+      <Typography variant="h4" sx={{ marginBottom: 1 }}>
         Site Info
       </Typography>
       <TableContainer component={Paper}>
@@ -43,20 +76,24 @@ export default function BenchmarkingData() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
-              </TableRow>
-            ))}
+            <TableRow
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {siteData.siteID}
+              </TableCell>
+              <TableCell align="right">{siteData.siteInfo[0].doe_climate_zone}</TableCell>
+              <TableCell align="right">{siteData.siteInfo[0].city}</TableCell>
+              <TableCell align="right">{siteData.siteInfo[0].state}</TableCell>
+              <TableCell align="right">{siteData.siteInfo[0].zip}</TableCell>
+              <TableCell align="right">{siteData.siteInfo[0].number_of_floor}</TableCell>
+              <TableCell align="right">{siteData.siteInfo[0].total_building_area_ft2}</TableCell>
+              <TableCell align="right">{siteData.siteInfo[0].net_selling_area_ft2}</TableCell>
+              <TableCell align="right">{siteData.siteInfo[0].total_stock_area_ft2}</TableCell>
+              <TableCell align="right">{siteData.siteInfo[0].number_of_HVAC}</TableCell>
+              <TableCell align="right">{siteData.siteInfo[0].program}</TableCell>
+              <TableCell align="right">{siteData.siteInfo[0].utility}</TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>

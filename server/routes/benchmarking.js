@@ -243,7 +243,7 @@ async function addOrUpdateSite(siteData) {
   }
 }
 
-async function removeDuplicateItems() {
+async function removeDuplicateSites() {
   try {
     const duplicates = await BenchmarkingModel.aggregate([
       {
@@ -285,7 +285,7 @@ router.get("/add", async (req, res) => {
 
 // add remove duplicate sites
 router.get("/removeDuplicates", async (req, res) => {
-  await removeDuplicateItems();
+  await removeDuplicateSites();
   res.send("Duplicate sites removed").status(200);
 });
 
