@@ -57,7 +57,9 @@ export default function Benchmarking() {
 
   const onClick = (info) => {
     if (info.object) {
-      alert(info.object.properties.Name);
+      const siteID = info.object.siteID;
+      // Use the navigate function to go to a new page with the siteID parameter
+      navigate(`/benchmarking/${siteID}`);
     }
   };
 
@@ -93,6 +95,7 @@ export default function Benchmarking() {
         \nSite ID: ${object.siteID} \
         \nDOE Climate Zone: ${object.siteInfo[0].doe_climate_zone}`
       }
+      onClick={onClick}
     >
       <Map mapStyle={MAP_STYLE} mapboxAccessToken={MAPBOX_ACCESS_TOKEN} />
     </DeckGL>
