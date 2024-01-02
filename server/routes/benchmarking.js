@@ -243,6 +243,38 @@ async function addOrUpdateSite(siteData) {
   }
 }
 
+async function removeDuplicateItems() {
+  try {
+    const duplicates = await BenchmarkingModel.aggregate([
+      {
+        $group: {
+          _id: { siteID: "$siteID" },
+          count: { $sum: 1 },
+          ids: { $addToSet: "$_id" },
+        },
+      },
+      {
+        $match: {
+          count: { $gt: 1 },
+        },
+      },
+    ]);
+
+    const deletePromises = duplicates.map(async (duplicate) => {
+      // Keep one document (the first one) and delete the rest
+      const [keepId, ...deleteIds] = duplicate.ids;
+
+      await BenchmarkingModel.deleteMany({ _id: { $in: deleteIds } });
+    });
+
+    await Promise.all(deletePromises);
+
+    console.log("Duplicate items removed successfully");
+  } catch (error) {
+    console.error("Error removing duplicate items:", error);
+  }
+}
+
 // add data to database
 router.get("/add", async (req, res) => {
   await addOrUpdateSite(siteT0363);
@@ -251,9 +283,32 @@ router.get("/add", async (req, res) => {
   res.send("Sites added/updated").status(200);
 });
 
+// add remove duplicate sites
+router.get("/removeDuplicates", async (req, res) => {
+  await removeDuplicateItems();
+  res.send("Duplicate sites removed").status(200);
+});
+
 router.get("/getAll", async (req, res) => {
   const result = await BenchmarkingModel.find();
   res.send(result).status(200);
+});
+
+router.get("/:siteID", async (req, res) => {
+  const siteID = req.params.siteID;
+
+  try {
+    const result = await BenchmarkingModel.findOne({ siteID: siteID });
+
+    if (result) {
+      res.status(200).json(result);
+    } else {
+      res.status(404).json({ message: "Site not found" });
+    }
+  } catch (error) {
+    console.error("Error retrieving site:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });
 
 export default router;

@@ -12,21 +12,18 @@ import {
 
 import React, { useState, useEffect } from "react";
 
-
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-];
-
+const rows = [createData("Frozen yoghurt", 159, 6.0, 24, 4.0)];
 
 export default function BenchmarkingData() {
-
   return (
     <Box sx={{ margin: 3, marginTop: 5, flexGrow: 1 }}>
-      <Typography variant="h4" sx={{}}>Site Info</Typography>
+      <Typography variant="h4" sx={{}}>
+        Site Info
+      </Typography>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -49,7 +46,7 @@ export default function BenchmarkingData() {
             {rows.map((row) => (
               <TableRow
                 key={row.name}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
                   {row.name}

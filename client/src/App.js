@@ -60,7 +60,10 @@ export default function App() {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/about" element={<About />} />
             <Route path="/benchmarking" element={<Benchmarking />} />
-            <Route path="/benchmarking/:site_id" element={<BenchmarkingData />} />
+            <Route
+              path="/benchmarking/:site_id"
+              element={<BenchmarkingData />}
+            />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </Suspense>
