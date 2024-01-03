@@ -91,9 +91,9 @@ export default function Benchmarking() {
       layers={[layers]}
       getTooltip={({ object }) =>
         object &&
-        `${object.siteInfo[0].city}, ${object.siteInfo[0].state} \
+        `${object.siteInfo.city}, ${object.siteInfo.state} \
         \nSite ID: ${object.siteID} \
-        \nDOE Climate Zone: ${object.siteInfo[0].doe_climate_zone}
+        \nDOE Climate Zone: ${object.siteInfo.doe_climate_zone}
         \n Click for detailed information`
       }
       onClick={onClick}

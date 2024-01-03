@@ -4,21 +4,20 @@ const benchmarkingSchema = mongoose.Schema(
   {
     coordinates: [Number],
     siteID: { type: String, required: true },
-    siteInfo: [
-      {
-        doe_climate_zone: String,
-        city: String,
-        state: String,
-        zip: Number,
-        number_of_floor: Number,
-        total_building_area_ft2: Number,
-        net_selling_area_ft2: Number,
-        total_stock_area_ft2: Number,
-        number_of_HVAC: Number,
-        program: String,
-        utility: String,
-      },
-    ],
+    siteInfo: {
+      doe_climate_zone: String,
+      city: String,
+      state: String,
+      zip: Number,
+      number_of_floor: Number,
+      total_building_area_ft2: Number,
+      net_selling_area_ft2: Number,
+      total_stock_area_ft2: Number,
+      number_of_HVAC: Number,
+      program: String,
+      utility: String,
+    },
+
     fieldMetricBaselineRegression: [
       {
         event_id: Number,

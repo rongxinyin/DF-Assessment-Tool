@@ -122,34 +122,28 @@ export default function BenchmarkingData() {
                   {siteData.siteID}
                 </TableCell>
                 <TableCell align="right">
-                  {siteData.siteInfo[0].doe_climate_zone}
+                  {siteData.siteInfo.doe_climate_zone}
                 </TableCell>
-                <TableCell align="right">{siteData.siteInfo[0].city}</TableCell>
+                <TableCell align="right">{siteData.siteInfo.city}</TableCell>
+                <TableCell align="right">{siteData.siteInfo.state}</TableCell>
+                <TableCell align="right">{siteData.siteInfo.zip}</TableCell>
                 <TableCell align="right">
-                  {siteData.siteInfo[0].state}
-                </TableCell>
-                <TableCell align="right">{siteData.siteInfo[0].zip}</TableCell>
-                <TableCell align="right">
-                  {siteData.siteInfo[0].number_of_floor}
+                  {siteData.siteInfo.number_of_floor}
                 </TableCell>
                 <TableCell align="right">
-                  {siteData.siteInfo[0].total_building_area_ft2}
+                  {siteData.siteInfo.total_building_area_ft2}
                 </TableCell>
                 <TableCell align="right">
-                  {siteData.siteInfo[0].net_selling_area_ft2}
+                  {siteData.siteInfo.net_selling_area_ft2}
                 </TableCell>
                 <TableCell align="right">
-                  {siteData.siteInfo[0].total_stock_area_ft2}
+                  {siteData.siteInfo.total_stock_area_ft2}
                 </TableCell>
                 <TableCell align="right">
-                  {siteData.siteInfo[0].number_of_HVAC}
+                  {siteData.siteInfo.number_of_HVAC}
                 </TableCell>
-                <TableCell align="right">
-                  {siteData.siteInfo[0].program}
-                </TableCell>
-                <TableCell align="right">
-                  {siteData.siteInfo[0].utility}
-                </TableCell>
+                <TableCell align="right">{siteData.siteInfo.program}</TableCell>
+                <TableCell align="right">{siteData.siteInfo.utility}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
