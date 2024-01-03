@@ -14,11 +14,27 @@ import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createFieldMetricBaselineRegerssionData(
+  event_id,
+  event_date,
+  shed_start_time_date,
+  shed_end_time_date,
+  peak_oat,
+  event_avg_oat,
+  peak_demand_intensity_wft2,
+  shed_avg_wft2
+) {
+  return {
+    event_id,
+    event_date,
+    shed_start_time_date,
+    shed_end_time_date,
+    peak_oat,
+    event_avg_oat,
+    peak_demand_intensity_wft2,
+    shed_avg_wft2,
+  };
 }
-
-const rows = [createData("Frozen yoghurt", 159, 6.0, 24, 4.0)];
 
 export default function BenchmarkingData() {
   const siteID = useParams(); // get siteID from url
@@ -42,13 +58,36 @@ export default function BenchmarkingData() {
     }
   };
 
+  function createfieldMetricBaselineRegerssionRows() {
+    let rows = [];
+    if (siteData && siteData.fieldMetricBaselineRegression) {
+      for (var i = 0; i < siteData.fieldMetricBaselineRegression.length; i++) {
+        rows.push(
+          createFieldMetricBaselineRegerssionData(
+            siteData.fieldMetricBaselineRegression[i].event_id,
+            siteData.fieldMetricBaselineRegression[i].event_date,
+            siteData.fieldMetricBaselineRegression[i].shed_start_time_date,
+            siteData.fieldMetricBaselineRegression[i].shed_end_time_date,
+            siteData.fieldMetricBaselineRegression[i].peak_oat,
+            siteData.fieldMetricBaselineRegression[i].event_avg_oat,
+            siteData.fieldMetricBaselineRegression[i]
+              .peak_demand_intensity_wft2,
+            siteData.fieldMetricBaselineRegression[i].shed_avg_wft2
+          )
+        );
+      }
+    }
+    return rows;
+  }
+
+  const fieldMetricBaselineRegerssionRows =
+    createfieldMetricBaselineRegerssionRows();
+
   useEffect(() => {
     getSiteData().then((data) => {
       setSiteData(data);
     });
   }, []);
-
-  console.log("site data: ", siteData);
 
   return (
     <Box sx={{ margin: 3, marginTop: 8, flexGrow: 1 }}>
@@ -121,6 +160,50 @@ export default function BenchmarkingData() {
       <Typography variant="h4" sx={{ marginBottom: 1, marginTop: 3 }}>
         Field Metric Baseline Regression
       </Typography>
+
+      {siteData ? (
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Event ID</TableCell>
+                <TableCell align="right">Event Date</TableCell>
+                <TableCell align="right">Shed Start Time</TableCell>
+                <TableCell align="right">Shed End Time</TableCell>
+                <TableCell align="right">Peak OAT</TableCell>
+                <TableCell align="right">Event Average OAT </TableCell>
+                <TableCell align="right">Peak Demand Intensity</TableCell>
+                <TableCell align="right">Shed Average</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {fieldMetricBaselineRegerssionRows.map((row) => (
+                <TableRow
+                  key={row.event_id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.event_id}
+                  </TableCell>
+                  <TableCell align="right">{row.event_date}</TableCell>
+                  <TableCell align="right">
+                    {row.shed_start_time_date}
+                  </TableCell>
+                  <TableCell align="right">{row.shed_end_time_date}</TableCell>
+                  <TableCell align="right">{row.peak_oat}</TableCell>
+                  <TableCell align="right">{row.event_avg_oat}</TableCell>
+                  <TableCell align="right">
+                    {row.peak_demand_intensity_wft2}
+                  </TableCell>
+                  <TableCell align="right">{row.shed_avg_wft2}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      ) : (
+        <Typography variant="body1">Loading...</Typography>
+      )}
     </Box>
   );
 }
