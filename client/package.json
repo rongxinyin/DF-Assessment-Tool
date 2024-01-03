@@ -16,6 +16,8 @@
     "chart.js": "^4.3.0",
     "deck.gl": "^8.9.30",
     "mapbox-gl": "^2.15.0",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.44",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
