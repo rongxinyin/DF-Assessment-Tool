@@ -13,6 +13,7 @@ import {
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment-timezone";
 
 function createFieldMetricBaselineRegerssionData(
   event_id,
@@ -121,34 +122,28 @@ export default function BenchmarkingData() {
                   {siteData.siteID}
                 </TableCell>
                 <TableCell align="right">
-                  {siteData.siteInfo[0].doe_climate_zone}
+                  {siteData.siteInfo.doe_climate_zone}
                 </TableCell>
-                <TableCell align="right">{siteData.siteInfo[0].city}</TableCell>
+                <TableCell align="right">{siteData.siteInfo.city}</TableCell>
+                <TableCell align="right">{siteData.siteInfo.state}</TableCell>
+                <TableCell align="right">{siteData.siteInfo.zip}</TableCell>
                 <TableCell align="right">
-                  {siteData.siteInfo[0].state}
-                </TableCell>
-                <TableCell align="right">{siteData.siteInfo[0].zip}</TableCell>
-                <TableCell align="right">
-                  {siteData.siteInfo[0].number_of_floor}
+                  {siteData.siteInfo.number_of_floor}
                 </TableCell>
                 <TableCell align="right">
-                  {siteData.siteInfo[0].total_building_area_ft2}
+                  {siteData.siteInfo.total_building_area_ft2}
                 </TableCell>
                 <TableCell align="right">
-                  {siteData.siteInfo[0].net_selling_area_ft2}
+                  {siteData.siteInfo.net_selling_area_ft2}
                 </TableCell>
                 <TableCell align="right">
-                  {siteData.siteInfo[0].total_stock_area_ft2}
+                  {siteData.siteInfo.total_stock_area_ft2}
                 </TableCell>
                 <TableCell align="right">
-                  {siteData.siteInfo[0].number_of_HVAC}
+                  {siteData.siteInfo.number_of_HVAC}
                 </TableCell>
-                <TableCell align="right">
-                  {siteData.siteInfo[0].program}
-                </TableCell>
-                <TableCell align="right">
-                  {siteData.siteInfo[0].utility}
-                </TableCell>
+                <TableCell align="right">{siteData.siteInfo.program}</TableCell>
+                <TableCell align="right">{siteData.siteInfo.utility}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
@@ -168,8 +163,8 @@ export default function BenchmarkingData() {
               <TableRow>
                 <TableCell>Event ID</TableCell>
                 <TableCell align="right">Event Date</TableCell>
-                <TableCell align="right">Shed Start Time</TableCell>
-                <TableCell align="right">Shed End Time</TableCell>
+                <TableCell align="right">Shed Start Time (GMT-8)</TableCell>
+                <TableCell align="right">Shed End Time (GMT-8)</TableCell>
                 <TableCell align="right">Peak OAT</TableCell>
                 <TableCell align="right">Event Average OAT </TableCell>
                 <TableCell align="right">Peak Demand Intensity</TableCell>
@@ -185,11 +180,23 @@ export default function BenchmarkingData() {
                   <TableCell component="th" scope="row">
                     {row.event_id}
                   </TableCell>
-                  <TableCell align="right">{row.event_date}</TableCell>
                   <TableCell align="right">
-                    {row.shed_start_time_date}
+                    {moment.utc(row.event_date).format("MM/DD/YY")}
                   </TableCell>
-                  <TableCell align="right">{row.shed_end_time_date}</TableCell>
+                  <TableCell align="right">
+                    {moment
+                      .utc(row.shed_start_time_date)
+                      .tz("America/Los_Angeles")
+                      .hour(moment(row.shed_start_time_date).hours() - 1)
+                      .format("MM/DD/YYYY HH:mm:ss")}
+                  </TableCell>
+                  <TableCell align="right">
+                    {moment
+                      .utc(row.shed_end_time_date)
+                      .tz("America/Los_Angeles")
+                      .hour(moment(row.shed_end_time_date).hours() - 1)
+                      .format("MM/DD/YYYY HH:mm:ss")}
+                  </TableCell>
                   <TableCell align="right">{row.peak_oat}</TableCell>
                   <TableCell align="right">{row.event_avg_oat}</TableCell>
                   <TableCell align="right">
