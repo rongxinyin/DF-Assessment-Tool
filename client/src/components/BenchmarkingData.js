@@ -153,7 +153,7 @@ export default function BenchmarkingData() {
       )}
 
       <Typography variant="h4" sx={{ marginBottom: 1, marginTop: 3 }}>
-        Field Metric Baseline Regression
+        DF Metrics (Regression Baseline Model)
       </Typography>
 
       {siteData ? (
@@ -165,10 +165,14 @@ export default function BenchmarkingData() {
                 <TableCell align="right">Event Date</TableCell>
                 <TableCell align="right">Shed Start Time (GMT-8)</TableCell>
                 <TableCell align="right">Shed End Time (GMT-8)</TableCell>
-                <TableCell align="right">Peak OAT</TableCell>
-                <TableCell align="right">Event Average OAT </TableCell>
-                <TableCell align="right">Peak Demand Intensity</TableCell>
-                <TableCell align="right">Shed Average</TableCell>
+                <TableCell align="right">Peak OAT (°F)</TableCell>
+                <TableCell align="right">Event Average OAT (°F) </TableCell>
+                <TableCell align="right">
+                  Peak Demand Intensity (W/ft²)
+                </TableCell>
+                <TableCell align="right">
+                  Avg. Demand Decrease Intensity (W/ft²)
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -197,12 +201,16 @@ export default function BenchmarkingData() {
                       .hour(moment(row.shed_end_time_date).hours() - 1)
                       .format("MM/DD/YYYY HH:mm:ss")}
                   </TableCell>
-                  <TableCell align="right">{row.peak_oat}</TableCell>
-                  <TableCell align="right">{row.event_avg_oat}</TableCell>
+                  <TableCell align="right">{parseInt(row.peak_oat)}</TableCell>
                   <TableCell align="right">
-                    {row.peak_demand_intensity_wft2}
+                    {parseInt(row.event_avg_oat)}
                   </TableCell>
-                  <TableCell align="right">{row.shed_avg_wft2}</TableCell>
+                  <TableCell align="right">
+                    {Math.round(row.peak_demand_intensity_wft2 * 100) / 100}
+                  </TableCell>
+                  <TableCell align="right">
+                    {Math.round(row.shed_avg_wft2 * 100) / 100}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
