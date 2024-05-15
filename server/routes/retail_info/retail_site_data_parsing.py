@@ -8,7 +8,7 @@ field_metrics_baseline_regression = pd.read_excel('field_metrics_baseline_regres
 
 
 # site_info data parsing
-row_value = site_info.loc[0] # get row based on index number
+row_value = site_info.loc[5-2] # get row based on index number, first site starts at index 0 (current row - 2)
 
 # extract the data points from the row
 siteID = row_value['site_id']
