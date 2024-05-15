@@ -79,4 +79,11 @@ output = f"""const site{siteID} = new BenchmarkingModel({{
   {out}
 }});"""
 
-print(output)
+
+
+# TODO: change it so that output is written to a single file with all sites, not a separate file for each site
+directory = "outputs/" + siteID + ".js"
+f = open(directory, "w")
+f.write(output)
+f.close()
+print("Created", directory)
