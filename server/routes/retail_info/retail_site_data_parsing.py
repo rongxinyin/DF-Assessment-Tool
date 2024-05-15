@@ -7,6 +7,7 @@ site_info = pd.read_excel('sites_info.xlsx', usecols=['site_id', 'doe_climate_zo
 field_metrics_baseline_regression = pd.read_excel('field_metrics_baseline_regression.xlsx', usecols=['site_id', 'event_id', 'event_date', 'shed_start_time', 'shed_end_time', 'peak_oat', 'event_avg_oat', 'peak_demand_intensity_wft2', 'shed_avg_wft2']) 
 
 
+# site_info data parsing
 row_value = site_info.loc[0] # get row based on index number
 
 # extract the data points from the row
@@ -26,6 +27,37 @@ program = row_value['Program']
 utility = row_value['utility']
 
 
+# field_metrics_baseline_regression data parsing
+
+out = f"""fieldMetricBaselineRegression: ["""
+# cycle through all datapoints with the siteID from the site_info data
+for index, row in field_metrics_baseline_regression.iterrows():
+    if row['site_id'] == siteID:
+        event_id = row['event_id']
+        event_date = row['event_date'].to_pydatetime().strftime('%d %B %Y')
+        shed_start_time = row['shed_start_time'].to_pydatetime().strftime('%d %B %Y %H:%M %Z') + "GMT-8"
+        shed_end_time = row['shed_end_time'].to_pydatetime().strftime('%d %B %Y %H:%M %Z') + "GMT-8"
+        peak_oat = row['peak_oat']
+        event_avg_oat = row['event_avg_oat']
+        peak_demand_intensity_wft2 = row['peak_demand_intensity_wft2']
+        shed_avg_wft2 = row['shed_avg_wft2']
+
+
+        out = out + f"""
+        {{
+          event_id: {event_id},
+          event_date: new Date("{event_date}"),
+          shed_start_time_date: new Date("{shed_start_time}"),
+          shed_end_time_date: new Date("{shed_end_time}"),
+          peak_oat: {peak_oat},
+          event_avg_oat: {event_avg_oat},
+          peak_demand_intensity_wft2: {peak_demand_intensity_wft2},
+          shed_avg_wft2: {shed_avg_wft2},
+        }}, """
+
+out = out + f"""
+    ],"""
+        
 
 # formatting output
 output = f"""const site{siteID} = new BenchmarkingModel({{
@@ -44,6 +76,7 @@ output = f"""const site{siteID} = new BenchmarkingModel({{
     program: "{program}",
     utility: "{utility}",
   }},
+  {out}
 }});"""
 
 print(output)
