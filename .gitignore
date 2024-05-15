@@ -1,2 +1,4 @@
 node_modules/
 .env
+server/routes/retail_info/sites_info.xlsx
+server/routes/retail_info/field_metrics_baseline_regression.xlsx
