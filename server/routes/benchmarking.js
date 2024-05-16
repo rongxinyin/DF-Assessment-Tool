@@ -225,7 +225,7 @@ const siteT2365 = new BenchmarkingModel({
 });
 
 const siteT0314 = new BenchmarkingModel({
-  coordinates: [119.7871, 36.7378],
+  coordinates: [-119.7871, 36.7378],
   siteID: "T0314",
   siteInfo: {
     doe_climate_zone: "3B",
@@ -335,7 +335,7 @@ const siteT0314 = new BenchmarkingModel({
 });
 
 const siteT1410 = new BenchmarkingModel({
-  coordinates: [117.1611, 32.7157],
+  coordinates: [-117.1611, 32.7157],
   siteID: "T1410",
   siteInfo: {
     doe_climate_zone: "3B",
@@ -645,7 +645,7 @@ const siteT1410 = new BenchmarkingModel({
 });
 
 const siteT2232 = new BenchmarkingModel({
-  coordinates: [117.0992, 32.6781],
+  coordinates: [-117.0992, 32.6781],
   siteID: "T2232",
   siteInfo: {
     doe_climate_zone: "3B",
@@ -1165,7 +1165,7 @@ const siteT2232 = new BenchmarkingModel({
 });
 
 const siteT0626 = new BenchmarkingModel({
-  coordinates: [121.8853, 37.3387],
+  coordinates: [-121.8853, 37.3387],
   siteID: "T0626",
   siteInfo: {
     doe_climate_zone: "3C",
@@ -1505,7 +1505,7 @@ const siteT0626 = new BenchmarkingModel({
 });
 
 const siteT1407 = new BenchmarkingModel({
-  coordinates: [122.4702, 37.6879],
+  coordinates: [-122.4702, 37.6879],
   siteID: "T1407",
   siteInfo: {
     doe_climate_zone: "3C",
@@ -1935,7 +1935,7 @@ const siteT1407 = new BenchmarkingModel({
 });
 
 const siteT1426 = new BenchmarkingModel({
-  coordinates: [28.1766, 26.1326],
+  coordinates: [-121, 37],
   siteID: "T1426",
   siteInfo: {
     doe_climate_zone: "3C",
@@ -2275,7 +2275,7 @@ const siteT1426 = new BenchmarkingModel({
 });
 
 const siteT1427 = new BenchmarkingModel({
-  coordinates: [121.8672, 37.2505],
+  coordinates: [-121.8672, 37.2505],
   siteID: "T1427",
   siteInfo: {
     doe_climate_zone: "3C",
@@ -2635,7 +2635,7 @@ const siteT1427 = new BenchmarkingModel({
 });
 
 const siteT1927 = new BenchmarkingModel({
-  coordinates: [121.9136, 37.2944],
+  coordinates: [-121.9136, 37.2944],
   siteID: "T1927",
   siteInfo: {
     doe_climate_zone: "3C",
@@ -3085,7 +3085,7 @@ const siteT1927 = new BenchmarkingModel({
 });
 
 const siteT2584 = new BenchmarkingModel({
-  coordinates: [122.0363, 37.3688],
+  coordinates: [-122.0363, 37.3688],
   siteID: "T2584",
   siteInfo: {
     doe_climate_zone: "3C",
@@ -3485,7 +3485,7 @@ const siteT2584 = new BenchmarkingModel({
 });
 
 const siteT2768 = new BenchmarkingModel({
-  coordinates: [122.4194, 37.7749],
+  coordinates: [-122.4194, 37.7749],
   siteID: "T2768",
   siteInfo: {
     doe_climate_zone: "3C",
@@ -3785,7 +3785,7 @@ const siteT2768 = new BenchmarkingModel({
 });
 
 const siteT1782 = new BenchmarkingModel({
-  coordinates: [95.9928, 36.154],
+  coordinates: [-95.9928, 36.154],
   siteID: "T1782",
   siteInfo: {
     doe_climate_zone: "3A",
@@ -3915,7 +3915,7 @@ const siteT1782 = new BenchmarkingModel({
 });
 
 const siteT1509 = new BenchmarkingModel({
-  coordinates: [90.1994, 38.627],
+  coordinates: [-90.1994, 38.627],
   siteID: "T1509",
   siteInfo: {
     doe_climate_zone: "4A",
