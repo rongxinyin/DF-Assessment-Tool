@@ -9,11 +9,18 @@ import {
   TableHead,
   TableRow,
   Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Grid,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment-timezone";
+
+// TODO: implement other models
 
 function createFieldMetricBaselineRegerssionData(
   event_id,
@@ -40,6 +47,12 @@ function createFieldMetricBaselineRegerssionData(
 export default function BenchmarkingData() {
   const siteID = useParams(); // get siteID from url
   const [siteData, setSiteData] = useState();
+
+  const [model, setModel] = React.useState("regressionBaseline");
+
+  const chooseModel = (event) => {
+    setModel(event.target.value);
+  };
 
   const getSiteData = async () => {
     try {
@@ -152,9 +165,39 @@ export default function BenchmarkingData() {
         <Typography variant="body1">Loading...</Typography>
       )}
 
-      <Typography variant="h4" sx={{ marginBottom: 1, marginTop: 3 }}>
-        DF Metrics (Regression Baseline Model)
-      </Typography>
+      <Grid container alignItems="center" spacing={2}>
+        <Grid item>
+          <Typography variant="h4" sx={{ marginBottom: 1, marginTop: 3 }}>
+            DF Metrics
+          </Typography>
+        </Grid>
+
+        <Grid item>
+          <FormControl variant="filled" sx={{ m: 1, width: 300 }}>
+            <InputLabel id="select-model-label">Model</InputLabel>
+            <Select
+              labelId="select-model-label"
+              id="select-model"
+              value={model}
+              onChange={chooseModel}
+            >
+              <MenuItem value={"regressionBaseline"}>
+                Regression Baseline
+              </MenuItem>
+              <MenuItem value={"10/10Average"}>10/10 Average</MenuItem>
+              <MenuItem value={"adjusted10/10Average"}>
+                Adjusted 10/10 Average
+              </MenuItem>
+              <MenuItem value={"weatherRegression"}>
+                Weather Regression
+              </MenuItem>
+              <MenuItem value={"adjustedWeatherRegression"}>
+                Adjusted Weather Regression
+              </MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
 
       {siteData ? (
         <TableContainer component={Paper}>
