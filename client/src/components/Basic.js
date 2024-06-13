@@ -219,9 +219,9 @@ export default function Basic() {
           ...prev,
           createVisualizations(
             [1, 2, 3, 4, "Average"],
-            "Estimated Watt Shed per Square Foot",
+            "Estimated Watt Shed per Square Foot per Hour",
             "Hours",
-            "Power (Watts)",
+            "Power Density (W/ft²)",
             W_ft2,
             graphs.length,
             275,
