@@ -184,8 +184,16 @@ export default function BenchmarkingData() {
               <MenuItem value={"regressionBaseline"}>
                 Regression Baseline
               </MenuItem>
-              <MenuItem value={"10/10average"}>10/10 Average</MenuItem>
-              <MenuItem value={30}>10/10 ???</MenuItem>
+              <MenuItem value={"10/10Average"}>10/10 Average</MenuItem>
+              <MenuItem value={"adjusted10/10Average"}>
+                Adjusted 10/10 Average
+              </MenuItem>
+              <MenuItem value={"weatherRegression"}>
+                Weather Regression
+              </MenuItem>
+              <MenuItem value={"adjustedWeatherRegression"}>
+                Adjusted Weather Regression
+              </MenuItem>
             </Select>
           </FormControl>
         </Grid>
