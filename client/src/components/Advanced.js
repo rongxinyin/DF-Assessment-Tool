@@ -17,7 +17,7 @@ import axios from "axios";
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
-import { calculations } from "../logic/Advanced_Calculations.js";
+import { calculations } from "../logic/AdvancedCalculations.js";
 import { createVisualizations } from "./calculator-components/Visualizations.js";
 
 // visualization for boxes. will delete later
