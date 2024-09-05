@@ -73,7 +73,8 @@ export default function About() {
             </Typography>
 
             <Typography variant="h6" color="common.white" sx={{}}>
-              Paper citation: DFAT: A Web-Based Toolkit for Estimating Demand Flexibility in Building-to-Grid Integration.{" "}
+              Paper citation: DFAT: A Web-Based Toolkit for Estimating Demand
+              Flexibility in Building-to-Grid Integration.{" "}
               <a
                 href="https://www.softxjournal.com"
                 target="_blank"

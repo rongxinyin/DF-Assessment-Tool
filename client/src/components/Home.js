@@ -183,7 +183,8 @@ export default function Home() {
             color="white.main"
             sx={{ fontSize: "1.2rem" }}
           >
-            DFAT: A Web-Based Toolkit for Estimating Demand Flexibility in Building-to-Grid Integration{" "}
+            DFAT: A Web-Based Toolkit for Estimating Demand Flexibility in
+            Building-to-Grid Integration{" "}
             <a
               href="https://www.softxjournal.com/"
               target="_blank"
