@@ -13,8 +13,8 @@ import {
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createCaseIDs, gtaCalculation } from "../logic/DR_Calculations.js";
-import { abbreviationToFullName } from "../logic/stateAbbreviations.js";
+import { createCaseIDs, gtaCalculation } from "../logic/DRCalculations.js";
+import { abbreviationToFullName } from "../logic/StateAbbreviations.js";
 import { createVisualizations } from "./calculator-components/Visualizations.js";
 
 export default function Basic() {
@@ -342,20 +342,6 @@ export default function Basic() {
         >
           Basic Calculator
         </Typography>
-
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={loadBasicTemplate}
-          sx={{
-            marginTop: 2,
-            marginBottom: 3,
-            width: "21%",
-            height: "50px",
-          }}
-        >
-          Load Template
-        </Button>
 
         <form>
           <Typography

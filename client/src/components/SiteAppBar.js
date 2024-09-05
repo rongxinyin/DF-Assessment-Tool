@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as Logo } from "./images/lbnlgridintegrationgroup.svg";
+import { ReactComponent as Logo } from "./images/5_BL_Horiz_Tile_rgb.svg";
 
 const drawerWidth = 240;
 const navItems = ["Calculator", "FAQ", "About"];
@@ -77,7 +77,7 @@ export default function SiteAppBar(props) {
           </IconButton>
           <Logo
             onClick={() => navigate("/")}
-            style={{ width: 450, height: 150, cursor: "pointer" }}
+            style={{ width: 330, height: 90, cursor: "pointer" }}
           ></Logo>
           <Typography
             variant="h6"

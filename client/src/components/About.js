@@ -1,5 +1,4 @@
 import { Box, Grid, Paper, Typography, styled } from "@mui/material";
-import graphic from "./images/windmills_grid.jpg";
 
 // visualization. will delete later
 const Item = styled(Paper)(({ theme }) => ({
@@ -74,10 +73,10 @@ export default function About() {
             </Typography>
 
             <Typography variant="h6" color="common.white" sx={{}}>
-              Paper citation: DFAT: A Web-Based Demand Flexibility Assessment
-              Toolkit for Building-to-Grid Integration.{" "}
+              Paper citation: DFAT: A Web-Based Toolkit for Estimating Demand
+              Flexibility in Building-to-Grid Integration.{" "}
               <a
-                href="https://doi.org/10.1016/j.buildenv.2023.110663"
+                href="https://www.softxjournal.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: "#2196f3" }} // Inline styling
