@@ -1,5 +1,4 @@
 import { Box, Grid, Paper, Typography, styled } from "@mui/material";
-import graphic from "./images/windmills_grid.jpg";
 
 // visualization. will delete later
 const Item = styled(Paper)(({ theme }) => ({
