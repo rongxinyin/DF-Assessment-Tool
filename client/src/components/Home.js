@@ -183,15 +183,26 @@ export default function Home() {
             color="white.main"
             sx={{ fontSize: "1.2rem" }}
           >
+            Leong, Michael and Mahanta, Medha and Yin, Clara and Garcia, TJ and
+            Tan, Zach and Prakash, Anand K. and Black, Doug and Yin, Rongxin,
             DFAT: A Web-Based Toolkit for Estimating Demand Flexibility in
-            Building-to-Grid Integration{" "}
+            Building-to-Grid Integration. Available at SSRN:{" "}
             <a
-              href="https://www.softxjournal.com/"
+              href="https://ssrn.com/abstract=4968003"
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: "#2196f3" }}
             >
-              To be submitted to Journal of SoftwareX
+              https://ssrn.com/abstract=4968003{" "}
+            </a>
+            or{" "}
+            <a
+              href="http://dx.doi.org/10.2139/ssrn.4968003"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#2196f3" }}
+            >
+              http://dx.doi.org/10.2139/ssrn.4968003{" "}
             </a>
           </Typography>
         </Grid>
