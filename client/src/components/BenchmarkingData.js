@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Typography,
@@ -61,17 +61,33 @@ export default function BenchmarkingData({ selectedSite, model, chooseModel }) {
           <TableBody>
             <TableRow>
               <TableCell>{selectedSite.siteID}</TableCell>
-              <TableCell align="right">{selectedSite.siteInfo.doe_climate_zone}</TableCell>
+              <TableCell align="right">
+                {selectedSite.siteInfo.doe_climate_zone}
+              </TableCell>
               <TableCell align="right">{selectedSite.siteInfo.city}</TableCell>
               <TableCell align="right">{selectedSite.siteInfo.state}</TableCell>
               <TableCell align="right">{selectedSite.siteInfo.zip}</TableCell>
-              <TableCell align="right">{selectedSite.siteInfo.number_of_floor}</TableCell>
-              <TableCell align="right">{selectedSite.siteInfo.total_building_area_ft2}</TableCell>
-              <TableCell align="right">{selectedSite.siteInfo.net_selling_area_ft2}</TableCell>
-              <TableCell align="right">{selectedSite.siteInfo.total_stock_area_ft2}</TableCell>
-              <TableCell align="right">{selectedSite.siteInfo.number_of_HVAC}</TableCell>
-              <TableCell align="right">{selectedSite.siteInfo.program}</TableCell>
-              <TableCell align="right">{selectedSite.siteInfo.utility}</TableCell>
+              <TableCell align="right">
+                {selectedSite.siteInfo.number_of_floor}
+              </TableCell>
+              <TableCell align="right">
+                {selectedSite.siteInfo.total_building_area_ft2}
+              </TableCell>
+              <TableCell align="right">
+                {selectedSite.siteInfo.net_selling_area_ft2}
+              </TableCell>
+              <TableCell align="right">
+                {selectedSite.siteInfo.total_stock_area_ft2}
+              </TableCell>
+              <TableCell align="right">
+                {selectedSite.siteInfo.number_of_HVAC}
+              </TableCell>
+              <TableCell align="right">
+                {selectedSite.siteInfo.program}
+              </TableCell>
+              <TableCell align="right">
+                {selectedSite.siteInfo.utility}
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -90,11 +106,19 @@ export default function BenchmarkingData({ selectedSite, model, chooseModel }) {
               value={model}
               onChange={chooseModel}
             >
-              <MenuItem value={"regressionBaseline"}>Regression Baseline</MenuItem>
+              <MenuItem value={"regressionBaseline"}>
+                Regression Baseline
+              </MenuItem>
               <MenuItem value={"10/10Average"}>10/10 Average</MenuItem>
-              <MenuItem value={"adjusted10/10Average"}>Adjusted 10/10 Average</MenuItem>
-              <MenuItem value={"weatherRegression"}>Weather Regression</MenuItem>
-              <MenuItem value={"adjustedWeatherRegression"}>Adjusted Weather Regression</MenuItem>
+              <MenuItem value={"adjusted10/10Average"}>
+                Adjusted 10/10 Average
+              </MenuItem>
+              <MenuItem value={"weatherRegression"}>
+                Weather Regression
+              </MenuItem>
+              <MenuItem value={"adjustedWeatherRegression"}>
+                Adjusted Weather Regression
+              </MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -111,24 +135,42 @@ export default function BenchmarkingData({ selectedSite, model, chooseModel }) {
               <TableCell align="right">Peak OAT (°F)</TableCell>
               <TableCell align="right">Event Average OAT (°F)</TableCell>
               <TableCell align="right">Peak Demand Intensity (W/ft²)</TableCell>
-              <TableCell align="right">Avg. Demand Decrease Intensity (W/ft²)</TableCell>
+              <TableCell align="right">
+                Avg. Demand Decrease Intensity (W/ft²)
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {createFieldMetricBaselineRegressionRows().map((row) => (
               <TableRow key={row.event_id}>
                 <TableCell>{row.event_id}</TableCell>
-                <TableCell align="right">{moment.utc(row.event_date).format("MM/DD/YY")}</TableCell>
                 <TableCell align="right">
-                  {moment.utc(row.shed_start_time_date).tz("America/Los_Angeles").hour(moment(row.shed_start_time_date).hours() - 1).format("MM/DD/YYYY HH:mm:ss")}
+                  {moment.utc(row.event_date).format("MM/DD/YY")}
                 </TableCell>
                 <TableCell align="right">
-                  {moment.utc(row.shed_end_time_date).tz("America/Los_Angeles").hour(moment(row.shed_end_time_date).hours() - 1).format("MM/DD/YYYY HH:mm:ss")}
+                  {moment
+                    .utc(row.shed_start_time_date)
+                    .tz("America/Los_Angeles")
+                    .hour(moment(row.shed_start_time_date).hours() - 1)
+                    .format("MM/DD/YYYY HH:mm:ss")}
+                </TableCell>
+                <TableCell align="right">
+                  {moment
+                    .utc(row.shed_end_time_date)
+                    .tz("America/Los_Angeles")
+                    .hour(moment(row.shed_end_time_date).hours() - 1)
+                    .format("MM/DD/YYYY HH:mm:ss")}
                 </TableCell>
                 <TableCell align="right">{parseInt(row.peak_oat)}</TableCell>
-                <TableCell align="right">{parseInt(row.event_avg_oat)}</TableCell>
-                <TableCell align="right">{Math.round(row.peak_demand_intensity_wft2 * 100) / 100}</TableCell>
-                <TableCell align="right">{Math.round(row.shed_avg_wft2 * 100) / 100}</TableCell>
+                <TableCell align="right">
+                  {parseInt(row.event_avg_oat)}
+                </TableCell>
+                <TableCell align="right">
+                  {Math.round(row.peak_demand_intensity_wft2 * 100) / 100}
+                </TableCell>
+                <TableCell align="right">
+                  {Math.round(row.shed_avg_wft2 * 100) / 100}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

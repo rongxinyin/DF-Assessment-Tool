@@ -4,10 +4,11 @@ import { Map } from "react-map-gl";
 import { IconLayer } from "@deck.gl/layers";
 import axios from "axios";
 import mapbox_token from "./mapbox_token.js";
-import BenchmarkingData from './BenchmarkingData.js';
+import BenchmarkingData from "./BenchmarkingData.js";
 
 const MAPBOX_ACCESS_TOKEN = mapbox_token;
-const MAP_STYLE = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
+const MAP_STYLE =
+  "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 
 const INITIAL_VIEW_STATE = {
   longitude: -111,
@@ -20,7 +21,9 @@ const INITIAL_VIEW_STATE = {
 
 const getBenchmarkingCollection = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/benchmarking/getAll");
+    const response = await axios.get(
+      "http://localhost:8080/benchmarking/getAll"
+    );
     if (response.data) {
       console.log("Data received:", response.data);
       return response.data;
@@ -65,7 +68,8 @@ export default function Benchmarking() {
     id: "icon-layer",
     data: benchmarkingData,
     pickable: true,
-    iconAtlas: "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png",
+    iconAtlas:
+      "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png",
     iconMapping: ICON_MAPPING,
     getIcon: (d) => "marker",
     sizeScale: 6,
@@ -75,7 +79,7 @@ export default function Benchmarking() {
   });
 
   return (
-    <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
+    <div style={{ position: "relative", height: "100vh", width: "100%" }}>
       <DeckGL
         initialViewState={INITIAL_VIEW_STATE}
         controller={true}
@@ -93,36 +97,36 @@ export default function Benchmarking() {
       </DeckGL>
 
       {isPanelOpen && selectedSite && (
-        <div 
+        <div
           style={{
-            position: 'absolute',
+            position: "absolute",
             bottom: 0,
             left: 0,
             right: 0,
-            height: '60%', // popup window height
-            backgroundColor: 'white',
-            padding: '20px',
-            boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.1)',
-            overflowY: 'auto',
-            transition: 'transform 0.3s ease-out',
-            transform: isPanelOpen ? 'translateY(0)' : 'translateY(100%)',
+            height: "60%", // popup window height
+            backgroundColor: "white",
+            padding: "20px",
+            boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
+            overflowY: "auto",
+            transition: "transform 0.3s ease-out",
+            transform: isPanelOpen ? "translateY(0)" : "translateY(100%)",
           }}
         >
-          <button 
+          <button
             onClick={() => setIsPanelOpen(false)}
             style={{
-              position: 'absolute',
-              top: '10px',
-              right: '10px',
-              background: 'none',
-              border: 'none',
-              fontSize: '1.5em',
-              cursor: 'pointer',
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              background: "none",
+              border: "none",
+              fontSize: "1.5em",
+              cursor: "pointer",
             }}
           >
             &times;
           </button>
-          
+
           <BenchmarkingData
             selectedSite={selectedSite}
             model={model}
