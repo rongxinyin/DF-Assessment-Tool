@@ -37,6 +37,8 @@ const getBenchmarkingCollection = async () => {
   }
 };
 
+// https://deck.gl/docs/api-reference/layers/icon-layer
+
 export default function Benchmarking() {
   const [benchmarkingData, setBenchmarkingData] = useState([]);
   const [selectedSite, setSelectedSite] = useState(null);
@@ -71,6 +73,8 @@ export default function Benchmarking() {
     iconAtlas:
       "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png",
     iconMapping: ICON_MAPPING,
+    // iconAtlas and iconMapping are required
+    // getIcon: return a string
     getIcon: (d) => "marker",
     sizeScale: 6,
     getPosition: (d) => d.coordinates,
