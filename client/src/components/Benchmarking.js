@@ -6,9 +6,10 @@ import axios from "axios";
 import mapbox_token from "./mapbox_token.js";
 import BenchmarkingData from "./BenchmarkingData.js";
 import FilterMenu from "./FilterMenu.js";
+import { Box, Button, Grid, Paper } from "@mui/material";
 
 const MAPBOX_ACCESS_TOKEN = mapbox_token;
-const MAP_STYLE = "mapbox://styles/mapbox/streets-v11"; // Updated to Streets style
+const MAP_STYLE = "mapbox://styles/mapbox/streets-v11";
 
 const INITIAL_VIEW_STATE = {
   longitude: -98,
@@ -22,7 +23,6 @@ const INITIAL_VIEW_STATE = {
 const regions = {
   california: { longitude: -119.4179, latitude: 36.7783, zoom: 5 },
   usa: { longitude: -98, latitude: 39, zoom: 3.5 },
-  // Add more regions as needed
 };
 
 const getBenchmarkingCollection = async () => {
@@ -30,16 +30,10 @@ const getBenchmarkingCollection = async () => {
     const response = await axios.get(
       "http://localhost:8080/benchmarking/getAll"
     );
-    if (response.data) {
-      console.log("Data received:", response.data);
-      return response.data;
-    } else {
-      console.log("No data received, response:", response);
-      return null;
-    }
+    return response.data || [];
   } catch (error) {
     console.error("Error fetching data:", error);
-    return null;
+    return [];
   }
 };
 
@@ -56,9 +50,7 @@ export default function Benchmarking() {
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE);
 
   useEffect(() => {
-    getBenchmarkingCollection().then((data) => {
-      setBenchmarkingData(data);
-    });
+    getBenchmarkingCollection().then(setBenchmarkingData);
   }, []);
 
   const onClick = (info) => {
@@ -95,94 +87,82 @@ export default function Benchmarking() {
   });
 
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "300px 1fr",
-        gridTemplateRows: "50% 50%",
-        height: "100vh",
-        width: "100%",
-      }}
-    >
-      <div
-        style={{
-          gridRow: "1 / span 2",
-          gridColumn: "1 / 2",
-          backgroundColor: "#f0f0f0",
-          padding: "10px",
-        }}
-      >
-        <FilterMenu filters={filters} setFilters={setFilters} />
-      </div>
-      <div
-        style={{
-          gridRow: "1 / 2",
-          gridColumn: "2 / 3",
-          position: "relative",
-          boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-          borderBottom: "2px solid #ccc",
-          marginTop: "20px",
-        }}
-      >
-        <div style={{ position: "absolute", top: 10, left: 10, zIndex: 1 }}>
-          <button onClick={() => handleRegionChange("california")}>
-            California
-          </button>
-          <button onClick={() => handleRegionChange("usa")}>Reset</button>
-        </div>
-        <DeckGL
-          viewState={viewState}
-          onViewStateChange={({ viewState }) => setViewState(viewState)}
-          controller={true}
-          layers={[layers]}
-          getTooltip={({ object }) =>
-            object &&
-            `${object.siteInfo.city}, ${object.siteInfo.state}
-            \nSite ID: ${object.siteID}
-            \nDOE Climate Zone: ${object.siteInfo.doe_climate_zone}
-            \n Click for detailed information`
-          }
-          onClick={onClick}
-        >
-          <Map mapStyle={MAP_STYLE} mapboxAccessToken={MAPBOX_ACCESS_TOKEN} />
-        </DeckGL>
-        <div style={{ position: "absolute", top: 10, right: 10, zIndex: 1 }}>
-          <button
-            onClick={() =>
-              setViewState({ ...viewState, zoom: viewState.zoom + 1 })
+    <Grid container sx={{ height: "100vh" }}>
+      <Grid item xs={3}>
+        <Paper elevation={3} sx={{ height: "100%", p: 3 }}>
+          <FilterMenu filters={filters} setFilters={setFilters} />
+        </Paper>
+      </Grid>
+      <Grid item xs={9}>
+        <Box sx={{ height: "50%", position: "relative", marginTop: 3 }}>
+          <Box sx={{ position: "absolute", top: 10, left: 10, zIndex: 1 }}>
+            <Button
+              variant="contained"
+              onClick={() => handleRegionChange("california")}
+            >
+              California
+            </Button>
+            <Button
+              variant="contained"
+              sx={{ ml: 1 }}
+              onClick={() => handleRegionChange("usa")}
+            >
+              Reset
+            </Button>
+          </Box>
+          <DeckGL
+            viewState={viewState}
+            onViewStateChange={({ viewState }) => setViewState(viewState)}
+            controller={true}
+            layers={[layers]}
+            getTooltip={({ object }) =>
+              object &&
+              `${object.siteInfo.city}, ${object.siteInfo.state}
+              \nSite ID: ${object.siteID}
+              \nDOE Climate Zone: ${object.siteInfo.doe_climate_zone}
+              \nClick for detailed information`
             }
+            onClick={onClick}
           >
-            +
-          </button>
-          <button
-            onClick={() =>
-              setViewState({ ...viewState, zoom: viewState.zoom - 1 })
-            }
-          >
-            -
-          </button>
-          <button onClick={() => setViewState(INITIAL_VIEW_STATE)}>
-            Reset
-          </button>
-        </div>
-      </div>
-      <div
-        style={{
-          gridRow: "2 / 3",
-          gridColumn: "2 / 3",
-          backgroundColor: "#f0f0f0",
-          padding: "40px",
-          boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        {selectedSite && (
-          <BenchmarkingData
-            selectedSite={selectedSite}
-            model={model}
-            chooseModel={chooseModel}
-          />
-        )}
-      </div>
-    </div>
+            <Map mapStyle={MAP_STYLE} mapboxAccessToken={MAPBOX_ACCESS_TOKEN} />
+          </DeckGL>
+          <Box sx={{ position: "absolute", top: 10, right: 10, zIndex: 1 }}>
+            <Button
+              variant="contained"
+              onClick={() =>
+                setViewState({ ...viewState, zoom: viewState.zoom + 1 })
+              }
+            >
+              +
+            </Button>
+            <Button
+              variant="contained"
+              sx={{ ml: 1 }}
+              onClick={() =>
+                setViewState({ ...viewState, zoom: viewState.zoom - 1 })
+              }
+            >
+              -
+            </Button>
+            <Button
+              variant="contained"
+              sx={{ ml: 1 }}
+              onClick={() => setViewState(INITIAL_VIEW_STATE)}
+            >
+              Reset
+            </Button>
+          </Box>
+        </Box>
+        <Paper elevation={3} sx={{ height: "50%", p: 3 }}>
+          {selectedSite && (
+            <BenchmarkingData
+              selectedSite={selectedSite}
+              model={model}
+              chooseModel={chooseModel}
+            />
+          )}
+        </Paper>
+      </Grid>
+    </Grid>
   );
 }
