@@ -88,11 +88,6 @@ export default function Benchmarking() {
 
   return (
     <Grid container sx={{ height: "100vh" }}>
-      <Grid item xs={3}>
-        <Paper elevation={3} sx={{ height: "100%", p: 3 }}>
-          <FilterMenu filters={filters} setFilters={setFilters} />
-        </Paper>
-      </Grid>
       <Grid item xs={9}>
         <Box sx={{ height: "50%", position: "relative", marginTop: 3 }}>
           <Box sx={{ position: "absolute", top: 10, left: 10, zIndex: 1 }}>
@@ -161,6 +156,11 @@ export default function Benchmarking() {
               chooseModel={chooseModel}
             />
           )}
+        </Paper>
+      </Grid>
+      <Grid item xs={3}>
+        <Paper elevation={3} sx={{ height: "100%", p: 3, marginTop: 3 }}>
+          <FilterMenu filters={filters} setFilters={setFilters} />
         </Paper>
       </Grid>
     </Grid>
