@@ -33,9 +33,9 @@ const InfoListComponent = ({ data }) => {
             {item.question}
           </Button>
           {openIndex === index && (
-            <Typography variant="h6" color="common.white" sx={{ margin: 1 }}>
+            <p color="common.white">
               {item.answer}
-            </Typography>
+            </p>
           )}
         </div>
       ))}

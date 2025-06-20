@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import residentialIcon from "./images/residential.png";
 import commercialIcon from "./images/commercial.png";
 import benchmarkIcon from "./images/benchmarking.png";
+import CitationComponent from "./CitationComponent.js";
 
 // Visualization
 const Item = styled(Paper)(({ theme }) => ({
@@ -47,7 +48,7 @@ export default function Home() {
 
         <Grid item xs={12} align="center">
           <Typography
-            variant="h6"
+            variant="body1"
             color="white.main"
             sx={{
               m: 1,
@@ -154,16 +155,14 @@ export default function Home() {
           }}
         >
           <Typography
-            variant="body2"
+            variant="h6"
             color="white.main"
-            sx={{ fontSize: "1.2rem" }}
           >
-            Paper Citations:
+            Paper Citations
           </Typography>
           <Typography
-            variant="body2"
+            variant="body1"
             color="white.main"
-            sx={{ fontSize: "1.2rem" }}
           >
             Yin, R., J. Liu, M.A. Piette, J. Xie, M. Pritoni, A. Casillas, L.
             Yu, P. Schwartz, Comparing simulated demand flexibility against
@@ -178,33 +177,7 @@ export default function Home() {
               https://doi.org/10.1016/j.buildenv.2023.110663
             </a>
           </Typography>
-          <Typography
-            variant="body2"
-            color="white.main"
-            sx={{ fontSize: "1.2rem" }}
-          >
-            Leong, Michael and Mahanta, Medha and Yin, Clara and Garcia, TJ and
-            Tan, Zach and Prakash, Anand K. and Black, Doug and Yin, Rongxin,
-            DFAT: A Web-Based Toolkit for Estimating Demand Flexibility in
-            Building-to-Grid Integration. Available at SSRN:{" "}
-            <a
-              href="https://ssrn.com/abstract=4968003"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "#2196f3" }}
-            >
-              https://ssrn.com/abstract=4968003{" "}
-            </a>
-            or{" "}
-            <a
-              href="http://dx.doi.org/10.2139/ssrn.4968003"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "#2196f3" }}
-            >
-              http://dx.doi.org/10.2139/ssrn.4968003{" "}
-            </a>
-          </Typography>
+          <CitationComponent />
         </Grid>
       </Grid>
     </Box>
