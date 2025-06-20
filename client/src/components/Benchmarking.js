@@ -79,7 +79,7 @@ export default function Benchmarking() {
     sizeScale: 6,
     getPosition: (d) => d.coordinates,
     getSize: (d) => 5,
-    getColor: (d) => [Math.sqrt(d.exits), 140, 0],
+    getColor: (d) => [0, 118, 129],
   });
 
   return (
