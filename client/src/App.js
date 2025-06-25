@@ -1,6 +1,7 @@
 import { ThemeProvider, createTheme } from "@mui/material";
 import { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ResidentialLanding from "./components/ResidentialLanding.js";
 
 import About from "./components/About.js";
 import Advanced from "./components/Advanced.js";
@@ -67,6 +68,7 @@ export default function App() {
               element={<BenchmarkingData />}
             />
             <Route path="/*" element={<NotFound />} />
+            <Route path = "/residential" element={<ResidentialLanding />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
