@@ -1,116 +1,105 @@
 import React, { useState } from "react";
-import axios from "axios";
 
-export default function ResidentialLanding() {
-    const [baselineKW, setBaselineKW] = useState(5.0);
-    const [drKW, setDrKW] = useState(3.5);
-    const [sqft, setSqft] = useState(1500);
+export default function BasicCalculator() {
+  const [form, setForm] = useState({});
 
-    //coming from backend (energy use, load change, etc)
-    const [results, setResults] = useState(null);
-    const [isPanelOpen, setIsPanelOpen] = useState(false);
+  // function to handle changes in input fields
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
 
-    //sending to backend to get calculations
-    const calculate = async () => {
-        try {
-            const response = await axios.post("http://localhost:5000/calculate", {
-                baselineKW, drKW, squareFootage: sqft,
-            } );
+  // style for input and select fields
+  const inputStyle = {
+    width: "100%",
+    padding: "0.6rem 0.75rem",
+    borderRadius: "10px",
+    border: "2px solid white",
+    backgroundColor: "#00858C",
+    color: "white",
+    fontSize: "1rem",
+  };
 
-           //store values
-           setResults(response.data);
+  const selectStyle = {
+    ...inputStyle,
+    appearance: "auto",
+  };
 
-           setIsPanelOpen(true);
-          }
+  // return what user sees
+  return (
+    <div style={{ display: "flex", height: "100vh" }}>
 
-        catch (error){
-            console.error("Calculation error:", error);
+      {/* left panel (inputs) */}
+      <div style={{ backgroundColor: "#003840", color: "white", flex: 1, padding: "2rem" }}>
 
-        }
+        {/* basic/advanced buttons */}
+         <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
+          <button style={{ backgroundColor: "#007b83", border: "none", padding: "0.5rem 1rem", color: "white", borderRadius: "5px" }}>BASIC</button>
+          <button style={{ backgroundColor: "#007b83", border: "none", padding: "0.5rem 1rem", color: "white", borderRadius: "5px" }}>ADVANCED</button>
+        </div>
 
-        };
+        {/* page title */}
+        <h2 style={{ marginBottom: "1rem" }}>Basic Calculator</h2>
 
-    //return what user sees
-    return (
-    <div style={{ height: "100vh", padding: "2rem" }}>
-          {/* page title */}
-          <h1>Central AC Load Calculator</h1>
+        {/* input field for baseline power usage */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+          <div>
+            <label>Baseline kW: </label>
+            <input
+              type="number"
+              name="baselineKW"
+              value={form.baselineKW || ""}
+              onChange={handleChange}
+              style={inputStyle}
+            />
+          </div>
 
-     {/* input field for baseline power usage*/}
-     <div style={{ marginBottom: "1rem" }}>
-             <label>Baseline kW: </label>
-             <input
-               type="number" // only  numbers
-               value={baselineKW}
-               onChange={(e) => setBaselineKW(parseFloat(e.target.value))} // update state
-             />
-           </div>
+          {/* input field for demand response power usage */}
+          <div>
+            <label>DR kW: </label>
+            <input
+              type="number"
+              name="drKW"
+              value={form.drKW || ""}
+              onChange={handleChange}
+              style={inputStyle}
+            />
+          </div>
 
-     {/* input field for demand response power usage*/}
-     <div style={{ marginBottom: "1rem" }}>
-             <label>DR kW: </label>
-             <input
-               type="number"
-               value={drKW}
-               onChange={(e) => setDrKW(parseFloat(e.target.value))}
-             />
-           </div>
+          {/* input field for size of the building in square feet */}
+          <div>
+            <label>Square Footage:</label>
+            <input
+              type="number"
+              name="sqft"
+              value={form.sqft || ""}
+              onChange={handleChange}
+              style={inputStyle}
+            />
+          </div>
 
+          {/* dropdown for HVAC Type */}
+          <div>
+            <label>HVAC Type:</label>
+            <select
+              name="hvacType"
+              value={form.hvacType || ""}
+              onChange={handleChange}
+              style={selectStyle}
+            >
+              <option value="">Select HVAC Type</option>
+              <option value="central">Central</option>
+              <option value="split">Split</option>
+              <option value="none">None</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
-     {/* input field for size of the building in square feet*/}
-      <div style={{ marginBottom: "1rem" }}>
-             <label>Square Footage: </label>
-             <input
-               type="number"
-               value={sqft}
-               onChange={(e) => setSqft(parseInt(e.target.value))}
-             />
-           </div>
-
-      {/*button to calculate results*/}
-      <button onClick = {calculate}>Calculate</button>
-
-      {/*results will only show if we got results from backend and the panel is open*/}
-     {isPanelOpen && results && (
-             <div
-               style={{
-                 position: "absolute",
-                 bottom: 0,
-                 left: 0,
-                 right: 0,
-                 height: "50%",
-                 backgroundColor: "white",
-                 padding: "20px",
-                 boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.2)",
-                 overflowY: "auto",
-               }}
-             >
-     {/* close button (X) to hide or close the panel*/}
-               <button
-                 onClick={() => setIsPanelOpen(false)}
-                 style={{
-                   position: "absolute",
-                   top: "10px",
-                   right: "10px",
-                   background: "none",
-                   border: "none",
-                   fontSize: "1.5em",
-                   cursor: "pointer",
-                 }}
-               >
-                 &times; {/* close icon "x" symbol*/}
-               </button>
-
-                {/*results are shown here*/}
-               <h2>Results</h2>
-               <p><strong>Normal Energy Use:</strong> {results.normalUse} kWh</p>
-               <p><strong>DR Energy Use:</strong> {results.drUse} kWh</p>
-               <p><strong>Load Reduction:</strong> {results.loadKW} kW</p>
-               <p><strong>Load Reduction (%):</strong> {results.loadPct} %</p>
-               <p><strong>Load Reduction (W/ft²):</strong> {results.loadWPerFt2} W/ft²</p>
-             </div>
-           )}
-         </div>
-       );
-     }
-
+      {/* right panel - visualizations */}
+      <div style={{ backgroundColor: "#cbe9f5", flex: 1, padding: "2rem" }}>
+        <h2 style={{ textAlign: "center" }}>Visualizations</h2>
+      </div>
+    </div>
+  );
+}
