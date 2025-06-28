@@ -7,6 +7,7 @@ import morgan from "morgan";
 import analyticsRoutes from "./routes/analytics.js";
 import stateRoutes from "./routes/states.js";
 import benchmarkingRoutes from "./routes/benchmarking.js";
+import residentialRoutes from "./routes/residential.js";
 
 // app
 const app = express();
@@ -21,6 +22,7 @@ dotenv.config();
 app.use("/analytics", analyticsRoutes);
 app.use("/states", stateRoutes);
 app.use("/benchmarking", benchmarkingRoutes);
+app.use("/residential", residentialRoutes);
 
 //connect
 mongoose.connect(process.env.CONNECTION_URL);
@@ -30,5 +32,5 @@ db.once("open", () => console.log(`Connected to database`));
 //listener
 const port = 8080;
 const server = app.listen(port, () =>
-  console.log(`Server is running on port ${port}`)
+    console.log(`Server is running on port ${port}`)
 );
