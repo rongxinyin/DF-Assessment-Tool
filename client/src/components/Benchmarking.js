@@ -63,7 +63,7 @@ export default function Benchmarking() {
   };
 
   const ICON_MAPPING = {
-    marker: { x: 0, y: 0, width: 120, height: 120, mask: true },
+    marker: { x: 0, y: 0, width: 128, height: 128, anchorY: 128, mask: true },
   };
 
   const layers = new IconLayer({
@@ -79,7 +79,7 @@ export default function Benchmarking() {
     sizeScale: 6,
     getPosition: (d) => d.coordinates,
     getSize: (d) => 5,
-    getColor: (d) => [Math.sqrt(d.exits), 140, 0],
+    getColor: (d) => [0, 118, 129],
   });
 
   return (
