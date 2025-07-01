@@ -48,6 +48,9 @@ export default function About() {
                             And thank you to mentors Rongxin Yin and Anand Krishnan for
                             leading this project in the 2023 Experiences in Research program.
                         </Typography>
+                        <Typography variant="body1" color="common.white" sx={{}}>
+                            <a href="https://www.flaticon.com/free-icons/buildings" title="buildings icons" style={{ color: "#2196f3" }} >Buildings icons created by kank - Flaticon</a>
+                        </Typography>
                     </Grid>
 
                     <Grid item xs={12}>

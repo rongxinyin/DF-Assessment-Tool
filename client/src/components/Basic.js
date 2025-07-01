@@ -11,7 +11,7 @@ import {
     Typography,
     Slider,
 } from "@mui/material";
-import { ArrowDropDown } from "@mui/icons-material";
+import { DropDownIcon } from './DropDownIcon.js';
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,6 @@ import { createCaseIDs, gtaCalculation } from "../logic/DRCalculations.js";
 import { abbreviationToFullName } from "../logic/StateAbbreviations.js";
 import { createVisualizations } from "./calculator-components/Visualizations.js";
 
-const DropDownIcon = props => (<ArrowDropDown {...props} style={{ color: 'white' }} />);
 
 export default function Basic() {
     let navigate = useNavigate(); // navigate to diff pages
