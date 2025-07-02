@@ -13,6 +13,7 @@ import BenchmarkingData from "./components/BenchmarkingData.js";
 import ResidentialLanding from "./components/ResidentialLanding.js";
 import HouseType from "./components/HouseType.js";
 import Location from "./components/Location.js";
+import ResultsPage from "./components/ResultsPage.js";
 
 import AppBar from "./components/SiteAppBar.js";
 
@@ -74,6 +75,7 @@ export default function App() {
 
                         <Route path="/residential/house_type" element={<HouseType />} />
                         <Route path="/residential/location" element={<Location />} />
+                        <Route path="/residential/results" element={<ResultsPage />} />
                     </Routes>
                 </Suspense>
             </BrowserRouter>
