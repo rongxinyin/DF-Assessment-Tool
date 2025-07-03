@@ -225,18 +225,18 @@ export default function ApplianceSelector() {
             justifyContent: "center",
           }}
         >
-          <h2 style={{ fontSize: "1.8rem", marginBottom: "1rem" }}>Preview</h2>
+          <h2 style={{ fontSize: "2rem", marginBottom: "2rem" }}>Preview</h2>
           <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              height: "300px",
-              border: "1px solid #ccc",
-              borderRadius: "10px",
-              backgroundColor: "#f9f9f9",
-            }}
+//            style={{
+//              display: "flex",
+//              justifyContent: "center",
+//              alignItems: "center",
+//              width: "100%",
+//              height: "300px",
+//              border: "1px solid #ccc",
+//              borderRadius: "10px",
+//              backgroundColor: "#f9f9f9",
+//            }}
           >
             <img
               src="/appliance-images/appliance1.png"
@@ -253,8 +253,8 @@ export default function ApplianceSelector() {
 }
 
 const imgStyle = {
-  width: "100%",
-  height: "180px",
-  borderRadius: "10px",
+  width: "800px",
+  height: "900px",
+  borderRadius: "1px",
   objectFit: "cover",
 };
