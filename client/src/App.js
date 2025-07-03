@@ -14,6 +14,7 @@ import ResidentialLanding from "./components/ResidentialLanding.js";
 import HouseType from "./components/HouseType.js";
 import Location from "./components/Location.js";
 import ResultsPage from "./components/ResultsPage.js";
+import Appliances from "./components/Appliances.js"
 
 import AppBar from "./components/SiteAppBar.js";
 
@@ -75,6 +76,7 @@ export default function App() {
 
                         <Route path="/residential/house_type" element={<HouseType />} />
                         <Route path="/residential/location" element={<Location />} />
+                        <Route path="/residential/results" element={<ResultsPage />} />
                         <Route path="/residential/results" element={<ResultsPage />} />
                     </Routes>
                 </Suspense>
