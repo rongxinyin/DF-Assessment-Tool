@@ -42,7 +42,7 @@ export default function NewResults() {
     };
 
     return (
-        <Box bgcolor="#073a41" minHeight="100vh" p={isMobile ? 2 : 4}>
+        <Box bgcolor="#EEEEEE" minHeight="100vh" p={isMobile ? 2 : 4}>
             {/* Graph Section */}
             <Grid
                 container
@@ -54,7 +54,7 @@ export default function NewResults() {
                 <Grid item xs={12} md={5}>
                     <Typography
                         variant="h5"
-                        color="common.white"
+                        color="#000000"
                         sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
                     >
                         Normal Plot
@@ -120,7 +120,7 @@ export default function NewResults() {
                 <Grid item xs={12} md={5}>
                     <Typography
                         variant="h5"
-                        color="common.white"
+                        color="#000000"
                         sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
                     >
                         DR Plot
@@ -199,7 +199,7 @@ export default function NewResults() {
                     <Button
                         variant="contained"
                         onClick={() => navigate(-1)}
-                        sx={{ backgroundColor: "#cde6ef", color: "black", fontWeight: "bold" }}
+                        sx={{ backgroundColor: "#EEEEEE", color: "black", fontWeight: "bold" }}
                     >
                         Back
                     </Button>
@@ -209,7 +209,7 @@ export default function NewResults() {
                     <Button
                         variant="contained"
                         onClick={handleExport}
-                        sx={{ backgroundColor: "#cde6ef", color: "black", fontWeight: "bold" }}
+                        sx={{ backgroundColor: "#EEEEEE", color: "black", fontWeight: "bold" }}
                     >
                         Export
                     </Button>
