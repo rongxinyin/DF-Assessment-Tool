@@ -44,6 +44,7 @@ export default function ApplianceSelector() {
             }
         }
     };
+
     const textFieldInputPropsSX = {
         sx: {
             color: "#000000",
