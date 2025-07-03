@@ -208,30 +208,7 @@ export default function ApplianceSelector() {
             }}
           >
             <img src="/appliance-images/appliance1.png" alt="Appliance 1" style={imgStyle} />
-            <img src="/appliance-images/appliance2.png" alt="Appliance 2" style={imgStyle} />
-            <img src="/appliance-images/appliance3.png" alt="Appliance 3" style={imgStyle} />
-            <img src="/appliance-images/appliance4.png" alt="Appliance 4" style={imgStyle} />
-            <img src="/appliance-images/appliance5.png" alt="Appliance 5" style={imgStyle} />
-            <img src="/appliance-images/appliance6.png" alt="Appliance 6" style={imgStyle} />
-            <img src="/appliance-images/appliance7.png" alt="Appliance 7" style={imgStyle} />
-            <img src="/appliance-images/appliance8.png" alt="Appliance 8" style={imgStyle} />
-            <img src="/appliance-images/appliance9.png" alt="Appliance 9" style={imgStyle} />
-            <img src="/appliance-images/appliance10.png" alt="Appliance 10" style={imgStyle} />
-            <img src="/appliance-images/appliance11.png" alt="Appliance 11" style={imgStyle} />
-            <img src="/appliance-images/appliance12.png" alt="Appliance 12" style={imgStyle} />
-            <img src="/appliance-images/appliance13.png" alt="Appliance 13" style={imgStyle} />
-            <img src="/appliance-images/appliance14.png" alt="Appliance 14" style={imgStyle} />
-            <img src="/appliance-images/appliance15.png" alt="Appliance 15" style={imgStyle} />
-            <img src="/appliance-images/appliance16.png" alt="Appliance 16" style={imgStyle} />
-            <img src="/appliance-images/appliance17.png" alt="Appliance 17" style={imgStyle} />
-            <img src="/appliance-images/appliance18.png" alt="Appliance 18" style={imgStyle} />
-            <img src="/appliance-images/appliance19.png" alt="Appliance 19" style={imgStyle} />
-            <img src="/appliance-images/appliance20.png" alt="Appliance 20" style={imgStyle} />
-            <img src="/appliance-images/appliance21.png" alt="Appliance 21" style={imgStyle} />
-            <img src="/appliance-images/appliance22.png" alt="Appliance 22" style={imgStyle} />
-            <img src="/appliance-images/appliance23.png" alt="Appliance 23" style={imgStyle} />
-            <img src="/appliance-images/appliance24.png" alt="Appliance 24" style={imgStyle} />
-            <img src="/appliance-images/appliance25.png" alt="Appliance 25" style={imgStyle} />
+            
           </div>
         </div>
       </div>

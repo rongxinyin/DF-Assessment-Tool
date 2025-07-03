@@ -145,7 +145,7 @@ export default function ResidentialLanding() {
                     </div>
 
                     <div>
-                        <label style={{ color: "#003840" }}>New Set Point (°F)</label>
+                        <label style={{ color: "#003840" }}>Adjusted Set Point (°F)</label>
                         <input
                             type="number"
                             name="newSetPoint"
