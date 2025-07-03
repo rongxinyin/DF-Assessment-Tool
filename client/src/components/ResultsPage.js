@@ -42,7 +42,7 @@ export default function NewResults() {
     };
 
     return (
-        <Box bgcolor="#073a41" minHeight="100vh" p={isMobile ? 2 : 4}>
+        <Box bgcolor="#EEEEEE" minHeight="100vh" p={isMobile ? 2 : 4}>
             {/* Graph Section */}
             <Grid
                 container
