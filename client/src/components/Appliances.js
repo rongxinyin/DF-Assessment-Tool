@@ -50,19 +50,36 @@ export default function ApplianceSelector() {
           },
       };
 
-      const textFieldSX = {
+        const textFieldSX = {
           width: "100%",
           marginBottom: 1,
           marginTop: 1,
-          border: "0.5px solid #636363",
           backgroundColor: "white",
-          borderRadius: "10px",
-      };
+          //matching it since MUI makes this one not the same as the other border thicknesess
+          "& .MuiOutlinedInput-root": {
+            borderRadius: "0px",
+            padding: 0,
+            "& fieldset": {
+              border: "0.5px solid #636365",
+              borderRadius: "0px",
+            },
+            "&:hover fieldset": {
+              border: "0.8px solid #000000",
+            },
+            "&.Mui-focused fieldset": {
+              border: "0.8px solid #000000",
+            },
+            "& .MuiSelect-select": {
+              padding: "0rem",
+            },
+          },
+        };
+
 
   const inputStyle = {
     width: "100%",
     padding: "1rem",
-    borderRadius: "10px",
+    borderRadius: "0px",
     border: "0.5px solid #636363",
     backgroundColor: "#FFFFFF",
     color: "#000000",
@@ -88,7 +105,7 @@ export default function ApplianceSelector() {
     color: "#000000",
     fontWeight: "bold",
     border: "none",
-    borderRadius: "6px",
+    borderRadius: "0px",
     padding: "0.8rem 2rem",
     fontSize: "1rem",
     cursor: "pointer",
@@ -100,7 +117,7 @@ export default function ApplianceSelector() {
       color: "#000000",
       fontWeight: "bold",
       border: "0.5px solid #636363",
-      borderRadius: "6px",
+      borderRadius: "0px",
       padding: "0.8rem 2rem",
       fontSize: "1rem",
       cursor: "pointer",
@@ -113,7 +130,7 @@ export default function ApplianceSelector() {
           color: "#000000",
           fontWeight: "bold",
           border: "0.5px solid #636363",
-          borderRadius: "6px",
+          borderRadius: "0px",
           padding: "0.8rem 2rem",
           fontSize: "1rem",
           cursor: "pointer",
@@ -159,6 +176,16 @@ export default function ApplianceSelector() {
                 <option value="airConditioner">Air Conditioner</option>
                 <option value="waterHeater">Water Heater</option>
               </select>
+            </div>
+            <div>
+                <label style={{ color: "#000000" }}>Temperature Set Point (°F)</label>
+                <input
+                    type="number"
+                    name="tempSetPoint"
+                    value={form.tempSetPoint || ""}
+                    onChange={handleChange}
+                    style={{ ...inputStyle, backgroundColor: "#FFFFFF" }}
+                />
             </div>
 
             <div style={{ display: "flex", gap: "1rem" }}>
@@ -255,6 +282,6 @@ export default function ApplianceSelector() {
 const imgStyle = {
   width: "800px",
   height: "900px",
-  borderRadius: "1px",
+  borderRadius: "0px",
   objectFit: "cover",
 };
