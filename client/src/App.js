@@ -14,7 +14,8 @@ import ResidentialLanding from "./components/ResidentialLanding.js";
 import HouseType from "./components/HouseType.js";
 import Location from "./components/Location.js";
 import ResultsPage from "./components/ResultsPage.js";
-import Appliances from "./components/Appliances.js"
+import Appliances from "./components/Appliances.js";
+import Calculation from "./components/Calculation.js";
 
 import AppBar from "./components/SiteAppBar.js";
 
@@ -26,6 +27,7 @@ const theme = createTheme({
             fontSize: "medium",
         },
     },
+    /*
     palette: {
         primary: {
             main: "#00303C", // dark teal
@@ -43,6 +45,33 @@ const theme = createTheme({
     typography: {
         primary: {
             main: "#00303C", // dark teal
+        },
+        secondary: {
+            main: "#007681", // teal
+        },
+        tertiary: {
+            main: "#BED7DD", // light blue
+        },
+    },
+    mode: "dark",
+    */
+    palette: {
+        primary: {
+            main: "#FFFFFF", // dark teal
+        },
+        secondary: {
+            main: "#EEEEEE", // teal
+        },
+        tertiary: {
+            main: "#EEEEEE", // light blue
+        },
+        white: {
+            main: "#FFFFFF", // white
+        },
+    },
+    typography: {
+        primary: {
+            main: "#000000", // dark teal
         },
         secondary: {
             main: "#007681", // teal
@@ -77,7 +106,7 @@ export default function App() {
                         <Route path="/residential/house_type" element={<HouseType />} />
                         <Route path="/residential/location" element={<Location />} />
                         <Route path="/residential/results" element={<ResultsPage />} />
-                        <Route path="/residential/results" element={<ResultsPage />} />
+                        <Route path="/residential/calculation" element={<Calculation />} />
                         <Route path="/residential/appliances" element={<Appliances />} />
                     </Routes>
                 </Suspense>
