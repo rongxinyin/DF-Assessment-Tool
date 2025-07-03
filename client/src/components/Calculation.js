@@ -134,7 +134,7 @@ export default function ResidentialLanding() {
                 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                     <div>
-                        <label style={{ color: "#000000" }}>Temperature Set Point (°F)</label>
+                        <label style={{ color: "#000000" }}>Adjusted Set Point (°F)</label>
                         <input
                             type="number"
                             name="tempSetPoint"
@@ -144,16 +144,6 @@ export default function ResidentialLanding() {
                         />
                     </div>
 
-                    <div>
-                        <label style={{ color: "#000000" }}>Adjusted Set Point (°F)</label>
-                        <input
-                            type="number"
-                            name="newSetPoint"
-                            value={form.newSetPoint || ""}
-                            onChange={handleChange}
-                            style={{ ...inputStyle, backgroundColor: "#FFFFFF" }}
-                        />
-                    </div>
 
                     <div style={{ gridColumn: "1 / 3", padding: "0 1rem", marginTop: "2rem" }}>
                         <label style={{ color: "#000000" }}>Time Period</label>
