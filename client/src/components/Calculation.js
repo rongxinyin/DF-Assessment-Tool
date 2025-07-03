@@ -102,7 +102,7 @@ export default function ResidentialLanding() {
         width: "100%",
         marginBottom: 1,
         marginTop: 1,
-        border: "2px solid #F0F0F0",
+        border: "0.5px solid #636363",
         backgroundColor: "secondary.main",
         borderRadius: "10px",
     };
@@ -112,7 +112,7 @@ export default function ResidentialLanding() {
         width: "100%",
         padding: "0.6rem 0.75rem",
         borderRadius: "10px",
-        border: "2px solid white",
+        border: "0.5px solid #636363",
         backgroundColor: "#00858C",
         color: "white",
         fontSize: "1rem",
@@ -120,43 +120,43 @@ export default function ResidentialLanding() {
 
     // return what user sees
     return (
-        <div style={{ backgroundColor: "#003840", height: "100vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ backgroundColor: "#EEEEEE", height: "100vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
             {/* Input rectangle */}
             <div style={{ 
-                backgroundColor: "#cbe9f5", 
+                backgroundColor: "#FFFFFF", 
                 width: "80%", 
                 height: "350px", 
                 padding: "2rem", 
                 marginTop: "10rem",
                 borderRadius: "10px"
             }}>
-                <h2 style={{ color: "#003840", marginBottom: "1rem", textAlign: "center" }}>Residential Calculator</h2>
+                <h2 style={{ color: "#000000", marginBottom: "1rem", textAlign: "center" }}>Residential Calculator</h2>
                 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                     <div>
-                        <label style={{ color: "#003840" }}>Temperature Set Point (°F)</label>
+                        <label style={{ color: "#000000" }}>Temperature Set Point (°F)</label>
                         <input
                             type="number"
                             name="tempSetPoint"
                             value={form.tempSetPoint || ""}
                             onChange={handleChange}
-                            style={{ ...inputStyle, backgroundColor: "#00858C" }}
+                            style={{ ...inputStyle, backgroundColor: "#FFFFFF" }}
                         />
                     </div>
 
                     <div>
-                        <label style={{ color: "#003840" }}>Adjusted Set Point (°F)</label>
+                        <label style={{ color: "#000000" }}>Adjusted Set Point (°F)</label>
                         <input
                             type="number"
                             name="newSetPoint"
                             value={form.newSetPoint || ""}
                             onChange={handleChange}
-                            style={{ ...inputStyle, backgroundColor: "#00858C" }}
+                            style={{ ...inputStyle, backgroundColor: "#FFFFFF" }}
                         />
                     </div>
 
                     <div style={{ gridColumn: "1 / 3", padding: "0 1rem", marginTop: "2rem" }}>
-                        <label style={{ color: "#003840" }}>Time Period</label>
+                        <label style={{ color: "#000000" }}>Time Period</label>
                         <Slider
                             value={timeRange}
                             onChange={handleTimeRangeChange}
@@ -166,28 +166,29 @@ export default function ResidentialLanding() {
                                 const period = value < 12 ? 'AM' : 'PM';
                                 return `${hour} ${period}`;
                             }}
+                            color="white"
                             marks={hours}
-                            min={0}
+                            mi ={0}
                             max={24}
                             disableSwap
                             sx={{
                                 '& .MuiSlider-track': {
-                                    backgroundColor: '#00858C',
+                                    backgroundColor: '#000000',
                                     border: '2px solid white',
                                 },
                                 '& .MuiSlider-rail': {
-                                    backgroundColor: '#00858C',
-                                    opacity: 0.5,
+                                    backgroundColor: '#000000',
+                                    opacity: 0.3,
                                 },
                                 '& .MuiSlider-thumb': {
                                     backgroundColor: 'white',
-                                    border: '2px solid #00858C',
+                                    border: '2px solid #000000',
                                 },
                                 '& .MuiSlider-mark': {
                                     backgroundColor: 'white',
                                 },
                                 '& .MuiSlider-markLabel': {
-                                    color: '#003840',
+                                    color: '#000000',
                                 },
                             }}
                         />
@@ -203,10 +204,10 @@ export default function ResidentialLanding() {
                     marginTop: "2rem",
                     width: "200px",
                     height: "50px",
-                    backgroundColor: "#cbe9f5",
-                    color: "#003840",
+                    backgroundColor: "#FFFFFF",
+                    color: "#000000",
                     '&:hover': {
-                        backgroundColor: "#b0d0e0"
+                        backgroundColor: "#636363"
                     }
                 }}
             >
