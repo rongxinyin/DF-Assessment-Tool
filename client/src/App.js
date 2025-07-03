@@ -27,6 +27,7 @@ const theme = createTheme({
             fontSize: "medium",
         },
     },
+    /*
     palette: {
         primary: {
             main: "#00303C", // dark teal
@@ -44,6 +45,33 @@ const theme = createTheme({
     typography: {
         primary: {
             main: "#00303C", // dark teal
+        },
+        secondary: {
+            main: "#007681", // teal
+        },
+        tertiary: {
+            main: "#BED7DD", // light blue
+        },
+    },
+    mode: "dark",
+    */
+    palette: {
+        primary: {
+            main: "#FFFFFF", // dark teal
+        },
+        secondary: {
+            main: "#EEEEEE", // teal
+        },
+        tertiary: {
+            main: "#EEEEEE", // light blue
+        },
+        white: {
+            main: "#FFFFFF", // white
+        },
+    },
+    typography: {
+        primary: {
+            main: "#000000", // dark teal
         },
         secondary: {
             main: "#007681", // teal

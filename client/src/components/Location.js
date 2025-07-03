@@ -20,14 +20,14 @@ export default () => {
         width: "100%",
         marginBottom: 1,
         marginTop: 1,
-        border: "2px solid #F0F0F0",
-        backgroundColor: "secondary.main",
+        border: "2px solid #636363",
+        backgroundColor: "#FFFFFF",
         borderRadius: "10px",
     };
 
     const textFieldInputPropsSX = {
         sx: {
-            color: "#FFFFFF",
+            color: "#000000",
         },
     };
 
@@ -60,14 +60,14 @@ export default () => {
                 container
                 md={6}
                 xs={12}
-                bgcolor="primary.main"
+                bgcolor="#FFFFFF"
                 direction="column"
                 padding={4}
             >
                 <form>
                     <Typography
                         variant="h4"
-                        color="white.main"
+                        color="black.main"
                         sx={{ fontWeight: "bold", m: 1 }}
                     >
                         Location
@@ -78,7 +78,7 @@ export default () => {
                             <FormControl sx={formControlSX}>
                                 <Typography
                                     variant="body2"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{ fontWeight: "bold", marginLeft: 1 }}
                                 >
                                     City
@@ -99,7 +99,7 @@ export default () => {
                             <FormControl sx={formControlSX}>
                                 <Typography
                                     variant="body2"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{ fontWeight: "bold", marginLeft: 1 }}
                                 >
                                     State
@@ -120,7 +120,7 @@ export default () => {
                             <FormControl sx={formControlSX}>
                                 <Typography
                                     variant="body2"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{ fontWeight: "bold", marginLeft: 1 }}
                                 >
                                     Residence type
@@ -145,7 +145,7 @@ export default () => {
                             <FormControl sx={formControlSX}>
                                 <Typography
                                     variant="body2"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{ fontWeight: "bold", marginLeft: 1 }}
                                 >
                                     Floor Area (ft²)
@@ -165,8 +165,9 @@ export default () => {
 
                         <Button
                             variant="contained"
-                            color="secondary"
                             sx={{
+                                color: "#000000",
+                                backgroundColor: "#EEEEEE",
                                 marginTop: 2,
                                 marginBottom: 3,
                                 width: "25%",
@@ -199,13 +200,13 @@ export default () => {
                 container
                 md={6}
                 xs={12}
-                bgcolor="tertiary.main"
+                bgcolor="#EEEEEE"
                 direction="column"
                 padding={4}
             >
                 <Typography
                     variant="h4"
-                    color="primary.main"
+                    color="typography.primary.main"
                     sx={{ width: "100%", textAlign: "center", fontWeight: "bold", m: 1 }}
                 >
                     OAT Graph

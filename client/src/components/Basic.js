@@ -262,7 +262,7 @@ export default function Basic() {
 
     const textFieldInputPropsSX = {
         sx: {
-            color: "#FFFFFF",
+            color: "#000000",
         },
     };
 
@@ -270,7 +270,7 @@ export default function Basic() {
         width: "100%",
         marginBottom: 1,
         marginTop: 1,
-        border: "2px solid #F0F0F0",
+        border: "2px solid #636363",
         backgroundColor: "secondary.main",
         borderRadius: "10px",
     };
@@ -340,7 +340,7 @@ export default function Basic() {
 
                 <Typography
                     variant="h4"
-                    color="white.main"
+                    color="typography.primary.main"
                     sx={{ fontWeight: "bold", m: 1, marginTop: 4 }}
                 >
                     Basic Calculator
@@ -349,7 +349,7 @@ export default function Basic() {
                 <form>
                     <Typography
                         variant="h5"
-                        color="white.main"
+                        color="typography.primary.main"
                         sx={{ fontWeight: "bold", m: 1 }}
                     >
                         Basic Inputs
@@ -360,7 +360,7 @@ export default function Basic() {
                             <FormControl sx={formControlSX}>
                                 <Typography
                                     variant="body2"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{ fontWeight: "bold", marginLeft: 1 }}
                                 >
                                     Building Name
@@ -378,7 +378,7 @@ export default function Basic() {
                             <FormControl sx={formControlSX}>
                                 <Typography
                                     variant="body2"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{ fontWeight: "bold", marginLeft: 1 }}
                                 >
                                     Floor Area (ft²)
@@ -397,7 +397,7 @@ export default function Basic() {
                             <FormControl sx={formControlSX}>
                                 <Typography
                                     variant="body2"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{ fontWeight: "bold", marginLeft: 1 }}
                                 >
                                     HVAC Type
@@ -422,7 +422,7 @@ export default function Basic() {
                             <FormControl sx={formControlSX}>
                                 <Typography
                                     variant="body2"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{ fontWeight: "bold", marginLeft: 1 }}
                                 >
                                     Zipcode
@@ -443,7 +443,7 @@ export default function Basic() {
                             <FormControl sx={formControlSX}>
                                 <Typography
                                     variant="body2"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{ fontWeight: "bold", marginLeft: 1 }}
                                 >
                                     Building Type
@@ -465,7 +465,7 @@ export default function Basic() {
                             <FormControl sx={formControlSX}>
                                 <Typography
                                     variant="body2"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{ fontWeight: "bold", marginLeft: 1 }}
                                 >
                                     Floor Height (ft)
@@ -487,7 +487,7 @@ export default function Basic() {
                             <FormControl sx={formControlSX}>
                                 <Typography
                                     variant="body2"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{ fontWeight: "bold", marginLeft: 1 }}
                                 >
                                     Summer Peak Demand (kW)
@@ -505,7 +505,7 @@ export default function Basic() {
                             </FormControl>
                             <Typography
                                 variant="body2"
-                                color="white.main"
+                                color="typography.primary.main"
                                 sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 0 }}
                             >
                                 State
@@ -532,7 +532,7 @@ export default function Basic() {
 
                     <Typography
                         variant="h5"
-                        color="white.main"
+                        color="typography.primary.main"
                         sx={{ fontWeight: "bold", m: 1, marginTop: 3 }}
                     >
                         Demand Shed Capacity Calculation
@@ -541,7 +541,7 @@ export default function Basic() {
                         <Grid item xs={6}>
                             <Typography
                                 variant="body2"
-                                color="white.main"
+                                color="typography.primary.main"
                                 sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 1 }}
                             >
                                 Percentage of Building Floor Area that GTA will Apply (0-100)
@@ -562,7 +562,7 @@ export default function Basic() {
                         <Grid item xs={6}>
                             <Typography
                                 variant="body2"
-                                color="white.main"
+                                color="typography.primary.main"
                                 sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 1 }}
                             >
                                 Precooling Period Temp Offset (°F)
@@ -590,7 +590,7 @@ export default function Basic() {
 
                             <Typography
                                 variant="body2"
-                                color="white.main"
+                                color="typography.primary.main"
                                 sx={{ fontWeight: "bold", marginLeft: 1, marginTop: 1 }}
                             >
                                 DR Event Period Temp Offset (°F)
@@ -611,7 +611,7 @@ export default function Basic() {
                     <Box sx={{ flexDirection: "row" }}>
                         <Typography
                             variant="h5"
-                            color="white.main"
+                            color="typography.primary.main"
                             sx={{ fontWeight: "bold", m: 1, marginTop: 3 }}
                         >
                             OAT and kW During the DR Event Hours
@@ -621,7 +621,7 @@ export default function Basic() {
                                 <br></br>
                                 <Typography
                                     variant="h6"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{
                                         fontWeight: "bold",
                                         m: 1,
@@ -633,7 +633,7 @@ export default function Basic() {
                                 </Typography>
                                 <Typography
                                     variant="h6"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{
                                         fontWeight: "bold",
                                         m: 1,
@@ -645,7 +645,7 @@ export default function Basic() {
                                 </Typography>
                                 <Typography
                                     variant="h6"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{
                                         fontWeight: "bold",
                                         m: 1,
@@ -657,7 +657,7 @@ export default function Basic() {
                                 </Typography>
                                 <Typography
                                     variant="h6"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{
                                         fontWeight: "bold",
                                         m: 1,
@@ -671,7 +671,7 @@ export default function Basic() {
                             <Grid item xs={4}>
                                 <Typography
                                     variant="h6"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{ fontWeight: "bold", m: 1 }}
                                 >
                                     OAT (°F)
@@ -716,7 +716,7 @@ export default function Basic() {
                             <Grid item xs={4}>
                                 <Typography
                                     variant="h6"
-                                    color="white.main"
+                                    color="typography.primary.main"
                                     sx={{ fontWeight: "bold", m: 1 }}
                                 >
                                     Meter kW
@@ -784,14 +784,14 @@ export default function Basic() {
                 direction="column"
                 alignItems="center"
                 justifyContent="flex-start"
-                bgcolor="#BED7DD"
+                bgcolor="tertiary.main"
                 width={1}
                 padding={2}
                 paddingLeft={4}
             >
                 <Typography
                     variant="h4"
-                    color="primary.main"
+                    color="typography.primary.main"
                     sx={{ fontWeight: "bold", m: 1, marginTop: 4 }}
                 >
                     Visualizations
