@@ -78,6 +78,7 @@ export default function App() {
                         <Route path="/residential/location" element={<Location />} />
                         <Route path="/residential/results" element={<ResultsPage />} />
                         <Route path="/residential/results" element={<ResultsPage />} />
+                        <Route path="/residential/appliances" element={<Appliances />} />
                     </Routes>
                 </Suspense>
             </BrowserRouter>

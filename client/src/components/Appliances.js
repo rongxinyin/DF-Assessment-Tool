@@ -46,7 +46,7 @@ export default function ApplianceSelector() {
       };
   const textFieldInputPropsSX = {
           sx: {
-              color: "#FFFFFF",
+              color: "#000000",
           },
       };
 
@@ -54,8 +54,8 @@ export default function ApplianceSelector() {
           width: "100%",
           marginBottom: 1,
           marginTop: 1,
-          border: "2px solid #F0F0F0",
-          backgroundColor: "secondary.main",
+          border: "0.5px solid #636363",
+          backgroundColor: "white",
           borderRadius: "10px",
       };
 
@@ -63,9 +63,9 @@ export default function ApplianceSelector() {
     width: "100%",
     padding: "1rem",
     borderRadius: "10px",
-    border: "2px solid white",
-    backgroundColor: "#007b83",
-    color: "white",
+    border: "0.5px solid #636363",
+    backgroundColor: "#FFFFFF",
+    color: "#000000",
     fontSize: "1.1rem",
     outline: "none",
     marginBottom: "1rem",
@@ -84,8 +84,8 @@ export default function ApplianceSelector() {
   };
 
   const buttonStyle = {
-    backgroundColor: "#007b83",
-    color: "white",
+    backgroundColor: "#FFFFFF",
+    color: "#000000",
     fontWeight: "bold",
     border: "none",
     borderRadius: "6px",
@@ -94,6 +94,32 @@ export default function ApplianceSelector() {
     cursor: "pointer",
     minWidth: "100px",
   };
+
+  const nextButtonStyle = {
+      backgroundColor: "#FFFFFF",
+      color: "#000000",
+      fontWeight: "bold",
+      border: "0.5px solid #636363",
+      borderRadius: "6px",
+      padding: "0.8rem 2rem",
+      fontSize: "1rem",
+      cursor: "pointer",
+      minWidth: "100px",
+
+    };
+
+    const backButtonStyle = {
+          backgroundColor: "#FFFFFF",
+          color: "#000000",
+          fontWeight: "bold",
+          border: "0.5px solid #636363",
+          borderRadius: "6px",
+          padding: "0.8rem 2rem",
+          fontSize: "1rem",
+          cursor: "pointer",
+          minWidth: "100px",
+
+        };
 
   return (
     <div
@@ -109,8 +135,8 @@ export default function ApplianceSelector() {
         {/* left side */}
         <div
           style={{
-            backgroundColor: "#003840",
-            color: "white",
+            backgroundColor: "#FFFFFF",
+            color: "#000000",
             flex: 1,
             padding: "2rem",
             display: "flex",
@@ -181,15 +207,16 @@ export default function ApplianceSelector() {
               marginTop: "2rem",
             }}
           >
-            <button style={buttonStyle}>Back</button>
-            <button style={buttonStyle}>Next</button>
+            <button style={backButtonStyle}>Back</button>
+            <button style={nextButtonStyle}>Next</button>
           </div>
+
         </div>
 
-        {/* right side - images */}
+        {/* right side images */}
         <div
           style={{
-            backgroundColor: "#cbe9f5",
+            backgroundColor: "#EEEEEE",
             flex: 1.2,
             padding: "2rem",
             display: "flex",
@@ -201,39 +228,25 @@ export default function ApplianceSelector() {
           <h2 style={{ fontSize: "1.8rem", marginBottom: "1rem" }}>Preview</h2>
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(5, 1fr)",
-              gap: "1.5rem",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               width: "100%",
+              height: "300px",
+              border: "1px solid #ccc",
+              borderRadius: "10px",
+              backgroundColor: "#f9f9f9",
             }}
           >
-            <img src="/appliance-images/appliance1.png" alt="Appliance 1" style={imgStyle} />
-            <img src="/appliance-images/appliance2.png" alt="Appliance 2" style={imgStyle} />
-            <img src="/appliance-images/appliance3.png" alt="Appliance 3" style={imgStyle} />
-            <img src="/appliance-images/appliance4.png" alt="Appliance 4" style={imgStyle} />
-            <img src="/appliance-images/appliance5.png" alt="Appliance 5" style={imgStyle} />
-            <img src="/appliance-images/appliance6.png" alt="Appliance 6" style={imgStyle} />
-            <img src="/appliance-images/appliance7.png" alt="Appliance 7" style={imgStyle} />
-            <img src="/appliance-images/appliance8.png" alt="Appliance 8" style={imgStyle} />
-            <img src="/appliance-images/appliance9.png" alt="Appliance 9" style={imgStyle} />
-            <img src="/appliance-images/appliance10.png" alt="Appliance 10" style={imgStyle} />
-            <img src="/appliance-images/appliance11.png" alt="Appliance 11" style={imgStyle} />
-            <img src="/appliance-images/appliance12.png" alt="Appliance 12" style={imgStyle} />
-            <img src="/appliance-images/appliance13.png" alt="Appliance 13" style={imgStyle} />
-            <img src="/appliance-images/appliance14.png" alt="Appliance 14" style={imgStyle} />
-            <img src="/appliance-images/appliance15.png" alt="Appliance 15" style={imgStyle} />
-            <img src="/appliance-images/appliance16.png" alt="Appliance 16" style={imgStyle} />
-            <img src="/appliance-images/appliance17.png" alt="Appliance 17" style={imgStyle} />
-            <img src="/appliance-images/appliance18.png" alt="Appliance 18" style={imgStyle} />
-            <img src="/appliance-images/appliance19.png" alt="Appliance 19" style={imgStyle} />
-            <img src="/appliance-images/appliance20.png" alt="Appliance 20" style={imgStyle} />
-            <img src="/appliance-images/appliance21.png" alt="Appliance 21" style={imgStyle} />
-            <img src="/appliance-images/appliance22.png" alt="Appliance 22" style={imgStyle} />
-            <img src="/appliance-images/appliance23.png" alt="Appliance 23" style={imgStyle} />
-            <img src="/appliance-images/appliance24.png" alt="Appliance 24" style={imgStyle} />
-            <img src="/appliance-images/appliance25.png" alt="Appliance 25" style={imgStyle} />
+            <img
+              src="/appliance-images/appliance1.png"
+              alt="Appliance 1"
+              style={imgStyle}
+            />
           </div>
+
         </div>
+
       </div>
     </div>
   );
