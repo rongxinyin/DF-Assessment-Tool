@@ -57,27 +57,27 @@ const theme = createTheme({
     */
     palette: {
         primary: {
-            main: "#FFFFFF", // dark teal
+            main: "#FFFFFF",
         },
         secondary: {
-            main: "#EEEEEE", // teal
+            main: "#EEEEEE",
         },
         tertiary: {
-            main: "#EEEEEE", // light blue
+            main: "#EEEEEE",
         },
         white: {
-            main: "#FFFFFF", // white
+            main: "#FFFFFF",
         },
     },
     typography: {
         primary: {
-            main: "#000000", // dark teal
+            main: "#000000",
         },
         secondary: {
-            main: "#007681", // teal
+            main: "#007681",
         },
         tertiary: {
-            main: "#BED7DD", // light blue
+            main: "#BED7DD",
         },
     },
     mode: "dark",

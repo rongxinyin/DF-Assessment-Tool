@@ -7,11 +7,10 @@ import {
     useTheme,
     useMediaQuery,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { Line } from 'react-chartjs-2';
+import { BackButton } from './NavButtons.js';
 
 export default function NewResults() {
-    const navigate = useNavigate();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -42,14 +41,14 @@ export default function NewResults() {
     };
 
     return (
-        <Box bgcolor="#EEEEEE" minHeight="100vh" p={isMobile ? 2 : 4}>
+        <Grid container bgcolor="#EEEEEE" minHeight="calc(100vh - 90px)" p={4}>
             {/* Graph Section */}
             <Grid
+                item
                 container
                 spacing={4}
                 justifyContent="center"
                 alignItems="center"
-                mt={5}
             >
                 <Grid item xs={12} md={5}>
                     <Typography
@@ -193,28 +192,26 @@ export default function NewResults() {
                 </Grid>
             </Grid>
 
-            {/* Bottom Buttons */}
-            <Grid container spacing={2} mt={5} px={isMobile ? 2 : 10}>
-                <Grid item>
-                    <Button
-                        variant="contained"
-                        onClick={() => navigate(-1)}
-                        sx={{ backgroundColor: "#EEEEEE", color: "black", fontWeight: "bold" }}
-                    >
-                        Back
-                    </Button>
+            <Grid container marginTop="auto">
+                <Grid item xs={6}>
+                    <BackButton path="/residential/calculation" />
                 </Grid>
-                <Grid item xs />
-                <Grid item>
-                    <Button
-                        variant="contained"
-                        onClick={handleExport}
-                        sx={{ backgroundColor: "#EEEEEE", color: "black", fontWeight: "bold" }}
-                    >
-                        Export
-                    </Button>
+                <Grid item xs={6}>
+                    <Grid sx={{ marginLeft: "auto", width: "25%" }}>
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            sx={{
+                                marginTop: 4,
+                                marginRight: 2,
+                                width: "100%",
+                                height: "50px",
+                            }}
+                            onClick={() => handleExport()}
+                        >Export</Button>
+                    </Grid>
                 </Grid>
             </Grid>
-        </Box>
+        </Grid>
     );
 }

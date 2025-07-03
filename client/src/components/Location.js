@@ -8,13 +8,15 @@ import {
     Select,
     MenuItem,
 } from '@mui/material';
+import { BackButton, NextButton } from './NavButtons.js';
 import { DropDownIcon } from './DropDownIcon.js';
 import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default () => {
-    const navigate = useNavigate();
+    const { inputs } = useLocation();
+    console.log(inputs)
 
     const textFieldSX = {
         width: "100%",
@@ -180,19 +182,7 @@ export default () => {
                     </Grid>
                 </form>
 
-                <Box align="left" sx={{ marginTop: "auto", display: { xs: "none", md: "block" } }}>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        sx={{
-                            marginTop: 4,
-                            marginRight: 2,
-                            width: "25%",
-                            height: "50px",
-                        }}
-                        onClick={() => navigate('/residential/house_type/')}
-                    >Back</Button>
-                </Box>
+                <BackButton path="/residential/house_type" />
             </Grid>
 
             <Grid
@@ -249,44 +239,7 @@ export default () => {
                     />
                 </Box>
 
-                <Grid container alignItems="center" marginTop="auto">
-                    <Grid sx={{
-                        display: { xs: "block", md: "none" },
-                        width: "25%"
-                    }}>
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            sx={{
-                                marginTop: 4,
-                                marginRight: 2,
-                                width: "100%",
-                                height: "50px",
-                            }}
-                            onClick={() => navigate('/residential/house_type/')}
-                        >Back</Button>
-                    </Grid>
-                    <Grid sx={{ marginLeft: "auto", width: "25%" }}>
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            sx={{
-                                marginTop: 4,
-                                marginRight: 2,
-                                width: "100%",
-                                height: "50px",
-                            }}
-                            onClick={() => navigate('/residential/appliances/', {
-                                state: {
-                                    oat,
-                                    resType,
-                                    floorArea
-                                }
-                            })}
-                            disabled={nextDisabled}
-                        >Next</Button>
-                    </Grid>
-                </Grid>
+                <NextButton path="/residential/appliances/" disabled={nextDisabled} />
             </Grid>
         </Grid>
     )

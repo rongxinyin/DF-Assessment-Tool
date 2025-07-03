@@ -52,7 +52,7 @@ export default function FAQ() {
         <Box bgcolor={"primary.main"} p={2}>
             <Typography
                 variant="h4"
-                color="common.white"
+                color="typography.primary.main"
                 sx={{ marginTop: 5, marginBottom: 1 }}
             >
                 Frequently Asked Questions

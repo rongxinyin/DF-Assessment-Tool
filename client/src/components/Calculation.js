@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import {
-    Select,
-    MenuItem,
     Button,
-    Slider
+    Slider,
+    Grid
 } from '@mui/material';
-import { ArrowDropDown } from '@mui/icons-material';
-import { getBrands, getModels, calculateDR } from '../logic/ACFunctions.js';
-
-const DropDownIcon = props => (<ArrowDropDown {...props} style={{ color: 'white' }} />);
+import { BackButton, NextButton } from './NavButtons.js';
+import { useNavigate } from 'react-router-dom';
 
 export default function ResidentialLanding() {
+    const navigate = useNavigate();
+
     const [form, setForm] = useState({});
-    const [brands, setBrands] = useState([]);
-    const [models, setModels] = useState([]);
 
     // Generate hours of the day for slider marks
     const hours = Array.from({ length: 25 }, (_, i) => {
@@ -42,34 +39,6 @@ export default function ResidentialLanding() {
         }));
     }, [timeRange]);
 
-    // Fetch brands off of main function
-    useEffect(() => {
-        if (brands.length === 0)
-            getBrands().then(setBrands);
-    }, []);
-
-    const brandModels = new Map();
-
-    // function to handle changes in input fields
-    const handleChange = async (e) => {
-        const { name, value } = e.target;
-        setForm({ ...form, [name]: value });
-
-        if (name === "brand") {
-            if (value === "Select a brand")
-                setModels([]);
-            else {
-                if (brandModels.has(value))
-                    setModels(brandModels.get(value));
-                else {
-                    const models = await getModels(value);
-                    brandModels.set(value, models);
-                    setModels(models);
-                }
-            }
-        }
-    };
-
     // Handle slider change with minimum distance enforcement
     const handleTimeRangeChange = (event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) return;
@@ -85,11 +54,6 @@ export default function ResidentialLanding() {
         } else {
             setTimeRange(newValue);
         }
-    };
-
-    const submitInputs = async () => {
-        const results = await calculateDR(form);
-        console.log(results)
     };
 
     const textFieldInputPropsSX = {
@@ -114,24 +78,24 @@ export default function ResidentialLanding() {
         borderRadius: "10px",
         border: "0.5px solid #636363",
         backgroundColor: "#00858C",
-        color: "white",
+        color: "typography.primary.main",
         fontSize: "1rem",
     };
 
     // return what user sees
     return (
-        <div style={{ backgroundColor: "#EEEEEE", height: "100vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ backgroundColor: "#EEEEEE", minHeight: "calc(100vh - 90px)", display: "flex", flexDirection: "column", alignItems: "center" }}>
             {/* Input rectangle */}
-            <div style={{ 
-                backgroundColor: "#FFFFFF", 
-                width: "80%", 
-                height: "350px", 
-                padding: "2rem", 
+            <div style={{
+                backgroundColor: "#FFFFFF",
+                width: "80%",
+                height: "350px",
+                padding: "2rem",
                 marginTop: "10rem",
                 borderRadius: "10px"
             }}>
                 <h2 style={{ color: "#000000", marginBottom: "1rem", textAlign: "center" }}>Residential Calculator</h2>
-                
+
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                     <div>
                         <label style={{ color: "#000000" }}>Adjusted Set Point (°F)</label>
@@ -139,7 +103,7 @@ export default function ResidentialLanding() {
                             type="number"
                             name="tempSetPoint"
                             value={form.tempSetPoint || ""}
-                            onChange={handleChange}
+                            onChange={e => setForm({ ...form, tempSetPoint: e.target.value })}
                             style={{ ...inputStyle, backgroundColor: "#FFFFFF" }}
                         />
                     </div>
@@ -158,7 +122,7 @@ export default function ResidentialLanding() {
                             }}
                             color="white"
                             marks={hours}
-                            mi ={0}
+                            mi={0}
                             max={24}
                             disableSwap
                             sx={{
@@ -189,20 +153,27 @@ export default function ResidentialLanding() {
             {/* Calculate button */}
             <Button
                 variant="contained"
-                onClick={submitInputs}
+                onClick={() => navigate('/residential/results')}
                 sx={{
                     marginTop: "2rem",
                     width: "200px",
                     height: "50px",
                     backgroundColor: "#FFFFFF",
                     color: "#000000",
-                    '&:hover': {
-                        backgroundColor: "#636363"
-                    }
                 }}
+                disabled={!form.tempSetPoint}
             >
                 Calculate
             </Button>
+
+            <Grid container width="100%" marginTop="auto" padding={4}>
+                <Grid item xs={6}>
+                    <BackButton path="/residential/appliances/" />
+                </Grid>
+                <Grid item xs={6}>
+                    <NextButton path="/residential/results/" disabled={!form.tempSetPoint} />
+                </Grid>
+            </Grid>
         </div>
     );
 }
