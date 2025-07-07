@@ -62,7 +62,7 @@ router.get('/ac/brands/:acBrand/:acModel/:zip', async (req, res) => {
 
 router.get('/ac/brands/:acBrand', (req, res) => {
     BrandModel.findOne({ brand: req.params.acBrand })
-        .then(docs => res.json(docs.models.map(model => model.model)))
+        .then(docs => res.json(docs.models))
         .catch(res.json);
 });
 
