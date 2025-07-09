@@ -85,6 +85,12 @@ export default function ApplianceSelector() {
         fontSize: "1rem",
     };
 
+    const breadcrumbPaths = [
+        { name: 'House Type', path: '/residential/house_type' },
+        { name: 'Location', path: '/residential/location' },
+        { name: 'Appliances', path: '/residential/appliances' },
+    ];
+
     return (
         <div
             style={{
