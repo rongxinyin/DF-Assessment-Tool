@@ -33,6 +33,7 @@ export default function ApplianceSelector() {
         if (name === "brand") {
             if (value === "Select a brand") {
                 setModels([]);
+            }    
             else {
                 if (brandModels.has(value))
                     setModels(brandModels.get(value));
@@ -234,4 +235,4 @@ export default function ApplianceSelector() {
             </div>
         </div>
     );
-}
+}    
