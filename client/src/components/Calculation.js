@@ -224,7 +224,16 @@ export default function ResidentialLanding() {
                     }} 
                 />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={6} style={{ display: "flex", justifyContent: "flex-end"}}>
+                    {form.normalSetpoint && (
+                    <NextButton
+                        path="/residential/results"
+                        state={{
+                            ...inputs,
+                            ...form,
+                        }}
+                        />
+                    )}
                 </Grid>
             </Grid>
         </div>
