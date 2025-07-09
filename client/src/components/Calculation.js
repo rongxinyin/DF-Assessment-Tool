@@ -5,12 +5,19 @@ import {
     Grid
 } from '@mui/material';
 import { BackButton, NextButton } from './NavButtons.js';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function ResidentialLanding() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const inputs = location.state || {};
 
-    const [form, setForm] = useState({});
+    const [form, setForm] = useState({
+        normalSetpoint: location.state?.normalSetpoint || "",
+        drSetpoint: location.state?.drSetpoint || "",
+        timeStart: location.state?.timeStart || "9 am",
+        timeEnd: location.state?.timeEnd || "5 pm",
+    });
 
     // Generate hours of the day for slider marks
     const hours = Array.from({ length: 25 }, (_, i) => {
@@ -23,7 +30,20 @@ export default function ResidentialLanding() {
     });
 
     // Initialize time range (default: 9 am to 5 pm)
-    const [timeRange, setTimeRange] = useState([9, 17]);
+    const [timeRange, setTimeRange] = useState(() => {
+        const parseHour = (str) => {
+            if (!str) return null;
+            const [hour, period] = str.split(" ");
+            let h = parseInt(hour);
+            if (period.toLowerCase() === "pm" && h !== 12) h += 12;
+            if (period.toLowerCase() === "am" && h === 12) h = 0;
+            return h;
+        };
+        const start = parseHour(location.state?.timeStart) ?? 9;
+        const end = parseHour(location.state?.timeEnd) ?? 17;
+        return [start, end];
+        
+    });
 
     // Update form state when timeRange changes
     useEffect(() => {
@@ -101,9 +121,9 @@ export default function ResidentialLanding() {
                         <label style={{ color: "#000000" }}>Temperature Set Point (°F)</label>
                         <input
                             type="number"
-                            name="tempSetPoint"
-                            value={form.tempSetPoint || ""}
-                            onChange={e => setForm({ ...form, tempSetPoint: e.target.value })}
+                            name="normalSetpoint"
+                            value={form.normalSetpoint || ""}
+                            onChange={e => setForm({ ...form, normalSetpoint: e.target.value })}
                             style={{ ...inputStyle, backgroundColor: "#FFFFFF" }}
                         />
                     </div>
@@ -112,9 +132,9 @@ export default function ResidentialLanding() {
                         <label style={{ color: "#000000" }}>Adjusted Set Point (°F)</label>
                         <input
                             type="number"
-                            name="newSetPoint"
-                            value={form.newSetPoint || ""}
-                            onChange={e => setForm({ ...form, newSetPoint: e.target.value })}
+                            name="drSetpoint"
+                            value={form.drSetpoint || ""}
+                            onChange={e => setForm({ ...form, drSetpoint: e.target.value })}
                             style={{ ...inputStyle, backgroundColor: "#FFFFFF" }}
                         />
                     </div>
@@ -163,7 +183,14 @@ export default function ResidentialLanding() {
             {/* Calculate button */}
             <Button
                 variant="contained"
-                onClick={() => navigate('/residential/results')}
+                onClick={() => 
+                    navigate("/residential/results", {
+                        state: {
+                            ...inputs,
+                            ...form,
+                        },
+                    })
+                }
                 sx={{
                     marginTop: "2rem",
                     width: "200px",
@@ -171,17 +198,22 @@ export default function ResidentialLanding() {
                     backgroundColor: "#FFFFFF",
                     color: "#000000",
                 }}
-                disabled={!form.tempSetPoint}
+                disabled={!form.normalSetpoint}
             >
                 Calculate
             </Button>
 
             <Grid container width="100%" marginTop="auto" padding={4}>
                 <Grid item xs={6}>
-                    <BackButton path="/residential/appliances/" />
+                    <BackButton 
+                    path="/residential/appliances/"
+                    state={{
+                        ...inputs,
+                        ...form,
+                    }} 
+                />
                 </Grid>
                 <Grid item xs={6}>
-                    <NextButton path="/residential/results/" disabled={!form.tempSetPoint} />
                 </Grid>
             </Grid>
         </div>

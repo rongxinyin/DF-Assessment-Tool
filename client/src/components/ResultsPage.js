@@ -9,21 +9,44 @@ import {
 } from "@mui/material";
 import { Line } from 'react-chartjs-2';
 import { BackButton } from './NavButtons.js';
+import { useLocation } from "react-router-dom";
+import ApplianceSelector from "./Appliances.js";
 
 export default function NewResults() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const location = useLocation();
+    const inputs = location.state || {};
+
+    const{
+        houseType,
+        city,
+        state,
+        resType,
+        floorArea,
+        oat:inputOAT,
+        appliance,
+        brand,
+        model,
+        normalSetpoint,
+        drSetpoint,
+        timeStart,
+        timeEnd,
+    }= inputs;
 
     const hours = [];
     for (let i = 0; i < 24; i++)
         hours.push(i);
 
     // Sample data
-    const setpoint = 24;
-    const offset = 2;
-    const oat = [];
-    for (let i = 0; i < 24; i++)
-        oat.push(32 - 8 * Math.cos(Math.PI * i / 12));
+    const setpointF = parseFloat(normalSetpoint);
+    const drSetF = parseFloat(drSetpoint);
+
+    const setpoint = isNaN(setpointF) ? 24 : ((setpointF -32)* 5) /9;
+    const drSet = isNaN(drSetF) ? setpoint + 2: ((drSetF - 32)* 5) /9;
+    const offset = drSet - setpoint;
+
+    const oat = inputOAT || Array.from({ length:24}, (_, i) => 32-8 * Math.cos(Math.PI * i / 12)); //fall back values for graph
     const indoorTemp = [];
     for (let i = 0; i < 6; i++)
         indoorTemp.push(20 + Math.pow(i / 6, 2) * 4);
@@ -194,7 +217,10 @@ export default function NewResults() {
 
             <Grid container marginTop="auto">
                 <Grid item xs={6}>
-                    <BackButton path="/residential/calculation" />
+                    <BackButton 
+                    path="/residential/calculation"
+                    state={inputs} 
+                    />
                 </Grid>
                 <Grid item xs={6}>
                     <Grid sx={{ marginLeft: "auto", width: "25%" }}>

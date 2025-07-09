@@ -13,9 +13,12 @@ import { DropDownIcon } from './DropDownIcon.js';
 import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default () => {
-    const { inputs } = useLocation();
+    const location = useLocation();
+    const inputs = location.state || {};
+    const navigate = useNavigate();
     console.log(inputs)
 
     const textFieldSX = {
@@ -38,10 +41,10 @@ export default () => {
         marginBottom: 1,
     };
 
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [resType, setResType] = useState('');
-    const [floorArea, setFloorArea] = useState(0);
+    const [city, setCity] = useState(inputs.city|| '');
+    const [state, setState] = useState(inputs.state|| '');
+    const [resType, setResType] = useState(inputs.resType|| '');
+    const [floorArea, setFloorArea] = useState(inputs.floorArea || 0);
 
     const [oat, setOat] = useState([]);
 
@@ -49,10 +52,13 @@ export default () => {
 
     const submitData = () => {
         const newOat = [];
-        for (let i = 0; i < 24; i++)
+        for (let i = 0; i < 24; i++) {
             newOat.push(20 + 20 * Math.sin(Math.PI * i / 24))
+        }
         setOat(newOat);
-        setNextDisabled(!(city && state && resType && floorArea));
+
+        const ready = city && state && resType && floorArea;
+        setNextDisabled(!ready);
     };
 
     return (
@@ -182,7 +188,17 @@ export default () => {
                     </Grid>
                 </form>
 
-                <BackButton path="/residential/house_type" />
+                <BackButton 
+                path="/residential/house_type"
+                state={{
+                    ...inputs,
+                    city,
+                    state,
+                    resType,
+                    floorArea,
+                    oat,
+                }} 
+                />
             </Grid>
 
             <Grid
@@ -239,7 +255,18 @@ export default () => {
                     />
                 </Box>
 
-                <NextButton path="/residential/appliances/" disabled={nextDisabled} />
+                <NextButton 
+                path="/residential/appliances"
+                disabled={nextDisabled}
+                state={{
+                    ...inputs,
+                    city,
+                    state,
+                    resType,
+                    floorArea,
+                    oat,
+                }}
+                 />
             </Grid>
         </Grid>
     )

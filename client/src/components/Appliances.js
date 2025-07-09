@@ -3,15 +3,20 @@ import { getBrands, getModels, calculateDR } from '../logic/ACFunctions.js';
 import {
     Select,
     MenuItem,
+    Button,
 } from '@mui/material';
 import { DropDownIcon } from './DropDownIcon.js';
 import { BackButton, NextButton } from './NavButtons.js';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function ApplianceSelector() {
+    const location = useLocation();
+    const inputs = location.state || {};
+    const navigate = useNavigate();
     const [form, setForm] = useState({
-        appliance: "",
-        brand: "",
-        model: "",
+        appliance: inputs.appliance || "",
+        brand: inputs.brand || "",
+        model: inputs.model || "",
     });
 
     const [brands, setBrands] = useState([]);
@@ -166,7 +171,10 @@ export default function ApplianceSelector() {
                         </form>
                     </div>
 
-                    <BackButton path="/residential/location" />
+                    <BackButton 
+                    path="/residential/location"
+                    state={inputs} 
+                    />
                 </div>
 
                 {/* right side images */}
@@ -194,7 +202,26 @@ export default function ApplianceSelector() {
                         />
                     </div>
 
-                    <NextButton path="/residential/calculation" disabled={!form.model} />
+                    <Button
+                        disabled={!form.model}
+                        onClick={() => {
+                            navigate("/residential/calculation", {
+                                state: {
+                                    ...inputs,
+                                    ...form,
+                                },
+                            });
+                        }}
+                        variant="contained"
+                        color="secondary"
+                        sx={{
+                            marginTop: "2rem",
+                            width: "100%",
+                            height: "50px",
+                        }}
+                        >
+                            Next
+                            </Button>
                 </div>
 
             </div>

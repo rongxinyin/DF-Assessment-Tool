@@ -19,7 +19,9 @@ export const BackButton = props => {
                         width: "100%",
                         height: "50px",
                     }}
-                    onClick={() => navigate(props.path)}
+                    onClick={() => navigate(props.path, {
+                        state: props.state
+                    })}
                 >Back</Button>
             </Grid>
         </Box>
@@ -43,7 +45,7 @@ export const NextButton = props => {
                         height: "50px",
                     }}
                     onClick={() => navigate(props.path, {
-                        state: props.data//{ oat, resType, floorArea }
+                        state: props.state//{ oat, resType, floorArea }
                     })}
                     disabled={props.disabled}
                 >Next</Button>
