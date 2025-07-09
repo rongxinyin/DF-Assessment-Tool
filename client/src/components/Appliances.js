@@ -33,31 +33,56 @@ export default function ApplianceSelector() {
         if (name === "brand") {
             if (value === "Select a brand") {
                 setModels([]);
-            } else {
-                const models = await getModels(value);
-                brandModels.set(value, models);
-                setModels(models);
+            else {
+                if (brandModels.has(value))
+                    setModels(brandModels.get(value));
+                else {
+                    const models = await getModels(value);
+                    brandModels.set(value, models);
+                    setModels(models);
+                }
             }
-            setForm(prev => ({ ...prev, model: "" }));
-            setModelData(null);
-        }
-
-        if (name === "model") {
-            const selectedModel = models.find(m => (typeof m === 'object' ? m.model : m) === value);
-            if (selectedModel) {
-                setModelData(selectedModel);
-            } else {
-                setModelData(null);
-            }
-            setForm(prev => ({ ...prev, model: value }));
         }
     };
 
-    const breadcrumbPaths = [
-        { name: 'House Type', path: '/residential/house_type' },
-        { name: 'Location', path: '/residential/location' },
-        { name: 'Appliances', path: '/residential/appliances' },
-    ];
+    const textFieldInputPropsSX = {
+        sx: {
+            color: "#000000",
+        },
+    };
+
+    const textFieldSX = {
+        width: "100%",
+        marginBottom: 1,
+        marginTop: 1,
+        border: "0.5px solid #636363",
+        backgroundColor: "white",
+        borderRadius: "10px",
+    };
+
+    const inputStyle = {
+        width: "100%",
+        padding: "1rem",
+        borderRadius: "10px",
+        border: "0.5px solid #636363",
+        backgroundColor: "#FFFFFF",
+        color: "#000000",
+        fontSize: "1.1rem",
+        outline: "none",
+        marginBottom: "1rem",
+    };
+
+    const selectStyle = {
+        ...inputStyle,
+        appearance: "none",
+    };
+
+    const labelStyle = {
+        fontWeight: "bold",
+        marginBottom: "0.3rem",
+        display: "block",
+        fontSize: "1rem",
+    };
 
     return (
         <div
