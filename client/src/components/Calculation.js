@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import {
     Button,
     Slider,
-    Grid
+    Grid,
+    Box
 } from '@mui/material';
-import { BackButton, NextButton } from './NavButtons.js';
+import { BackButton, NextButton , BreadcrumbNav } from './NavButtons.js';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function ResidentialLanding() {
@@ -102,10 +103,20 @@ export default function ResidentialLanding() {
         fontSize: "1rem",
     };
 
-    // return what user sees
+
+    const breadcrumbPaths = [
+        { name: 'House Type', path: '/residential/house_type' },
+        { name: 'Location', path: '/residential/location' },
+        { name: 'Appliances', path: '/residential/appliances' },
+        { name: 'Calculation', path: '/residential/calculation' },
+    ];
+    
     return (
         <div style={{ backgroundColor: "#EEEEEE", minHeight: "calc(100vh - 90px)", display: "flex", flexDirection: "column", alignItems: "center" }}>
-            {/* Input rectangle */}
+            <Box sx={{ padding: 2, paddingBottom: 2,  alignSelf: 'flex-start' }}>
+                <BreadcrumbNav paths={breadcrumbPaths} />
+            </Box>
+            
             <div style={{
                 backgroundColor: "#FFFFFF",
                 width: "80%",
