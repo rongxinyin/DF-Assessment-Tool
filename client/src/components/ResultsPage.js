@@ -8,7 +8,7 @@ import {
     useMediaQuery,
 } from "@mui/material";
 import { Line } from 'react-chartjs-2';
-import { BackButton } from './NavButtons.js';
+import { BackButton , BreadcrumbNav } from './NavButtons.js';
 
 export default function NewResults() {
     const theme = useTheme();
