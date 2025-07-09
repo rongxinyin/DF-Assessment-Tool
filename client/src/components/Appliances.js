@@ -3,7 +3,7 @@ import { getBrands, getModels } from '../logic/ACFunctions.js';
 import {
     Select,
     MenuItem,
-    Box
+    Box,
     Button,
 } from '@mui/material';
 import { DropDownIcon } from './DropDownIcon.js';
