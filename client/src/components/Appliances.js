@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { getBrands, getModels } from '../logic/ACFunctions.js';
 import {
     Select,
@@ -6,15 +6,6 @@ import {
 } from '@mui/material';
 import { DropDownIcon } from './DropDownIcon.js';
 import { BackButton, NextButton } from './NavButtons.js';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  Cell
-} from 'recharts';
 
 export default function ApplianceSelector() {
     const [form, setForm] = useState({
@@ -27,7 +18,7 @@ export default function ApplianceSelector() {
     const [models, setModels] = useState([]);
     const [modelData, setModelData] = useState(null);
 
-    const brandModels = useRef(new Map());
+    const brandModels = new Map();
 
     useEffect(() => {
         if (brands.length === 0)
@@ -42,13 +33,9 @@ export default function ApplianceSelector() {
             if (value === "Select a brand") {
                 setModels([]);
             } else {
-                if (brandModels.current.has(value)) {
-                    setModels(brandModels.current.get(value));
-                } else {
-                    const models = await getModels(value);
-                    brandModels.current.set(value, models);
-                    setModels(models);
-                }
+                const models = await getModels(value);
+                brandModels.set(value, models);
+                setModels(models);
             }
             setForm(prev => ({ ...prev, model: "" }));
             setModelData(null);
@@ -176,31 +163,6 @@ export default function ApplianceSelector() {
                                 </div>
                             </div>
                         </form>
-
-                        {/* Bar chart (on the left now) */}
-                        {modelData && (
-                          <div style={{ marginTop: "0.5rem", width: "100%", height: 305 }}>
-                            <ResponsiveContainer>
-                              <BarChart
-                                data={[
-                                  { name: 'Capacity', value: modelData.capacity },
-                                  { name: 'COP', value: modelData.cop },
-                                  { name: 'Efficiency', value: modelData.energyEfficiency || 0 },
-                                ]}
-                                margin={{ top: 100, right: 30, left: 20, bottom: 50 }}
-                              >
-                                <XAxis dataKey="name" />
-                                <YAxis domain={[0, 'dataMax + 1']} />
-                                <Tooltip />
-                                <Bar dataKey="value" label={{ position: 'top', fill: '#000' }}>
-                                  <Cell fill="#EEEEEE" />
-                                  <Cell fill="#EEEEEE" />
-                                  <Cell fill="#EEEEEE" />
-                                </Bar>
-                              </BarChart>
-                            </ResponsiveContainer>
-                          </div>
-                        )}
 
                     </div>
 
