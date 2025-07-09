@@ -8,21 +8,18 @@ import {
     Select,
     MenuItem,
 } from '@mui/material';
-import { BackButton, NextButton , BreadcrumbNav } from './NavButtons.js';
+import { BackButton, NextButton, BreadcrumbNav } from './NavButtons.js';
 
 import { DropDownIcon } from './DropDownIcon.js';
 import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getTemps } from '../logic/ACFunctions.js';
 
-console.log('BreadcrumbNav Type:', typeof BreadcrumbNav);
-console.log('BreadcrumbNav:', BreadcrumbNav);
 export default () => {
     const location = useLocation();
     const inputs = location.state || {};
     const navigate = useNavigate();
-    console.log(inputs)
 
     const textFieldSX = {
         width: "100%",
@@ -40,28 +37,21 @@ export default () => {
     };
 
     const formControlSX = {
-        width: "90%",
+        width: "100%",
         marginBottom: 1,
     };
 
-    const [city, setCity] = useState(inputs.city|| '');
-    const [state, setState] = useState(inputs.state|| '');
-    const [resType, setResType] = useState(inputs.resType|| '');
-    const [floorArea, setFloorArea] = useState(inputs.floorArea || 0);
+    const [zip, setZip] = useState('');
+    const [resType, setResType] = useState('');
+    const [floorArea, setFloorArea] = useState(0);
 
     const [oat, setOat] = useState([]);
 
     const [nextDisabled, setNextDisabled] = useState(true);
 
-    const submitData = () => {
-        const newOat = [];
-        for (let i = 0; i < 24; i++) {
-            newOat.push(20 + 20 * Math.sin(Math.PI * i / 24))
-        }
-        setOat(newOat);
-
-        const ready = city && state && resType && floorArea;
-        setNextDisabled(!ready);
+    const submitData = async () => {
+        setOat(await getTemps(zip));
+        setNextDisabled(!(zip && resType && floorArea));
     };
 
     const breadcrumbPaths = [
@@ -94,42 +84,21 @@ export default () => {
                         </Typography>
 
                         <Grid container spacing={0}>
-                            <Grid item xs={6}>
+                            <Grid item xs={12}>
                                 <FormControl sx={formControlSX}>
                                     <Typography
                                         variant="body2"
                                         color="typography.primary.main"
                                         sx={{ fontWeight: "bold", marginLeft: 1 }}
                                     >
-                                        City
+                                        ZIP Code
                                     </Typography>
                                     <TextField
                                         id="outlined-basic"
                                         variant="outlined"
                                         autoComplete="off"
-                                        value={city}
-                                        onChange={(e) => setCity(e.target.value)}
-                                        sx={textFieldSX}
-                                        inputProps={textFieldInputPropsSX}
-                                    />
-                                </FormControl>
-                            </Grid>
-
-                            <Grid item xs={6}>
-                                <FormControl sx={formControlSX}>
-                                    <Typography
-                                        variant="body2"
-                                        color="typography.primary.main"
-                                        sx={{ fontWeight: "bold", marginLeft: 1 }}
-                                    >
-                                        State
-                                    </Typography>
-                                    <TextField
-                                        id="outlined-basic"
-                                        variant="outlined"
-                                        autoComplete="off"
-                                        value={state}
-                                        onChange={(e) => setState(e.target.value)}
+                                        value={zip}
+                                        onChange={(e) => setZip(e.target.value)}
                                         sx={textFieldSX}
                                         inputProps={textFieldInputPropsSX}
                                     />
@@ -200,18 +169,17 @@ export default () => {
                         </Grid>
                     </form>
 
-                <BackButton 
-                path="/residential/house_type"
-                state={{
-                    ...inputs,
-                    city,
-                    state,
-                    resType,
-                    floorArea,
-                    oat,
-                }} 
-                />
-            </Grid>
+                    <BackButton
+                        path="/residential/house_type"
+                        state={{
+                            ...inputs,
+                            zip,
+                            resType,
+                            floorArea,
+                            oat,
+                        }}
+                    />
+                </Grid>
 
                 <Grid
                     item
@@ -267,20 +235,19 @@ export default () => {
                         />
                     </Box>
 
-                    <NextButton 
-                path="/residential/appliances"
-                disabled={nextDisabled}
-                state={{
-                    ...inputs,
-                    city,
-                    state,
-                    resType,
-                    floorArea,
-                    oat,
-                }}
-                 />
+                    <NextButton
+                        path="/residential/appliances"
+                        disabled={nextDisabled}
+                        state={{
+                            ...inputs,
+                            zip,
+                            resType,
+                            floorArea,
+                            oat,
+                        }}
+                    />
                 </Grid>
             </Grid>
-        </Box>    
+        </Box>
     )
 }

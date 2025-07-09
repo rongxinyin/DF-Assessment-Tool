@@ -18,7 +18,7 @@ export default () => {
                         <Button
                             variant="contained"
                             color="secondary"
-                            onClick={() => navigate("/residential/location", { state: { houseType: "individual"} })}
+                            onClick={() => navigate("/residential/location", { state: { houseType: "individual" } })}
                             sx={{
                                 width: { xs: "100%", md: "50%" },
                                 display: "flex",

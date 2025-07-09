@@ -10,7 +10,12 @@ export const getModels = async brand => {
     return res.data;
 }
 
-export const calculateDR = async form => {
-    const res = await axios.get(`http://localhost:8080/residential/ac/brands/${form.brand}/${form.model}/${form.zip}`);
+export const calculateDR = async input => {
+    const res = await axios.get(`http://localhost:8080/residential/ac/brands/${input.brand}/${input.model}/${input.zip},${input.normalSetpoint},${input.drSetpoint}`);
+    return res.data;
+};
+
+export const getTemps = async zip => {
+    const res = await axios.get(`http://localhost:8080/residential/temps/${zip}`);
     return res.data;
 };

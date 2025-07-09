@@ -3,11 +3,11 @@ import { getBrands, getModels } from '../logic/ACFunctions.js';
 import {
     Select,
     MenuItem,
-    Box
+    Box,
     Button,
 } from '@mui/material';
 import { DropDownIcon } from './DropDownIcon.js';
-import { BackButton, NextButton , BreadcrumbNav } from './NavButtons.js';
+import { BackButton, NextButton, BreadcrumbNav } from './NavButtons.js';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function ApplianceSelector() {
@@ -38,7 +38,7 @@ export default function ApplianceSelector() {
         if (name === "brand") {
             if (value === "Select a brand") {
                 setModels([]);
-            }    
+            }
             else {
                 if (brandModels.has(value))
                     setModels(brandModels.get(value));
@@ -105,10 +105,10 @@ export default function ApplianceSelector() {
                 fontFamily: "sans-serif",
             }}
         >
-            <Box sx={{ padding: 2, paddingBottom: 0.5}}>
+            <Box sx={{ padding: 2, paddingBottom: 0.5 }}>
                 <BreadcrumbNav paths={breadcrumbPaths} />
             </Box>
-            
+
             <div style={{ display: "flex", flex: 1 }}>
                 {/* Left side */}
                 <div
@@ -214,9 +214,9 @@ export default function ApplianceSelector() {
 
                     </div>
 
-                    <BackButton 
-                    path="/residential/location"
-                    state={inputs} 
+                    <BackButton
+                        path="/residential/location"
+                        state={inputs}
                     />
                 </div>
 
@@ -264,9 +264,9 @@ export default function ApplianceSelector() {
                             width: "100%",
                             height: "50px",
                         }}
-                        >
-                            Next
-                            </Button>
+                    >
+                        Next
+                    </Button>
                 </div>
             </div>
         </div>
