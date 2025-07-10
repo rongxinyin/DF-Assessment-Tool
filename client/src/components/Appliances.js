@@ -156,7 +156,7 @@ export default function ApplianceSelector() {
                     <div>
                         <h2 style={{ marginBottom: "2rem", fontSize: "2rem" }}>Appliances</h2>
                         <form>
-                        //appliance selection dropdown mnu
+                        {/*appliance selection dropdown menu*/}
                             <div>
                                 <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Select Appliance:</label>
                                 <select
@@ -181,7 +181,7 @@ export default function ApplianceSelector() {
                                     <option value="waterHeater">Water Heater</option>
                                 </select>
                             </div>
-                    //brand+model selector (side by side)
+                    {/*brand+model selector (side by side)*/}
                             <div style={{ display: "flex", gap: "1rem" }}>
                                 <div style={{ flex: 1 }}>
                                     <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Brand</label>
@@ -210,7 +210,7 @@ export default function ApplianceSelector() {
                                         ))}
                                     </Select>
                                 </div>
-                            //model selector
+                            {/*model selector*/}
                                 <div style={{ flex: 1 }}>
                                     <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Model</label>
                                     <Select
