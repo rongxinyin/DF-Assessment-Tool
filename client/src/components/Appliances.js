@@ -31,6 +31,16 @@ export default function ApplianceSelector() {
             getBrands().then(setBrands);
     }, [brands.length]);
 
+    useEffect(() => {
+        const preloadModels = async () => {
+            if (form.brand) {
+                const loadedModels = await getModels(form.brand);
+                setModels(loadedModels);
+            }
+        };
+        preloadModels();
+    }, [form.brand]);
+
     const handleChange = async (e) => {
         const { name, value } = e.target;
         setForm(prev => ({ ...prev, [name]: value }));

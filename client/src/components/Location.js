@@ -41,11 +41,11 @@ export default () => {
         marginBottom: 1,
     };
 
-    const [zip, setZip] = useState('');
-    const [resType, setResType] = useState('');
-    const [floorArea, setFloorArea] = useState(0);
+    const [zip, setZip] = useState(inputs.zip || '');
+    const [resType, setResType] = useState(inputs.resType || '');
+    const [floorArea, setFloorArea] = useState(inputs.floorArea || 0);
 
-    const [oat, setOat] = useState([]);
+    const [oat, setOat] = useState(inputs.oat || []);
 
     const [nextDisabled, setNextDisabled] = useState(true);
 
