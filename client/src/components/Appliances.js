@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 
 export default function ApplianceSelector() {
+//previous page info (if not empty/if needed)
     const location = useLocation();
     const inputs = location.state || {};
     const navigate = useNavigate();
@@ -20,17 +21,20 @@ export default function ApplianceSelector() {
         brand: inputs.brand || "",
         model: inputs.model || "",
     });
-
+//state for available brands+models (dropdowns)
     const [brands, setBrands] = useState([]);
     const [models, setModels] = useState([]);
+
+//state for what is selected in brands+models
     const [modelData, setModelData] = useState(null);
 
+//temp storage for brand, models mapping, using useRef (no re renders)
     const brandModels = useRef(new Map()); //NEW
-
     useEffect(() => {
         if (brands.length === 0)
             getBrands().then(setBrands);
     }, [brands.length]);
+
 
     useEffect(() => {
         const preloadModels = async () => {
@@ -43,6 +47,7 @@ export default function ApplianceSelector() {
     }, [form.brand]);
 
 //NEW
+//handle changes for appliance, brand, and model
    const handleChange = async (e) => {
        const { name, value } = e.target;
        setForm(prev => ({ ...prev, [name]: value }));
@@ -63,6 +68,7 @@ export default function ApplianceSelector() {
            setModelData(null);
        }
 
+        //reset when brand changes
        if (name === "model") {
            const selectedModel = models.find(m => (typeof m === 'object' ? m.model : m) === value);
            if (selectedModel) {
@@ -70,11 +76,12 @@ export default function ApplianceSelector() {
            } else {
                setModelData(null);
            }
+           //update
            setForm(prev => ({ ...prev, model: value }));
        }
    };
 
-
+//styles
     const textFieldInputPropsSX = {
         sx: {
             color: "#000000",
@@ -134,7 +141,7 @@ export default function ApplianceSelector() {
             </Box>
 
             <div style={{ display: "flex", flex: 1 }}>
-                {/* Left side */}
+                {/* left side - info input */}
                 <div
                     style={{
                         backgroundColor: "#FFFFFF",
@@ -149,6 +156,7 @@ export default function ApplianceSelector() {
                     <div>
                         <h2 style={{ marginBottom: "2rem", fontSize: "2rem" }}>Appliances</h2>
                         <form>
+                        //appliance selection dropdown mnu
                             <div>
                                 <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Select Appliance:</label>
                                 <select
@@ -173,7 +181,7 @@ export default function ApplianceSelector() {
                                     <option value="waterHeater">Water Heater</option>
                                 </select>
                             </div>
-
+                    //brand+model selector (side by side)
                             <div style={{ display: "flex", gap: "1rem" }}>
                                 <div style={{ flex: 1 }}>
                                     <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Brand</label>
@@ -202,7 +210,7 @@ export default function ApplianceSelector() {
                                         ))}
                                     </Select>
                                 </div>
-
+                            //model selector
                                 <div style={{ flex: 1 }}>
                                     <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Model</label>
                                     <Select
@@ -235,7 +243,8 @@ export default function ApplianceSelector() {
                                 </div>
                             </div>
                         </form>
-                    //NEW
+                    {/*NEW - table*/}
+
                     {modelData ? (
                         <div style={{ marginTop: "2rem", width: "100%" }}>
                             <table style={{
@@ -267,6 +276,7 @@ export default function ApplianceSelector() {
                             </table>
                         </div>
                     ) : (
+                    //error message
                         <div style={{ marginTop: "2rem" }}>Please select a model to see details.</div>
                     )}
 
@@ -279,7 +289,7 @@ export default function ApplianceSelector() {
                     />
                 </div>
 
-                {/* Right side preview image */}
+                {/* right side */}
                 <div
                     style={{
                         backgroundColor: "#EEEEEE",
