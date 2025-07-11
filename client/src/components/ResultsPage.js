@@ -79,8 +79,20 @@ export default function NewResults() {
     // Celsius to Fahrenheit
     const cToF = c => c * 9 / 5 + 32;
 
+    //BreadCrumbNav//
+        const breadcrumbPaths = [
+        { name: 'House Type', path: '/residential/house_type' },
+        { name: 'Location', path: '/residential/location' },
+        { name: 'Appliances', path: '/residential/appliances' },
+        { name: 'Calculation', path: '/residential/calculation' },
+        { name: "Results Page", path: '/residential/results'},
+    ];
+
     return (
         <Grid container bgcolor="#EEEEEE" minHeight="calc(100vh - 90px)" p={4}>
+            <Box sx={{ padding: 2, paddingBottom: 2,  alignSelf: 'flex-start' }}>
+                <BreadcrumbNav paths={breadcrumbPaths} />
+                </Box>
        
         {/*Savings*/}
         <Grid item xs={12}>
