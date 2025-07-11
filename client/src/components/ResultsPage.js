@@ -81,288 +81,283 @@ export default function NewResults() {
 
     return (
         <Grid container bgcolor="#EEEEEE" minHeight="calc(100vh - 90px)" p={4}>
-            {/* Graph Section */}
-            <Grid
-                item
-                container
-                spacing={4}
-                justifyContent="center"
-                alignItems="center"
+       
+        {/*Savings*/}
+        <Grid item xs={12}>
+            <Typography
+            variant="h5"
+            color="#000000"
+            sx={{ mb: 2, fontWeight: "bold", textAlign: "center"}}
+        >
+            Savings
+            </Typography>
+
+            <Box
+                sx={{
+                    backgroundColor: "white.main",
+                    borderRadius: "12px",
+                    padding: "1rem 1rem",
+                    boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginX: "auto",
+                    width: "100%",
+                    maxWidth: "400px",    
+                }}
             >
-                <Grid item xs={12} md={5}>
-                    <Typography
-                        variant="h5"
-                        color="#000000"
-                        sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
-                    >
-                        Normal Plot
-                    </Typography>
-                    {/* Normal power plot */}
-                    <Box
-                        sx={{
-                            backgroundColor: "white.main",
-                            borderRadius: "8px",
-                            width: "100%",
-                        }}>
-                        <Line data={{
-                            labels: hours,
-                            datasets: [
-                                {
-                                    label: 'Outside Air Temperature',
-                                    data: normalResults.outdoorTemp.map(cToF),
-                                    borderColor: '#DC3912',
-                                    backgroundColor: '#DC391280',
-                                    order: 1
-                                },
-                                {
-                                    label: 'Inside Temperature',
-                                    data: normalResults.indoorTemp.map(cToF),
-                                    borderColor: '#3366CC',
-                                    backgroundColor: '#3366CC80',
-                                    order: 1
-                                },
-                                {
-                                    label: 'Setpoint',
-                                    data: normalResults.setpoint.map(cToF),
-                                    borderColor: '#109618',
-                                    pointRadius: 0,
-                                    borderWidth: 2,
-                                    borderDash: [10, 5],
-                                    order: 0
-                                }
-                            ],
-                        }}
-                            options={{
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: 'Temperature'
-                                    }
-                                },
-                                scales: {
-                                    x: {
-                                        title: {
-                                            display: true,
-                                            text: 'Hour'
-                                        }
-                                    },
-                                    y: {
-                                        title: {
-                                            display: true,
-                                            text: 'Temperature (°C)'
-                                        },
-                                    }
-                                }
-                            }}
-                        />
-                    </Box>
-                    {/* Normal power plot */}
-                    <Box
-                        marginTop={2}
-                        sx={{
-                            backgroundColor: "white.main",
-                            width: "100%",
-                            borderRadius: "8px",
-                        }}>
-                        <Line data={{
-                            labels: hours,
-                            datasets: [
-                                {
-                                    label: 'Power Consumption',
-                                    data: normalResults.powerConsumption,
-                                    borderColor: '#000000',
-                                    backgroundColor: '#00000080',
-                                    pointRadius: 0,
-                                    stepped: true
-                                },
-                            ],
-                        }}
-                            options={{
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: 'Power Consumption'
-                                    }
-                                },
-                                scales: {
-                                    x: {
-                                        title: {
-                                            display: true,
-                                            text: 'Hour'
-                                        }
-                                    },
-                                    y: {
-                                        title: {
-                                            display: true,
-                                            text: 'Power Consumption (kW)'
-                                        },
-                                    }
-                                }
+                <Typography fontWeight="bold" textAlign="center" mb={0.5}>
+                    Normal Energy Usage:
+                </Typography>
+                <Typography textAlign="center" mb={1}>
+                    {Math.round(normalEnergy * 100) / 100}kWh
+                </Typography>
+                    
+                <Typography fontWeight="bold" textAlign="center" mb={0.5}>
+                    DR Energy Usage:
+                </Typography>
+                <Typography textAlign="center" mb={1}>
+                    {Math.round(drEnergy * 100) / 100}kWh
+                </Typography>
 
-                            }}
-                        />
-                    </Box>
-                </Grid>
+                <Typography fontWeight="bold" textAlign="center" mb={0.5}>
+                    Savings:
+                </Typography>
+                <Typography textAlign="center">
+                    {Math.round((normalEnergy - drEnergy) * 100) / 100}kWh (
+                    {normalEnergy !== 0
+                        ? Math.round(((normalEnergy - drEnergy) / normalEnergy) * 10000) / 100
+                        : "0"
+                    }%) - ${Math.round((normalEnergy - drEnergy) * 0.50 * 100) / 100}/day
+                </Typography>
+            </Box>
+        </Grid>
 
-                <Grid item xs={12} md={5}>
-                    <Typography
-                        variant="h5"
-                        color="#000000"
-                        sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
-                    >
-                        DR Plot
-                    </Typography>
-                    {/* DR temperature plot */}
-                    <Box
-                        sx={{
-                            backgroundColor: "white.main",
-                            borderRadius: "8px",
-                            width: "100%",
-                        }}>
-                        <Line data={{
+    {/* Graph Section */}
+        <Grid
+        item
+        container
+        spacing={4}
+        justifyContent="center"
+        alignItems="flex-start"
+        sx={{ marginTop: "2rem"}}
+        >
+
+        {/* Normal Plot */}
+        <Grid item xs={12} md={5}>
+            <Typography
+            variant="h5"
+            color="#000000"
+            sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
+            >
+                Normal Plot
+                </Typography>
+                <Box
+                sx={{
+                    backgroundColor: "white.main",
+                    borderRadius: "8px",
+                    width: "100%",
+                }}
+                >
+                    <Line
+                    data={{
+                        labels: hours,
+                        datasets: [
+                            {
+                                label: "Outside Air Temperature",
+                                data: normalResults.outdoorTemp.map(cToF),
+                                borderColor: "#DC3912",
+                                backgroundColor: "#DC391280",
+                                order: 1,
+                            },
+                            {
+                                label: "Inside Temperature",
+                                data: normalResults.indoorTemp.map(cToF),
+                                borderColor: "#3366CC",
+                                backgroundColor: "#3366CC80",
+                                order: 1,
+                            },
+                            {
+                                label: "Setpoint",
+                                data: normalResults.setpoint.map(cToF),
+                                borderColor: "#109618",
+                                pointRadius: 0,
+                                borderWidth: 2,
+                                borderDash: [10, 5],
+                                order: 0,
+                            },
+                        ],
+                    }}
+                    options={{
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: "Temperature",
+                            },
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: "Hour",
+                                },
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: "Temperature (°C)",
+                                },
+                            },
+                        },
+                    }}
+                    />
+                    </Box>
+                    </Grid>
+
+        {/* DR Plot */}
+            <Grid item xs={12} md={5}>
+                <Typography
+                variant="h5"
+                color="#000000"
+                sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
+                >
+                DR Plot
+                </Typography>
+                <Box
+                sx={{
+                    backgroundColor: "white.main",
+                    borderRadius: "8px",
+                    width: "100%",
+                }}
+                >
+                    <Line
+                        data={{
                             labels: hours,
                             datasets: [
                                 {
-                                    label: 'Outside Air Temperature',
+                                    label: "Outside Air Temperature",
                                     data: drResults.outdoorTemp.map(cToF),
-                                    borderColor: '#DC3912',
-                                    backgroundColor: '#DC391280',
-                                    order: 1
+                                    borderColor: "#DC3912",
+                                    backgroundColor: "#DC391280",
+                                    order: 1,
                                 },
                                 {
-                                    label: 'Inside Temperature',
+                                    label: "Inside Temperature",
                                     data: drResults.indoorTemp.map(cToF),
-                                    borderColor: '#3366CC',
-                                    backgroundColor: '#3366CC80',
-                                    order: 1
+                                    borderColor: "#3366CC",
+                                    backgroundColor: "#3366CC80",
+                                    order: 1,
                                 },
                                 {
-                                    label: 'Setpoint',
+                                    label: "Setpoint",
                                     data: drResults.setpoint.map(cToF),
-                                    borderColor: '#109618',
+                                    borderColor: "#109618",
                                     pointRadius: 0,
                                     borderWidth: 2,
                                     borderDash: [10, 5],
-                                    order: 0
+                                    order: 0,
                                 },
                                 {
-                                    label: 'Effective Setpoint',
+                                    label: "Effective Setpoint",
                                     data: drResults.effectiveSetpoint.map(cToF),
-                                    borderColor: '#990099',
+                                    borderColor: "#990099",
                                     pointRadius: 0,
                                     borderWidth: 2,
                                     borderDash: [10, 5],
-                                    order: 0
-                                }
-                            ],
-                        }}
-                            options={{
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: 'Temperature'
-                                    }
-                                },
-                                scales: {
-                                    x: {
-                                        title: {
-                                            display: true,
-                                            text: 'Hour'
-                                        }
-                                    },
-                                    y: {
-                                        title: {
-                                            display: true,
-                                            text: 'Temperature (°C)'
-                                        },
-                                    }
-                                }
-
-                            }}
-                        />
-                    </Box>
-                    {/* DR power plot */}
-                    <Box
-                        marginTop={2}
-                        sx={{
-                            backgroundColor: "white.main",
-                            width: "100%",
-                            borderRadius: "8px",
-                        }}>
-                        <Line data={{
-                            labels: hours,
-                            datasets: [
-                                {
-                                    label: 'Power Consumption',
-                                    data: drResults.powerConsumption,
-                                    borderColor: '#000000',
-                                    backgroundColor: '#00000080',
-                                    pointRadius: 0,
-                                    stepped: true
+                                    order: 0,
                                 },
                             ],
                         }}
-                            options={{
-                                plugins: {
+                        options={{
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: "Temperature",
+                                },
+                            },
+                            scales: {
+                                x: {
                                     title: {
                                         display: true,
-                                        text: 'Power Consumption'
-                                    }
-                                },
-                                scales: {
-                                    x: {
-                                        title: {
-                                            display: true,
-                                            text: 'Hour'
-                                        }
+                                        text: "Hour",
                                     },
-                                    y: {
-                                        title: {
-                                            display: true,
-                                            text: 'Power Consumption (kW)'
-                                        },
-                                    }
-                                }
-
-                            }}
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: "Temperature (°C)",
+                                    },
+                                },
+                            },
+                        }}
                         />
-                    </Box>
-                </Grid>
-
-                <Grid item xs={12} md={10}>
-                    <Typography
-                        variant="h5"
-                        color="typography.primary.main"
-                        sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
-                    >
-                        Savings
-                    </Typography>
-                    <Box
-                        marginTop={2}
-                        p={1}
-                        sx={{
-                            backgroundColor: "white.main",
-                            width: "100%",
-                            borderRadius: "8px",
-                        }}>
-                        <Grid container>
-                            <Grid item xs={12} md={6}>
-                                <span style={{ fontWeight: "bold" }}>Normal energy usage: </span>
-                                {Math.round(normalEnergy * 100) / 100}kWh
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <span style={{ fontWeight: "bold" }}>DR energy usage: </span>
-                                {Math.round(drEnergy * 100) / 100}kWh
-                            </Grid>
-                            <Grid item xs={12}>
-                                <span style={{ fontWeight: "bold" }}>Savings: </span>
-                                {Math.round((normalEnergy - drEnergy) * 100) / 100}kWh ({Math.round((normalEnergy - drEnergy) / normalEnergy * 10000) / 100}%) - ${(Math.round((normalEnergy - drEnergy) * 0.50 * 100) / 100).toFixed(2)}/day {/* $0.50 per kWh */}
-                            </Grid>
+                        </Box>
                         </Grid>
-                    </Box>
+                        </Grid>
+                        
+        {/* Power Consumption Chart */}
+        <Grid container justifyContent="center" sx={{ marginTop: 4 }}>
+            <Grid item xs={12} md={5}>
+                <Box
+                sx={{
+                    backgroundColor: "white.main",
+                    borderRadius: "8px",
+                    width: "100%",
+                    padding: "1rem",
+                    margin: "0 auto",
+                }}
+                >
+                <Line
+                data={{
+                    labels: hours,
+                    datasets: [
+                        {
+                            label: "Normal Power Consumption",
+                            data: normalResults.powerConsumption,
+                            borderColor: "#000000",
+                            backgroundColor: "#00000080",
+                            pointRadius: 0,
+                            stepped: true,
+                            borderWidth: 2,
+                        },
+                        {
+                            label: "DR Power Consumption",
+                            data: drResults.powerConsumption,
+                            borderColor: "#990099",
+                            backgroundColor: "#99009980",
+                            pointRadius: 0,
+                            stepped: true,
+                            borderWidth: 2,
+                        },
+                    ],
+                }}
+                options={{
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: "Power Consumption",
+                        },
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: "Hour",
+                            },
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: "Power Consumption (kW)",
+                            },
+                        },
+                    },
+                }}
+                />
+                </Box>
                 </Grid>
-            </Grid>
-
+                </Grid>
 
             <Grid container marginTop="auto">
                 <Grid item xs={6}>
