@@ -16,10 +16,15 @@ import { Line } from 'react-chartjs-2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getTemps } from '../logic/ACFunctions.js';
 
+
+
 export default () => {
     const location = useLocation();
     const inputs = location.state || {};
+    const [homeAge, setHomeAge] = useState(inputs.homeAge || 'new'); //new
     const navigate = useNavigate();
+    const [submitted, setSubmitted] = useState(false);
+
 
     const textFieldSX = {
         width: "100%",
@@ -50,8 +55,10 @@ export default () => {
     const [nextDisabled, setNextDisabled] = useState(true);
 
     const submitData = async () => {
-        setOat(await getTemps(zip));
-        setNextDisabled(!(zip && resType && floorArea));
+        const temps = await getTemps(zip);
+            setOat(temps);
+            setSubmitted(true);
+            setNextDisabled(!(zip && resType && floorArea));
     };
 
     const breadcrumbPaths = [
@@ -83,7 +90,7 @@ export default () => {
                             Location
                         </Typography>
 
-                        <Grid container spacing={0}>
+                        <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <FormControl sx={formControlSX}>
                                     <Typography
@@ -104,6 +111,30 @@ export default () => {
                                     />
                                 </FormControl>
                             </Grid>
+
+                           {/*new*/}
+                            <Grid item xs={12}>
+                                <FormControl sx={formControlSX}>
+                                    <Typography
+                                        variant="body2"
+                                        color="typography.primary.main"
+                                        sx={{ fontWeight: "bold", marginLeft: 1 }}
+                                    >
+                                        Home Age
+                                    </Typography>
+                                    <Select
+                                        value={homeAge}
+                                        onChange={(e) => setHomeAge(e.target.value)}
+                                        sx={textFieldSX}
+                                        inputProps={textFieldInputPropsSX}
+                                        IconComponent={DropDownIcon}
+                                    >
+                                        <MenuItem value="new">New Home</MenuItem>
+                                        <MenuItem value="old">Old Home</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+
 
                             <Grid item xs={6}>
                                 <FormControl sx={formControlSX}>
@@ -235,6 +266,52 @@ export default () => {
                         />
                     </Box>
 
+                    //new
+                    {submitted && (
+                      <>
+                        <Typography
+                            variant="h5"
+                            sx={{ mt: 4, mb: 2, fontWeight: "bold", textAlign: "center" }}
+                        >
+                            Home Characteristics
+                        </Typography>
+
+                        <Box
+                            sx={{
+                                backgroundColor: "#fff",
+                                padding: 2,
+                                borderRadius: "8px",
+                                width: "100%",
+                                boxShadow: 1,
+                            }}
+                        >
+                            <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+                                <thead>
+                                    <tr style={{ borderBottom: '2px solid #ccc' }}>
+                                        <th style={{ padding: '8px' }}>Property</th>
+                                        <th style={{ padding: '8px' }}>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style={{ padding: '8px' }}>Thermal Resistance</td>
+                                        <td style={{ padding: '8px' }}>
+                                            {homeAge === 'new' ? '2.0 K/kW' : '2.0 K/kW'}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style={{ padding: '8px' }}>Thermal Capacitance</td>
+                                        <td style={{ padding: '8px' }}>
+                                            {homeAge === 'new' ? '5.0 kWh/K' : '5.0 kWh/K'}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </Box>
+                      </>
+                    )}
+
+
                     <NextButton
                         path="/residential/appliances"
                         disabled={nextDisabled}
@@ -244,6 +321,7 @@ export default () => {
                             resType,
                             floorArea,
                             oat,
+                            homeAge, //new
                         }}
                     />
                 </Grid>

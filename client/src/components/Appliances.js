@@ -156,7 +156,7 @@ export default function ApplianceSelector() {
                     <div>
                         <h2 style={{ marginBottom: "2rem", fontSize: "2rem" }}>Appliances</h2>
                         <form>
-                        //appliance selection dropdown mnu
+                        {/*appliance selection dropdown menu*/}
                             <div>
                                 <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Select Appliance:</label>
                                 <select
@@ -181,7 +181,7 @@ export default function ApplianceSelector() {
                                     <option value="waterHeater">Water Heater</option>
                                 </select>
                             </div>
-                    //brand+model selector (side by side)
+                    {/*brand+model selector (side by side)*/}
                             <div style={{ display: "flex", gap: "1rem" }}>
                                 <div style={{ flex: 1 }}>
                                     <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Brand</label>
@@ -210,7 +210,7 @@ export default function ApplianceSelector() {
                                         ))}
                                     </Select>
                                 </div>
-                            //model selector
+                            {/*model selector*/}
                                 <div style={{ flex: 1 }}>
                                     <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Model</label>
                                     <Select
@@ -308,7 +308,7 @@ export default function ApplianceSelector() {
                             src="/appliance-images/appliance1.png"
                             alt={(form.appliance === 'airConditioner' ? 'Air conditioner' : 'Water heater') + ' image'}
                             style={{
-                                width: "50%",
+                                width: "112%",
                                 objectFit: "cover",
                                 margin: "auto",
                                 display: "block"
@@ -329,9 +329,13 @@ export default function ApplianceSelector() {
                         variant="contained"
                         color="secondary"
                         sx={{
-                            marginTop: "2rem",
-                            width: "100%",
-                            height: "50px",
+                        //new
+                          bottom: '9px',
+                          right: '-400px',
+                          width: '225px',
+                          height: '50px',
+                          marginTop: 'auto',
+                          zIndex: 1000,
                         }}
                     >
                         Next
