@@ -129,7 +129,10 @@ export default function NewResults() {
                     {normalEnergy !== 0
                         ? Math.round(((normalEnergy - drEnergy) / normalEnergy) * 10000) / 100
                         : "0"
-                    }%) - ${Math.round((normalEnergy - drEnergy) * 0.50 * 100) / 100}/day
+                    }%) - 
+                    <span style={{ color: "green", fontWeight: "bold"}}>
+                    ${Math.round((normalEnergy - drEnergy) * 0.50 * 100) / 100}/day
+                    </span>
                 </Typography>
             </Box>
         </Grid>
@@ -299,6 +302,14 @@ export default function NewResults() {
         {/* Power Consumption Chart */}
         <Grid container justifyContent="center" sx={{ marginTop: 4 }}>
             <Grid item xs={12} md={5}>
+                <Typography
+                variant="h5"
+                color="#000000"
+                sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
+                >
+                Power Consumption
+                </Typography>
+
                 <Box
                 sx={{
                     backgroundColor: "white.main",
