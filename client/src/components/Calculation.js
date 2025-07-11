@@ -5,7 +5,7 @@ import {
     Grid,
     Box
 } from '@mui/material';
-import { BackButton, NextButton , BreadcrumbNav } from './NavButtons.js';
+import { BackButton, NextButton, BreadcrumbNav } from './NavButtons.js';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function ResidentialLanding() {
@@ -16,8 +16,8 @@ export default function ResidentialLanding() {
     const [form, setForm] = useState({
         normalSetpoint: location.state?.normalSetpoint || "",
         drSetpoint: location.state?.drSetpoint || "",
-        timeStart: location.state?.timeStart || "9 am",
-        timeEnd: location.state?.timeEnd || "5 pm",
+        timeStart: location.state?.timeStart || "9",
+        timeEnd: location.state?.timeEnd || "5",
     });
 
     // Generate hours of the day for slider marks
@@ -43,20 +43,15 @@ export default function ResidentialLanding() {
         const start = parseHour(location.state?.timeStart) ?? 9;
         const end = parseHour(location.state?.timeEnd) ?? 17;
         return [start, end];
-        
+
     });
 
     // Update form state when timeRange changes
     useEffect(() => {
-        const hourToString = (hour) => {
-            const h = hour % 12 === 0 ? 12 : hour % 12;
-            const period = hour < 12 ? 'am' : 'pm';
-            return `${h} ${period}`;
-        };
         setForm(prev => ({
             ...prev,
-            timeStart: hourToString(timeRange[0]),
-            timeEnd: hourToString(timeRange[1])
+            timeStart: timeRange[0],
+            timeEnd: timeRange[1]
         }));
     }, [timeRange]);
 
@@ -110,13 +105,13 @@ export default function ResidentialLanding() {
         { name: 'Appliances', path: '/residential/appliances' },
         { name: 'Calculation', path: '/residential/calculation' },
     ];
-    
+
     return (
         <div style={{ backgroundColor: "#EEEEEE", minHeight: "calc(100vh - 90px)", display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <Box sx={{ padding: 2, paddingBottom: 2,  alignSelf: 'flex-start' }}>
+            <Box sx={{ padding: 2, paddingBottom: 2, alignSelf: 'flex-start' }}>
                 <BreadcrumbNav paths={breadcrumbPaths} />
             </Box>
-            
+
             <div style={{
                 backgroundColor: "#FFFFFF",
                 width: "80%",
@@ -194,7 +189,7 @@ export default function ResidentialLanding() {
             {/* Calculate button */}
             <Button
                 variant="contained"
-                onClick={() => 
+                onClick={() =>
                     navigate("/residential/results", {
                         state: {
                             ...inputs,
@@ -216,22 +211,22 @@ export default function ResidentialLanding() {
 
             <Grid container width="100%" marginTop="auto" padding={4}>
                 <Grid item xs={6}>
-                    <BackButton 
-                    path="/residential/appliances/"
-                    state={{
-                        ...inputs,
-                        ...form,
-                    }} 
-                />
-                </Grid>
-                <Grid item xs={6} style={{ display: "flex", justifyContent: "flex-end"}}>
-                    {form.normalSetpoint && (
-                    <NextButton
-                        path="/residential/results"
+                    <BackButton
+                        path="/residential/appliances/"
                         state={{
                             ...inputs,
                             ...form,
                         }}
+                    />
+                </Grid>
+                <Grid item xs={6} style={{ display: "flex", justifyContent: "flex-end" }}>
+                    {form.normalSetpoint && (
+                        <NextButton
+                            path="/residential/results"
+                            state={{
+                                ...inputs,
+                                ...form,
+                            }}
                         />
                     )}
                 </Grid>

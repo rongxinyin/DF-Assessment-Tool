@@ -19,6 +19,9 @@ export class ResidentialACModel {
         this.powerConsumption = 0.0; // Current power consumption (kW)
         this.demandResponseActive = false;
         this.drSetpointOffset = 0.0; // Setpoint offset during demand response (K)
+        this.time = 0;
+        this.drStart = 0;
+        this.drEnd = 0;
 
         // Control hysteresis tracking
         this.lastStage = 0;
@@ -37,17 +40,24 @@ export class ResidentialACModel {
     /**
      * @param {boolean} active - Whether DR is active
      * @param {number} spOffset - Setpoint increase during DR (°C/K)
+     * @param {number} start - DR start hour
+     * @param {number} end - DR end hour
      */
-    setDemandResponse(active, spOffset) {
+    setDemandResponse(active, spOffset, start, end) {
         this.demandResponseActive = active;
         this.drSetpointOffset = active ? spOffset : 0.0;
+        this.drStart = start;
+        this.drEnd = end;
     }
 
     /**
-    * @returns {number} - Set point with DR offset added
+     * @param {number} [hour] - Current time
+     * @returns {number} - Set point with DR offset added
      */
-    getEffectiveSetpoint() {
-        return this.setpoint + this.drSetpointOffset;
+    getEffectiveSetpoint(hour = this.time) {
+        if (this.drStart <= hour && hour <= this.drEnd)
+            return this.setpoint + this.drSetpointOffset;
+        return this.setpoint;
     }
 
     /**
@@ -126,7 +136,7 @@ export class ResidentialACModel {
      * @param {number} outdoorTemp - Outdoor temperature (°C)
      * @param {number} [dt=1/60] - Time step (hours), uses default if not set
      */
-    updateTemperature(outdoorTemp, dt = 1 / 60) {
+    updateTemperature(outdoorTemp, dt) {
         // Heat transfer through building envelope (positive = heat gain)
         // Thermal resistance is the amount of temperature difference required to add a certain amount of thermal energy to an area
         // K/(K/kW) = kW
@@ -150,10 +160,12 @@ export class ResidentialACModel {
      * @param {number} [dt] - Time step (hours)
      * @returns {Object}
     */
-    simulateStep(outdoorTemp, dt) {
+    simulateStep(outdoorTemp, dt = 1 / 60) {
         this.updateControlLogic();
         this.calculatePowerConsumption();
         this.updateTemperature(outdoorTemp, dt);
+
+        this.time += dt;
 
         return {
             indoorTemp: this.indoorTemp,
@@ -191,7 +203,7 @@ export class ResidentialACModel {
             results.powerConsumption.push(this.powerConsumption);
             results.compressorStage.push(this.compressorStage);
             results.setpoint.push(this.setpoint);
-            results.effectiveSetpoint.push(this.getEffectiveSetpoint());
+            results.effectiveSetpoint.push(this.getEffectiveSetpoint(time));
 
             time += dt;
         }
