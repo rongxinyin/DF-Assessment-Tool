@@ -12,12 +12,13 @@ export default function ResidentialLanding() {
     const navigate = useNavigate();
     const location = useLocation();
     const inputs = location.state || {};
+    console.log(location)
 
     const [form, setForm] = useState({
-        normalSetpoint: location.state?.normalSetpoint || "",
-        drSetpoint: location.state?.drSetpoint || "",
-        timeStart: location.state?.timeStart || "9",
-        timeEnd: location.state?.timeEnd || "5",
+        normalSetpoint: inputs.normalSetpoint || "",
+        drSetpoint: inputs.drSetpoint || "",
+        timeStart: inputs.timeStart || "9",
+        timeEnd: inputs.timeEnd || "5",
     });
 
     // Generate hours of the day for slider marks
@@ -32,8 +33,8 @@ export default function ResidentialLanding() {
 
     // Initialize time range (default: 9 am to 5 pm)
     const [timeRange, setTimeRange] = useState(() => {
-        const start = location.state.timeStart || 9;
-        const end = location.state?.timeEnd || 17;
+        const start = inputs.timeStart || 9;
+        const end = inputs.timeEnd || 17;
         return [start, end];
 
     });
@@ -109,7 +110,7 @@ export default function ResidentialLanding() {
                 width: "80%",
                 height: "350px",
                 padding: "2rem",
-                marginTop: "10rem",
+                marginTop: "2rem",
                 borderRadius: "10px"
             }}>
                 <h2 style={{ color: "#000000", marginBottom: "1rem", textAlign: "center" }}>Residential Calculator</h2>
@@ -212,15 +213,14 @@ export default function ResidentialLanding() {
                     />
                 </Grid>
                 <Grid item xs={6} style={{ display: "flex", justifyContent: "flex-end" }}>
-                    {form.normalSetpoint && (
-                        <NextButton
-                            path="/residential/results"
-                            state={{
-                                ...inputs,
-                                ...form,
-                            }}
-                        />
-                    )}
+                    <NextButton
+                        disabled={!form.normalSetpoint}
+                        path="/residential/results"
+                        state={{
+                            ...inputs,
+                            ...form,
+                        }}
+                    />
                 </Grid>
             </Grid>
         </div>

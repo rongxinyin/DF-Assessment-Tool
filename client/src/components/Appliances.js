@@ -4,18 +4,17 @@ import {
     Select,
     MenuItem,
     Box,
-    Button,
+    Grid,
 } from '@mui/material';
 import { DropDownIcon } from './DropDownIcon.js';
 import { BackButton, NextButton, BreadcrumbNav } from './NavButtons.js';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 
 export default function ApplianceSelector() {
     //previous page info (if not empty/if needed)
     const location = useLocation();
     const inputs = location.state || {};
-    const navigate = useNavigate();
     const [form, setForm] = useState({
         appliance: inputs.appliance || "",
         brand: inputs.brand || "",
@@ -55,7 +54,7 @@ export default function ApplianceSelector() {
     //handle changes for appliance, brand, and model
     const handleChange = async (e) => {
         const { name, value } = e.target;
-        setForm(prev => ({ ...prev, [name]: value }));
+        setForm({ ...form, [name]: value });
 
         if (name === "brand") {
             if (value === "Select a brand") {
@@ -84,46 +83,6 @@ export default function ApplianceSelector() {
             //update
             setForm(prev => ({ ...prev, model: value }));
         }
-    };
-
-    //styles
-    const textFieldInputPropsSX = {
-        sx: {
-            color: "#000000",
-        },
-    };
-
-    const textFieldSX = {
-        width: "100%",
-        marginBottom: 1,
-        marginTop: 1,
-        border: "0.5px solid #636363",
-        backgroundColor: "white",
-        borderRadius: "10px",
-    };
-
-    const inputStyle = {
-        width: "100%",
-        padding: "1rem",
-        borderRadius: "10px",
-        border: "0.5px solid #636363",
-        backgroundColor: "#FFFFFF",
-        color: "#000000",
-        fontSize: "1.1rem",
-        outline: "none",
-        marginBottom: "1rem",
-    };
-
-    const selectStyle = {
-        ...inputStyle,
-        appearance: "none",
-    };
-
-    const labelStyle = {
-        fontWeight: "bold",
-        marginBottom: "0.3rem",
-        display: "block",
-        fontSize: "1rem",
     };
 
     const breadcrumbPaths = [
@@ -181,9 +140,9 @@ export default function ApplianceSelector() {
                                         appearance: "none",
                                     }}
                                 >
-                                    <option value="">Choose Appliance</option>
-                                    <option value="airConditioner">Air Conditioner</option>
-                                    <option value="waterHeater">Water Heater</option>
+                                    <option value="">Choose appliance</option>
+                                    <option value="Air conditioner">Air conditioner</option>
+                                    <option value="Water heater">Water heater</option>
                                 </select>
                             </div>
                             {/*brand+model selector (side by side)*/}
@@ -248,44 +207,6 @@ export default function ApplianceSelector() {
                                 </div>
                             </div>
                         </form>
-                        {/*NEW - table*/}
-
-                        {modelData ? (
-                            <div style={{ marginTop: "2rem", width: "100%" }}>
-                                <table style={{
-                                    width: "100%",
-                                    borderCollapse: "collapse",
-                                    textAlign: "left",
-                                    fontSize: "1rem"
-                                }}>
-                                    <thead>
-                                        <tr style={{ backgroundColor: "#f0f0f0" }}>
-                                            <th style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>Property</th>
-                                            <th style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>Value</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>Model</td>
-                                            <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>{modelData.model}</td>
-                                        </tr>
-                                        <tr>
-                                            <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>Capacity</td>
-                                            <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>{modelData.capacity}</td>
-                                        </tr>
-                                        <tr>
-                                            <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}><abbr title="Coefficient of performance">COP</abbr></td>
-                                            <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>{modelData.cop}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        ) : (
-                            //error message
-                            <div style={{ marginTop: "2rem" }}>Please select a model to see details.</div>
-                        )}
-
-
                     </div>
 
                     <BackButton
@@ -298,7 +219,7 @@ export default function ApplianceSelector() {
                 <div
                     style={{
                         backgroundColor: "#EEEEEE",
-                        flex: 1.2,
+                        flex: 1,
                         padding: "2rem",
                         display: "flex",
                         flexDirection: "column",
@@ -306,28 +227,72 @@ export default function ApplianceSelector() {
                         alignItems: "center"
                     }}
                 >
-                    <h2 style={{ fontSize: "2rem", marginBottom: "2rem", textAlign: "center" }}>Preview</h2>
-                    <div
-                    >
-                        <img
-                            src="/appliance-images/appliance1.png"
-                            alt={(form.appliance === 'airConditioner' ? 'Air conditioner' : 'Water heater') + ' image'}
-                            style={{
-                                width: "112%",
-                                objectFit: "cover",
-                                margin: "auto",
-                                display: "block"
-                            }}
-                        />
-                    </div>
+                    <h2 style={{ fontSize: "2rem", textAlign: "center" }}>Preview</h2>
+                    <Grid container marginTop={2} spacing={4}>
+                        <Grid item xs={12} md={4}>
+                            <img
+                                src="/appliance-images/appliance1.png"
+                                alt={form.appliance + ' image'}
+                                style={{
+                                    maxWidth: "100%",
+                                    objectFit: "cover",
+                                    margin: "auto",
+                                    display: "block"
+                                }}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12} md={8}>
+                            {modelData ? (
+                                <Box
+                                    sx={{
+                                        backgroundColor: "#fff",
+                                        padding: 2,
+                                        borderRadius: "8px",
+                                        width: "100%",
+                                        boxShadow: 1,
+                                    }}
+                                >
+                                    <table style={{
+                                        width: "100%",
+                                        borderCollapse: "collapse",
+                                        textAlign: "left",
+                                        fontSize: "1rem"
+                                    }}>
+                                        <thead>
+                                            <tr style={{ borderBottom: "2px solid #ccc" }}>
+                                                <th style={{ padding: "8px" }}>Property</th>
+                                                <th style={{ padding: "8px" }}>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style={{ padding: "8px" }}>Model</td>
+                                                <td style={{ padding: "8px" }}>{modelData.model}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style={{ padding: "8px" }}>Capacity</td>
+                                                <td style={{ padding: "8px" }}>{modelData.capacity.toLocaleString()} Btu/h</td>
+                                            </tr>
+                                            <tr>
+                                                <td style={{ padding: "8px" }}><abbr title="Coefficient of performance">COP</abbr></td>
+                                                <td style={{ padding: "8px" }}>{modelData.cop}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </Box>
+                            ) : (
+                                //error message
+                                <div style={{ marginTop: "2rem" }}>Please select a model to see details.</div>
+                            )}
+                        </Grid>
+                    </Grid>
 
                     <NextButton
                         disabled={!form.model}
-                        data={{
-                            state: {
-                                ...inputs,
-                                ...form,
-                            },
+                        state={{
+                            ...inputs,
+                            ...form,
                         }}
                         path="/residential/calculation"                    >
                         Next
@@ -336,4 +301,4 @@ export default function ApplianceSelector() {
             </div>
         </div>
     );
-}    
+}

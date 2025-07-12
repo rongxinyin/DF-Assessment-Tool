@@ -128,8 +128,8 @@ export default () => {
                                         inputProps={textFieldInputPropsSX}
                                         IconComponent={DropDownIcon}
                                     >
-                                        <MenuItem value="new">New Home</MenuItem>
-                                        <MenuItem value="old">Old Home</MenuItem>
+                                        <MenuItem value="new">New home</MenuItem>
+                                        <MenuItem value="old">Old home</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Grid>
@@ -154,7 +154,7 @@ export default () => {
                                         inputProps={textFieldInputPropsSX}
                                         IconComponent={DropDownIcon}
                                     >
-                                        <MenuItem value={"SFH"}>Single Family Home</MenuItem>
+                                        <MenuItem value={"SFH"}>Single family home</MenuItem>
                                         <MenuItem value={"apartment"}>Apartment</MenuItem>
                                     </Select>
                                 </FormControl>
