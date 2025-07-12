@@ -12,7 +12,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 
 export default function ApplianceSelector() {
-//previous page info (if not empty/if needed)
+    //previous page info (if not empty/if needed)
     const location = useLocation();
     const inputs = location.state || {};
     const navigate = useNavigate();
@@ -21,14 +21,14 @@ export default function ApplianceSelector() {
         brand: inputs.brand || "",
         model: inputs.model || "",
     });
-//state for available brands+models (dropdowns)
+    //state for available brands+models (dropdowns)
     const [brands, setBrands] = useState([]);
     const [models, setModels] = useState([]);
 
-//state for what is selected in brands+models
+    //state for what is selected in brands+models
     const [modelData, setModelData] = useState(null);
 
-//temp storage for brand, models mapping, using useRef (no re renders)
+    //temp storage for brand, models mapping, using useRef (no re renders)
     const brandModels = useRef(new Map()); //NEW
     useEffect(() => {
         if (brands.length === 0)
@@ -41,47 +41,52 @@ export default function ApplianceSelector() {
             if (form.brand) {
                 const loadedModels = await getModels(form.brand);
                 setModels(loadedModels);
+
+                if (form.model)
+                    for (const model of loadedModels)
+                        if (model.model === form.model)
+                            setModelData(model);
             }
         };
         preloadModels();
     }, [form.brand]);
 
-//NEW
-//handle changes for appliance, brand, and model
-   const handleChange = async (e) => {
-       const { name, value } = e.target;
-       setForm(prev => ({ ...prev, [name]: value }));
+    //NEW
+    //handle changes for appliance, brand, and model
+    const handleChange = async (e) => {
+        const { name, value } = e.target;
+        setForm(prev => ({ ...prev, [name]: value }));
 
-       if (name === "brand") {
-           if (value === "Select a brand") {
-               setModels([]);
-           } else {
-               if (brandModels.current.has(value)) {
-                   setModels(brandModels.current.get(value));
-               } else {
-                   const models = await getModels(value);
-                   brandModels.current.set(value, models);
-                   setModels(models);
-               }
-           }
-           setForm(prev => ({ ...prev, model: "" }));
-           setModelData(null);
-       }
+        if (name === "brand") {
+            if (value === "Select a brand") {
+                setModels([]);
+            } else {
+                if (brandModels.current.has(value)) {
+                    setModels(brandModels.current.get(value));
+                } else {
+                    const models = await getModels(value);
+                    brandModels.current.set(value, models);
+                    setModels(models);
+                }
+            }
+            setForm(prev => ({ ...prev, model: "" }));
+            setModelData(null);
+        }
 
         //reset when brand changes
-       if (name === "model") {
-           const selectedModel = models.find(m => (typeof m === 'object' ? m.model : m) === value);
-           if (selectedModel) {
-               setModelData(selectedModel);
-           } else {
-               setModelData(null);
-           }
-           //update
-           setForm(prev => ({ ...prev, model: value }));
-       }
-   };
+        if (name === "model") {
+            const selectedModel = models.find(m => (typeof m === 'object' ? m.model : m) === value);
+            if (selectedModel) {
+                setModelData(selectedModel);
+            } else {
+                setModelData(null);
+            }
+            //update
+            setForm(prev => ({ ...prev, model: value }));
+        }
+    };
 
-//styles
+    //styles
     const textFieldInputPropsSX = {
         sx: {
             color: "#000000",
@@ -156,7 +161,7 @@ export default function ApplianceSelector() {
                     <div>
                         <h2 style={{ marginBottom: "2rem", fontSize: "2rem" }}>Appliances</h2>
                         <form>
-                        {/*appliance selection dropdown menu*/}
+                            {/*appliance selection dropdown menu*/}
                             <div>
                                 <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Select Appliance:</label>
                                 <select
@@ -181,7 +186,7 @@ export default function ApplianceSelector() {
                                     <option value="waterHeater">Water Heater</option>
                                 </select>
                             </div>
-                    {/*brand+model selector (side by side)*/}
+                            {/*brand+model selector (side by side)*/}
                             <div style={{ display: "flex", gap: "1rem" }}>
                                 <div style={{ flex: 1 }}>
                                     <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Brand</label>
@@ -210,7 +215,7 @@ export default function ApplianceSelector() {
                                         ))}
                                     </Select>
                                 </div>
-                            {/*model selector*/}
+                                {/*model selector*/}
                                 <div style={{ flex: 1 }}>
                                     <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Model</label>
                                     <Select
@@ -243,42 +248,42 @@ export default function ApplianceSelector() {
                                 </div>
                             </div>
                         </form>
-                    {/*NEW - table*/}
+                        {/*NEW - table*/}
 
-                    {modelData ? (
-                        <div style={{ marginTop: "2rem", width: "100%" }}>
-                            <table style={{
-                                width: "100%",
-                                borderCollapse: "collapse",
-                                textAlign: "left",
-                                fontSize: "1rem"
-                            }}>
-                                <thead>
-                                    <tr style={{ backgroundColor: "#f0f0f0" }}>
-                                        <th style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>Property</th>
-                                        <th style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>Value</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>Model</td>
-                                        <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>{modelData.model}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>Capacity</td>
-                                        <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>{modelData.capacity}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>COP</td>
-                                        <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>{modelData.cop}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    ) : (
-                    //error message
-                        <div style={{ marginTop: "2rem" }}>Please select a model to see details.</div>
-                    )}
+                        {modelData ? (
+                            <div style={{ marginTop: "2rem", width: "100%" }}>
+                                <table style={{
+                                    width: "100%",
+                                    borderCollapse: "collapse",
+                                    textAlign: "left",
+                                    fontSize: "1rem"
+                                }}>
+                                    <thead>
+                                        <tr style={{ backgroundColor: "#f0f0f0" }}>
+                                            <th style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>Property</th>
+                                            <th style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>Model</td>
+                                            <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>{modelData.model}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>Capacity</td>
+                                            <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>{modelData.capacity}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}><abbr title="Coefficient of performance">COP</abbr></td>
+                                            <td style={{ padding: "0.75rem", borderBottom: "1px solid #ccc" }}>{modelData.cop}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        ) : (
+                            //error message
+                            <div style={{ marginTop: "2rem" }}>Please select a model to see details.</div>
+                        )}
 
 
                     </div>
@@ -316,30 +321,17 @@ export default function ApplianceSelector() {
                         />
                     </div>
 
-                    <Button
+                    <NextButton
                         disabled={!form.model}
-                        onClick={() => {
-                            navigate("/residential/calculation", {
-                                state: {
-                                    ...inputs,
-                                    ...form,
-                                },
-                            });
+                        data={{
+                            state: {
+                                ...inputs,
+                                ...form,
+                            },
                         }}
-                        variant="contained"
-                        color="secondary"
-                        sx={{
-                        //new
-                          bottom: '9px',
-                          right: '-400px',
-                          width: '225px',
-                          height: '50px',
-                          marginTop: 'auto',
-                          zIndex: 1000,
-                        }}
-                    >
+                        path="/residential/calculation"                    >
                         Next
-                    </Button>
+                    </NextButton>
                 </div>
             </div>
         </div>

@@ -32,16 +32,8 @@ export default function ResidentialLanding() {
 
     // Initialize time range (default: 9 am to 5 pm)
     const [timeRange, setTimeRange] = useState(() => {
-        const parseHour = (str) => {
-            if (!str) return null;
-            const [hour, period] = str.split(" ");
-            let h = parseInt(hour);
-            if (period.toLowerCase() === "pm" && h !== 12) h += 12;
-            if (period.toLowerCase() === "am" && h === 12) h = 0;
-            return h;
-        };
-        const start = parseHour(location.state?.timeStart) ?? 9;
-        const end = parseHour(location.state?.timeEnd) ?? 17;
+        const start = location.state.timeStart || 9;
+        const end = location.state?.timeEnd || 17;
         return [start, end];
 
     });

@@ -13,7 +13,7 @@ import { BackButton, NextButton, BreadcrumbNav } from './NavButtons.js';
 import { DropDownIcon } from './DropDownIcon.js';
 import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { getTemps } from '../logic/ACFunctions.js';
 
 
@@ -21,8 +21,7 @@ import { getTemps } from '../logic/ACFunctions.js';
 export default () => {
     const location = useLocation();
     const inputs = location.state || {};
-    const [homeAge, setHomeAge] = useState(inputs.homeAge || 'new'); //new
-    const navigate = useNavigate();
+    const [homeAge, setHomeAge] = useState(inputs.homeAge || 'new');
     const [submitted, setSubmitted] = useState(false);
 
 
@@ -56,9 +55,9 @@ export default () => {
 
     const submitData = async () => {
         const temps = await getTemps(zip);
-            setOat(temps);
-            setSubmitted(true);
-            setNextDisabled(!(zip && resType && floorArea));
+        setOat(temps);
+        setSubmitted(true);
+        setNextDisabled(!(zip && resType && floorArea));
     };
 
     const breadcrumbPaths = [
@@ -112,7 +111,7 @@ export default () => {
                                 </FormControl>
                             </Grid>
 
-                           {/*new*/}
+                            {/*new*/}
                             <Grid item xs={12}>
                                 <FormControl sx={formControlSX}>
                                     <Typography
@@ -183,20 +182,22 @@ export default () => {
                                 </FormControl>
                             </Grid>
 
-                            <Button
-                                variant="contained"
-                                sx={{
-                                    color: "#000000",
-                                    backgroundColor: "#EEEEEE",
-                                    marginTop: 2,
-                                    marginBottom: 3,
-                                    width: "25%",
-                                    height: "50px",
-                                }}
-                                onClick={submitData}
-                            >
-                                Go
-                            </Button>
+                            <Grid item xs={12}>
+                                <Button
+                                    variant="contained"
+                                    sx={{
+                                        color: "#000000",
+                                        backgroundColor: "#EEEEEE",
+                                        marginTop: 2,
+                                        marginBottom: 3,
+                                        width: "25%",
+                                        height: "50px",
+                                    }}
+                                    onClick={submitData}
+                                >
+                                    Go
+                                </Button>
+                            </Grid>
                         </Grid>
                     </form>
 
@@ -266,49 +267,48 @@ export default () => {
                         />
                     </Box>
 
-                    //new
                     {submitted && (
-                      <>
-                        <Typography
-                            variant="h5"
-                            sx={{ mt: 4, mb: 2, fontWeight: "bold", textAlign: "center" }}
-                        >
-                            Home Characteristics
-                        </Typography>
+                        <>
+                            <Typography
+                                variant="h5"
+                                sx={{ mt: 4, mb: 2, fontWeight: "bold", textAlign: "center" }}
+                            >
+                                Home Characteristics
+                            </Typography>
 
-                        <Box
-                            sx={{
-                                backgroundColor: "#fff",
-                                padding: 2,
-                                borderRadius: "8px",
-                                width: "100%",
-                                boxShadow: 1,
-                            }}
-                        >
-                            <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
-                                <thead>
-                                    <tr style={{ borderBottom: '2px solid #ccc' }}>
-                                        <th style={{ padding: '8px' }}>Property</th>
-                                        <th style={{ padding: '8px' }}>Value</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style={{ padding: '8px' }}>Thermal Resistance</td>
-                                        <td style={{ padding: '8px' }}>
-                                            {homeAge === 'new' ? '2.0 K/kW' : '2.0 K/kW'}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{ padding: '8px' }}>Thermal Capacitance</td>
-                                        <td style={{ padding: '8px' }}>
-                                            {homeAge === 'new' ? '5.0 kWh/K' : '5.0 kWh/K'}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </Box>
-                      </>
+                            <Box
+                                sx={{
+                                    backgroundColor: "#fff",
+                                    padding: 2,
+                                    borderRadius: "8px",
+                                    width: "100%",
+                                    boxShadow: 1,
+                                }}
+                            >
+                                <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+                                    <thead>
+                                        <tr style={{ borderBottom: '2px solid #ccc' }}>
+                                            <th style={{ padding: '8px' }}>Property</th>
+                                            <th style={{ padding: '8px' }}>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style={{ padding: '8px' }}>Thermal Resistance</td>
+                                            <td style={{ padding: '8px' }}>
+                                                {homeAge === 'new' ? '2.0 K/kW' : '2.0 K/kW'}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style={{ padding: '8px' }}>Thermal Capacitance</td>
+                                            <td style={{ padding: '8px' }}>
+                                                {homeAge === 'new' ? '5.0 kWh/K' : '5.0 kWh/K'}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </Box>
+                        </>
                     )}
 
 
@@ -321,7 +321,7 @@ export default () => {
                             resType,
                             floorArea,
                             oat,
-                            homeAge, //new
+                            homeAge
                         }}
                     />
                 </Grid>
