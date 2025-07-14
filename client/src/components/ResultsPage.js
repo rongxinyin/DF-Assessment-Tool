@@ -4,6 +4,8 @@ import {
     Button,
     Grid,
     Typography,
+    Menu,
+    MenuItem
 } from "@mui/material";
 import { Line } from 'react-chartjs-2';
 import { BackButton, BreadcrumbNav } from './NavButtons.js';
@@ -38,8 +40,6 @@ export default function NewResults() {
     const drSetF = parseFloat(drSetpoint);
 
     const setpoint = isNaN(setpointF) ? 24 : ((setpointF - 32) * 5) / 9;
-    const drSet = isNaN(drSetF) ? setpoint + 2 : ((drSetF - 32) * 5) / 9;
-    const offset = drSet - setpoint;
 
     const indoorTemp = [];
     for (let i = 0; i < 6; i++)
@@ -72,29 +72,58 @@ export default function NewResults() {
         });
     }, []);
 
-    const handleExport = () => {
-        alert("Export feature not implemented yet.");
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
     };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const savings = normalEnergy - drEnergy;
+    const csv =
+        `Normal energy (kWh),DR energy (kWh),Savings (kWh),Savings (%),Savings ($)
+${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings * 0.50}`;
+    const csvBlobUrl = URL.createObjectURL(new Blob([csv], { type: 'text/plain' }))
+    const json = {
+        input: inputs,
+        output: {
+            normalEnergy,
+            normalResults,
+            drEnergy,
+            drResults,
+            savings: {
+                energy: savings,
+                percent: 100 * savings / normalEnergy,
+                dollars: savings * 0.50
+            }
+        }
+    };
+    const jsonBlobUrl = URL.createObjectURL(new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' }));
 
     // Celsius to Fahrenheit
     const cToF = c => c * 9 / 5 + 32;
 
     //BreadCrumbNav//
-        const breadcrumbPaths = [
+    const breadcrumbPaths = [
         { name: 'House Type', path: '/residential/house_type' },
         { name: 'Location', path: '/residential/location' },
         { name: 'Appliances', path: '/residential/appliances' },
         { name: 'Calculation', path: '/residential/calculation' },
-        { name: "Results Page", path: '/residential/results'},
+        { name: "Results Page", path: '/residential/results' },
     ];
+
+    const exportLinkStyle = {
+        color: 'inherit',
+        textDecoration: 'none'
+    }
 
     return (
         <Grid container bgcolor="#EEEEEE" minHeight="calc(100vh - 90px)" p={4}>
-            <Box sx={{ padding: 2, paddingBottom: 2,  alignSelf: 'flex-start' }}>
+            <Box sx={{ padding: 2, paddingBottom: 2, alignSelf: 'flex-start' }}>
                 <BreadcrumbNav paths={breadcrumbPaths} />
-                </Box>
-
-
+            </Box>
 
             {/* Graph Section */}
             <Grid
@@ -274,7 +303,7 @@ export default function NewResults() {
                     xs={12}
                     md={5}
                     sx={{ display: "flex", flexDirection: "column", height: "100%" }}
-                    >
+                >
                     <Typography
                         variant="h5"
                         color="#000000"
@@ -414,16 +443,36 @@ export default function NewResults() {
                 <Grid item xs={6}>
                     <Grid sx={{ marginLeft: "auto", width: "25%" }}>
                         <Button
+                            id="export-button"
                             variant="contained"
                             color="secondary"
+                            aria-controls={open ? 'basic-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                            onClick={handleClick}
                             sx={{
                                 marginTop: 4,
                                 marginRight: 2,
                                 width: "100%",
                                 height: "50px",
                             }}
-                            onClick={() => handleExport()}
                         >Export</Button>
+                        <Menu
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            slotProps={{
+                                list: {
+                                    "aria-labelledby": "export-button"
+                                }
+                            }}>
+                            <MenuItem onClick={handleClose}>
+                                <a style={exportLinkStyle} href={csvBlobUrl} download="dr_estimate.csv">CSV</a>
+                            </MenuItem>
+                            <MenuItem onClick={handleClose}>
+                                <a style={exportLinkStyle} href={jsonBlobUrl} download="dr_estimate.json">JSON</a>
+                            </MenuItem>
+                        </Menu>
                     </Grid>
                 </Grid>
             </Grid>
