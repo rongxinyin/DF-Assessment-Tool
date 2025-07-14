@@ -94,61 +94,7 @@ export default function NewResults() {
                 <BreadcrumbNav paths={breadcrumbPaths} />
                 </Box>
 
-            {/*Savings*/}
-            <Grid item xs={12}>
-                <Typography
-                    variant="h5"
-                    color="#000000"
-                    sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
-                >
-                    Savings
-                </Typography>
 
-                <Box
-                    sx={{
-                        backgroundColor: "white.main",
-                        borderRadius: "12px",
-                        padding: "1rem 1rem",
-                        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        marginX: "auto",
-                        width: "100%",
-                        maxWidth: "400px",
-                    }}
-                >
-                    <Typography fontWeight="bold" textAlign="center" mb={0.5}>
-                        Normal Energy Usage:
-                    </Typography>
-                    <Typography textAlign="center" mb={1}>
-                        {Math.round(normalEnergy * 100) / 100}kWh
-                    </Typography>
-
-                    <Typography fontWeight="bold" textAlign="center" mb={0.5}>
-                        DR Energy Usage:
-                    </Typography>
-                    <Typography textAlign="center" mb={1}>
-                        {Math.round(drEnergy * 100) / 100}kWh
-                    </Typography>
-
-                    <Typography fontWeight="bold" textAlign="center" mb={0.5}>
-                        Savings:
-                    </Typography>
-                    <Typography textAlign="center">
-                        {Math.round((normalEnergy - drEnergy) * 100) / 100}kWh (
-                        {normalEnergy !== 0
-                            ? Math.round(((normalEnergy - drEnergy) / normalEnergy) * 10000) / 100
-                            : "0"
-                        }%)
-                        <span> - </span>
-                        <span style={{ color: "green", fontWeight: "bold" }}>
-                            ${Math.round((normalEnergy - drEnergy) * 0.50 * 100) / 100}/day
-                        </span>
-                    </Typography>
-                </Box>
-            </Grid>
 
             {/* Graph Section */}
             <Grid
@@ -313,8 +259,78 @@ export default function NewResults() {
                 </Grid>
             </Grid>
 
-            {/* Power Consumption Chart */}
-            <Grid container justifyContent="center" sx={{ marginTop: 4 }}>
+            {/* Savings and Power Consumption next to each other */}
+            <Grid
+                item
+                container
+                spacing={4}
+                justifyContent="center"
+                alignItems="stretch"
+                sx={{ marginTop: "2rem" }}
+            >
+                {/* Savings Box */}
+                <Grid
+                    item
+                    xs={12}
+                    md={5}
+                    sx={{ display: "flex", flexDirection: "column", height: "100%" }}
+                    >
+                    <Typography
+                        variant="h5"
+                        color="#000000"
+                        sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
+                    >
+                        Savings
+                    </Typography>
+
+                    <Box
+                        sx={{
+                            backgroundColor: "white.main",
+                            borderRadius: "12px",
+                            padding: "1rem 1rem",
+                            boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            marginX: "auto",
+                            width: "100%",
+                            flexGrow: 1,
+                            //maxWidth: "400px",
+                        }}
+                    >
+                        <Typography fontWeight="bold" textAlign="center" mb={0.5}>
+                            Normal Energy Usage:
+                        </Typography>
+                        <Typography textAlign="center" mb={1}>
+                            {Math.round(normalEnergy * 100) / 100}kWh
+                        </Typography>
+
+                        <Typography fontWeight="bold" textAlign="center" mb={0.5}>
+                            DR Energy Usage:
+                        </Typography>
+                        <Typography textAlign="center" mb={1}>
+                            {Math.round(drEnergy * 100) / 100}kWh
+                        </Typography>
+
+                        <Typography fontWeight="bold" textAlign="center" mb={0.5}>
+                            Savings:
+                        </Typography>
+                        <Typography textAlign="center">
+                            {Math.round((normalEnergy - drEnergy) * 100) / 100}kWh (
+                            {normalEnergy !== 0
+                                ? Math.round(((normalEnergy - drEnergy) / normalEnergy) * 10000) / 100
+                                : "0"
+                            }%)
+                            <span> - </span>
+                            <span style={{ color: "green", fontWeight: "bold" }}>
+                                ${Math.round((normalEnergy - drEnergy) * 0.50 * 100) / 100}/day
+                            </span>
+                        </Typography>
+                    </Box>
+                </Grid>
+
+                {/* Power Consumption Chart */}
                 <Grid item xs={12} md={5}>
                     <Typography
                         variant="h5"
@@ -386,6 +402,7 @@ export default function NewResults() {
                     </Box>
                 </Grid>
             </Grid>
+
 
             <Grid container marginTop="auto">
                 <Grid item xs={6}>
