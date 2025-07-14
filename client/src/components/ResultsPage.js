@@ -141,7 +141,8 @@ export default function NewResults() {
                         {normalEnergy !== 0
                             ? Math.round(((normalEnergy - drEnergy) / normalEnergy) * 10000) / 100
                             : "0"
-                        }%) -
+                        }%)
+                        <span> - </span>
                         <span style={{ color: "green", fontWeight: "bold" }}>
                             ${Math.round((normalEnergy - drEnergy) * 0.50 * 100) / 100}/day
                         </span>
