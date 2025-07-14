@@ -11,7 +11,7 @@ export const getModels = async brand => {
 }
 
 export const calculateDR = async input => {
-    const res = await axios.get(`http://localhost:8080/residential/ac/brands/${input.brand}/${input.model}/${input.zip},${input.normalSetpoint},${input.drSetpoint}`);
+    const res = await axios.get(`http://localhost:8080/residential/ac/brands/${input.brand}/${input.model}/${input.zip},${input.normalSetpoint},${input.drSetpoint},${input.timeStart},${input.timeEnd}`);
     return res.data;
 };
 
