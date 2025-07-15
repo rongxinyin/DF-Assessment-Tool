@@ -135,7 +135,7 @@ export default () => {
                     autoComplete="off"
                     value={zip}
                     onChange={(e) => setZip(e.target.value)}
-                    placeholder="e.g., 90210"
+                    //placeholder="e.g., 90210"
                     sx={textFieldSX}
                     inputProps={textFieldInputPropsSX}
                   />
