@@ -106,14 +106,18 @@ export const BreadcrumbNav = ({ paths }) => {
                             key={item.path}
                             underline="hover"
                             color="inherit"
-                            onClick={() => navigate(item.path)}
+                            onClick={() => 
+                                navigate(item.path, {
+                                    state: location.state, 
+                                })
+                            }
                             sx={{ 
                                 cursor: 'pointer',
                                 fontSize: '0.875rem',
                                 '&:hover': { 
-                                    color: 'blue' 
+                                    color: 'blue' }
                                 }
-                            }}
+                            }
                         >
                             {item.name}
                         </Link>

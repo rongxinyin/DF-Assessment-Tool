@@ -4,6 +4,8 @@ import {
     Button,
     Grid,
     Typography,
+    Menu,
+    MenuItem
 } from "@mui/material";
 import { Line } from 'react-chartjs-2';
 import { BackButton, BreadcrumbNav } from './NavButtons.js';
@@ -27,6 +29,7 @@ export default function NewResults() {
         drSetpoint,
         timeStart,
         timeEnd,
+        apartmentCount
     } = inputs;
 
     const hours = [];
@@ -38,8 +41,6 @@ export default function NewResults() {
     const drSetF = parseFloat(drSetpoint);
 
     const setpoint = isNaN(setpointF) ? 24 : ((setpointF - 32) * 5) / 9;
-    const drSet = isNaN(drSetF) ? setpoint + 2 : ((drSetF - 32) * 5) / 9;
-    const offset = drSet - setpoint;
 
     const indoorTemp = [];
     for (let i = 0; i < 6; i++)
@@ -72,71 +73,58 @@ export default function NewResults() {
         });
     }, []);
 
-    const handleExport = () => {
-        alert("Export feature not implemented yet.");
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
     };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const savings = normalEnergy - drEnergy;
+    const csv =
+        `Normal energy (kWh),DR energy (kWh),Savings (kWh),Savings (%),Savings ($)
+${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings * 0.50}`;
+    const csvBlobUrl = URL.createObjectURL(new Blob([csv], { type: 'text/plain' }))
+    const json = {
+        input: inputs,
+        output: {
+            normalEnergy,
+            normalResults,
+            drEnergy,
+            drResults,
+            savings: {
+                energy: savings,
+                percent: 100 * savings / normalEnergy,
+                dollars: savings * 0.50
+            }
+        }
+    };
+    const jsonBlobUrl = URL.createObjectURL(new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' }));
 
     // Celsius to Fahrenheit
     const cToF = c => c * 9 / 5 + 32;
 
+    //BreadCrumbNav//
+    const breadcrumbPaths = [
+        { name: 'House Type', path: '/residential/house_type' },
+        { name: 'Location', path: '/residential/location' },
+        { name: 'Appliances', path: '/residential/appliances' },
+        { name: 'Calculation', path: '/residential/calculation' },
+        { name: "Results Page", path: '/residential/results' },
+    ];
+
+    const exportLinkStyle = {
+        color: 'inherit',
+        textDecoration: 'none'
+    }
+
     return (
         <Grid container bgcolor="#EEEEEE" minHeight="calc(100vh - 90px)" p={4}>
-
-            {/*Savings*/}
-            <Grid item xs={12}>
-                <Typography
-                    variant="h5"
-                    color="#000000"
-                    sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
-                >
-                    Savings
-                </Typography>
-
-                <Box
-                    sx={{
-                        backgroundColor: "white.main",
-                        borderRadius: "12px",
-                        padding: "1rem 1rem",
-                        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        marginX: "auto",
-                        width: "100%",
-                        maxWidth: "400px",
-                    }}
-                >
-                    <Typography fontWeight="bold" textAlign="center" mb={0.5}>
-                        Normal Energy Usage:
-                    </Typography>
-                    <Typography textAlign="center" mb={1}>
-                        {Math.round(normalEnergy * 100) / 100}kWh
-                    </Typography>
-
-                    <Typography fontWeight="bold" textAlign="center" mb={0.5}>
-                        DR Energy Usage:
-                    </Typography>
-                    <Typography textAlign="center" mb={1}>
-                        {Math.round(drEnergy * 100) / 100}kWh
-                    </Typography>
-
-                    <Typography fontWeight="bold" textAlign="center" mb={0.5}>
-                        Savings:
-                    </Typography>
-                    <Typography textAlign="center">
-                        {Math.round((normalEnergy - drEnergy) * 100) / 100}kWh (
-                        {normalEnergy !== 0
-                            ? Math.round(((normalEnergy - drEnergy) / normalEnergy) * 10000) / 100
-                            : "0"
-                        }%)
-                        <span> - </span>
-                        <span style={{ color: "green", fontWeight: "bold" }}>
-                            ${Math.round((normalEnergy - drEnergy) * 0.50 * 100) / 100}/day
-                        </span>
-                    </Typography>
-                </Box>
-            </Grid>
+            <Box sx={{ padding: 2, paddingBottom: 2, alignSelf: 'flex-start' }}>
+                <BreadcrumbNav paths={breadcrumbPaths} />
+            </Box>
 
             {/* Graph Section */}
             <Grid
@@ -301,8 +289,78 @@ export default function NewResults() {
                 </Grid>
             </Grid>
 
-            {/* Power Consumption Chart */}
-            <Grid container justifyContent="center" sx={{ marginTop: 4 }}>
+            {/* Savings and Power Consumption next to each other */}
+            <Grid
+                item
+                container
+                spacing={4}
+                justifyContent="center"
+                alignItems="stretch"
+                sx={{ marginTop: "2rem" }}
+            >
+                {/* Savings Box */}
+                <Grid
+                    item
+                    xs={12}
+                    md={5}
+                    sx={{ display: "flex", flexDirection: "column", height: "100%" }}
+                >
+                    <Typography
+                        variant="h5"
+                        color="#000000"
+                        sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
+                    >
+                        Savings
+                    </Typography>
+
+                    <Box
+                        sx={{
+                            backgroundColor: "white.main",
+                            borderRadius: "12px",
+                            padding: "1rem 1rem",
+                            boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            marginX: "auto",
+                            width: "100%",
+                            flexGrow: 1,
+                            //maxWidth: "400px",
+                        }}
+                    >
+                        <Typography fontWeight="bold" textAlign="center" mb={0.5}>
+                            Normal Energy Usage:
+                        </Typography>
+                        <Typography textAlign="center" mb={1}>
+                            {Math.round(normalEnergy * 100) / 100}kWh
+                        </Typography>
+
+                        <Typography fontWeight="bold" textAlign="center" mb={0.5}>
+                            DR Energy Usage:
+                        </Typography>
+                        <Typography textAlign="center" mb={1}>
+                            {Math.round(drEnergy * 100) / 100}kWh
+                        </Typography>
+
+                        <Typography fontWeight="bold" textAlign="center" mb={0.5}>
+                            Savings:
+                        </Typography>
+                        <Typography textAlign="center">
+                            {Math.round((normalEnergy - drEnergy) * 100) / 100}kWh (
+                            {normalEnergy !== 0
+                                ? Math.round(((normalEnergy - drEnergy) / normalEnergy) * 10000) / 100
+                                : "0"
+                            }%)
+                            <span> - </span>
+                            <span style={{ color: "green", fontWeight: "bold" }}>
+                                ${Math.round((normalEnergy - drEnergy) * 0.50 * 100) / 100}/day
+                            </span>
+                        </Typography>
+                    </Box>
+                </Grid>
+
+                {/* Power Consumption Chart */}
                 <Grid item xs={12} md={5}>
                     <Typography
                         variant="h5"
@@ -375,6 +433,7 @@ export default function NewResults() {
                 </Grid>
             </Grid>
 
+
             <Grid container marginTop="auto">
                 <Grid item xs={6}>
                     <BackButton
@@ -385,16 +444,36 @@ export default function NewResults() {
                 <Grid item xs={6}>
                     <Grid sx={{ marginLeft: "auto", width: "25%" }}>
                         <Button
+                            id="export-button"
                             variant="contained"
                             color="secondary"
+                            aria-controls={open ? 'basic-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                            onClick={handleClick}
                             sx={{
                                 marginTop: 4,
                                 marginRight: 2,
                                 width: "100%",
                                 height: "50px",
                             }}
-                            onClick={() => handleExport()}
                         >Export</Button>
+                        <Menu
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            slotProps={{
+                                list: {
+                                    "aria-labelledby": "export-button"
+                                }
+                            }}>
+                            <MenuItem onClick={handleClose}>
+                                <a style={exportLinkStyle} href={csvBlobUrl} download="dr_estimate.csv">CSV</a>
+                            </MenuItem>
+                            <MenuItem onClick={handleClose}>
+                                <a style={exportLinkStyle} href={jsonBlobUrl} download="dr_estimate.json">JSON</a>
+                            </MenuItem>
+                        </Menu>
                     </Grid>
                 </Grid>
             </Grid>

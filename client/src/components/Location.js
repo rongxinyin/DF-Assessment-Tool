@@ -23,6 +23,7 @@ import { useLocation } from 'react-router-dom';
 export default () => {
   const location = useLocation();
   const inputs = location.state || {};
+    const houseType = inputs.houseType || 'individual';
   const [homeAge, setHomeAge] = useState(inputs.homeAge || 'new');
   const [zip, setZip] = useState(inputs.zip || '');
   const [resType, setResType] = useState(inputs.resType || '');
@@ -32,7 +33,7 @@ export default () => {
   const [climateZone, setClimateZone] = useState(inputs.climateZone || '');
   const [submitted, setSubmitted] = useState(false);
   const [nextDisabled, setNextDisabled] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null);    const [apartmentCount, setApartmentCount] = useState(inputs.apartmentCount)
 
   const textFieldSX = {
     width: '100%',
@@ -141,52 +142,78 @@ export default () => {
                 </FormControl>
               </Grid>
 
-              <Grid item xs={12}>
-                <FormControl sx={formControlSX}>
-                  <Typography
-                    variant="body2"
-                    color="typography.primary.main"
-                    sx={{ fontWeight: 'bold', marginLeft: 1 }}
-                  >
-                    Home Age
-                  </Typography>
-                  <Select
-                    value={homeAge}
-                    onChange={(e) => setHomeAge(e.target.value)}
-                    sx={textFieldSX}
-                    inputProps={textFieldInputPropsSX}
-                    IconComponent={DropDownIcon}
-                  >
-                    <MenuItem value="new">New home</MenuItem>
-                    <MenuItem value="old">Old home</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
+                                {/* Home Age*/}
+                                <Grid item xs={houseType === 'aggregator' ? 6: 12}>
+                                <FormControl sx={formControlSX}>
+                                    <Typography
+                                        variant="body2"
+                                        color="typography.primary.main"
+                                        sx={{ fontWeight: "bold", marginLeft: 1 }}
+                                    >
+                                        Home Age
+                                    </Typography>
+                                    <Select
+                                        value={homeAge}
+                                        onChange={(e) => setHomeAge(e.target.value)}
+                                        sx={textFieldSX}
+                                        inputProps={textFieldInputPropsSX}
+                                        IconComponent={DropDownIcon}
+                                    >
+                                        <MenuItem value="new">New home</MenuItem>
+                                        <MenuItem value="old">Old home</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
 
-              <Grid item xs={6}>
-                <FormControl sx={formControlSX}>
-                  <Typography
-                    variant="body2"
-                    color="typography.primary.main"
-                    sx={{ fontWeight: 'bold', marginLeft: 1 }}
-                  >
-                    Residence Type
-                  </Typography>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={resType}
-                    onChange={(e) => setResType(e.target.value)}
-                    color="secondary"
-                    sx={textFieldSX}
-                    inputProps={textFieldInputPropsSX}
-                    IconComponent={DropDownIcon}
-                  >
-                    <MenuItem value="SFH">Single family home</MenuItem>
-                    <MenuItem value="apartment">Apartment</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
+                            {/* Apartment Count*/}
+                            {houseType === 'aggregator' && (
+                            <Grid item xs={6}>
+                            <FormControl sx={formControlSX}>
+                                <Typography
+                                    variant="body2"
+                                    color="typography.primary.main"
+                                    sx={{ fontWeight: "bold", marginLeft: 1}}
+                                    >
+                                        Apartment Count
+                                    </Typography>
+                                    <TextField
+                                        id="apartment-count"
+                                        type="number"
+                                        variant="outlined"
+                                        autoComplete="off"
+                                        value={apartmentCount}
+                                        onChange={(e) => setApartmentCount(e.target.value)}
+                                        sx={textFieldSX}
+                                        inputProps={textFieldInputPropsSX}
+                                        />
+                            </FormControl>
+                        </Grid>
+                            )}
+
+                            <Grid item xs={6}>
+                                <FormControl sx={formControlSX}>
+                                    <Typography
+                                        variant="body2"
+                                        color="typography.primary.main"
+                                        sx={{ fontWeight: "bold", marginLeft: 1 }}
+                                    >
+                                        Residence Type
+                                    </Typography>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={resType}
+                                        onChange={e => setResType(e.target.value)}
+                                        color="secondary"
+                                        sx={textFieldSX}
+                                        inputProps={textFieldInputPropsSX}
+                                        IconComponent={DropDownIcon}
+                                    >
+                                        <MenuItem value={"SFH"}>Single family home</MenuItem>
+                                        <MenuItem value={"apartment"}>Apartment</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
 
               <Grid item xs={6}>
                 <FormControl sx={formControlSX}>
@@ -232,11 +259,19 @@ export default () => {
             </Grid>
           </form>
 
-          <BackButton
-            path="/residential/house_type"
-            state={{ ...inputs, zip, resType, floorArea, oat, state, climateZone, homeAge }}
-          />
-        </Grid>
+                    <BackButton
+                        path="/residential/house_type"
+                        state={{
+                            ...inputs,
+                            zip,
+                            resType,
+                            floorArea,
+                            oat,
+                            houseType,
+                            apartmentCount
+                        }}
+                    />
+                </Grid>
 
         <Grid
           item
@@ -338,13 +373,22 @@ export default () => {
             </>
           )}
 
-          <NextButton
-            path="/residential/appliances"
-            disabled={nextDisabled}
-            state={{ ...inputs, zip, resType, floorArea, oat, state, climateZone, homeAge }}
-          />
-        </Grid>
-      </Grid>
-    </Box>
-  );
-};
+                    <NextButton
+                        path="/residential/appliances"
+                        disabled={nextDisabled}
+                        state={{
+                            ...inputs,
+                            zip,
+                            resType,
+                            floorArea,
+                            oat,
+                            homeAge,
+                            houseType,
+                            apartmentCount
+                        }}
+                    />
+                </Grid>
+            </Grid>
+        </Box>
+    )
+}
