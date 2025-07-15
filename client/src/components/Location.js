@@ -1,331 +1,350 @@
+import React, { useState } from 'react';
+import { getZipState, getClimateZone, getTemps } from '../logic/ACFunctions.js';
 import {
-    Box,
-    Grid,
-    Typography,
-    Button,
-    FormControl,
-    TextField,
-    Select,
-    MenuItem,
+  Box,
+  Grid,
+  Typography,
+  Button,
+  FormControl,
+  TextField,
+  Select,
+  MenuItem,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
 } from '@mui/material';
 import { BackButton, NextButton, BreadcrumbNav } from './NavButtons.js';
-
 import { DropDownIcon } from './DropDownIcon.js';
-import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { useLocation } from 'react-router-dom';
-import { getTemps } from '../logic/ACFunctions.js';
-
-
 
 export default () => {
-    const location = useLocation();
-    const inputs = location.state || {};
-    const [homeAge, setHomeAge] = useState(inputs.homeAge || 'new');
-    const [submitted, setSubmitted] = useState(false);
+  const location = useLocation();
+  const inputs = location.state || {};
+  const [homeAge, setHomeAge] = useState(inputs.homeAge || 'new');
+  const [zip, setZip] = useState(inputs.zip || '');
+  const [resType, setResType] = useState(inputs.resType || '');
+  const [floorArea, setFloorArea] = useState(inputs.floorArea || 0);
+  const [oat, setOat] = useState(inputs.oat || []);
+  const [state, setState] = useState(inputs.state || '');
+  const [climateZone, setClimateZone] = useState(inputs.climateZone || '');
+  const [submitted, setSubmitted] = useState(false);
+  const [nextDisabled, setNextDisabled] = useState(true);
+  const [error, setError] = useState(null);
 
+  const textFieldSX = {
+    width: '100%',
+    marginBottom: 1,
+    marginTop: 1,
+    border: '2px solid #636363',
+    backgroundColor: '#FFFFFF',
+    borderRadius: '10px',
+  };
 
-    const textFieldSX = {
-        width: "100%",
-        marginBottom: 1,
-        marginTop: 1,
-        border: "2px solid #636363",
-        backgroundColor: "#FFFFFF",
-        borderRadius: "10px",
-    };
+  const textFieldInputPropsSX = {
+    sx: { color: '#000000' },
+  };
 
-    const textFieldInputPropsSX = {
-        sx: {
-            color: "#000000",
-        },
-    };
+  const formControlSX = {
+    width: '100%',
+    marginBottom: 1,
+  };
 
-    const formControlSX = {
-        width: "100%",
-        marginBottom: 1,
-    };
+  const submitData = async () => {
+    if (!zip) {
+      setError('Please enter a ZIP code');
+      return;
+    }
+    if (!/^\d{5}$/.test(zip)) {
+      setError('Please enter a valid 5-digit ZIP code');
+      return;
+    }
+    try {
+      const [temps, zipStateData, climateZoneData] = await Promise.all([
+        getTemps(zip),
+        getZipState(zip),
+        getClimateZone(zip),
+      ]);
+      setOat(temps);
+      setState(zipStateData.state || 'N/A');
+      setClimateZone(climateZoneData.climateZone || 'N/A');
+      setError(null);
+      setSubmitted(true);
+      setNextDisabled(!(zip && resType && floorArea));
+    } catch (err) {
+      setError(`Failed to fetch data: ${err.message}`);
+      console.error('Submit error:', err);
+      setOat([]);
+      setState('');
+      setClimateZone('');
+      setSubmitted(false);
+      setNextDisabled(true);
+    }
+  };
 
-    const [zip, setZip] = useState(inputs.zip || '');
-    const [resType, setResType] = useState(inputs.resType || '');
-    const [floorArea, setFloorArea] = useState(inputs.floorArea || 0);
+  const breadcrumbPaths = [
+    { name: 'House Type', path: '/residential/house_type' },
+    { name: 'Location', path: '/residential/location' },
+  ];
 
-    const [oat, setOat] = useState(inputs.oat || []);
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100vh - 90px)' }}>
+      <Box sx={{ padding: 2, paddingBottom: 0.5 }}>
+        <BreadcrumbNav paths={breadcrumbPaths} />
+      </Box>
+      <Grid container spacing={0} height="calc(100vh - 90px)">
+        <Grid
+          item
+          container
+          md={6}
+          xs={12}
+          bgcolor="#FFFFFF"
+          direction="column"
+          padding={4}
+        >
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              submitData();
+            }}
+          >
+            <Typography
+              variant="h4"
+              color="black.main"
+              sx={{ fontWeight: 'bold', m: 1 }}
+            >
+              Location
+            </Typography>
 
-    const [nextDisabled, setNextDisabled] = useState(true);
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <FormControl sx={formControlSX}>
+                  <Typography
+                    variant="body2"
+                    color="typography.primary.main"
+                    sx={{ fontWeight: 'bold', marginLeft: 1 }}
+                  >
+                    ZIP Code
+                  </Typography>
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    autoComplete="off"
+                    value={zip}
+                    onChange={(e) => setZip(e.target.value)}
+                    placeholder="e.g., 90210"
+                    sx={textFieldSX}
+                    inputProps={textFieldInputPropsSX}
+                  />
+                </FormControl>
+              </Grid>
 
-    const submitData = async () => {
-        const temps = await getTemps(zip);
-        setOat(temps);
-        setSubmitted(true);
-        setNextDisabled(!(zip && resType && floorArea));
-    };
+              <Grid item xs={12}>
+                <FormControl sx={formControlSX}>
+                  <Typography
+                    variant="body2"
+                    color="typography.primary.main"
+                    sx={{ fontWeight: 'bold', marginLeft: 1 }}
+                  >
+                    Home Age
+                  </Typography>
+                  <Select
+                    value={homeAge}
+                    onChange={(e) => setHomeAge(e.target.value)}
+                    sx={textFieldSX}
+                    inputProps={textFieldInputPropsSX}
+                    IconComponent={DropDownIcon}
+                  >
+                    <MenuItem value="new">New home</MenuItem>
+                    <MenuItem value="old">Old home</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
 
-    const breadcrumbPaths = [
-        { name: 'House Type', path: '/residential/house_type' },
-        { name: 'Location', path: '/residential/location' },
-    ];
+              <Grid item xs={6}>
+                <FormControl sx={formControlSX}>
+                  <Typography
+                    variant="body2"
+                    color="typography.primary.main"
+                    sx={{ fontWeight: 'bold', marginLeft: 1 }}
+                  >
+                    Residence Type
+                  </Typography>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={resType}
+                    onChange={(e) => setResType(e.target.value)}
+                    color="secondary"
+                    sx={textFieldSX}
+                    inputProps={textFieldInputPropsSX}
+                    IconComponent={DropDownIcon}
+                  >
+                    <MenuItem value="SFH">Single family home</MenuItem>
+                    <MenuItem value="apartment">Apartment</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
 
-    return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100vh - 90px)' }}>
-            <Box sx={{ padding: 2, paddingBottom: 0.5 }}>
-                <BreadcrumbNav paths={breadcrumbPaths} />
-            </Box>
-            <Grid container spacing={0} height="calc(100vh - 90px)">
-                <Grid
-                    item
-                    container
-                    md={6}
-                    xs={12}
-                    bgcolor="#FFFFFF"
-                    direction="column"
-                    padding={4}
+              <Grid item xs={6}>
+                <FormControl sx={formControlSX}>
+                  <Typography
+                    variant="body2"
+                    color="typography.primary.main"
+                    sx={{ fontWeight: 'bold', marginLeft: 1 }}
+                  >
+                    Floor Area (ft²)
+                  </Typography>
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    autoComplete="off"
+                    type="number"
+                    value={floorArea}
+                    onChange={(e) => setFloorArea(e.target.value)}
+                    sx={textFieldSX}
+                    inputProps={textFieldInputPropsSX}
+                  />
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    color: '#000000',
+                    backgroundColor: '#EEEEEE',
+                    marginTop: 2,
+                    marginBottom: 3,
+                    width: '25%',
+                    height: '50px',
+                  }}
+                  onClick={submitData}
                 >
-                    <form>
-                        <Typography
-                            variant="h4"
-                            color="black.main"
-                            sx={{ fontWeight: "bold", m: 1 }}
-                        >
-                            Location
-                        </Typography>
-
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <FormControl sx={formControlSX}>
-                                    <Typography
-                                        variant="body2"
-                                        color="typography.primary.main"
-                                        sx={{ fontWeight: "bold", marginLeft: 1 }}
-                                    >
-                                        ZIP Code
-                                    </Typography>
-                                    <TextField
-                                        id="outlined-basic"
-                                        variant="outlined"
-                                        autoComplete="off"
-                                        value={zip}
-                                        onChange={(e) => setZip(e.target.value)}
-                                        sx={textFieldSX}
-                                        inputProps={textFieldInputPropsSX}
-                                    />
-                                </FormControl>
-                            </Grid>
-
-                            {/*new*/}
-                            <Grid item xs={12}>
-                                <FormControl sx={formControlSX}>
-                                    <Typography
-                                        variant="body2"
-                                        color="typography.primary.main"
-                                        sx={{ fontWeight: "bold", marginLeft: 1 }}
-                                    >
-                                        Home Age
-                                    </Typography>
-                                    <Select
-                                        value={homeAge}
-                                        onChange={(e) => setHomeAge(e.target.value)}
-                                        sx={textFieldSX}
-                                        inputProps={textFieldInputPropsSX}
-                                        IconComponent={DropDownIcon}
-                                    >
-                                        <MenuItem value="new">New home</MenuItem>
-                                        <MenuItem value="old">Old home</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Grid>
-
-
-                            <Grid item xs={6}>
-                                <FormControl sx={formControlSX}>
-                                    <Typography
-                                        variant="body2"
-                                        color="typography.primary.main"
-                                        sx={{ fontWeight: "bold", marginLeft: 1 }}
-                                    >
-                                        Residence type
-                                    </Typography>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={resType}
-                                        onChange={e => setResType(e.target.value)}
-                                        color="secondary"
-                                        sx={textFieldSX}
-                                        inputProps={textFieldInputPropsSX}
-                                        IconComponent={DropDownIcon}
-                                    >
-                                        <MenuItem value={"SFH"}>Single family home</MenuItem>
-                                        <MenuItem value={"apartment"}>Apartment</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Grid>
-
-                            <Grid item xs={6}>
-                                <FormControl sx={formControlSX}>
-                                    <Typography
-                                        variant="body2"
-                                        color="typography.primary.main"
-                                        sx={{ fontWeight: "bold", marginLeft: 1 }}
-                                    >
-                                        Floor Area (ft²)
-                                    </Typography>
-                                    <TextField
-                                        id="outlined-basic"
-                                        variant="outlined"
-                                        autoComplete="off"
-                                        type="number"
-                                        value={floorArea}
-                                        onChange={(e) => setFloorArea(e.target.value)}
-                                        sx={textFieldSX}
-                                        inputProps={textFieldInputPropsSX}
-                                    />
-                                </FormControl>
-                            </Grid>
-
-                            <Grid item xs={12}>
-                                <Button
-                                    variant="contained"
-                                    sx={{
-                                        color: "#000000",
-                                        backgroundColor: "#EEEEEE",
-                                        marginTop: 2,
-                                        marginBottom: 3,
-                                        width: "25%",
-                                        height: "50px",
-                                    }}
-                                    onClick={submitData}
-                                >
-                                    Go
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </form>
-
-                    <BackButton
-                        path="/residential/house_type"
-                        state={{
-                            ...inputs,
-                            zip,
-                            resType,
-                            floorArea,
-                            oat,
-                        }}
-                    />
-                </Grid>
-
-                <Grid
-                    item
-                    container
-                    md={6}
-                    xs={12}
-                    bgcolor="#EEEEEE"
-                    direction="column"
-                    padding={4}
-                >
-                    <Typography
-                        variant="h4"
-                        color="typography.primary.main"
-                        sx={{ width: "100%", textAlign: "center", fontWeight: "bold", m: 1 }}
-                    >
-                        OAT Graph
-                    </Typography>
-                    <Box
-                        sx={{
-                            backgroundColor: "white.main",
-                            borderRadius: "8px",
-                            width: "100%",
-                            borderRadius: "8px",
-                        }}>
-                        <Line data={{
-                            labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-                            datasets: [
-                                {
-                                    label: 'Outside Air Temperature',
-                                    data: oat
-                                }
-                            ],
-                        }}
-                            options={{
-                                scales: {
-                                    x: {
-                                        title: {
-                                            display: true,
-                                            text: 'Hour'
-                                        }
-                                    },
-                                    y: {
-                                        title: {
-                                            display: true,
-                                            text: 'Temperature (°C)'
-                                        },
-                                        min: 10.0,
-                                        max: 45.0
-                                    }
-                                }
-
-                            }}
-                        />
-                    </Box>
-
-                    {submitted && (
-                        <>
-                            <Typography
-                                variant="h5"
-                                sx={{ mt: 4, mb: 2, fontWeight: "bold", textAlign: "center" }}
-                            >
-                                Home Characteristics
-                            </Typography>
-
-                            <Box
-                                sx={{
-                                    backgroundColor: "#fff",
-                                    padding: 2,
-                                    borderRadius: "8px",
-                                    width: "100%",
-                                    boxShadow: 1,
-                                }}
-                            >
-                                <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
-                                    <thead>
-                                        <tr style={{ borderBottom: '2px solid #ccc' }}>
-                                            <th style={{ padding: '8px' }}>Property</th>
-                                            <th style={{ padding: '8px' }}>Value</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td style={{ padding: '8px' }}>Thermal Resistance</td>
-                                            <td style={{ padding: '8px' }}>
-                                                {homeAge === 'new' ? '2.0 K/kW' : '2.0 K/kW'}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style={{ padding: '8px' }}>Thermal Capacitance</td>
-                                            <td style={{ padding: '8px' }}>
-                                                {homeAge === 'new' ? '5.0 kWh/K' : '5.0 kWh/K'}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </Box>
-                        </>
-                    )}
-
-
-                    <NextButton
-                        path="/residential/appliances"
-                        disabled={nextDisabled}
-                        state={{
-                            ...inputs,
-                            zip,
-                            resType,
-                            floorArea,
-                            oat,
-                            homeAge
-                        }}
-                    />
-                </Grid>
+                  Go
+                </Button>
+                {error && (
+                  <Typography sx={{ color: 'red', mt: 2 }}>{error}</Typography>
+                )}
+              </Grid>
             </Grid>
-        </Box>
-    )
-}
+          </form>
+
+          <BackButton
+            path="/residential/house_type"
+            state={{ ...inputs, zip, resType, floorArea, oat, state, climateZone, homeAge }}
+          />
+        </Grid>
+
+        <Grid
+          item
+          container
+          md={6}
+          xs={12}
+          bgcolor="#EEEEEE"
+          direction="column"
+          padding={4}
+        >
+          <Typography
+            variant="h4"
+            color="typography.primary.main"
+            sx={{ width: '100%', textAlign: 'center', fontWeight: 'bold', m: 1 }}
+          >
+            OAT Graph
+          </Typography>
+          <Box
+            sx={{
+              backgroundColor: 'white.main',
+              borderRadius: '8px',
+              width: '100%',
+            }}
+          >
+            <Line
+              data={{
+                labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+                datasets: [
+                  {
+                    label: 'Outside Air Temperature',
+                    data: oat,
+                    borderColor: '#1976d2',
+                    backgroundColor: 'rgba(25, 118, 210, 0.1)',
+                    fill: true,
+                  },
+                ],
+              }}
+              options={{
+                scales: {
+                  x: { title: { display: true, text: 'Hour' } },
+                  y: {
+                    title: { display: true, text: 'Temperature (°C)' },
+                    min: 10.0,
+                    max: 45.0,
+                  },
+                },
+              }}
+            />
+          </Box>
+
+          {submitted && (
+            <>
+              <Typography
+                variant="h5"
+                sx={{ mt: 4, mb: 2, fontWeight: 'bold', textAlign: 'center' }}
+              >
+                Home Characteristics
+              </Typography>
+              <Box
+                sx={{
+                  backgroundColor: '#fff',
+                  padding: 2,
+                  borderRadius: '8px',
+                  width: '100%',
+                  boxShadow: 1,
+                }}
+              >
+                <Table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+                  <TableHead>
+                    <TableRow sx={{ borderBottom: '2px solid #ccc' }}>
+                      <TableCell sx={{ padding: '8px', fontWeight: 'bold' }}>Property</TableCell>
+                      <TableCell sx={{ padding: '8px', fontWeight: 'bold' }}>Value</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow sx={{ borderBottom: 'none' }}>
+                      <TableCell sx={{ padding: '8px', borderBottom: 'none' }}>State</TableCell>
+                      <TableCell sx={{ padding: '8px', borderBottom: 'none' }}>{state || 'N/A'}</TableCell>
+                    </TableRow>
+                    <TableRow sx={{ borderBottom: 'none' }}>
+                      <TableCell sx={{ padding: '8px', borderBottom: 'none' }}>Climate Zone</TableCell>
+                      <TableCell sx={{ padding: '8px', borderBottom: 'none' }}>{climateZone || 'N/A'}</TableCell>
+                    </TableRow>
+                    <TableRow sx={{ borderBottom: 'none' }}>
+                      <TableCell sx={{ padding: '8px', borderBottom: 'none' }}>Thermal Resistance</TableCell>
+                      <TableCell sx={{ padding: '8px', borderBottom: 'none' }}>
+                        {homeAge === 'new' ? '2.0 K/kW' : '1.5 K/kW'}
+                      </TableCell>
+                    </TableRow>
+                    <TableRow sx={{ borderBottom: 'none' }}>
+                      <TableCell sx={{ padding: '8px', borderBottom: 'none' }}>Thermal Capacitance</TableCell>
+                      <TableCell sx={{ padding: '8px', borderBottom: 'none' }}>
+                        {homeAge === 'new' ? '5.0 kWh/K' : '4.0 kWh/K'}
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </Box>
+            </>
+          )}
+
+          <NextButton
+            path="/residential/appliances"
+            disabled={nextDisabled}
+            state={{ ...inputs, zip, resType, floorArea, oat, state, climateZone, homeAge }}
+          />
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};

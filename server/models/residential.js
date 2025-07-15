@@ -265,7 +265,8 @@ export const BrandModel = mongoose.model('Brand', brandSchema);
 const zipSchema = mongoose.Schema(
     {
         zipcode: { type: String, required: true },
-        climateZone: String
+        climateZone: String,
+        state: String
     },
     { collection: 'zip_map' }
 );

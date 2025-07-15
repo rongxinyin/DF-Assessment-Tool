@@ -81,4 +81,35 @@ router.get('/temps/:zip', (req, res) => {
     getTemps(req.params.zip, res).then(temps => res.json(temps));
 });
 
+router.get('/zip-states/:zip', async (req, res) => {
+  try {
+    const zipData = await ZipModel.findOne(
+      { zipcode: req.params.zip },
+      { zipcode: 1, state: 1, _id: 0 }
+    );
+    if (!zipData) {
+      return res.status(400).json({ message: 'Invalid ZIP code' });
+    }
+    res.json(zipData);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching zip data', error });
+  }
+});
+
+router.get('/climate-zone/:zip', async (req, res) => {
+  try {
+    const zipData = await ZipModel.findOne(
+      { zipcode: req.params.zip },
+      { zipcode: 1, climateZone: 1, _id: 0 }
+    );
+    if (!zipData) {
+      return res.status(400).json({ message: 'Invalid ZIP code' });
+    }
+    res.json(zipData);
+  } catch (error) {
+    console.error('Error fetching climate zone:', error);
+    res.status(500).json({ message: 'Error fetching climate zone', error });
+  }
+});
+
 export default router;
