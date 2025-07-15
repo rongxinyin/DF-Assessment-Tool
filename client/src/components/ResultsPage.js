@@ -27,6 +27,7 @@ export default function NewResults() {
         drSetpoint,
         timeStart,
         timeEnd,
+        apartmentCount
     } = inputs;
 
     const hours = [];

@@ -19,7 +19,7 @@ const getTemps = async (zip, res) => {
 };
 
 // Given a brand and model, find parameters for the model and return DR results
-router.get('/ac/brands/:acBrand/:acModel/:zip,:normalSetpoint,:drSetpoint,:drStart,:drEnd', async (req, res) => {
+router.get('/ac/brands/:acBrand/:acModel/:zip,:normalSetpoint,:drSetpoint,:drStart,:drEnd,:apartmentCount', async (req, res) => {
     const model =
         (await BrandModel.findOne({ brand: req.params.acBrand }))
             .models.find(model => model.model === req.params.acModel);
@@ -46,15 +46,17 @@ router.get('/ac/brands/:acBrand/:acModel/:zip,:normalSetpoint,:drSetpoint,:drSta
     let acModel = new ResidentialACModel(acParams, 20.0);
     acModel.setSetPoint(normalSetpoint);
 
+    const apartmentCount = parseInt(req.params.apartmentCount) || 1;
+
     const normalResults = acModel.simulatePeriod(outdoorTemps, 1);
-    const normalEnergy = normalResults.powerConsumption.reduce((a, c) => a + c / 60);
+    const normalEnergy = normalResults.powerConsumption.reduce((a, c) => a + c / 60) *apartmentCount;
 
     acModel = new ResidentialACModel(acParams, 20.0);
     acModel.setSetPoint(normalSetpoint);
-    acModel.setDemandResponse(true, drSetpoint - normalSetpoint, parseInt(req.params.drStart), parseInt(req.params.drEnd));
+    acModel.setDemandResponse(true, drSetpoint - normalSetpoint, parseInt(req.params.drStart), parseInt(req.params.drEnd), parseInt(req.params.apartmentCount));
 
     const drResults = acModel.simulatePeriod(outdoorTemps, 1);
-    const drEnergy = drResults.powerConsumption.reduce((a, c) => a + c / 60);
+    const drEnergy = drResults.powerConsumption.reduce((a, c) => a + c / 60) *apartmentCount;
 
     const savings = (normalEnergy - drEnergy) / normalEnergy * 100;
 

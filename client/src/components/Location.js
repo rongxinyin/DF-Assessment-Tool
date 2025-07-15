@@ -21,9 +21,10 @@ import { getTemps } from '../logic/ACFunctions.js';
 export default () => {
     const location = useLocation();
     const inputs = location.state || {};
+    const houseType = inputs.houseType || 'individual';
     const [homeAge, setHomeAge] = useState(inputs.homeAge || 'new');
     const [submitted, setSubmitted] = useState(false);
-
+    const [apartmentCount, setApartmentCount] = useState(inputs.apartmentCount)
 
     const textFieldSX = {
         width: "100%",
@@ -111,8 +112,8 @@ export default () => {
                                 </FormControl>
                             </Grid>
 
-                            {/*new*/}
-                            <Grid item xs={12}>
+                                {/* Home Age*/}
+                                <Grid item xs={houseType === 'aggregator' ? 6: 12}>
                                 <FormControl sx={formControlSX}>
                                     <Typography
                                         variant="body2"
@@ -134,6 +135,30 @@ export default () => {
                                 </FormControl>
                             </Grid>
 
+                            {/* Apartment Count*/}
+                            {houseType === 'aggregator' && (
+                            <Grid item xs={6}>
+                            <FormControl sx={formControlSX}>
+                                <Typography
+                                    variant="body2"
+                                    color="typography.primary.main"
+                                    sx={{ fontWeight: "bold", marginLeft: 1}}
+                                    >
+                                        Apartment Count
+                                    </Typography>
+                                    <TextField
+                                        id="apartment-count"
+                                        type="number"
+                                        variant="outlined"
+                                        autoComplete="off"
+                                        value={apartmentCount}
+                                        onChange={(e) => setApartmentCount(e.target.value)}
+                                        sx={textFieldSX}
+                                        inputProps={textFieldInputPropsSX}
+                                        />
+                            </FormControl>
+                        </Grid>
+                            )}
 
                             <Grid item xs={6}>
                                 <FormControl sx={formControlSX}>
@@ -142,7 +167,7 @@ export default () => {
                                         color="typography.primary.main"
                                         sx={{ fontWeight: "bold", marginLeft: 1 }}
                                     >
-                                        Residence type
+                                        Residence Type
                                     </Typography>
                                     <Select
                                         labelId="demo-simple-select-label"
@@ -209,6 +234,8 @@ export default () => {
                             resType,
                             floorArea,
                             oat,
+                            houseType,
+                            apartmentCount
                         }}
                     />
                 </Grid>
@@ -321,7 +348,9 @@ export default () => {
                             resType,
                             floorArea,
                             oat,
-                            homeAge
+                            homeAge,
+                            houseType,
+                            apartmentCount
                         }}
                     />
                 </Grid>
