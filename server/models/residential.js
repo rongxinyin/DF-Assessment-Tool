@@ -767,3 +767,21 @@ const zoneSchema = mongoose.Schema(
     { collection: 'average_oat' }
 );
 export const ZoneModel = mongoose.model('Zone', zoneSchema);
+
+const waterHeaterSchema = mongoose.Schema(
+    {
+        brand: { type: String, required: true },
+        models: [
+            {
+                es_id: String,
+                model: String,
+                input_power: Number,
+                storage_volume: Number,
+                uef: Number
+            }
+        ]
+    },
+    { collection: 'water_heaters' }
+);
+
+export const WaterHeaterModel = mongoose.model('WaterHeater', waterHeaterSchema);

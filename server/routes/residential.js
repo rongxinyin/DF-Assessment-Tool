@@ -1,5 +1,5 @@
 import express from 'express';
-import { ResidentialACModel, CompressorType, BrandModel, ZipModel, ZoneModel } from '../models/residential.js';
+import { ResidentialACModel, CompressorType, BrandModel, ZipModel, ZoneModel, WaterHeaterModel, } from '../models/residential.js';
 
 const BTU_PER_HOUR_TO_KW =
     (4.1868 * 453.59237 * 5 / 9) // BTU to Joules
@@ -82,6 +82,97 @@ router.get('/ac/brands', (req, res) => {
 router.get('/temps/:zip', (req, res) => {
     getTemps(req.params.zip, res).then(temps => res.json(temps));
 });
+
+// Water Heaters//
+router.get('/water_heaters/:brand',(req, res) => {
+    WaterHeaterModel.findOne({ brand: req.params.brand})
+        .then(doc => {
+            if (!doc) {
+                res.status(404).send('Brand not found');
+            } else {
+                res.json(doc.models);
+            }
+        })
+        .catch(err=> res.status(500).send(err.message));
+});
+
+router.get('/water_heaters', (req, res) => {
+    WaterHeaterModel.find({})
+    .then(docs => res.json(docs.map(doc => doc.brand)))
+    .catch(err => res.status(500).send(err.message));
+});
+
+// Water Heater Calculations //
+    router.get('/water_heaters/:whBrand/:whModel/:zip,:normalSetpoint,:drSetpoint,:drStart,:drEnd,:apartmentCount', async (req, res) => {
+         const brand = await WaterHeaterModel.findOne({ brand: req.params.whBrand });
+             if (!brand) {
+                res.status(400).send('Brand not found');
+                return;
+             }
+
+             const model = brand.models.find(m => m.model === req.params.whModel);
+             if (!model) {
+                res.status(400).send('Model not found');
+                return;
+             }
+
+             const outdoorTemps = await getTemps(req.params.zip, res);
+             const apartmentCount = parseInt(req.params.apartmentCount) || 1;
+             const drStart =  parseInt(req.params.drStart);
+             const drEnd = parseInt(req.params.drEnd);
+             const hours = 24;
+             const dt = 1;
+
+            // Water Heater parameters //
+            const waterHeaterParams = {
+                fuelType: model.fuelType || "ELECTRIC_RESISTANCE",
+                tankSize: model.tankSize || 50,
+                energyFactor: model.energyFactor || 0.92,
+                standbyLoss: model.standbyLoss || 150,
+                heatingPower: model.input_power,
+                location: model.location || "INDOOR",
+                deadband: model.deadband || 5.0,
+                inletTemp: model.inletTemp || 55.0
+            };
+
+            // Normal 
+            const normalResults ={
+                time: [],
+                powerConsumption: []
+            };
+
+            for(let hour = 0; hour < hours; hour++) {
+                normalResults.time.push(hour);
+                normalResults.powerConsumption.push(waterHeaterParams.heatingPower);
+            }
+
+            // DR
+            const drResults ={
+                time: [],
+                powerConsumption: []
+            };
+            for (let hour = 0; hour < hours; hour++) {
+                drResults.time.push(hour);
+                let power = waterHeaterParams.heatingPower;
+                
+                if (hour >= drStart && hour <= drEnd) {
+                    power *= 0.6; //Change Value Later for more accurate 
+                }
+
+                drResults.powerConsumption.push(power * apartmentCount);
+            }
+
+            const normalEnergy = normalResults.powerConsumption.reduce((a, c) => a + c * dt);
+            const drEnergy = drResults.powerConsumption.reduce((a, c) => a + c * dt);
+
+            const savings = ((normalEnergy * apartmentCount) - drEnergy) / (normalEnergy * apartmentCount) * 100;
+
+            res.json({
+                normalResults,
+                drResults,
+                savings
+            });
+        });
 
 router.get('/zip-states/:zip', async (req, res) => {
   try {

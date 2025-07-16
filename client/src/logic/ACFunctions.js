@@ -40,3 +40,13 @@ export const getClimateZone = async (zip) => {
     throw error;
   }
 };
+
+export const getWaterHeaterBrands = async () => {
+    const res = await axios.get('http://localhost:8080/residential/water_heaters');
+    return res.data;
+};
+
+export const getWaterHeaterModels = async brand => {
+    const res = await axios.get('http://localhost:8080/residential/water_heaters/' + brand);
+    return res.data;
+}

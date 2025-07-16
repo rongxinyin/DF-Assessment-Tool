@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"; //NEW
-import { getBrands, getModels } from '../logic/ACFunctions.js';
+import { getBrands, getModels, getWaterHeaterBrands, getWaterHeaterModels } from '../logic/ACFunctions.js';
 import {
     Select,
     MenuItem,
@@ -30,12 +30,20 @@ export default function ApplianceSelector() {
     //temp storage for brand, models mapping, using useRef (no re renders)
     const brandModels = useRef(new Map()); //NEW
     useEffect(() => {
-        if (brands.length === 0)
-            getBrands().then(setBrands);
-    }, [brands.length]);
+        const loadBrands = async () => {
+            if (!form.appliance) return;
 
+            const fetchedBrands =
+                form.appliance === "Water heater"
+                ? await getWaterHeaterBrands()
+                : await getBrands();
 
-    useEffect(() => {
+            setBrands (fetchedBrands);
+        };
+        loadBrands();
+    }, [form.appliance]);
+
+    /* useEffect(() => {
         const preloadModels = async () => {
             if (form.brand) {
                 const loadedModels = await getModels(form.brand);
@@ -48,7 +56,7 @@ export default function ApplianceSelector() {
             }
         };
         preloadModels();
-    }, [form.brand]);
+    }, [form.brand]); */
 
     //NEW
     //handle changes for appliance, brand, and model
@@ -63,7 +71,10 @@ export default function ApplianceSelector() {
                 if (brandModels.current.has(value)) {
                     setModels(brandModels.current.get(value));
                 } else {
-                    const models = await getModels(value);
+                    const models =
+                        form.appliance === "Water heater"
+                        ? await getWaterHeaterModels(value)
+                        :await getModels(value);
                     brandModels.current.set(value, models);
                     setModels(models);
                 }
@@ -270,7 +281,10 @@ export default function ApplianceSelector() {
                                                 <td style={{ padding: "8px" }}>Model</td>
                                                 <td style={{ padding: "8px" }}>{modelData.model}</td>
                                             </tr>
-                                            <tr>
+
+                                            {form.appliance === "Air conditioner" && (
+                                            <>
+                                                <tr>
                                                 <td style={{ padding: "8px" }}>Capacity</td>
                                                 <td style={{ padding: "8px" }}>{modelData.capacity.toLocaleString()} Btu/h</td>
                                             </tr>
@@ -278,6 +292,8 @@ export default function ApplianceSelector() {
                                                 <td style={{ padding: "8px" }}><abbr title="Coefficient of performance">COP</abbr></td>
                                                 <td style={{ padding: "8px" }}>{modelData.cop}</td>
                                             </tr>
+                                            </>
+                                            )}
                                         </tbody>
                                     </table>
                                 </Box>
