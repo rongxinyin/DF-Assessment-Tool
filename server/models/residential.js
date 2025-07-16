@@ -247,12 +247,12 @@ export class ResidentialACModel {
 }
 
 // Water heater enums
-const FuelType = {
+export const FuelType = {
     ELECTRIC_RESISTANCE: "electric_resistance",
     HEAT_PUMP: "heat_pump"
 };
 
-const LocationType = {
+export const LocationType = {
     INDOOR: "indoor",
     GARAGE: "garage"
 };

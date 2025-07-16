@@ -1,5 +1,5 @@
 import express from 'express';
-import { ResidentialACModel, CompressorType, BrandModel, ZipModel, ZoneModel, WaterHeaterModel, } from '../models/residential.js';
+import { ResidentialACModel, CompressorType, BrandModel, ZipModel, ZoneModel, WaterHeaterModel, HotWaterUsagePattern, ResidentialWaterHeaterModel, FuelType, LocationType} from '../models/residential.js';
 
 const BTU_PER_HOUR_TO_KW =
     (4.1868 * 453.59237 * 5 / 9) // BTU to Joules
@@ -103,7 +103,8 @@ router.get('/water_heaters', (req, res) => {
 });
 
 // Water Heater Calculations //
-    router.get('/water_heaters/:whBrand/:whModel/:zip,:normalSetpoint,:drSetpoint,:drStart,:drEnd,:apartmentCount', async (req, res) => {
+    router.get('/water_heaters/:whBrand/:whModel/', async (req, res) => {
+         const apartmentCount = 1
          const brand = await WaterHeaterModel.findOne({ brand: req.params.whBrand });
              if (!brand) {
                 res.status(400).send('Brand not found');
@@ -116,62 +117,50 @@ router.get('/water_heaters', (req, res) => {
                 return;
              }
 
-             const outdoorTemps = await getTemps(req.params.zip, res);
-             const apartmentCount = parseInt(req.params.apartmentCount) || 1;
-             const drStart =  parseInt(req.params.drStart);
-             const drEnd = parseInt(req.params.drEnd);
-             const hours = 24;
-             const dt = 1;
-
             // Water Heater parameters //
-            const waterHeaterParams = {
-                fuelType: model.fuelType || "ELECTRIC_RESISTANCE",
-                tankSize: model.tankSize || 50,
-                energyFactor: model.energyFactor || 0.92,
-                standbyLoss: model.standbyLoss || 150,
-                heatingPower: model.input_power,
-                location: model.location || "INDOOR",
-                deadband: model.deadband || 5.0,
-                inletTemp: model.inletTemp || 55.0
+            const whParams = {
+            fuelType: FuelType.ELECTRIC_RESISTANCE, // or FuelType.HEAT_PUMP
+            tankSize: 50.0, // gallons
+            energyFactor: 0.92, // EF rating
+            standbyLoss: 150.0, // W (typical for 50-gal tank)
+            heatingPower: 4500.0, // W (typical 4.5 kW element)
+            location: LocationType.GARAGE,
+            deadband: 5.0, // °F
+            inletTemp: 55.0, // °F
+            ratedCop: 3.00, // COP at rated conditions (47°F ambient)
+            ratedAmbientTemp: 47.0, // °F - rated ambient temperature
+            copTempCoefficient: 0.04, // COP change per °F of ambient temp
+            backupElementPower: 4500.0, // W - backup resistance element
+            minHpAmbientTemp: 20.0 // °F - minimum temp for heat pump operation
             };
 
-            // Normal 
-            const normalResults ={
-                time: [],
-                powerConsumption: []
-            };
+            const usagePattern = new HotWaterUsagePattern()
 
-            for(let hour = 0; hour < hours; hour++) {
-                normalResults.time.push(hour);
-                normalResults.powerConsumption.push(waterHeaterParams.heatingPower);
-            }
+            let whModel = new ResidentialWaterHeaterModel(whParams, usagePattern)
 
-            // DR
-            const drResults ={
-                time: [],
-                powerConsumption: []
-            };
-            for (let hour = 0; hour < hours; hour++) {
-                drResults.time.push(hour);
-                let power = waterHeaterParams.heatingPower;
-                
-                if (hour >= drStart && hour <= drEnd) {
-                    power *= 0.6; //Change Value Later for more accurate 
-                }
-
-                drResults.powerConsumption.push(power * apartmentCount);
-            }
-
-            const normalEnergy = normalResults.powerConsumption.reduce((a, c) => a + c * dt);
-            const drEnergy = drResults.powerConsumption.reduce((a, c) => a + c * dt);
+            whModel.setSetPoint(120.0);
+            whModel.setSeason('summer');
+            
+            const normalResults = whModel.simulatePeriod(24, 1 / 60);
+            const normalEnergy = normalResults.powerConsumption.reduce((a, c) => a + c / 60 / 1000);
+            
+            whModel = new ResidentialWaterHeaterModel(whParams, usagePattern, 120.0);
+            whModel.setSetPoint(120.0);
+            whModel.setSeason('summer');
+            whModel.setDemandResponse(true, -15.0);
+            
+            const drResults = whModel.simulatePeriod(24, 1 / 60);
+            const drEnergy = drResults.powerConsumption.reduce((a, c) => a + c / 60 / 1000);
 
             const savings = ((normalEnergy * apartmentCount) - drEnergy) / (normalEnergy * apartmentCount) * 100;
 
             res.json({
                 normalResults,
                 drResults,
-                savings
-            });
+                savings,
+                normalEnergy,
+                drEnergy,
+            }); 
         });
 
 router.get('/zip-states/:zip', async (req, res) => {
