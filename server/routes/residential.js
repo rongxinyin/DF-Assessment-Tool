@@ -194,4 +194,37 @@ router.get('/climate-zone/:zip', async (req, res) => {
   }
 });
 
+//water heater data
+router.get('/waterheater/brands/:brand/:model/:zip,:normalSetpoint,:drSetpoint,:drStart,:drEnd,:apartmentCount', async (req, res) => {
+    // Find the water heater model by brand and model
+    const model = (await BrandModel.findOne({ brand: req.params.brand }))?.models.find(m => m.model === req.params.model);
+    if (!model) {
+        res.status(400).send('Could not find water heater model');
+        return;
+    }
+
+    const outdoorTemps = await getTemps(req.params.zip, res);
+
+
+    const whParams = {
+        capacity: model.capacity,
+        efficiency: model.efficiency,
+
+    };
+
+
+    const whModel = new ResidentialWaterHeaterModel(whParams);
+    whModel.setSetPoint(parseFloat(req.params.normalSetpoint));
+    const normalResults = whModel.simulatePeriod(outdoorTemps);
+
+    whModel.setDemandResponse(true, parseFloat(req.params.drSetpoint), parseInt(req.params.drStart), parseInt(req.params.drEnd), parseInt(req.params.apartmentCount));
+    const drResults = whModel.simulatePeriod(outdoorTemps);
+
+    const normalEnergy = normalResults.energyConsumption;
+    const drEnergy = drResults.energyConsumption;
+    const savings = (normalEnergy - drEnergy) / normalEnergy * 100;
+
+    res.json({ normalResults, drResults, savings });
+});
+
 export default router;

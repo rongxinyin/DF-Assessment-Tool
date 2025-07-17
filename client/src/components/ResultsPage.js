@@ -10,7 +10,8 @@ import {
 import { Line } from 'react-chartjs-2';
 import { BackButton, BreadcrumbNav } from './NavButtons.js';
 import { useLocation } from "react-router-dom";
-import { calculateDR } from '../logic/ACFunctions.js';
+import { calculateDR, calculateWaterHeaterDR } from '../logic/ACFunctions.js';
+
 
 export default function NewResults() {
     const location = useLocation();
@@ -20,6 +21,7 @@ export default function NewResults() {
         houseType,
         city,
         state,
+        zip,
         resType,
         floorArea,
         appliance,
@@ -49,29 +51,63 @@ export default function NewResults() {
         indoorTemp.push(23.5 + Math.random());
 
     const [normalResults, setNormalResults] = useState({
-        indoorTemp: [],
-        outdoorTemp: [],
-        setpoint: [],
-        powerConsumption: [],
+    indoorTemp: [], outdoorTemp: [], setpoint: [], effectiveSetpoint: [], waterTemp: [], ambientTemp: [], powerConsumption: []
     });
     const [normalEnergy, setNormalEnergy] = useState(0);
-    const [drResults, setDRResults] = useState({
-        indoorTemp: [],
-        outdoorTemp: [],
-        setpoint: [],
-        effectiveSetpoint: [],
-        powerConsumption: [],
+    const [drResults, setDRResults] = useState({indoorTemp: [], outdoorTemp: [], setpoint: [], effectiveSetpoint: [], waterTemp: [], ambientTemp: [], powerConsumption: []
     });
     const [drEnergy, setDREnergy] = useState(0);
 
-    useEffect(() => {
-        calculateDR(inputs).then(data => {
-            setNormalResults(data.normalResults);
-            setDRResults(data.drResults);
-            setNormalEnergy(data.normalResults.powerConsumption.reduce((a, c) => a + c));
-            setDREnergy(data.drResults.powerConsumption.reduce((a, c) => a + c));
-        });
-    }, []);
+   useEffect(() => {
+       async function fetchResults() {
+           let endpoint;
+           if (appliance === 'Air conditioner') {
+               calculateDR(inputs).then(data => {
+                          setNormalResults(data.normalResults);
+                          setDRResults(data.drResults);
+                          setNormalEnergy(data.normalResults.
+                          powerConsumption.reduce ((a, c) => a + c));
+                          setDREnergy(data.drResults.powerConsumption.reduce((a, c) => a + c));
+                          });
+           } else if (appliance === 'Water heater') {
+                         calculateWaterHeaterDR(inputs).then(data => {
+                             console.log("Water Heater DR data:", data);
+                             setNormalResults(data.normalResults);
+                             setDRResults(data.drResults);
+                             setNormalEnergy(data.normalResults.powerConsumption.reduce((a, c) => a + c));
+                             setDREnergy(data.drResults.powerConsumption.reduce((a, c) => a + c));
+                             console.log(normalResults, drResults);
+                         }).catch(err => {
+                             console.error('Failed to fetch water heater results:', err);
+                         });
+            } else {
+               console.error('Unknown appliance type');
+               return;
+           }
+
+//           try {
+//               const response = await fetch(endpoint);
+//               const data = await response.json();
+//
+//               setNormalResults(data.normalResults);
+//               setDRResults(data.drResults);
+//
+//               setNormalEnergy(
+//                   data.normalResults.powerConsumption?.reduce((a, c) => a + c, 0) ??
+//                   data.normalResults.energyConsumption ?? 0
+//               );
+//               setDREnergy(
+//                   data.drResults.powerConsumption?.reduce((a, c) => a + c, 0) ??
+//                   data.drResults.energyConsumption ?? 0
+//               );
+//           } catch (err) {
+//               console.error('Failed to fetch results:', err);
+//           }
+       }
+
+       fetchResults();
+   }, []);
+
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -126,6 +162,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                 <BreadcrumbNav paths={breadcrumbPaths} />
             </Box>
 
+
             {/* Graph Section */}
             <Grid
                 item
@@ -152,10 +189,12 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                             width: "100%",
                         }}
                     >
+
                         <Line
+
                             data={{
                                 labels: hours,
-                                datasets: [
+                                datasets: appliance === 'Air conditioner' ? [
                                     {
                                         label: "Outside Air Temperature",
                                         data: normalResults.outdoorTemp.map(cToF),
@@ -179,7 +218,51 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                         borderDash: [10, 5],
                                         order: 0,
                                     },
-                                ],
+                                    {
+                                        label: "Effective Setpoint",
+                                        data: normalResults.effectiveSetpoint.map(cToF),
+                                        borderColor: "#990099",
+                                        pointRadius: 0,
+                                        borderWidth: 2,
+                                        borderDash: [10, 5],
+                                        stepped: true,
+                                        order: 0,
+                                    },
+                                ] : [
+                                    {
+                                        label: "Ambient Temperature",
+                                        data: normalResults.ambientTemp,
+                                        borderColor: "#DC3912",
+                                        backgroundColor: "#DC391280",
+                                        order: 1,
+                                    },
+                                    {
+                                        label: "Water Temperature",
+                                        data: normalResults.waterTemp,
+                                        borderColor: "#3366CC",
+                                        backgroundColor: "#3366CC80",
+                                        order: 1,
+                                    },
+                                    {
+                                        label: "Setpoint",
+                                        data: normalResults.setpoint,
+                                        borderColor: "#109618",
+                                        pointRadius: 0,
+                                        borderWidth: 2,
+                                        borderDash: [10, 5],
+                                        order: 0,
+                                    },
+                                    {
+                                        label: "Effective Setpoint",
+                                        data: normalResults.effectiveSetpoint,
+                                        borderColor: "#990099",
+                                        pointRadius: 0,
+                                        borderWidth: 2,
+                                        borderDash: [10, 5],
+                                        stepped: true,
+                                        order: 0,
+                                    },
+                                ]
                             }}
                             options={{
                                 plugins: {
@@ -203,7 +286,10 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                     },
                                 },
                             }}
+
                         />
+
+
                     </Box>
                 </Grid>
 
@@ -223,10 +309,12 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                             width: "100%",
                         }}
                     >
+
                         <Line
+
                             data={{
                                 labels: hours,
-                                datasets: [
+                                datasets: appliance === 'Air conditioner' ? [
                                     {
                                         label: "Outside Air Temperature",
                                         data: drResults.outdoorTemp.map(cToF),
@@ -260,7 +348,41 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                         stepped: true,
                                         order: 0,
                                     },
-                                ],
+                                ] : [
+                                    {
+                                        label: "Ambient Temperature",
+                                        data: drResults.ambientTemp,
+                                        borderColor: "#DC3912",
+                                        backgroundColor: "#DC391280",
+                                        order: 1,
+                                    },
+                                    {
+                                        label: "Water Temperature",
+                                        data: drResults.waterTemp,
+                                        borderColor: "#3366CC",
+                                        backgroundColor: "#3366CC80",
+                                        order: 1,
+                                    },
+                                    {
+                                        label: "Setpoint",
+                                        data: drResults.setpoint,
+                                        borderColor: "#109618",
+                                        pointRadius: 0,
+                                        borderWidth: 2,
+                                        borderDash: [10, 5],
+                                        order: 0,
+                                    },
+                                    {
+                                        label: "Effective Setpoint",
+                                        data: drResults.effectiveSetpoint,
+                                        borderColor: "#990099",
+                                        pointRadius: 0,
+                                        borderWidth: 2,
+                                        borderDash: [10, 5],
+                                        stepped: true,
+                                        order: 0,
+                                    },
+                                ]
                             }}
                             options={{
                                 plugins: {
@@ -284,7 +406,9 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                     },
                                 },
                             }}
+
                         />
+
                     </Box>
                 </Grid>
             </Grid>
@@ -432,7 +556,6 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                     </Box>
                 </Grid>
             </Grid>
-
 
             <Grid container marginTop="auto">
                 <Grid item xs={6}>

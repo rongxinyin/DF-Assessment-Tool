@@ -5,7 +5,30 @@ import {
     Button
 } from '@mui/material';
 import { ArrowDropDown } from '@mui/icons-material';
-import { getBrands, getModels, calculateDR } from '../logic/ACFunctions.js';
+import {
+  getBrands,
+  getModels,
+  calculateDR,
+  getWaterHeaterBrands,
+  getWaterHeaterModels,
+  calculateWaterHeaterDR
+} from '../logic/ACFunctions.js';
+
+
+
+
+const textFieldSX = {
+  '& .MuiInputBase-root': {
+    backgroundColor: '#ffffff',
+    borderRadius: '8px',
+  },
+};
+
+const textFieldInputPropsSX = {
+  sx: {
+    padding: '10px 14px',
+  },
+};
 
 const DropDownIcon = props => (<ArrowDropDown {...props} style={{ color: 'white' }} />);
 
@@ -13,11 +36,19 @@ export default function ResidentialLanding() {
     const [form, setForm] = useState({});
     const [brands, setBrands] = useState([]);
     const [models, setModels] = useState([]);
+    const [whBrands, setWhBrands] = useState([]);
+    const [whModels, setWhModels] = useState([]);
+    const [whForm, setWhForm] = useState({});
+    const [whResults, setWhResults] = useState(null);
+    const [acResults, setAcResults] = useState(null);
+
 
     // Fetch brands off of main function
     useEffect(() => {
         if (brands.length === 0)
             getBrands().then(setBrands);
+        if (whBrands.length === 0) getWaterHeaterBrands().then(setWhBrands);
+
     }, []);
 
     const brandModels = new Map();
@@ -42,25 +73,43 @@ export default function ResidentialLanding() {
         }
     };
 
+    const whBrandModels = new Map();
+
+    const handleWhChange = async (e) => {
+      const { name, value } = e.target;
+      setWhForm({ ...whForm, [name]: value });
+
+      if (name === "brand") {
+        if (value === "Select a brand") setWhModels([]);
+        else {
+          if (whBrandModels.has(value)) setWhModels(whBrandModels.get(value));
+          else {
+            const ms = await getWaterHeaterModels(value);
+            whBrandModels.set(value, ms);
+            setWhModels(ms);
+          }
+        }
+      }
+    };
+
+
     const submitInputs = async () => {
         const results = await calculateDR(form);
         console.log(results)
     };
 
-    const textFieldInputPropsSX = {
-        sx: {
-            color: "#FFFFFF",
-        },
+    const submitWaterHeaterInputs = async () => {
+      try {
+        const results = await calculateWaterHeaterDR(whForm);
+        console.log("Water Heater results:", results);
+        setWhResults(results);
+      } catch (error) {
+        console.error("Error calculating Water Heater:", error);
+      }
     };
 
-    const textFieldSX = {
-        width: "100%",
-        marginBottom: 1,
-        marginTop: 1,
-        border: "2px solid #F0F0F0",
-        backgroundColor: "secondary.main",
-        borderRadius: "10px",
-    };
+
+
 
     const formControlSX = {
         width: "90%",

@@ -10,10 +10,21 @@ export const getModels = async brand => {
     return res.data;
 }
 
-export const calculateDR = async input => {
-    const res = await axios.get(`http://localhost:8080/residential/ac/brands/${input.brand}/${input.model}/${input.zip},${input.normalSetpoint},${input.drSetpoint},${input.timeStart},${input.timeEnd}`);
-    return res.data;
+export const calculateDR = async (input) => {
+  const url = `http://localhost:8080/residential/ac/brands/${input.brand}/${input.model}/${input.zip},${input.normalSetpoint},${input.drSetpoint},${input.timeStart},${input.timeEnd},${input.apartmentCount}`;
+  console.log("AC API URL:", url);   //debugging
+  const res = await axios.get(url);
+  return res.data;
 };
+
+
+export const calculateWaterHeaterDR = async (input) => {
+  const url = `http://localhost:8080/residential/water_heaters/${input.brand}/${input.model}/`;
+  console.log("WH API URL:", url);
+  const res = await axios.get(url);
+  return res.data;
+};
+
 
 export const getTemps = async zip => {
     const res = await axios.get(`http://localhost:8080/residential/temps/${zip}`);
