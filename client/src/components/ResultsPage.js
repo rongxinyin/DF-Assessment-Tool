@@ -281,7 +281,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                     y: {
                                         title: {
                                             display: true,
-                                            text: "Temperature (°C)",
+                                            text: "Temperature (°F)",
                                         },
                                     },
                                 },
@@ -401,7 +401,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                     y: {
                                         title: {
                                             display: true,
-                                            text: "Temperature (°C)",
+                                            text: "Temperature (°F)",
                                         },
                                     },
                                 },
