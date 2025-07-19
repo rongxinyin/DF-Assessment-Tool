@@ -172,8 +172,7 @@ router.get('/water_heaters', (req, res) => {
 });
 
 // Water Heater Calculations
-router.get('/water_heaters/:whBrand/:whModel/:normalSetpoint,:drSetpoint', async (req, res) => {
-    const apartmentCount = 1
+router.get('/water_heaters/:whBrand/:whModel/:normalSetpoint,:drSetpoint,:drStart,:drEnd,:apartmentCount', async (req, res) => {
     const brand = await WaterHeaterModel.findOne({ brand: req.params.whBrand });
     if (!brand) {
         res.status(400).send('Brand not found');
@@ -203,6 +202,9 @@ router.get('/water_heaters/:whBrand/:whModel/:normalSetpoint,:drSetpoint', async
         minHpAmbientTemp: 20.0 // °F - minimum temp for heat pump operation
     };
 
+    const apartmentCount = parseInt(req.params.apartmentCount) || 1;
+    const drStart = parseInt(req.params.drStart), drEnd = parseInt(req.params.drEnd);
+
     const usagePattern = new HotWaterUsagePattern()
 
     let whModel = new ResidentialWaterHeaterModel(whParams, usagePattern)
@@ -214,23 +216,22 @@ router.get('/water_heaters/:whBrand/:whModel/:normalSetpoint,:drSetpoint', async
     whModel.setSeason('summer');
 
     const normalResults = whModel.simulatePeriod(24, 1 / 60);
+    normalResults.powerConsumption = normalResults.powerConsumption.map(p => p * apartmentCount);
     const normalEnergy = normalResults.powerConsumption.reduce((a, c) => a + c / 60 / 1000);
 
     // DR simulation
-    whModel = new ResidentialWaterHeaterModel(whParams, usagePattern, drSetpoint);
+    whModel = new ResidentialWaterHeaterModel(whParams, usagePattern, normalSetpoint);
     whModel.setSetPoint(normalSetpoint);
     whModel.setSeason('summer');
-    whModel.setDemandResponse(true, drSetpoint - normalSetpoint);
+    whModel.setDemandResponse(true, drSetpoint - normalSetpoint, drStart, drEnd);
 
     const drResults = whModel.simulatePeriod(24, 1 / 60);
+    drResults.powerConsumption = drResults.powerConsumption.map(p => p * apartmentCount);
     const drEnergy = drResults.powerConsumption.reduce((a, c) => a + c / 60 / 1000);
-
-    const savings = ((normalEnergy * apartmentCount) - drEnergy) / (normalEnergy * apartmentCount) * 100;
 
     res.json({
         normalResults,
         drResults,
-        savings,
         normalEnergy,
         drEnergy,
     });
@@ -265,39 +266,6 @@ router.get('/climate-zone/:zip', async (req, res) => {
         console.error('Error fetching climate zone:', error);
         res.status(500).json({ message: 'Error fetching climate zone', error });
     }
-});
-
-//water heater data
-router.get('/waterheater/brands/:brand/:model/:zip,:normalSetpoint,:drSetpoint,:drStart,:drEnd,:apartmentCount', async (req, res) => {
-    // Find the water heater model by brand and model
-    const model = (await BrandModel.findOne({ brand: req.params.brand }))?.models.find(m => m.model === req.params.model);
-    if (!model) {
-        res.status(400).send('Could not find water heater model');
-        return;
-    }
-
-    const outdoorTemps = await getTemps(req.params.zip, res);
-
-
-    const whParams = {
-        capacity: model.capacity,
-        efficiency: model.efficiency,
-
-    };
-
-
-    const whModel = new ResidentialWaterHeaterModel(whParams);
-    whModel.setSetPoint(parseFloat(req.params.normalSetpoint));
-    const normalResults = whModel.simulatePeriod(outdoorTemps);
-
-    whModel.setDemandResponse(true, parseFloat(req.params.drSetpoint), parseInt(req.params.drStart), parseInt(req.params.drEnd), parseInt(req.params.apartmentCount));
-    const drResults = whModel.simulatePeriod(outdoorTemps);
-
-    const normalEnergy = normalResults.energyConsumption;
-    const drEnergy = drResults.energyConsumption;
-    const savings = (normalEnergy - drEnergy) / normalEnergy * 100;
-
-    res.json({ normalResults, drResults, savings });
 });
 
 export default router;

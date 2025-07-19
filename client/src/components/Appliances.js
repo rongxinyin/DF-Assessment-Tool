@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"; //NEW
-import { getBrands, getModels, getWaterHeaterBrands, getWaterHeaterModels } from '../logic/ACFunctions.js';
+import { getACBrands, getACModels, getWaterHeaterBrands, getWaterHeaterModels } from '../logic/ACFunctions.js';
 import {
     Select,
     MenuItem,
@@ -35,30 +35,14 @@ export default function ApplianceSelector() {
 
             const fetchedBrands =
                 form.appliance === "Water heater"
-                ? await getWaterHeaterBrands()
-                : await getBrands();
+                    ? await getWaterHeaterBrands()
+                    : await getACBrands();
 
-            setBrands (fetchedBrands);
+            setBrands(fetchedBrands);
         };
         loadBrands();
     }, [form.appliance]);
 
-    /* useEffect(() => {
-        const preloadModels = async () => {
-            if (form.brand) {
-                const loadedModels = await getModels(form.brand);
-                setModels(loadedModels);
-
-                if (form.model)
-                    for (const model of loadedModels)
-                        if (model.model === form.model)
-                            setModelData(model);
-            }
-        };
-        preloadModels();
-    }, [form.brand]); */
-
-    //NEW
     //handle changes for appliance, brand, and model
     const handleChange = async (e) => {
         const { name, value } = e.target;
@@ -73,8 +57,8 @@ export default function ApplianceSelector() {
                 } else {
                     const models =
                         form.appliance === "Water heater"
-                        ? await getWaterHeaterModels(value)
-                        :await getModels(value);
+                            ? await getWaterHeaterModels(value)
+                            : await getACModels(value);
                     brandModels.current.set(value, models);
                     setModels(models);
                 }
@@ -283,16 +267,16 @@ export default function ApplianceSelector() {
                                             </tr>
 
                                             {form.appliance === "Air conditioner" && (
-                                            <>
-                                                <tr>
-                                                <td style={{ padding: "8px" }}>Capacity</td>
-                                                <td style={{ padding: "8px" }}>{modelData.capacity.toLocaleString()} Btu/h</td>
-                                            </tr>
-                                            <tr>
-                                                <td style={{ padding: "8px" }}><abbr title="Coefficient of performance">COP</abbr></td>
-                                                <td style={{ padding: "8px" }}>{modelData.cop}</td>
-                                            </tr>
-                                            </>
+                                                <>
+                                                    <tr>
+                                                        <td style={{ padding: "8px" }}>Capacity</td>
+                                                        <td style={{ padding: "8px" }}>{modelData.capacity.toLocaleString()} Btu/h</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style={{ padding: "8px" }}><abbr title="Coefficient of performance">COP</abbr></td>
+                                                        <td style={{ padding: "8px" }}>{modelData.cop}</td>
+                                                    </tr>
+                                                </>
                                             )}
                                         </tbody>
                                     </table>

@@ -10,45 +10,16 @@ import {
 import { Line } from 'react-chartjs-2';
 import { BackButton, BreadcrumbNav } from './NavButtons.js';
 import { useLocation } from "react-router-dom";
-import { calculateDR, calculateWaterHeaterDR } from '../logic/ACFunctions.js';
-
+import { calculateACDR, calculateWaterHeaterDR } from '../logic/ACFunctions.js';
 
 export default function NewResults() {
     const location = useLocation();
     const inputs = location.state || {};
-
-    const {
-        houseType,
-        city,
-        state,
-        zip,
-        resType,
-        floorArea,
-        appliance,
-        brand,
-        model,
-        normalSetpoint,
-        drSetpoint,
-        timeStart,
-        timeEnd,
-        apartmentCount
-    } = inputs;
+    const { appliance } = inputs;
 
     const hours = [];
     for (let i = 0; i < 24; i++)
         hours.push(i);
-
-    // Sample data
-    const setpointF = parseFloat(normalSetpoint);
-    const drSetF = parseFloat(drSetpoint);
-
-    const setpoint = isNaN(setpointF) ? 24 : ((setpointF - 32) * 5) / 9;
-
-    const indoorTemp = [];
-    for (let i = 0; i < 6; i++)
-        indoorTemp.push(20 + Math.pow(i / 6, 2) * 4);
-    for (let i = 6; i < 24; i++)
-        indoorTemp.push(23.5 + Math.random());
 
     const [normalResults, setNormalResults] = useState({
         indoorTemp: [], outdoorTemp: [], setpoint: [], effectiveSetpoint: [], waterTemp: [], ambientTemp: [], powerConsumption: []
@@ -62,7 +33,7 @@ export default function NewResults() {
     useEffect(() => {
         async function fetchResults() {
             if (appliance === 'Air conditioner') {
-                calculateDR(inputs).then(data => {
+                calculateACDR(inputs).then(data => {
                     setNormalResults(data.normalResults);
                     setDRResults(data.drResults);
                     setNormalEnergy(data.normalEnergy);
@@ -70,6 +41,7 @@ export default function NewResults() {
                 });
             } else if (appliance === 'Water heater') {
                 calculateWaterHeaterDR(inputs).then(data => {
+                    console.log(data)
                     setNormalResults(data.normalResults);
                     setDRResults(data.drResults);
                     setNormalEnergy(data.normalEnergy);
@@ -120,7 +92,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
     // Celsius to Fahrenheit
     const cToF = c => c * 9 / 5 + 32;
     const averageHours = array => {
-        const intervalLength = array.length / 24;
+        const intervalLength = Math.round(array.length / 24);
 
         const hours = [];
         let total = 0, count = 0;

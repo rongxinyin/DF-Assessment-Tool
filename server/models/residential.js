@@ -325,6 +325,8 @@ export class ResidentialWaterHeaterModel {
         this.powerConsumption = 0.0; // Current power consumption (W)
         this.demandResponseActive = false;
         this.drSetpointOffset = 0.0; // Setpoint offset during demand response (°F)
+        this.drStart = 0;
+        this.drEnd = 0;
 
         // Calculate thermal capacity of water in tank
         this.thermalCapacity = this.whParams.tankSize * WATER_DENSITY * WATER_SPECIFIC_HEAT; // Btu/°F
@@ -407,28 +409,33 @@ export class ResidentialWaterHeaterModel {
     }
 
     /**
-     * Activate or deactivate demand response mode.
-     * @param {boolean} active - Whether demand response is active.
-     * @param {number} [setpointOffset] - Setpoint offset during demand response (°F).
+     * @param {boolean} active - Whether DR is active
+     * @param {number} spOffset - Setpoint increase during DR (°C/K)
+     * @param {number} start - DR start hour
+     * @param {number} end - DR end hour
      */
-    setDemandResponse(active, setpointOffset = -10.0) {
+    setDemandResponse(active, spOffset, start, end) {
         this.demandResponseActive = active;
-        this.drSetpointOffset = active ? setpointOffset : 0.0;
+        this.drSetpointOffset = active ? spOffset : 0.0;
+        this.drStart = start;
+        this.drEnd = end;
     }
 
     /**
      * Get the effective setpoint considering demand response.
      * @returns {number} - The effective setpoint temperature (°F).
      */
-    getEffectiveSetpoint() {
-        return this.setpoint + this.drSetpointOffset;
+    getEffectiveSetpoint(time) {
+        if (this.drStart <= time && time <= this.drEnd)
+            return this.setpoint + this.drSetpointOffset;
+        return this.setpoint;
     }
 
     /**
      * Update heating element/heat pump on/off based on thermostat settings.
      */
-    updateHeatingControl() {
-        const effectiveSetpoint = this.getEffectiveSetpoint();
+    updateHeatingControl(time) {
+        const effectiveSetpoint = this.getEffectiveSetpoint(time);
         const deadband = this.whParams.deadband;
 
         // Heating thresholds
@@ -578,7 +585,7 @@ export class ResidentialWaterHeaterModel {
     simulateStep(timeHours, dt) {
         const usageRate = this.usagePattern.getUsageRate(timeHours);
 
-        this.updateHeatingControl();
+        this.updateHeatingControl(timeHours);
         this.calculatePowerConsumption();
         this.updateTemperature(usageRate, dt);
 
@@ -637,7 +644,7 @@ export class ResidentialWaterHeaterModel {
             results.powerConsumption.push(powerConsumption);
             results.heatingActive.push(heatingActive);
             results.setpoint.push(this.setpoint);
-            results.effectiveSetpoint.push(this.getEffectiveSetpoint());
+            results.effectiveSetpoint.push(this.getEffectiveSetpoint(timeHours));
             results.usageRate.push(usageRate);
             results.standbyLoss.push(this.calculateStandbyLoss());
             results.ambientTemp.push(this.getAmbientTemperature());
