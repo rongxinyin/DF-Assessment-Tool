@@ -216,8 +216,8 @@ router.get('/water_heaters/:whBrand/:whModel/:normalSetpoint,:drSetpoint,:drStar
     whModel.setSeason('summer');
 
     const normalResults = whModel.simulatePeriod(24, 1 / 60);
-    normalResults.powerConsumption = normalResults.powerConsumption.map(p => p * apartmentCount);
-    const normalEnergy = normalResults.powerConsumption.reduce((a, c) => a + c / 60 / 1000);
+    normalResults.powerConsumption = normalResults.powerConsumption.map(p => p / 1000 * apartmentCount);
+    const normalEnergy = normalResults.powerConsumption.reduce((a, c) => a + c / 60);
 
     // DR simulation
     whModel = new ResidentialWaterHeaterModel(whParams, usagePattern, normalSetpoint);
@@ -226,8 +226,8 @@ router.get('/water_heaters/:whBrand/:whModel/:normalSetpoint,:drSetpoint,:drStar
     whModel.setDemandResponse(true, drSetpoint - normalSetpoint, drStart, drEnd);
 
     const drResults = whModel.simulatePeriod(24, 1 / 60);
-    drResults.powerConsumption = drResults.powerConsumption.map(p => p * apartmentCount);
-    const drEnergy = drResults.powerConsumption.reduce((a, c) => a + c / 60 / 1000);
+    drResults.powerConsumption = drResults.powerConsumption.map(p => p / 1000 * apartmentCount);
+    const drEnergy = drResults.powerConsumption.reduce((a, c) => a + c / 60);
 
     res.json({
         normalResults,
