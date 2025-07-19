@@ -1,5 +1,5 @@
 import express from 'express';
-import { ResidentialACModel, CompressorType, BrandModel, ZipModel, ZoneModel, WaterHeaterModel, HotWaterUsagePattern, ResidentialWaterHeaterModel, FuelType, LocationType} from '../models/residential.js';
+import { ResidentialACModel, CompressorType, BrandModel, ZipModel, ZoneModel, WaterHeaterModel, HotWaterUsagePattern, ResidentialWaterHeaterModel, FuelType, LocationType } from '../models/residential.js';
 
 const BTU_PER_HOUR_TO_KW =
     (4.1868 * 453.59237 * 5 / 9) // BTU to Joules
@@ -30,6 +30,14 @@ router.get('/ac/brands/:acBrand/:acModel/:zip,:normalSetpoint,:drSetpoint,:drSta
 
     const outdoorTemps = await getTemps(req.params.zip, res);
 
+    // Interpolate between temperatures for more detailed results
+    const extendedOutdoorTemps = [];
+    for (let hour = 0; hour < outdoorTemps.length; hour++) {
+        const startTemp = outdoorTemps[hour], endTemp = outdoorTemps[(hour + 1) % outdoorTemps.length];
+        for (let min = 0; min < 60; min++)
+            extendedOutdoorTemps.push(startTemp + (endTemp - startTemp) * min / 60);
+    }
+
     const acParams = {
         coolingCapacityStage1: 3.5, // kW
         coolingCapacityStage2: model.capacity * BTU_PER_HOUR_TO_KW, // kW (total capacity)
@@ -43,27 +51,88 @@ router.get('/ac/brands/:acBrand/:acModel/:zip,:normalSetpoint,:drSetpoint,:drSta
 
     const normalSetpoint = (parseFloat(req.params.normalSetpoint) - 32) * 5 / 9,
         drSetpoint = (parseFloat(req.params.drSetpoint) - 32) * 5 / 9;
-    let acModel = new ResidentialACModel(acParams, 20.0);
-    acModel.setSetPoint(normalSetpoint);
-
     const apartmentCount = parseInt(req.params.apartmentCount) || 1;
 
-    const normalResults = acModel.simulatePeriod(outdoorTemps, 1);
-    const normalEnergy = normalResults.powerConsumption.reduce((a, c) => a + c / 60) *apartmentCount;
+    let normalResults, drResults, normalEnergy, drEnergy;
 
-    acModel = new ResidentialACModel(acParams, 20.0);
-    acModel.setSetPoint(normalSetpoint);
-    acModel.setDemandResponse(true, drSetpoint - normalSetpoint, parseInt(req.params.drStart), parseInt(req.params.drEnd), parseInt(req.params.apartmentCount));
+    if (apartmentCount > 10 /* minimum amount for at least one person to be at edges */) {
+        // Arrays to be averaged after all points along distribution are totaled
+        normalResults = {
+            setpoint: new Array(1440).fill(0), effectiveSetpoint: new Array(1440).fill(0),
+            indoorTemp: new Array(1440).fill(0), outdoorTemp: extendedOutdoorTemps, powerConsumption: new Array(1440).fill(0)
+        };
+        drResults = {
+            setpoint: new Array(1440).fill(0), effectiveSetpoint: new Array(1440).fill(0),
+            indoorTemp: new Array(1440).fill(0), outdoorTemp: extendedOutdoorTemps, powerConsumption: new Array(1440).fill(0)
+        };
+        // Normal distribution calculations
+        const sigma = 1.19, mu = 23.72, lowTemp = 21.83, highTemp = 25.61; // https://eta-publications.lbl.gov/sites/default/files/occupants_indoor_comform_temperature.pdf#p483R_mc1
+        const distribution = x => apartmentCount / (sigma * Math.sqrt(2 * Math.PI)) * Math.exp(-Math.pow((x - mu) / sigma, 2) / 2);
+        // Run simulation for 1°F chunks
+        let totalPeople = 0;
+        for (let temp = lowTemp; temp < highTemp; temp += 5 / 9) {
+            let acModel = new ResidentialACModel(acParams, 20.0);
+            acModel.setSetPoint(temp);
+            const chunkNormalResults = acModel.simulatePeriod(extendedOutdoorTemps);
 
-    const drResults = acModel.simulatePeriod(outdoorTemps, 1);
-    const drEnergy = drResults.powerConsumption.reduce((a, c) => a + c / 60) *apartmentCount;
+            acModel = new ResidentialACModel(acParams, 20.0);
+            acModel.setSetPoint(temp);
+            acModel.setDemandResponse(true, drSetpoint - normalSetpoint, parseInt(req.params.drStart), parseInt(req.params.drEnd));
+            const chunkDrResults = acModel.simulatePeriod(extendedOutdoorTemps);
 
-    const savings = (normalEnergy - drEnergy) / normalEnergy * 100;
+            const chunkHeight = distribution(temp + 5 / 9 / 2);
+            totalPeople += chunkHeight;
+            for (let i = 0; i < 1440; i++) {
+                normalResults.setpoint[i] += chunkNormalResults.setpoint[i] * chunkHeight;
+                normalResults.effectiveSetpoint[i] += chunkNormalResults.effectiveSetpoint[i] * chunkHeight;
+                normalResults.indoorTemp[i] += chunkNormalResults.indoorTemp[i] * chunkHeight;
+                normalResults.powerConsumption[i] += chunkNormalResults.powerConsumption[i] * chunkHeight;
+
+                drResults.setpoint[i] += chunkDrResults.setpoint[i] * chunkHeight;
+                drResults.effectiveSetpoint[i] += chunkDrResults.effectiveSetpoint[i] * chunkHeight;
+                drResults.indoorTemp[i] += chunkDrResults.indoorTemp[i] * chunkHeight;
+                drResults.powerConsumption[i] += chunkDrResults.powerConsumption[i] * chunkHeight;
+            }
+        }
+        // Average values
+        for (let i = 0; i < 1440; i++) {
+            normalResults.setpoint[i] /= totalPeople;
+            normalResults.effectiveSetpoint[i] /= totalPeople;
+            normalResults.indoorTemp[i] /= totalPeople;
+
+            drResults.setpoint[i] /= totalPeople;
+            drResults.effectiveSetpoint[i] /= totalPeople;
+            drResults.indoorTemp[i] /= totalPeople;
+        }
+    }
+    else {
+        // Single buildings or small complexes
+        let acModel = new ResidentialACModel(acParams, 20.0);
+        acModel.setSetPoint(normalSetpoint);
+
+        normalResults = acModel.simulatePeriod(extendedOutdoorTemps);
+
+        acModel = new ResidentialACModel(acParams, 20.0);
+        acModel.setSetPoint(normalSetpoint);
+        acModel.setDemandResponse(true, drSetpoint - normalSetpoint, parseInt(req.params.drStart), parseInt(req.params.drEnd), parseInt(req.params.apartmentCount));
+
+        drResults = acModel.simulatePeriod(extendedOutdoorTemps);
+    }
+
+    normalEnergy = normalResults.powerConsumption.reduce((a, c) => a + c / 60);
+    drEnergy = drResults.powerConsumption.reduce((a, c) => a + c / 60);
+
+    if (apartmentCount <= 10) {
+        // Single buildings or small complexes use single value distribution
+        normalEnergy *= apartmentCount;
+        drEnergy *= apartmentCount;
+    }
 
     res.json({
         normalResults,
         drResults,
-        savings
+        normalEnergy,
+        drEnergy,
     });
 });
 
@@ -84,8 +153,8 @@ router.get('/temps/:zip', (req, res) => {
 });
 
 // Water Heaters//
-router.get('/water_heaters/:brand',(req, res) => {
-    WaterHeaterModel.findOne({ brand: req.params.brand})
+router.get('/water_heaters/:brand', (req, res) => {
+    WaterHeaterModel.findOne({ brand: req.params.brand })
         .then(doc => {
             if (!doc) {
                 res.status(404).send('Brand not found');
@@ -93,105 +162,109 @@ router.get('/water_heaters/:brand',(req, res) => {
                 res.json(doc.models);
             }
         })
-        .catch(err=> res.status(500).send(err.message));
+        .catch(err => res.status(500).send(err.message));
 });
 
 router.get('/water_heaters', (req, res) => {
     WaterHeaterModel.find({})
-    .then(docs => res.json(docs.map(doc => doc.brand)))
-    .catch(err => res.status(500).send(err.message));
+        .then(docs => res.json(docs.map(doc => doc.brand)))
+        .catch(err => res.status(500).send(err.message));
 });
 
-// Water Heater Calculations //
-    router.get('/water_heaters/:whBrand/:whModel/', async (req, res) => {
-         const apartmentCount = 1
-         const brand = await WaterHeaterModel.findOne({ brand: req.params.whBrand });
-             if (!brand) {
-                res.status(400).send('Brand not found');
-                return;
-             }
+// Water Heater Calculations
+router.get('/water_heaters/:whBrand/:whModel/:normalSetpoint,:drSetpoint', async (req, res) => {
+    const apartmentCount = 1
+    const brand = await WaterHeaterModel.findOne({ brand: req.params.whBrand });
+    if (!brand) {
+        res.status(400).send('Brand not found');
+        return;
+    }
 
-             const model = brand.models.find(m => m.model === req.params.whModel);
-             if (!model) {
-                res.status(400).send('Model not found');
-                return;
-             }
+    const model = brand.models.find(m => m.model === req.params.whModel);
+    if (!model) {
+        res.status(400).send('Model not found');
+        return;
+    }
 
-            // Water Heater parameters //
-            const whParams = {
-            fuelType: FuelType.ELECTRIC_RESISTANCE, // or FuelType.HEAT_PUMP
-            tankSize: 50.0, // gallons
-            energyFactor: 0.92, // EF rating
-            standbyLoss: 150.0, // W (typical for 50-gal tank)
-            heatingPower: 4500.0, // W (typical 4.5 kW element)
-            location: LocationType.GARAGE,
-            deadband: 5.0, // °F
-            inletTemp: 55.0, // °F
-            ratedCop: 3.00, // COP at rated conditions (47°F ambient)
-            ratedAmbientTemp: 47.0, // °F - rated ambient temperature
-            copTempCoefficient: 0.04, // COP change per °F of ambient temp
-            backupElementPower: 4500.0, // W - backup resistance element
-            minHpAmbientTemp: 20.0 // °F - minimum temp for heat pump operation
-            };
+    // Water Heater parameters
+    const whParams = {
+        fuelType: FuelType.ELECTRIC_RESISTANCE, // or FuelType.HEAT_PUMP
+        tankSize: model.volume, // gallons
+        energyFactor: 0.92, // EF rating
+        standbyLoss: 150.0, // W (typical for 50-gal tank)
+        heatingPower: 4500.0, // W (typical 4.5 kW element)
+        location: LocationType.GARAGE,
+        deadband: 5.0, // °F
+        inletTemp: 55.0, // °F
+        ratedCop: model.uef, // COP at rated conditions (47°F ambient)
+        ratedAmbientTemp: 47.0, // °F - rated ambient temperature
+        copTempCoefficient: 0.04, // COP change per °F of ambient temp
+        backupElementPower: 4500.0, // W - backup resistance element
+        minHpAmbientTemp: 20.0 // °F - minimum temp for heat pump operation
+    };
 
-            const usagePattern = new HotWaterUsagePattern()
+    const usagePattern = new HotWaterUsagePattern()
 
-            let whModel = new ResidentialWaterHeaterModel(whParams, usagePattern)
+    let whModel = new ResidentialWaterHeaterModel(whParams, usagePattern)
 
-            whModel.setSetPoint(120.0);
-            whModel.setSeason('summer');
-            
-            const normalResults = whModel.simulatePeriod(24, 1 / 60);
-            const normalEnergy = normalResults.powerConsumption.reduce((a, c) => a + c / 60 / 1000);
-            
-            whModel = new ResidentialWaterHeaterModel(whParams, usagePattern, 120.0);
-            whModel.setSetPoint(120.0);
-            whModel.setSeason('summer');
-            whModel.setDemandResponse(true, -15.0);
-            
-            const drResults = whModel.simulatePeriod(24, 1 / 60);
-            const drEnergy = drResults.powerConsumption.reduce((a, c) => a + c / 60 / 1000);
+    const normalSetpoint = parseFloat(req.params.normalSetpoint), drSetpoint = parseFloat(req.params.drSetpoint);
 
-            const savings = ((normalEnergy * apartmentCount) - drEnergy) / (normalEnergy * apartmentCount) * 100;
+    // Normal simulation
+    whModel.setSetPoint(normalSetpoint);
+    whModel.setSeason('summer');
 
-            res.json({
-                normalResults,
-                drResults,
-                savings,
-                normalEnergy,
-                drEnergy,
-            }); 
-        });
+    const normalResults = whModel.simulatePeriod(24, 1 / 60);
+    const normalEnergy = normalResults.powerConsumption.reduce((a, c) => a + c / 60 / 1000);
+
+    // DR simulation
+    whModel = new ResidentialWaterHeaterModel(whParams, usagePattern, drSetpoint);
+    whModel.setSetPoint(normalSetpoint);
+    whModel.setSeason('summer');
+    whModel.setDemandResponse(true, drSetpoint - normalSetpoint);
+
+    const drResults = whModel.simulatePeriod(24, 1 / 60);
+    const drEnergy = drResults.powerConsumption.reduce((a, c) => a + c / 60 / 1000);
+
+    const savings = ((normalEnergy * apartmentCount) - drEnergy) / (normalEnergy * apartmentCount) * 100;
+
+    res.json({
+        normalResults,
+        drResults,
+        savings,
+        normalEnergy,
+        drEnergy,
+    });
+});
 
 router.get('/zip-states/:zip', async (req, res) => {
-  try {
-    const zipData = await ZipModel.findOne(
-      { zipcode: req.params.zip },
-      { zipcode: 1, state: 1, _id: 0 }
-    );
-    if (!zipData) {
-      return res.status(400).json({ message: 'Invalid ZIP code' });
+    try {
+        const zipData = await ZipModel.findOne(
+            { zipcode: req.params.zip },
+            { zipcode: 1, state: 1, _id: 0 }
+        );
+        if (!zipData) {
+            return res.status(400).json({ message: 'Invalid ZIP code' });
+        }
+        res.json(zipData);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching zip data', error });
     }
-    res.json(zipData);
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching zip data', error });
-  }
 });
 
 router.get('/climate-zone/:zip', async (req, res) => {
-  try {
-    const zipData = await ZipModel.findOne(
-      { zipcode: req.params.zip },
-      { zipcode: 1, climateZone: 1, _id: 0 }
-    );
-    if (!zipData) {
-      return res.status(400).json({ message: 'Invalid ZIP code' });
+    try {
+        const zipData = await ZipModel.findOne(
+            { zipcode: req.params.zip },
+            { zipcode: 1, climateZone: 1, _id: 0 }
+        );
+        if (!zipData) {
+            return res.status(400).json({ message: 'Invalid ZIP code' });
+        }
+        res.json(zipData);
+    } catch (error) {
+        console.error('Error fetching climate zone:', error);
+        res.status(500).json({ message: 'Error fetching climate zone', error });
     }
-    res.json(zipData);
-  } catch (error) {
-    console.error('Error fetching climate zone:', error);
-    res.status(500).json({ message: 'Error fetching climate zone', error });
-  }
 });
 
 //water heater data

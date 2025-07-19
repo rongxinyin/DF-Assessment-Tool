@@ -51,62 +51,40 @@ export default function NewResults() {
         indoorTemp.push(23.5 + Math.random());
 
     const [normalResults, setNormalResults] = useState({
-    indoorTemp: [], outdoorTemp: [], setpoint: [], effectiveSetpoint: [], waterTemp: [], ambientTemp: [], powerConsumption: []
+        indoorTemp: [], outdoorTemp: [], setpoint: [], effectiveSetpoint: [], waterTemp: [], ambientTemp: [], powerConsumption: []
     });
     const [normalEnergy, setNormalEnergy] = useState(0);
-    const [drResults, setDRResults] = useState({indoorTemp: [], outdoorTemp: [], setpoint: [], effectiveSetpoint: [], waterTemp: [], ambientTemp: [], powerConsumption: []
+    const [drResults, setDRResults] = useState({
+        indoorTemp: [], outdoorTemp: [], setpoint: [], effectiveSetpoint: [], waterTemp: [], ambientTemp: [], powerConsumption: []
     });
     const [drEnergy, setDREnergy] = useState(0);
 
-   useEffect(() => {
-       async function fetchResults() {
-           let endpoint;
-           if (appliance === 'Air conditioner') {
-               calculateDR(inputs).then(data => {
-                          setNormalResults(data.normalResults);
-                          setDRResults(data.drResults);
-                          setNormalEnergy(data.normalResults.
-                          powerConsumption.reduce ((a, c) => a + c));
-                          setDREnergy(data.drResults.powerConsumption.reduce((a, c) => a + c));
-                          });
-           } else if (appliance === 'Water heater') {
-                         calculateWaterHeaterDR(inputs).then(data => {
-                             console.log("Water Heater DR data:", data);
-                             setNormalResults(data.normalResults);
-                             setDRResults(data.drResults);
-                             setNormalEnergy(data.normalResults.powerConsumption.reduce((a, c) => a + c));
-                             setDREnergy(data.drResults.powerConsumption.reduce((a, c) => a + c));
-                             console.log(normalResults, drResults);
-                         }).catch(err => {
-                             console.error('Failed to fetch water heater results:', err);
-                         });
+    useEffect(() => {
+        async function fetchResults() {
+            if (appliance === 'Air conditioner') {
+                calculateDR(inputs).then(data => {
+                    setNormalResults(data.normalResults);
+                    setDRResults(data.drResults);
+                    setNormalEnergy(data.normalEnergy);
+                    setDREnergy(data.drEnergy);
+                });
+            } else if (appliance === 'Water heater') {
+                calculateWaterHeaterDR(inputs).then(data => {
+                    setNormalResults(data.normalResults);
+                    setDRResults(data.drResults);
+                    setNormalEnergy(data.normalEnergy);
+                    setDREnergy(data.drEnergy);
+                }).catch(err => {
+                    console.error('Failed to fetch water heater results:', err);
+                });
             } else {
-               console.error('Unknown appliance type');
-               return;
-           }
+                console.error('Unknown appliance type');
+                return;
+            }
+        }
 
-//           try {
-//               const response = await fetch(endpoint);
-//               const data = await response.json();
-//
-//               setNormalResults(data.normalResults);
-//               setDRResults(data.drResults);
-//
-//               setNormalEnergy(
-//                   data.normalResults.powerConsumption?.reduce((a, c) => a + c, 0) ??
-//                   data.normalResults.energyConsumption ?? 0
-//               );
-//               setDREnergy(
-//                   data.drResults.powerConsumption?.reduce((a, c) => a + c, 0) ??
-//                   data.drResults.energyConsumption ?? 0
-//               );
-//           } catch (err) {
-//               console.error('Failed to fetch results:', err);
-//           }
-       }
-
-       fetchResults();
-   }, []);
+        fetchResults();
+    }, []);
 
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -141,6 +119,24 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
 
     // Celsius to Fahrenheit
     const cToF = c => c * 9 / 5 + 32;
+    const averageHours = array => {
+        const intervalLength = array.length / 24;
+
+        const hours = [];
+        let total = 0, count = 0;
+        for (let i = 0; i < array.length; i++) {
+            total += array[i];
+            count++;
+
+            if (count >= intervalLength) {
+                hours.push(total / count);
+                total = 0;
+                count = 0;
+            }
+        }
+
+        return hours;
+    };
 
     //BreadCrumbNav//
     const breadcrumbPaths = [
@@ -197,21 +193,21 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                 datasets: appliance === 'Air conditioner' ? [
                                     {
                                         label: "Outside Air Temperature",
-                                        data: normalResults.outdoorTemp.map(cToF),
+                                        data: averageHours(normalResults.outdoorTemp).map(cToF),
                                         borderColor: "#DC3912",
                                         backgroundColor: "#DC391280",
                                         order: 1,
                                     },
                                     {
                                         label: "Inside Temperature",
-                                        data: normalResults.indoorTemp.map(cToF),
+                                        data: averageHours(normalResults.indoorTemp).map(cToF),
                                         borderColor: "#3366CC",
                                         backgroundColor: "#3366CC80",
                                         order: 1,
                                     },
                                     {
                                         label: "Setpoint",
-                                        data: normalResults.setpoint.map(cToF),
+                                        data: averageHours(normalResults.setpoint).map(cToF),
                                         borderColor: "#109618",
                                         pointRadius: 0,
                                         borderWidth: 2,
@@ -220,7 +216,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                     },
                                     {
                                         label: "Effective Setpoint",
-                                        data: normalResults.effectiveSetpoint.map(cToF),
+                                        data: averageHours(normalResults.effectiveSetpoint).map(cToF),
                                         borderColor: "#990099",
                                         pointRadius: 0,
                                         borderWidth: 2,
@@ -228,24 +224,24 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                         stepped: true,
                                         order: 0,
                                     },
-                                ] : [
+                                ] : [ // Water heater graph
                                     {
                                         label: "Ambient Temperature",
-                                        data: normalResults.ambientTemp,
+                                        data: averageHours(normalResults.ambientTemp),
                                         borderColor: "#DC3912",
                                         backgroundColor: "#DC391280",
                                         order: 1,
                                     },
                                     {
                                         label: "Water Temperature",
-                                        data: normalResults.waterTemp,
+                                        data: averageHours(normalResults.waterTemp),
                                         borderColor: "#3366CC",
                                         backgroundColor: "#3366CC80",
                                         order: 1,
                                     },
                                     {
                                         label: "Setpoint",
-                                        data: normalResults.setpoint,
+                                        data: averageHours(normalResults.setpoint),
                                         borderColor: "#109618",
                                         pointRadius: 0,
                                         borderWidth: 2,
@@ -254,7 +250,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                     },
                                     {
                                         label: "Effective Setpoint",
-                                        data: normalResults.effectiveSetpoint,
+                                        data: averageHours(normalResults.effectiveSetpoint),
                                         borderColor: "#990099",
                                         pointRadius: 0,
                                         borderWidth: 2,
@@ -317,21 +313,21 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                 datasets: appliance === 'Air conditioner' ? [
                                     {
                                         label: "Outside Air Temperature",
-                                        data: drResults.outdoorTemp.map(cToF),
+                                        data: averageHours(drResults.outdoorTemp).map(cToF),
                                         borderColor: "#DC3912",
                                         backgroundColor: "#DC391280",
                                         order: 1,
                                     },
                                     {
                                         label: "Inside Temperature",
-                                        data: drResults.indoorTemp.map(cToF),
+                                        data: averageHours(drResults.indoorTemp).map(cToF),
                                         borderColor: "#3366CC",
                                         backgroundColor: "#3366CC80",
                                         order: 1,
                                     },
                                     {
                                         label: "Setpoint",
-                                        data: drResults.setpoint.map(cToF),
+                                        data: averageHours(drResults.setpoint).map(cToF),
                                         borderColor: "#109618",
                                         pointRadius: 0,
                                         borderWidth: 2,
@@ -340,7 +336,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                     },
                                     {
                                         label: "Effective Setpoint",
-                                        data: drResults.effectiveSetpoint.map(cToF),
+                                        data: averageHours(drResults.effectiveSetpoint).map(cToF),
                                         borderColor: "#990099",
                                         pointRadius: 0,
                                         borderWidth: 2,
@@ -348,24 +344,24 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                         stepped: true,
                                         order: 0,
                                     },
-                                ] : [
+                                ] : [ // Water heater graph
                                     {
                                         label: "Ambient Temperature",
-                                        data: drResults.ambientTemp,
+                                        data: averageHours(drResults.ambientTemp),
                                         borderColor: "#DC3912",
                                         backgroundColor: "#DC391280",
                                         order: 1,
                                     },
                                     {
                                         label: "Water Temperature",
-                                        data: drResults.waterTemp,
+                                        data: averageHours(drResults.waterTemp),
                                         borderColor: "#3366CC",
                                         backgroundColor: "#3366CC80",
                                         order: 1,
                                     },
                                     {
                                         label: "Setpoint",
-                                        data: drResults.setpoint,
+                                        data: averageHours(drResults.setpoint),
                                         borderColor: "#109618",
                                         pointRadius: 0,
                                         borderWidth: 2,
@@ -374,7 +370,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                     },
                                     {
                                         label: "Effective Setpoint",
-                                        data: drResults.effectiveSetpoint,
+                                        data: averageHours(drResults.effectiveSetpoint),
                                         borderColor: "#990099",
                                         pointRadius: 0,
                                         borderWidth: 2,
@@ -509,7 +505,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                 datasets: [
                                     {
                                         label: "Normal Power Consumption",
-                                        data: normalResults.powerConsumption,
+                                        data: averageHours(normalResults.powerConsumption),
                                         borderColor: "#3366CC",
                                         backgroundColor: "#3366CC80",
                                         pointRadius: 0,
@@ -519,7 +515,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                     },
                                     {
                                         label: "DR Power Consumption",
-                                        data: drResults.powerConsumption,
+                                        data: averageHours(drResults.powerConsumption),
                                         borderColor: "#990099",
                                         backgroundColor: "#99009980",
                                         pointRadius: 0,

@@ -12,7 +12,6 @@ export default function ResidentialLanding() {
     const navigate = useNavigate();
     const location = useLocation();
     const inputs = location.state || {};
-    console.log(location)
 
     const [form, setForm] = useState({
         normalSetpoint: inputs.normalSetpoint || "",

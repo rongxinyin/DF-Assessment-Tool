@@ -11,18 +11,16 @@ export const getModels = async brand => {
 }
 
 export const calculateDR = async (input) => {
-  const url = `http://localhost:8080/residential/ac/brands/${input.brand}/${input.model}/${input.zip},${input.normalSetpoint},${input.drSetpoint},${input.timeStart},${input.timeEnd},${input.apartmentCount}`;
-  console.log("AC API URL:", url);   //debugging
-  const res = await axios.get(url);
-  return res.data;
+    const url = `http://localhost:8080/residential/ac/brands/${input.brand}/${input.model}/${input.zip},${input.normalSetpoint},${input.drSetpoint},${input.timeStart},${input.timeEnd},${input.apartmentCount}`;
+    const res = await axios.get(url);
+    return res.data;
 };
 
 
 export const calculateWaterHeaterDR = async (input) => {
-  const url = `http://localhost:8080/residential/water_heaters/${input.brand}/${input.model}/`;
-  console.log("WH API URL:", url);
-  const res = await axios.get(url);
-  return res.data;
+    const url = `http://localhost:8080/residential/water_heaters/${input.brand}/${input.model}/${input.normalSetpoint},${input.drSetpoint}`;
+    const res = await axios.get(url);
+    return res.data;
 };
 
 
@@ -32,24 +30,24 @@ export const getTemps = async zip => {
 };
 
 export const getZipState = async (zip) => {
-  const response = await fetch(`http://localhost:8080/residential/zip-states/${zip}`);
-  if (!response.ok) throw new Error('Invalid ZIP code or server error');
-  return response.json();
+    const response = await fetch(`http://localhost:8080/residential/zip-states/${zip}`);
+    if (!response.ok) throw new Error('Invalid ZIP code or server error');
+    return response.json();
 };
 
 export const getClimateZone = async (zip) => {
-  try {
-    const response = await fetch(`http://localhost:8080/residential/climate-zone/${zip}`);
-    if (!response.ok) {
-      const text = await response.text();
-      console.error('Response error:', response.status, text);
-      throw new Error(`Invalid ZIP code or server error: ${response.status}`);
+    try {
+        const response = await fetch(`http://localhost:8080/residential/climate-zone/${zip}`);
+        if (!response.ok) {
+            const text = await response.text();
+            console.error('Response error:', response.status, text);
+            throw new Error(`Invalid ZIP code or server error: ${response.status}`);
+        }
+        return response.json();
+    } catch (error) {
+        console.error('Fetch error:', error);
+        throw error;
     }
-    return response.json();
-  } catch (error) {
-    console.error('Fetch error:', error);
-    throw error;
-  }
 };
 
 export const getWaterHeaterBrands = async () => {

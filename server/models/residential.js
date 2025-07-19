@@ -697,42 +697,6 @@ export class ResidentialWaterHeaterModel {
     }
 }
 
-// Testing
-const whParams = {
-    fuelType: FuelType.ELECTRIC_RESISTANCE, // or FuelType.HEAT_PUMP
-    tankSize: 50.0, // gallons
-    energyFactor: 0.92, // EF rating
-    standbyLoss: 150.0, // W (typical for 50-gal tank)
-    heatingPower: 4500.0, // W (typical 4.5 kW element)
-    location: LocationType.GARAGE,
-    deadband: 5.0, // °F
-    inletTemp: 55.0, // °F
-    ratedCop: 3.00, // COP at rated conditions (47°F ambient)
-    ratedAmbientTemp: 47.0, // °F - rated ambient temperature
-    copTempCoefficient: 0.04, // COP change per °F of ambient temp
-    backupElementPower: 4500.0, // W - backup resistance element
-    minHpAmbientTemp: 20.0 // °F - minimum temp for heat pump operation
-}
-
-const usagePattern = new HotWaterUsagePattern(3);
-
-let whModel = new ResidentialWaterHeaterModel(whParams, usagePattern, 120.0);
-whModel.setSetPoint(120.0);
-whModel.setSeason('summer');
-
-const normalResults = whModel.simulatePeriod(24, 1 / 60);
-const normalEnergy = normalResults.powerConsumption.reduce((a, c) => a + c / 60 / 1000);
-
-whModel = new ResidentialWaterHeaterModel(whParams, usagePattern, 120.0);
-whModel.setSetPoint(120.0);
-whModel.setSeason('summer');
-whModel.setDemandResponse(true, -15.0);
-
-const drResults = whModel.simulatePeriod(24, 1 / 60);
-const drEnergy = drResults.powerConsumption.reduce((a, c) => a + c / 60 / 1000);
-
-
-
 const brandSchema = mongoose.Schema(
     {
         brand: { type: String, required: true },
@@ -775,8 +739,7 @@ const waterHeaterSchema = mongoose.Schema(
             {
                 es_id: String,
                 model: String,
-                input_power: Number,
-                storage_volume: Number,
+                volume: Number,
                 uef: Number
             }
         ]
