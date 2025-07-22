@@ -12,7 +12,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function About() {
     return (
-        <Box bgcolor="primary.main" sx={{ padding: 3 }}>
+        <Box sx={{ padding: 3 }}>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>

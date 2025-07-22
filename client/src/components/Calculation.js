@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import {
-    Button,
-    Slider,
+    Box,
+    FormControl,
     Grid,
-    Box
+    Slider,
+    TextField,
+    Typography,
+    useMediaQuery
 } from '@mui/material';
 import { BackButton, NextButton, BreadcrumbNav } from './NavButtons.js';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function ResidentialLanding() {
-    const navigate = useNavigate();
     const location = useLocation();
     const inputs = location.state || {};
 
@@ -64,32 +66,20 @@ export default function ResidentialLanding() {
         }
     };
 
-    const textFieldInputPropsSX = {
-        sx: {
-            color: "#FFFFFF",
-        },
+    const formControlSX = {
+        width: '100%',
+        marginBottom: 1,
     };
 
     const textFieldSX = {
-        width: "100%",
         marginBottom: 1,
         marginTop: 1,
-        border: "0.5px solid #636363",
-        backgroundColor: "secondary.main",
-        borderRadius: "10px",
     };
 
-    // style for input and select fields
-    const inputStyle = {
-        width: "100%",
-        padding: "0.6rem 0.75rem",
-        borderRadius: "10px",
-        border: "0.5px solid #636363",
-        backgroundColor: "#00858C",
-        color: "typography.primary.main",
-        fontSize: "1rem",
-    };
-
+    // https://stackoverflow.com/a/62073653
+    const smallScreen = useMediaQuery(theme => theme.breakpoints.down("sm"));
+    const mediumScreen = useMediaQuery(theme => theme.breakpoints.between("sm", "md"));
+    const medToLargeScreen = useMediaQuery(theme => theme.breakpoints.between("md", "lg"));
 
     const breadcrumbPaths = [
         { name: 'House Type', path: '/residential/house_type' },
@@ -99,129 +89,134 @@ export default function ResidentialLanding() {
     ];
 
     return (
-        <div style={{ backgroundColor: "#EEEEEE", minHeight: "calc(100vh - 90px)", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <Box style={{ backgroundColor: "#EEEEEE", minHeight: "calc(100vh - 90px)", display: "flex", flexDirection: "column" }}>
             <Box sx={{ padding: 2, paddingBottom: 2, alignSelf: 'flex-start' }}>
                 <BreadcrumbNav paths={breadcrumbPaths} />
             </Box>
 
-            <div style={{
-                backgroundColor: "#FFFFFF",
-                width: "80%",
-                height: "350px",
-                padding: "2rem",
-                marginTop: "2rem",
-                borderRadius: "10px"
-            }}>
-                <h2 style={{ color: "#000000", marginBottom: "1rem", textAlign: "center" }}>Residential Calculator</h2>
-
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                    <div>
-                        <label style={{ color: "#000000" }}>Temperature Set Point (°F)</label>
-                        <input
-                            type="number"
-                            name="normalSetpoint"
-                            value={form.normalSetpoint || ""}
-                            onChange={e => setForm({ ...form, normalSetpoint: e.target.value })}
-                            style={{ ...inputStyle, backgroundColor: "#FFFFFF" }}
-                        />
-                    </div>
-
-                    <div>
-                        <label style={{ color: "#000000" }}>Adjusted Set Point (°F)</label>
-                        <input
-                            type="number"
-                            name="drSetpoint"
-                            value={form.drSetpoint || ""}
-                            onChange={e => setForm({ ...form, drSetpoint: e.target.value })}
-                            style={{ ...inputStyle, backgroundColor: "#FFFFFF" }}
-                        />
-                    </div>
-
-                    <div style={{ gridColumn: "1 / 3", padding: "0 1rem", marginTop: "2rem" }}>
-                        <label style={{ color: "#000000" }}>Time Period</label>
-                        <Slider
-                            value={timeRange}
-                            onChange={handleTimeRangeChange}
-                            valueLabelDisplay="auto"
-                            valueLabelFormat={(value) => {
-                                const hour = value % 12 === 0 ? 12 : value % 12;
-                                const period = value < 12 ? 'AM' : 'PM';
-                                return `${hour} ${period}`;
-                            }}
-                            color="white"
-                            marks={hours}
-                            mi={0}
-                            max={24}
-                            disableSwap
-                            sx={{
-                                '& .MuiSlider-track': {
-                                    backgroundColor: '#000000',
-                                    border: '2px solid white',
-                                },
-                                '& .MuiSlider-rail': {
-                                    backgroundColor: '#000000',
-                                    opacity: 0.3,
-                                },
-                                '& .MuiSlider-thumb': {
-                                    backgroundColor: 'white',
-                                    border: '2px solid #000000',
-                                },
-                                '& .MuiSlider-mark': {
-                                    backgroundColor: 'white',
-                                },
-                                '& .MuiSlider-markLabel': {
-                                    color: '#000000',
-                                },
-                            }}
-                        />
-                    </div>
-                </div>
-            </div>
-
-            {/* Calculate button */}
-            <Button
-                variant="contained"
-                onClick={() =>
-                    navigate("/residential/results", {
-                        state: {
-                            ...inputs,
-                            ...form,
-                        },
-                    })
-                }
-                sx={{
-                    marginTop: "2rem",
-                    width: "200px",
-                    height: "50px",
+            <Grid item xs={12} flex={1}>
+                <Box sx={{
+                    margin: "auto",
                     backgroundColor: "#FFFFFF",
-                    color: "#000000",
-                }}
-                disabled={!form.normalSetpoint}
-            >
-                Calculate
-            </Button>
+                    width: "80%",
+                    minHeight: "350px",
+                    padding: "2rem",
+                    marginTop: "2rem",
+                    borderRadius: "10px",
+                }}>
+                    <Typography
+                        variant="h4"
+                        color="black.main"
+                        sx={{ fontWeight: 'bold', m: 1 }}
+                    >
+                        DR Configuration
+                    </Typography>
 
-            <Grid container width="100%" marginTop="auto" padding={4}>
-                <Grid item xs={6}>
-                    <BackButton
-                        path="/residential/appliances/"
-                        state={{
-                            ...inputs,
-                            ...form,
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={6} style={{ display: "flex", justifyContent: "flex-end" }}>
-                    <NextButton
-                        disabled={!form.normalSetpoint}
-                        path="/residential/results"
-                        state={{
-                            ...inputs,
-                            ...form,
-                        }}
-                    />
-                </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            <FormControl sx={formControlSX}>
+                                <Typography
+                                    variant="body2"
+                                    color="typography.primary.main"
+                                    sx={{ fontWeight: 'bold', marginLeft: 1 }}
+                                >
+                                    Temperature set point (°F)
+                                </Typography>
+                                <TextField
+                                    type="number"
+                                    variant="outlined"
+                                    autoComplete="off"
+                                    value={form.normalSetpoint || ""}
+                                    onChange={e => setForm({ ...form, normalSetpoint: e.target.value })}
+                                    sx={textFieldSX}
+                                />
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={6}>
+                            <FormControl sx={formControlSX}>
+                                <Typography
+                                    variant="body2"
+                                    color="typography.primary.main"
+                                    sx={{ fontWeight: 'bold', marginLeft: 1 }}
+                                >
+                                    Adjusted set point (°F)
+                                </Typography>
+                                <TextField
+                                    type="number"
+                                    variant="outlined"
+                                    autoComplete="off"
+                                    value={form.drSetpoint || ""}
+                                    onChange={e => setForm({ ...form, drSetpoint: e.target.value })}
+                                    sx={textFieldSX}
+                                />
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <label style={{ color: "#000000" }}>Time period</label>
+                            <Slider
+                                value={timeRange}
+                                onChange={handleTimeRangeChange}
+                                valueLabelDisplay="auto"
+                                valueLabelFormat={(value) => {
+                                    const hour = value % 12 === 0 ? 12 : value % 12;
+                                    const period = value < 12 ? 'AM' : 'PM';
+                                    return `${hour} ${period}`;
+                                }}
+                                color="white"
+                                marks={
+                                    hours.filter((_, i) =>
+                                        i % (smallScreen ? 4 : mediumScreen ? 3 : medToLargeScreen ? 2 : 1) === 0
+                                    )
+                                }
+                                min={0}
+                                max={24}
+                                disableSwap
+                                sx={{
+                                    '& .MuiSlider-track': {
+                                        backgroundColor: '#000000',
+                                        border: '2px solid white',
+                                    },
+                                    '& .MuiSlider-rail': {
+                                        backgroundColor: '#000000',
+                                        opacity: 0.3,
+                                    },
+                                    '& .MuiSlider-thumb': {
+                                        backgroundColor: 'white',
+                                        border: '2px solid #000000',
+                                    },
+                                    '& .MuiSlider-mark': {
+                                        backgroundColor: 'white',
+                                    },
+                                    '& .MuiSlider-markLabel': {
+                                        color: '#000000',
+                                    },
+                                }}
+                            />
+                        </Grid>
+                    </Grid>
+                </Box>
             </Grid>
-        </div>
+
+            <Box padding={2}>
+                <BackButton
+                    path="/residential/appliances/"
+                    state={{
+                        ...inputs,
+                        ...form,
+                    }}
+                />
+
+                <NextButton
+                    disabled={!(form.normalSetpoint && form.drSetpoint)}
+                    path="/residential/results"
+                    state={{
+                        ...inputs,
+                        ...form,
+                    }}
+                />
+            </Box>
+        </Box>
     );
 }

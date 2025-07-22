@@ -29,7 +29,7 @@ export default function Home() {
     const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Check if the device is mobile
 
     return (
-        <Box bgcolor={"primary.main"} p={isMobile ? 1 : 2}>
+        <Box p={isMobile ? 1 : 2}>
             {" "}
             {/* Adjust padding for mobile */}
             <Grid container spacing={2} padding={isMobile ? 2 : 10} md={12} xs={12}>
@@ -148,7 +148,6 @@ export default function Home() {
                     sx={{
                         marginTop: 5,
                         width: "100%",
-                        backgroundColor: "primary.main",
                         fontSize: isMobile
                             ? "0.8rem"
                             : "1.2rem" /* Adjust font size for mobile */,

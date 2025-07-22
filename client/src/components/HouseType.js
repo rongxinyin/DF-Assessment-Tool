@@ -11,7 +11,7 @@ export default () => {
     const navigate = useNavigate();
 
     return (
-        <Box bgcolor="primary.main" sx={{ padding: 3, height: 'calc(100vh - 90px)' }}>
+        <Box sx={{ padding: 3, height: 'calc(100vh - 90px)' }}>
             <Box sx={{ flexGrow: 1, height: '100%' }}>
                 <Grid container spacing={6} sx={{ height: '100%' }} alignItems="center">
                     <Grid item xs={6} align="right">
@@ -38,7 +38,7 @@ export default () => {
                         <Button
                             variant="contained"
                             color="secondary"
-                            onClick={() => navigate("/residential/location", {state: { houseType: "aggregator" } })}
+                            onClick={() => navigate("/residential/location", { state: { houseType: "aggregator" } })}
                             sx={{
                                 width: { xs: "100%", md: "50%" },
                                 display: "flex",

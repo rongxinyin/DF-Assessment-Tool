@@ -1,6 +1,6 @@
 import { ThemeProvider, createTheme } from "@mui/material";
 import { Suspense } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Routes } from "react-router-dom";
 
 import About from "./components/About.js";
 import Advanced from "./components/Advanced.js";
@@ -56,7 +56,7 @@ const theme = createTheme({
     */
     palette: {
         primary: {
-            main: "#FFFFFF",
+            main: "#000000",
         },
         secondary: {
             main: "#EEEEEE",

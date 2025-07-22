@@ -125,7 +125,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
     }
 
     return (
-        <Grid container bgcolor="#EEEEEE" minHeight="calc(100vh - 90px)" p={4}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100vh - 90px)' }}>
             <Box sx={{ padding: 2, paddingBottom: 2, alignSelf: 'flex-start' }}>
                 <BreadcrumbNav paths={breadcrumbPaths} />
             </Box>
@@ -133,33 +133,31 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
 
             {/* Graph Section */}
             <Grid
-                item
                 container
                 spacing={4}
-                justifyContent="center"
-                alignItems="flex-start"
-                sx={{ marginTop: "2rem" }}
+                flex={1}
+                padding={4}
             >
 
                 {/* Normal Plot */}
-                <Grid item xs={12} md={5}>
-                    <Typography
-                        variant="h5"
-                        color="#000000"
-                        sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
-                    >
-                        Normal Plot
-                    </Typography>
+                <Grid item xs={12} md={6}>
                     <Box
                         sx={{
-                            backgroundColor: "white.main",
                             borderRadius: "8px",
-                            width: "100%",
+                            padding: "1rem",
+                            margin: "0 auto",
+                            border: "1px solid",
                         }}
                     >
+                        <Typography
+                            variant="h5"
+                            color="#000000"
+                            sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
+                        >
+                            Normal Plot
+                        </Typography>
 
                         <Line
-
                             data={{
                                 labels: hours,
                                 datasets: appliance === 'Air conditioner' ? [
@@ -262,21 +260,22 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                 </Grid>
 
                 {/* DR Plot */}
-                <Grid item xs={12} md={5}>
-                    <Typography
-                        variant="h5"
-                        color="#000000"
-                        sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
-                    >
-                        DR Plot
-                    </Typography>
+                <Grid item xs={12} md={6}>
                     <Box
                         sx={{
-                            backgroundColor: "white.main",
                             borderRadius: "8px",
-                            width: "100%",
+                            padding: "1rem",
+                            margin: "0 auto",
+                            border: "1px solid",
                         }}
                     >
+                        <Typography
+                            variant="h5"
+                            color="#000000"
+                            sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
+                        >
+                            DR Plot
+                        </Typography>
 
                         <Line
 
@@ -379,65 +378,33 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
 
                     </Box>
                 </Grid>
-            </Grid>
 
-            {/* Savings and Power Consumption next to each other */}
-            <Grid
-                item
-                container
-                spacing={4}
-                justifyContent="center"
-                alignItems="stretch"
-                sx={{ marginTop: "2rem" }}
-            >
                 {/* Savings Box */}
-                <Grid
-                    item
-                    xs={12}
-                    md={5}
-                    sx={{ display: "flex", flexDirection: "column", height: "100%" }}
-                >
-                    <Typography
-                        variant="h5"
-                        color="#000000"
-                        sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
-                    >
-                        Savings
-                    </Typography>
-
+                <Grid item xs={12} md={6} display="flex">
                     <Box
                         sx={{
-                            backgroundColor: "white.main",
-                            borderRadius: "12px",
-                            padding: "1rem 1rem",
-                            boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            marginX: "auto",
-                            width: "100%",
-                            flexGrow: 1,
-                            //maxWidth: "400px",
+                            borderRadius: "8px",
+                            padding: "1rem",
+                            margin: "0 auto",
+                            border: "1px solid",
+                            flex: "1"
                         }}
                     >
-                        <Typography fontWeight="bold" textAlign="center" mb={0.5}>
-                            Normal Energy Usage:
-                        </Typography>
-                        <Typography textAlign="center" mb={1}>
-                            {Math.round(normalEnergy * 100) / 100}kWh
-                        </Typography>
-
-                        <Typography fontWeight="bold" textAlign="center" mb={0.5}>
-                            DR Energy Usage:
-                        </Typography>
-                        <Typography textAlign="center" mb={1}>
-                            {Math.round(drEnergy * 100) / 100}kWh
+                        <Typography
+                            variant="h5"
+                            color="#000000"
+                            sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
+                        >
+                            Savings
                         </Typography>
 
-                        <Typography fontWeight="bold" textAlign="center" mb={0.5}>
-                            Savings:
-                        </Typography>
+                        <Typography fontWeight="bold" textAlign="center">Normal energy usage:</Typography>
+                        <Typography textAlign="center" mb={1}>{Math.round(normalEnergy * 100) / 100}kWh</Typography>
+
+                        <Typography fontWeight="bold" textAlign="center">DR energy usage:</Typography>
+                        <Typography textAlign="center" mb={1}>{Math.round(drEnergy * 100) / 100}kWh</Typography>
+
+                        <Typography fontWeight="bold" textAlign="center">Savings:</Typography>
                         <Typography textAlign="center">
                             {Math.round((normalEnergy - drEnergy) * 100) / 100}kWh (
                             {normalEnergy !== 0
@@ -445,7 +412,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                 : "0"
                             }%)
                             <span> - </span>
-                            <span style={{ color: "green", fontWeight: "bold" }}>
+                            <span style={{ color: drEnergy <= normalEnergy ? "green" : "red", fontWeight: "bold" }}>
                                 ${Math.round((normalEnergy - drEnergy) * 0.50 * 100) / 100}/day
                             </span>
                         </Typography>
@@ -453,24 +420,23 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                 </Grid>
 
                 {/* Power Consumption Chart */}
-                <Grid item xs={12} md={5}>
-                    <Typography
-                        variant="h5"
-                        color="#000000"
-                        sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
-                    >
-                        Power Consumption
-                    </Typography>
-
+                <Grid item xs={12} md={6}>
                     <Box
                         sx={{
-                            backgroundColor: "white.main",
                             borderRadius: "8px",
-                            width: "100%",
                             padding: "1rem",
                             margin: "0 auto",
+                            border: "1px solid",
                         }}
                     >
+                        <Typography
+                            variant="h5"
+                            color="#000000"
+                            sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
+                        >
+                            Power Consumption
+                        </Typography>
+
                         <Line
                             data={{
                                 labels: hours,
@@ -482,6 +448,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                         backgroundColor: "#3366CC80",
                                         pointRadius: 0,
                                         stepped: true,
+                                        fill: true,
                                         borderWidth: 2,
                                         order: 1
                                     },
@@ -492,6 +459,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                                         backgroundColor: "#99009980",
                                         pointRadius: 0,
                                         stepped: true,
+                                        fill: true,
                                         borderDash: [5, 5],
                                         borderWidth: 2,
                                         order: 0
@@ -525,49 +493,43 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                 </Grid>
             </Grid>
 
-            <Grid container marginTop="auto">
-                <Grid item xs={6}>
-                    <BackButton
-                        path="/residential/calculation"
-                        state={inputs}
-                    />
-                </Grid>
-                <Grid item xs={6}>
-                    <Grid sx={{ marginLeft: "auto", width: "25%" }}>
-                        <Button
-                            id="export-button"
-                            variant="contained"
-                            color="secondary"
-                            aria-controls={open ? 'basic-menu' : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={open ? 'true' : undefined}
-                            onClick={handleClick}
-                            sx={{
-                                marginTop: 4,
-                                marginRight: 2,
-                                width: "100%",
-                                height: "50px",
-                            }}
-                        >Export</Button>
-                        <Menu
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleClose}
-                            slotProps={{
-                                list: {
-                                    "aria-labelledby": "export-button"
-                                }
-                            }}>
-                            <MenuItem onClick={handleClose}>
-                                <a style={exportLinkStyle} href={csvBlobUrl} download="dr_estimate.csv">CSV</a>
-                            </MenuItem>
-                            <MenuItem onClick={handleClose}>
-                                <a style={exportLinkStyle} href={jsonBlobUrl} download="dr_estimate.json">JSON</a>
-                            </MenuItem>
-                        </Menu>
-                    </Grid>
-                </Grid>
-            </Grid>
-        </Grid>
+            <Box padding={2}>
+                <BackButton
+                    path="/residential/calculation"
+                    state={inputs}
+                />
+
+                <Button
+                    id="export-button"
+                    variant="contained"
+                    aria-controls={open ? 'basic-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                    sx={{
+                        float: "right",
+                        marginRight: 2,
+                        width: { xs: "25%", md: "12.5%" },
+                        height: "50px",
+                    }}
+                >Export</Button>
+                <Menu
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    slotProps={{
+                        list: {
+                            "aria-labelledby": "export-button"
+                        }
+                    }}>
+                    <MenuItem onClick={handleClose}>
+                        <a style={exportLinkStyle} href={csvBlobUrl} download="dr_estimate.csv">CSV</a>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                        <a style={exportLinkStyle} href={jsonBlobUrl} download="dr_estimate.json">JSON</a>
+                    </MenuItem>
+                </Menu>
+            </Box>
+        </Box>
     );
 }

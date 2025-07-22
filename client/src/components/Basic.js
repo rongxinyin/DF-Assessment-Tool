@@ -11,7 +11,6 @@ import {
     Typography,
     Slider,
 } from "@mui/material";
-import { DropDownIcon } from './DropDownIcon.js';
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -260,19 +259,9 @@ export default function Basic() {
 
     const textFieldVariant = "outlined";
 
-    const textFieldInputPropsSX = {
-        sx: {
-            color: "#000000",
-        },
-    };
-
     const textFieldSX = {
-        width: "100%",
         marginBottom: 1,
         marginTop: 1,
-        border: "2px solid #636363",
-        backgroundColor: "secondary.main",
-        borderRadius: "10px",
     };
 
     const formControlSX = {
@@ -323,7 +312,6 @@ export default function Basic() {
                 direction="column"
                 alignItems="left"
                 justifyContent="center"
-                bgcolor="primary.main"
                 width={1}
                 padding={4}
             >
@@ -372,7 +360,6 @@ export default function Basic() {
                                     value={buildingName}
                                     onChange={(e) => setBuildingName(e.target.value)}
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
                                 />
                             </FormControl>
                             <FormControl sx={formControlSX}>
@@ -391,7 +378,6 @@ export default function Basic() {
                                     value={floorArea}
                                     onChange={(e) => setFloorArea(e.target.value)}
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
                                 />
                             </FormControl>
                             <FormControl sx={formControlSX}>
@@ -409,8 +395,6 @@ export default function Basic() {
                                     onChange={chooseHVACType}
                                     color="secondary"
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
-                                    IconComponent={DropDownIcon}
                                 >
                                     <MenuItem value={"Package RTU"}>Package RTU</MenuItem>
                                     <MenuItem value={"Package RTU + VAV"}>
@@ -435,7 +419,6 @@ export default function Basic() {
                                     value={zipcode}
                                     onChange={(e) => setZipcode(e.target.value)}
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
                                 />
                             </FormControl>
                         </Grid>
@@ -454,8 +437,6 @@ export default function Basic() {
                                     value={buildingType}
                                     onChange={chooseBuildingType}
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
-                                    IconComponent={DropDownIcon}
                                 >
                                     <MenuItem value={"Office"}>Office</MenuItem>
                                     <MenuItem value={"Retail"}>Retail</MenuItem>
@@ -479,7 +460,6 @@ export default function Basic() {
                                     onChange={(e) => setFloorHeight(e.target.value)}
                                     sx={textFieldSX}
                                     inputProps={{
-                                        ...textFieldInputPropsSX,
                                         min: 1, // Set the minimum value to 0
                                     }}
                                 />
@@ -500,7 +480,6 @@ export default function Basic() {
                                     onChange={(e) => setPeakDemand(e.target.value)}
                                     type="number"
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
                                 />
                             </FormControl>
                             <Typography
@@ -518,8 +497,6 @@ export default function Basic() {
                                     onChange={chooseState}
                                     color="secondary"
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
-                                    IconComponent={DropDownIcon}
                                 >
                                     <MenuItem value={"CA"}>California</MenuItem>
                                     <MenuItem value={"MA"}>Massachusetts</MenuItem>
@@ -553,7 +530,6 @@ export default function Basic() {
                                 valueLabelDisplay="auto"
                                 defaultValue={50}
                                 sx={textFieldSX}
-                                color="white"
                             />
                         </Grid>
                         <Grid item xs={6}>
@@ -574,7 +550,6 @@ export default function Basic() {
                                 value={precool}
                                 onChange={inputPrecool}
                                 sx={textFieldSX}
-                                inputProps={textFieldInputPropsSX}
                                 type="number"
                             />
                         </Grid>
@@ -585,7 +560,6 @@ export default function Basic() {
                 autoComplete="off"
                 type="number"
                 sx={textFieldSX}
-                inputProps={textFieldInputPropsSX}
               /> */}
 
                             <Typography
@@ -603,7 +577,6 @@ export default function Basic() {
                                 onChange={inputTempReset}
                                 type="number"
                                 sx={textFieldSX}
-                                inputProps={textFieldInputPropsSX}
                             />
                         </Grid>
                     </Grid>
@@ -683,7 +656,6 @@ export default function Basic() {
                                     autoComplete="off"
                                     onChange={(event) => inputCSSBData(["OAT", 1], event)}
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
                                 />
                                 <TextField
                                     type="number"
@@ -692,7 +664,6 @@ export default function Basic() {
                                     autoComplete="off"
                                     onChange={(event) => inputCSSBData(["OAT", 2], event)}
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
                                 />
                                 <TextField
                                     type="number"
@@ -701,7 +672,6 @@ export default function Basic() {
                                     autoComplete="off"
                                     onChange={(event) => inputCSSBData(["OAT", 3], event)}
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
                                 />
                                 <TextField
                                     type="number"
@@ -710,7 +680,6 @@ export default function Basic() {
                                     autoComplete="off"
                                     onChange={(event) => inputCSSBData(["OAT", 4], event)}
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
                                 />
                             </Grid>
                             <Grid item xs={4}>
@@ -728,7 +697,6 @@ export default function Basic() {
                                     autoComplete="off"
                                     onChange={(event) => inputCSSBData(["Demand", 1], event)}
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
                                 />
                                 <TextField
                                     type="number"
@@ -737,7 +705,6 @@ export default function Basic() {
                                     autoComplete="off"
                                     onChange={(event) => inputCSSBData(["Demand", 2], event)}
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
                                 />
                                 <TextField
                                     type="number"
@@ -746,7 +713,6 @@ export default function Basic() {
                                     autoComplete="off"
                                     onChange={(event) => inputCSSBData(["Demand", 3], event)}
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
                                 />
                                 <TextField
                                     type="number"
@@ -755,14 +721,12 @@ export default function Basic() {
                                     autoComplete="off"
                                     onChange={(event) => inputCSSBData(["Demand", 4], event)}
                                     sx={textFieldSX}
-                                    inputProps={textFieldInputPropsSX}
                                 />
                             </Grid>
                         </Grid>
 
                         <Button
                             variant="contained"
-                            color="secondary"
                             onClick={submitInputs}
                             sx={{
                                 marginTop: 2,

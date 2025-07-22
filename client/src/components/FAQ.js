@@ -49,7 +49,7 @@ const data = [
 
 export default function FAQ() {
     return (
-        <Box bgcolor={"primary.main"} p={2}>
+        <Box p={2}>
             <Typography
                 variant="h4"
                 color="typography.primary.main"

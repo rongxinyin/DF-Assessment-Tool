@@ -1,4 +1,5 @@
 import {
+    Box,
     Button,
     ButtonGroup,
     Grid,
@@ -39,20 +40,9 @@ export default function Advanced() {
     let navigate = useNavigate(); // navigate to diff pages
     // dropdown forms
 
-    const textFieldVariant = "outlined";
-
-    const textFieldInputPropsSX = {
-        sx: {
-            color: "common.white",
-        },
-    };
-
     const textFieldSX = {
-        width: "100%",
+        marginTop: 1,
         marginBottom: 1,
-        border: "2px solid #F0F0F0",
-        backgroundColor: "secondary.main",
-        borderRadius: "10px",
     };
 
     const [RTU_data, setRTU_Data] = useState([
@@ -165,13 +155,6 @@ export default function Advanced() {
         ]);
     };
 
-    const tableCellStyle = {
-        //borderCollapse: "collapse",
-        border: "none",
-        color: "white.main",
-        //minWidth: "120px",
-    };
-
     const staticInputTypograhyStyle = {
         m: 1,
         width: "300px",
@@ -185,7 +168,6 @@ export default function Advanced() {
                 xs={12}
                 container
                 direction="column"
-                bgcolor="primary.main"
                 width={1}
                 padding={4}
             >
@@ -201,7 +183,7 @@ export default function Advanced() {
 
                 <Typography
                     variant="h4"
-                    color="white.main"
+                    color="typography.primary.main"
                     sx={{ fontWeight: "bold", marginTop: "36px" }}
                 >
                     Advanced Calculator
@@ -210,7 +192,7 @@ export default function Advanced() {
                 <form>
                     <Typography
                         variant="h6"
-                        color="white.main"
+                        color="typography.primary.main"
                         sx={{ fontWeight: "bold", m: 1 }}
                     >
                         Advanced HVAC Inputs
@@ -220,10 +202,10 @@ export default function Advanced() {
 
                     {RTU_data.map((rtu, rtu_index) => {
                         return (
-                            <div
+                            <Box
                                 key={rtu[8]}
+                                backgroundColor="secondary.main"
                                 style={{
-                                    backgroundColor: "#bed7dd",
                                     width: "100%",
                                     marginTop: "10px",
                                     padding: "6px",
@@ -234,20 +216,20 @@ export default function Advanced() {
                                     <Button
                                         onClick={() => removeRTU(rtu_index)}
                                         style={{
-                                            maxWidth: "25px",
-                                            maxHeight: "25px",
-                                            minWidth: "25px",
-                                            minHeight: "25px",
+                                            maxWidth: "30px",
+                                            maxHeight: "30px",
+                                            minWidth: "30px",
+                                            minHeight: "30px",
                                             float: "right",
                                             borderRadius: "100%",
-                                            fontSize: "15px",
-                                            backgroundColor: "#007681",
                                             border: "none",
+                                            fontSize: "24px",
+                                            backgroundColor: "black",
                                             color: "white",
-                                            margin: "5px",
+                                            marginTop: "5px",
                                         }}
                                     >
-                                        x
+                                        ×
                                     </Button>
                                 ) : (
                                     ""
@@ -255,7 +237,7 @@ export default function Advanced() {
                                 <div style={{ marginLeft: "6px", marginTop: "12px" }}>
                                     <span
                                         style={{
-                                            backgroundColor: "#007681",
+                                            backgroundColor: "black",
                                             color: "white",
                                             padding: "5px",
                                             borderRadius: "8px",
@@ -271,21 +253,17 @@ export default function Advanced() {
                                                 key={i}
                                                 onChange={(e) => handle_RTU_Inputs(e, rtu_index, i)}
                                                 label={input}
-                                                variant="outlined"
-                                                style={{
-                                                    marginLeft: "3%",
-                                                    marginRight: "2%",
-                                                    marginTop: "8px",
-                                                    marginBottom: "6px",
-                                                    minWidth: "45%",
+                                                sx={{
+                                                    width: '100%',
+                                                    marginBottom: 1,
+                                                    marginTop: 1,
                                                 }}
                                                 size="small"
-                                                color="secondary"
                                             />
                                         );
                                     })}
                                 </div>
-                            </div>
+                            </Box>
                         );
                     })}
 
@@ -298,9 +276,9 @@ export default function Advanced() {
                             minHeight: "30px",
                             float: "right",
                             borderRadius: "100%",
-                            fontSize: "24px",
-                            backgroundColor: "#007681",
                             border: "none",
+                            fontSize: "24px",
+                            backgroundColor: "black",
                             color: "white",
                             marginTop: "5px",
                         }}
@@ -310,7 +288,7 @@ export default function Advanced() {
 
                     <Typography
                         variant="h6"
-                        color="white.main"
+                        color="typography.primary.main"
                         sx={{ fontWeight: "bold", m: 1 }}
                         style={{ marginTop: "50px" }}
                     >
@@ -320,7 +298,7 @@ export default function Advanced() {
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <Typography
                             variant="body6"
-                            color="white.main"
+                            color="typography.primary.main"
                             sx={staticInputTypograhyStyle}
                         >
                             Cooling Coil Leaving Air Temperature (°F)
@@ -329,14 +307,13 @@ export default function Advanced() {
                             style={{ marginRight: "5px" }}
                             variant="outlined"
                             sx={textFieldSX}
-                            inputProps={textFieldInputPropsSX}
                             onChange={(e) => setCoolingCoilAirTemp(Number(e.target.value))}
                         />
                     </div>
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <Typography
                             variant="body6"
-                            color="white.main"
+                            color="typography.primary.main"
                             type="number"
                             sx={staticInputTypograhyStyle}
                         >
@@ -347,14 +324,13 @@ export default function Advanced() {
                             variant="outlined"
                             type="number"
                             sx={textFieldSX}
-                            inputProps={textFieldInputPropsSX}
                             onChange={(e) => setAC_LoadFactor(Number(e.target.value / 100))}
                         />
                     </div>
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <Typography
                             variant="body6"
-                            color="white.main"
+                            color="typography.primary.main"
                             sx={staticInputTypograhyStyle}
                         >
                             Air system minimum OSA (%)
@@ -364,14 +340,13 @@ export default function Advanced() {
                             variant="outlined"
                             type="number"
                             sx={textFieldSX}
-                            inputProps={textFieldInputPropsSX}
                             onChange={(e) => setMinOSA(Number(e.target.value / 100))}
                         />
                     </div>
 
                     <Typography
                         variant="h6"
-                        color="white.main"
+                        color="typography.primary.main"
                         sx={{ fontWeight: "bold", m: 1 }}
                     >
                         Static Pressure Reset Inputs
@@ -379,7 +354,7 @@ export default function Advanced() {
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <Typography
                             variant="body6"
-                            color="white.main"
+                            color="typography.primary.main"
                             sx={staticInputTypograhyStyle}
                         >
                             Total SF Static Pressure in H2O (inches)
@@ -389,14 +364,13 @@ export default function Advanced() {
                             variant="outlined"
                             type="number"
                             sx={textFieldSX}
-                            inputProps={textFieldInputPropsSX}
                             onChange={(e) => setTotalStaticPressure(Number(e.target.value))}
                         />
                     </div>
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <Typography
                             variant="body6"
-                            color="white.main"
+                            color="typography.primary.main"
                             sx={staticInputTypograhyStyle}
                         >
                             Reset Static Pressure Value in H2O (inches)
@@ -406,14 +380,13 @@ export default function Advanced() {
                             variant="outlined"
                             type="number"
                             sx={textFieldSX}
-                            inputProps={textFieldInputPropsSX}
                             onChange={(e) => setResetStaticPressure(Number(e.target.value))}
                         />
                     </div>
 
                     <Typography
                         variant="h6"
-                        color="white.main"
+                        color="typography.primary.main"
                         sx={{ fontWeight: "bold", m: 1 }}
                     >
                         GTA Strategies Inputs
@@ -421,7 +394,7 @@ export default function Advanced() {
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <Typography
                             variant="body6"
-                            color="white.main"
+                            color="typography.primary.main"
                             sx={staticInputTypograhyStyle}
                         >
                             Normal Space Temperature Setpoint (°F)
@@ -431,14 +404,13 @@ export default function Advanced() {
                             variant="outlined"
                             type="number"
                             sx={textFieldSX}
-                            inputProps={textFieldInputPropsSX}
                             onChange={(e) => setNormalTempSetpoint(Number(e.target.value))}
                         />
                     </div>
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <Typography
                             variant="body6"
-                            color="white.main"
+                            color="typography.primary.main"
                             sx={staticInputTypograhyStyle}
                         >
                             Reset Space Temperature Setpoint (°F)
@@ -448,13 +420,11 @@ export default function Advanced() {
                             variant="outlined"
                             type="number"
                             sx={textFieldSX}
-                            inputProps={textFieldInputPropsSX}
                             onChange={(e) => setResetTempSetpoint(Number(e.target.value))}
                         />
                     </div>
                     <Button
                         variant="contained"
-                        color="secondary"
                         onClick={submitInputs}
                         sx={{
                             marginTop: 2,
@@ -480,7 +450,7 @@ export default function Advanced() {
             >
                 <Typography
                     variant="h4"
-                    color="primary.main"
+                    color="typography.primary.main"
                     sx={{ fontWeight: "bold", m: 1 }}
                     style={{ marginTop: "24px" }}
                 >
@@ -541,7 +511,7 @@ export default function Advanced() {
         </Grid> */}
                 <Typography
                     variant="h4"
-                    color="primary.main"
+                    color="typography.primary.main"
                     sx={{ fontWeight: "bold", m: 1 }}
                     style={{ marginTop: "36px" }}
                 >

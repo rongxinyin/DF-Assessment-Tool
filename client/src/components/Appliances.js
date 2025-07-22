@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react"; //NEW
 import { getACBrands, getACModels, getWaterHeaterBrands, getWaterHeaterModels } from '../logic/ACFunctions.js';
 import {
+    Typography,
     Select,
     MenuItem,
     Box,
     Grid,
+    FormControl
 } from '@mui/material';
-import { DropDownIcon } from './DropDownIcon.js';
 import { BackButton, NextButton, BreadcrumbNav } from './NavButtons.js';
 import { useLocation } from 'react-router-dom';
 
@@ -46,7 +47,12 @@ export default function ApplianceSelector() {
     //handle changes for appliance, brand, and model
     const handleChange = async (e) => {
         const { name, value } = e.target;
-        setForm({ ...form, [name]: value });
+        if (name === "appliance") {
+            setForm({ appliance: value });
+            setModelData(null);
+        }
+        else
+            setForm({ ...form, [name]: value });
 
         if (name === "brand") {
             if (value === "Select a brand") {
@@ -86,143 +92,144 @@ export default function ApplianceSelector() {
         { name: 'Appliances', path: '/residential/appliances' },
     ];
 
+    const formControlSX = {
+        width: '100%',
+        marginBottom: 1,
+    };
+
+    const textFieldSX = {
+        marginBottom: 1,
+        marginTop: 1,
+    };
+
     return (
-        <div
-            style={{
-                minHeight: "calc(100vh - 90px)",
-                display: "flex",
-                flexDirection: "column",
-                fontFamily: "sans-serif",
-            }}
-        >
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100vh - 90px)' }}>
             <Box sx={{ padding: 2, paddingBottom: 0.5 }}>
                 <BreadcrumbNav paths={breadcrumbPaths} />
             </Box>
 
-            <div style={{ display: "flex", flex: 1 }}>
-                {/* left side - info input */}
-                <div
-                    style={{
-                        backgroundColor: "#FFFFFF",
-                        color: "#000000",
-                        flex: 1,
-                        padding: "2rem",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                    }}
-                >
-                    <div>
-                        <h2 style={{ marginBottom: "2rem", fontSize: "2rem" }}>Appliances</h2>
-                        <form>
-                            {/*appliance selection dropdown menu*/}
-                            <div>
-                                <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Select Appliance:</label>
-                                <select
-                                    name="appliance"
-                                    value={form.appliance}
-                                    onChange={handleChange}
-                                    style={{
-                                        width: "100%",
-                                        padding: "1rem",
-                                        borderRadius: "10px",
-                                        border: "0.5px solid #636363",
-                                        backgroundColor: "#FFFFFF",
-                                        color: "#000000",
-                                        fontSize: "1.1rem",
-                                        outline: "none",
-                                        marginBottom: "1rem",
-                                        appearance: "none",
-                                    }}
-                                >
-                                    <option value="">Choose appliance</option>
-                                    <option value="Air conditioner">Air conditioner</option>
-                                    <option value="Water heater">Water heater</option>
-                                </select>
-                            </div>
-                            {/*brand+model selector (side by side)*/}
-                            <div style={{ display: "flex", gap: "1rem" }}>
-                                <div style={{ flex: 1 }}>
-                                    <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Brand</label>
-                                    <Select
-                                        name="brand"
-                                        value={form.brand || "Select a brand"}
-                                        onChange={handleChange}
-                                        sx={{
-                                            width: "100%",
-                                            marginBottom: 1,
-                                            marginTop: 1,
-                                            border: "0.5px solid #636363",
-                                            backgroundColor: "white",
-                                            borderRadius: "10px",
-                                            color: "#000000",
-                                        }}
-                                        inputProps={{ sx: { color: "#000000" } }}
-                                        IconComponent={DropDownIcon}
-                                        disabled={!form.appliance}
-                                    >
-                                        <MenuItem value="Select a brand">Select a brand</MenuItem>
-                                        {brands.map((brand) => (
-                                            <MenuItem key={brand} value={brand}>
-                                                {brand}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
-                                </div>
-                                {/*model selector*/}
-                                <div style={{ flex: 1 }}>
-                                    <label style={{ fontWeight: "bold", marginBottom: "0.3rem", display: "block", fontSize: "1rem" }}>Model</label>
-                                    <Select
-                                        name="model"
-                                        disabled={!form.brand}
-                                        value={form.model || "Select a model"}
-                                        onChange={handleChange}
-                                        sx={{
-                                            width: "100%",
-                                            marginBottom: 1,
-                                            marginTop: 1,
-                                            border: "0.5px solid #636363",
-                                            backgroundColor: "white",
-                                            borderRadius: "10px",
-                                            color: "#000000",
-                                        }}
-                                        inputProps={{ sx: { color: "#000000" } }}
-                                        IconComponent={DropDownIcon}
-                                    >
-                                        <MenuItem value="Select a model">Select a model</MenuItem>
-                                        {models.map((model) => (
-                                            <MenuItem
-                                                key={typeof model === "object" ? model.model : model}
-                                                value={typeof model === "object" ? model.model : model}
+            <Grid container spacing={0} style={{ flex: '1' }}>
+                <Grid container item md={6} xs={12}>
+                    {/* left side - info input */}
+                    <Grid
+                        style={{
+                            backgroundColor: "#FFFFFF",
+                            color: "#000000",
+                            flex: 1,
+                            padding: "2rem",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                        }}
+                    >
+                        <div>
+                            <Typography
+                                variant="h4"
+                                color="black.main"
+                                sx={{ fontWeight: 'bold', m: 1 }}
+                            >
+                                Appliances
+                            </Typography>
+                            <form>
+                                {/*appliance selection dropdown menu*/}
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12}>
+                                        <FormControl sx={formControlSX}>
+                                            <Typography
+                                                variant="body2"
+                                                color="typography.primary.main"
+                                                sx={{ fontWeight: 'bold', marginLeft: 1 }}
                                             >
-                                                {typeof model === "object" ? model.model : model}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                                                Appliance type
+                                            </Typography>
+                                            <Select
+                                                name="appliance"
+                                                value={form.appliance}
+                                                onChange={handleChange}
+                                                sx={textFieldSX}
+                                            >
+                                                <MenuItem value="Air conditioner">Air conditioner</MenuItem>
+                                                <MenuItem value="Water heater">Water heater</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
 
-                    <BackButton
-                        path="/residential/location"
-                        state={inputs}
-                    />
-                </div>
+                                    {/*brand+model selector (side by side)*/}
+                                    <Grid item xs={6}>
+                                        <FormControl sx={formControlSX}>
+                                            <Typography
+                                                variant="body2"
+                                                color="typography.primary.main"
+                                                sx={{ fontWeight: "bold", marginLeft: 1 }}
+                                            >
+                                                Brand
+                                            </Typography>
+                                            <Select
+                                                name="brand"
+                                                value={form.brand || "Select a brand"}
+                                                onChange={handleChange}
+                                                disabled={!form.appliance}
+                                                sx={textFieldSX}
+                                            >
+                                                <MenuItem value="Select a brand">Select a brand</MenuItem>
+                                                {brands.map((brand) => (
+                                                    <MenuItem key={brand} value={brand}>
+                                                        {brand}
+                                                    </MenuItem>
+                                                ))}
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
+                                    {/*model selector*/}
+                                    <Grid item xs={6}>
+                                        <FormControl sx={formControlSX}>
+                                            <Typography
+                                                variant="body2"
+                                                color="typography.primary.main"
+                                                sx={{ fontWeight: "bold", marginLeft: 1 }}
+                                            >
+                                                Model
+                                            </Typography>
+                                            <Select
+                                                name="model"
+                                                disabled={!form.brand}
+                                                value={form.model || "Select a model"}
+                                                onChange={handleChange}
+                                                sx={textFieldSX}
+                                            >
+                                                <MenuItem value="Select a model">Select a model</MenuItem>
+                                                {models.map((model) => (
+                                                    <MenuItem
+                                                        key={typeof model === "object" ? model.model : model}
+                                                        value={typeof model === "object" ? model.model : model}
+                                                    >
+                                                        {typeof model === "object" ? model.model : model}
+                                                    </MenuItem>
+                                                ))}
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
+                                </Grid>
+                            </form>
+                        </div>
+                    </Grid>
+                </Grid>
 
                 {/* right side */}
-                <div
+                <Grid item container md={6} xs={12}
+                    direction="column"
                     style={{
                         backgroundColor: "#EEEEEE",
-                        flex: 1,
                         padding: "2rem",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        alignItems: "center"
                     }}
                 >
-                    <h2 style={{ fontSize: "2rem", textAlign: "center" }}>Preview</h2>
+                    <Typography
+                        variant="h4"
+                        sx={{ fontWeight: 'bold', m: 1 }}
+                    >
+                        Preview
+                    </Typography>
+
                     <Grid container marginTop={2} spacing={4}>
                         <Grid item xs={12} md={4}>
                             <img
@@ -288,17 +295,25 @@ export default function ApplianceSelector() {
                         </Grid>
                     </Grid>
 
-                    <NextButton
-                        disabled={!form.model}
-                        state={{
-                            ...inputs,
-                            ...form,
-                        }}
-                        path="/residential/calculation"                    >
-                        Next
-                    </NextButton>
-                </div>
-            </div>
-        </div>
+                </Grid>
+            </Grid>
+
+            <Box padding={2}>
+                <BackButton
+                    path="/residential/location"
+                    state={inputs}
+                />
+
+                <NextButton
+                    disabled={!form.model}
+                    state={{
+                        ...inputs,
+                        ...form,
+                    }}
+                    path="/residential/calculation"                    >
+                    Next
+                </NextButton>
+            </Box>
+        </Box >
     );
 }
