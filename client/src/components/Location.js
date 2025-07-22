@@ -255,6 +255,7 @@ export default function Location() {
                             backgroundColor: 'white.main',
                             borderRadius: '8px',
                             width: '100%',
+                            minHeight: '250px'
                         }}
                     >
                         <Line
@@ -263,7 +264,7 @@ export default function Location() {
                                 datasets: [
                                     {
                                         label: 'Outside Air Temperature',
-                                        data: oat,
+                                        data: oat.map(t => (t * 9 / 5 + 32)),
                                         borderColor: '#1976d2',
                                         backgroundColor: 'rgba(25, 118, 210, 0.1)',
                                         fill: true,
@@ -271,12 +272,11 @@ export default function Location() {
                                 ],
                             }}
                             options={{
+                                maintainAspectRatio: false,
                                 scales: {
                                     x: { title: { display: true, text: 'Hour' } },
                                     y: {
-                                        title: { display: true, text: 'Temperature (°C)' },
-                                        min: 10.0,
-                                        max: 45.0,
+                                        title: { display: true, text: 'Temperature (°F)' },
                                     },
                                 },
                             }}
@@ -286,7 +286,7 @@ export default function Location() {
                     {submitted && (
                         <>
                             <Typography
-                                variant="h5"
+                                variant="h4"
                                 sx={{ mt: 4, mb: 2, fontWeight: 'bold', textAlign: 'center' }}
                             >
                                 Home Characteristics

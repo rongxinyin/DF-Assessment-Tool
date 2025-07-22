@@ -5,7 +5,8 @@ import {
     Grid,
     Typography,
     Menu,
-    MenuItem
+    MenuItem,
+    useMediaQuery
 } from "@mui/material";
 import { Line } from 'react-chartjs-2';
 import { BackButton, BreadcrumbNav } from './NavButtons.js';
@@ -32,32 +33,28 @@ export default function NewResults() {
     const [drEnergy, setDREnergy] = useState(0);
 
     useEffect(() => {
-        async function fetchResults() {
-            if (appliance === 'Air conditioner') {
-                calculateACDR(inputs).then(data => {
-                    setNormalResults(data.normalResults);
-                    setDRResults(data.drResults);
-                    setNormalEnergy(data.normalEnergy);
-                    setDREnergy(data.drEnergy);
-                });
-            } else if (appliance === 'Water heater') {
-                calculateWaterHeaterDR(inputs).then(data => {
-                    console.log(data)
-                    setNormalResults(data.normalResults);
-                    setDRResults(data.drResults);
-                    setNormalEnergy(data.normalEnergy);
-                    setDREnergy(data.drEnergy);
-                }).catch(err => {
-                    console.error('Failed to fetch water heater results:', err);
-                });
-            } else {
-                console.error('Unknown appliance type');
-                return;
-            }
+        if (appliance === 'Air conditioner') {
+            calculateACDR(inputs).then(data => {
+                setNormalResults(data.normalResults);
+                setDRResults(data.drResults);
+                setNormalEnergy(data.normalEnergy);
+                setDREnergy(data.drEnergy);
+            });
+        } else if (appliance === 'Water heater') {
+            calculateWaterHeaterDR(inputs).then(data => {
+                console.log(data)
+                setNormalResults(data.normalResults);
+                setDRResults(data.drResults);
+                setNormalEnergy(data.normalEnergy);
+                setDREnergy(data.drEnergy);
+            }).catch(err => {
+                console.error('Failed to fetch water heater results:', err);
+            });
+        } else {
+            console.error('Unknown appliance type');
+            return;
         }
-
-        fetchResults();
-    });
+    }, []);
 
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -131,6 +128,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
         margin: "0 auto",
         border: "1px solid",
     };
+    const smallScreen = useMediaQuery(theme => theme.breakpoints.down("sm"));
 
     return (
         <Box sx={rootSX}>
@@ -143,232 +141,6 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                 flex={1}
                 padding={4}
             >
-
-                {/* Normal Plot */}
-                <Grid item xs={12} md={6}>
-                    <Box sx={boxSX}>
-                        <Typography
-                            variant="h5"
-                            color="#000000"
-                            sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
-                        >
-                            Normal Plot
-                        </Typography>
-
-                        <Line
-                            data={{
-                                labels: hours,
-                                datasets: appliance === 'Air conditioner' ? [
-                                    {
-                                        label: "Outside Air Temperature",
-                                        data: averageHours(normalResults.outdoorTemp).map(cToF),
-                                        borderColor: "#DC3912",
-                                        backgroundColor: "#DC391280",
-                                        order: 1,
-                                    },
-                                    {
-                                        label: "Inside Temperature",
-                                        data: averageHours(normalResults.indoorTemp).map(cToF),
-                                        borderColor: "#3366CC",
-                                        backgroundColor: "#3366CC80",
-                                        order: 1,
-                                    },
-                                    {
-                                        label: "Setpoint",
-                                        data: averageHours(normalResults.setpoint).map(cToF),
-                                        borderColor: "#109618",
-                                        pointRadius: 0,
-                                        borderWidth: 2,
-                                        borderDash: [10, 5],
-                                        order: 0,
-                                    },
-                                    {
-                                        label: "Effective Setpoint",
-                                        data: averageHours(normalResults.effectiveSetpoint).map(cToF),
-                                        borderColor: "#990099",
-                                        pointRadius: 0,
-                                        borderWidth: 2,
-                                        borderDash: [10, 5],
-                                        stepped: true,
-                                        order: 0,
-                                    },
-                                ] : [ // Water heater graph
-                                    {
-                                        label: "Ambient Temperature",
-                                        data: averageHours(normalResults.ambientTemp),
-                                        borderColor: "#DC3912",
-                                        backgroundColor: "#DC391280",
-                                        order: 1,
-                                    },
-                                    {
-                                        label: "Water Temperature",
-                                        data: averageHours(normalResults.waterTemp),
-                                        borderColor: "#3366CC",
-                                        backgroundColor: "#3366CC80",
-                                        order: 1,
-                                    },
-                                    {
-                                        label: "Setpoint",
-                                        data: averageHours(normalResults.setpoint),
-                                        borderColor: "#109618",
-                                        pointRadius: 0,
-                                        borderWidth: 2,
-                                        borderDash: [10, 5],
-                                        order: 0,
-                                    },
-                                    {
-                                        label: "Effective Setpoint",
-                                        data: averageHours(normalResults.effectiveSetpoint),
-                                        borderColor: "#990099",
-                                        pointRadius: 0,
-                                        borderWidth: 2,
-                                        borderDash: [10, 5],
-                                        stepped: true,
-                                        order: 0,
-                                    },
-                                ]
-                            }}
-                            options={{
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: "Temperature",
-                                    },
-                                },
-                                scales: {
-                                    x: {
-                                        title: {
-                                            display: true,
-                                            text: "Hour",
-                                        },
-                                    },
-                                    y: {
-                                        title: {
-                                            display: true,
-                                            text: "Temperature (°F)",
-                                        },
-                                    },
-                                },
-                            }}
-
-                        />
-
-
-                    </Box>
-                </Grid>
-
-                {/* DR Plot */}
-                <Grid item xs={12} md={6}>
-                    <Box sx={boxSX}>
-                        <Typography
-                            variant="h5"
-                            color="#000000"
-                            sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
-                        >
-                            DR Plot
-                        </Typography>
-
-                        <Line
-
-                            data={{
-                                labels: hours,
-                                datasets: appliance === 'Air conditioner' ? [
-                                    {
-                                        label: "Outside Air Temperature",
-                                        data: averageHours(drResults.outdoorTemp).map(cToF),
-                                        borderColor: "#DC3912",
-                                        backgroundColor: "#DC391280",
-                                        order: 1,
-                                    },
-                                    {
-                                        label: "Inside Temperature",
-                                        data: averageHours(drResults.indoorTemp).map(cToF),
-                                        borderColor: "#3366CC",
-                                        backgroundColor: "#3366CC80",
-                                        order: 1,
-                                    },
-                                    {
-                                        label: "Setpoint",
-                                        data: averageHours(drResults.setpoint).map(cToF),
-                                        borderColor: "#109618",
-                                        pointRadius: 0,
-                                        borderWidth: 2,
-                                        borderDash: [10, 5],
-                                        order: 0,
-                                    },
-                                    {
-                                        label: "Effective Setpoint",
-                                        data: averageHours(drResults.effectiveSetpoint).map(cToF),
-                                        borderColor: "#990099",
-                                        pointRadius: 0,
-                                        borderWidth: 2,
-                                        borderDash: [10, 5],
-                                        stepped: true,
-                                        order: 0,
-                                    },
-                                ] : [ // Water heater graph
-                                    {
-                                        label: "Ambient Temperature",
-                                        data: averageHours(drResults.ambientTemp),
-                                        borderColor: "#DC3912",
-                                        backgroundColor: "#DC391280",
-                                        order: 1,
-                                    },
-                                    {
-                                        label: "Water Temperature",
-                                        data: averageHours(drResults.waterTemp),
-                                        borderColor: "#3366CC",
-                                        backgroundColor: "#3366CC80",
-                                        order: 1,
-                                    },
-                                    {
-                                        label: "Setpoint",
-                                        data: averageHours(drResults.setpoint),
-                                        borderColor: "#109618",
-                                        pointRadius: 0,
-                                        borderWidth: 2,
-                                        borderDash: [10, 5],
-                                        order: 0,
-                                    },
-                                    {
-                                        label: "Effective Setpoint",
-                                        data: averageHours(drResults.effectiveSetpoint),
-                                        borderColor: "#990099",
-                                        pointRadius: 0,
-                                        borderWidth: 2,
-                                        borderDash: [10, 5],
-                                        stepped: true,
-                                        order: 0,
-                                    },
-                                ]
-                            }}
-                            options={{
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: "Temperature",
-                                    },
-                                },
-                                scales: {
-                                    x: {
-                                        title: {
-                                            display: true,
-                                            text: "Hour",
-                                        },
-                                    },
-                                    y: {
-                                        title: {
-                                            display: true,
-                                            text: "Temperature (°F)",
-                                        },
-                                    },
-                                },
-                            }}
-
-                        />
-
-                    </Box>
-                </Grid>
 
                 {/* Savings Box */}
                 <Grid item xs={12} md={6} display="flex">
@@ -413,58 +185,289 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                             Power Consumption
                         </Typography>
 
-                        <Line
-                            data={{
-                                labels: hours,
-                                datasets: [
-                                    {
-                                        label: "Normal Power Consumption",
-                                        data: averageHours(normalResults.powerConsumption),
-                                        borderColor: "#3366CC",
-                                        backgroundColor: "#3366CC80",
-                                        pointRadius: 0,
-                                        stepped: true,
-                                        fill: true,
-                                        borderWidth: 2,
-                                        order: 1
-                                    },
-                                    {
-                                        label: "DR Power Consumption",
-                                        data: averageHours(drResults.powerConsumption),
-                                        borderColor: "#990099",
-                                        backgroundColor: "#99009980",
-                                        pointRadius: 0,
-                                        stepped: true,
-                                        fill: true,
-                                        borderDash: [5, 5],
-                                        borderWidth: 2,
-                                        order: 0
-                                    },
-                                ],
-                            }}
-                            options={{
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: "Power Consumption",
-                                    },
-                                },
-                                scales: {
-                                    x: {
+                        <Box minHeight={smallScreen ? 350 : "unset"}>
+                            <Line
+                                data={{
+                                    labels: hours,
+                                    datasets: [
+                                        {
+                                            label: "Normal Power Consumption",
+                                            data: averageHours(normalResults.powerConsumption),
+                                            borderColor: "#3366CC",
+                                            backgroundColor: "#3366CC80",
+                                            pointRadius: 0,
+                                            stepped: true,
+                                            fill: true,
+                                            borderWidth: 2,
+                                            order: 1
+                                        },
+                                        {
+                                            label: "DR Power Consumption",
+                                            data: averageHours(drResults.powerConsumption),
+                                            borderColor: "#990099",
+                                            backgroundColor: "#99009980",
+                                            pointRadius: 0,
+                                            stepped: true,
+                                            fill: true,
+                                            borderDash: [5, 5],
+                                            borderWidth: 2,
+                                            order: 0
+                                        },
+                                    ],
+                                }}
+                                options={{
+                                    maintainAspectRatio: !smallScreen,
+                                    plugins: {
                                         title: {
                                             display: true,
-                                            text: "Hour",
+                                            text: "Power Consumption",
                                         },
                                     },
-                                    y: {
+                                    scales: {
+                                        x: {
+                                            title: {
+                                                display: true,
+                                                text: "Hour",
+                                            },
+                                        },
+                                        y: {
+                                            title: {
+                                                display: true,
+                                                text: "Power Consumption (kW)",
+                                            },
+                                        },
+                                    },
+                                }}
+                            />
+                        </Box>
+                    </Box>
+                </Grid>
+
+                {/* Normal Plot */}
+                <Grid item xs={12} md={6}>
+                    <Box sx={boxSX}>
+                        <Typography
+                            variant="h5"
+                            color="#000000"
+                            sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
+                        >
+                            Normal Plot
+                        </Typography>
+
+                        <Box minHeight={smallScreen ? 350 : "unset"}>
+                            <Line
+                                data={{
+                                    labels: hours,
+                                    datasets: appliance === 'Air conditioner' ? [
+                                        {
+                                            label: "Outside Air Temperature",
+                                            data: averageHours(normalResults.outdoorTemp).map(cToF),
+                                            borderColor: "#DC3912",
+                                            backgroundColor: "#DC391280",
+                                            order: 1,
+                                        },
+                                        {
+                                            label: "Inside Temperature",
+                                            data: averageHours(normalResults.indoorTemp).map(cToF),
+                                            borderColor: "#3366CC",
+                                            backgroundColor: "#3366CC80",
+                                            order: 1,
+                                        },
+                                        {
+                                            label: "Setpoint",
+                                            data: averageHours(normalResults.setpoint).map(cToF),
+                                            borderColor: "#109618",
+                                            pointRadius: 0,
+                                            borderWidth: 2,
+                                            borderDash: [10, 5],
+                                            order: 0,
+                                        },
+                                        {
+                                            label: "Effective Setpoint",
+                                            data: averageHours(normalResults.effectiveSetpoint).map(cToF),
+                                            borderColor: "#990099",
+                                            pointRadius: 0,
+                                            borderWidth: 2,
+                                            borderDash: [10, 5],
+                                            stepped: true,
+                                            order: 0,
+                                        },
+                                    ] : [ // Water heater graph
+                                        {
+                                            label: "Ambient Temperature",
+                                            data: averageHours(normalResults.ambientTemp),
+                                            borderColor: "#DC3912",
+                                            backgroundColor: "#DC391280",
+                                            order: 1,
+                                        },
+                                        {
+                                            label: "Water Temperature",
+                                            data: averageHours(normalResults.waterTemp),
+                                            borderColor: "#3366CC",
+                                            backgroundColor: "#3366CC80",
+                                            order: 1,
+                                        },
+                                        {
+                                            label: "Setpoint",
+                                            data: averageHours(normalResults.setpoint),
+                                            borderColor: "#109618",
+                                            pointRadius: 0,
+                                            borderWidth: 2,
+                                            borderDash: [10, 5],
+                                            order: 0,
+                                        },
+                                        {
+                                            label: "Effective Setpoint",
+                                            data: averageHours(normalResults.effectiveSetpoint),
+                                            borderColor: "#990099",
+                                            pointRadius: 0,
+                                            borderWidth: 2,
+                                            borderDash: [10, 5],
+                                            stepped: true,
+                                            order: 0,
+                                        },
+                                    ]
+                                }}
+                                options={{
+                                    maintainAspectRatio: !smallScreen,
+                                    plugins: {
                                         title: {
                                             display: true,
-                                            text: "Power Consumption (kW)",
+                                            text: "Temperature",
                                         },
                                     },
-                                },
-                            }}
-                        />
+                                    scales: {
+                                        x: {
+                                            title: {
+                                                display: true,
+                                                text: "Hour",
+                                            },
+                                        },
+                                        y: {
+                                            title: {
+                                                display: true,
+                                                text: "Temperature (°F)",
+                                            },
+                                        },
+                                    },
+                                }}
+
+                            />
+                        </Box>
+                    </Box>
+                </Grid>
+
+                {/* DR Plot */}
+                <Grid item xs={12} md={6}>
+                    <Box sx={boxSX}>
+                        <Typography
+                            variant="h5"
+                            color="#000000"
+                            sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}
+                        >
+                            DR Plot
+                        </Typography>
+
+                        <Box minHeight={smallScreen ? 350 : "unset"}>
+                            <Line
+                                data={{
+                                    labels: hours,
+                                    datasets: appliance === 'Air conditioner' ? [
+                                        {
+                                            label: "Outside Air Temperature",
+                                            data: averageHours(drResults.outdoorTemp).map(cToF),
+                                            borderColor: "#DC3912",
+                                            backgroundColor: "#DC391280",
+                                            order: 1,
+                                        },
+                                        {
+                                            label: "Inside Temperature",
+                                            data: averageHours(drResults.indoorTemp).map(cToF),
+                                            borderColor: "#3366CC",
+                                            backgroundColor: "#3366CC80",
+                                            order: 1,
+                                        },
+                                        {
+                                            label: "Setpoint",
+                                            data: averageHours(drResults.setpoint).map(cToF),
+                                            borderColor: "#109618",
+                                            pointRadius: 0,
+                                            borderWidth: 2,
+                                            borderDash: [10, 5],
+                                            order: 0,
+                                        },
+                                        {
+                                            label: "Effective Setpoint",
+                                            data: averageHours(drResults.effectiveSetpoint).map(cToF),
+                                            borderColor: "#990099",
+                                            pointRadius: 0,
+                                            borderWidth: 2,
+                                            borderDash: [10, 5],
+                                            stepped: true,
+                                            order: 0,
+                                        },
+                                    ] : [ // Water heater graph
+                                        {
+                                            label: "Ambient Temperature",
+                                            data: averageHours(drResults.ambientTemp),
+                                            borderColor: "#DC3912",
+                                            backgroundColor: "#DC391280",
+                                            order: 1,
+                                        },
+                                        {
+                                            label: "Water Temperature",
+                                            data: averageHours(drResults.waterTemp),
+                                            borderColor: "#3366CC",
+                                            backgroundColor: "#3366CC80",
+                                            order: 1,
+                                        },
+                                        {
+                                            label: "Setpoint",
+                                            data: averageHours(drResults.setpoint),
+                                            borderColor: "#109618",
+                                            pointRadius: 0,
+                                            borderWidth: 2,
+                                            borderDash: [10, 5],
+                                            order: 0,
+                                        },
+                                        {
+                                            label: "Effective Setpoint",
+                                            data: averageHours(drResults.effectiveSetpoint),
+                                            borderColor: "#990099",
+                                            pointRadius: 0,
+                                            borderWidth: 2,
+                                            borderDash: [10, 5],
+                                            stepped: true,
+                                            order: 0,
+                                        },
+                                    ]
+                                }}
+                                options={{
+                                    maintainAspectRatio: !smallScreen,
+                                    plugins: {
+                                        title: {
+                                            display: true,
+                                            text: "Temperature",
+                                        },
+                                    },
+                                    scales: {
+                                        x: {
+                                            title: {
+                                                display: true,
+                                                text: "Hour",
+                                            },
+                                        },
+                                        y: {
+                                            title: {
+                                                display: true,
+                                                text: "Temperature (°F)",
+                                            },
+                                        },
+                                    },
+                                }}
+
+                            />
+                        </Box>
                     </Box>
                 </Grid>
             </Grid>
