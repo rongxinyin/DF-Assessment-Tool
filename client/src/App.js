@@ -1,6 +1,6 @@
 import { ThemeProvider, createTheme } from "@mui/material";
 import { Suspense } from "react";
-import { BrowserRouter, Route, Redirect, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import About from "./components/About.js";
 import Advanced from "./components/Advanced.js";
@@ -24,6 +24,15 @@ const theme = createTheme({
         button: {
             textTransform: "none",
             fontSize: "medium",
+        },
+        primary: {
+            main: "#000000",
+        },
+        secondary: {
+            main: "#007681",
+        },
+        tertiary: {
+            main: "#BED7DD",
         },
     },
     /*
@@ -68,17 +77,6 @@ const theme = createTheme({
             main: "#FFFFFF",
         },
     },
-    typography: {
-        primary: {
-            main: "#000000",
-        },
-        secondary: {
-            main: "#007681",
-        },
-        tertiary: {
-            main: "#BED7DD",
-        },
-    },
     mode: "dark",
 });
 
@@ -111,4 +109,20 @@ export default function App() {
             </BrowserRouter>
         </ThemeProvider>
     );
+};
+
+export const formControlSX = {
+    width: '100%',
+    marginBottom: 1,
+};
+
+export const textFieldSX = {
+    marginBottom: 1,
+    marginTop: 1,
+};
+
+export const rootSX = {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1
 }

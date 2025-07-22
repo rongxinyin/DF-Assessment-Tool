@@ -3,8 +3,6 @@ import {
     Button,
     Grid,
     Typography,
-    Paper,
-    styled,
     useTheme,
     useMediaQuery,
 } from "@mui/material";
@@ -13,15 +11,6 @@ import residentialIcon from "./images/residential.png";
 import commercialIcon from "./images/commercial.png";
 import benchmarkIcon from "./images/benchmarking.png";
 import CitationComponent from "./CitationComponent.js";
-
-// Visualization
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-}));
 
 export default function Home() {
     let navigate = useNavigate(); // Navigate to different pages

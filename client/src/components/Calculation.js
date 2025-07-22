@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import { BackButton, NextButton, BreadcrumbNav } from './NavButtons.js';
 import { useLocation } from 'react-router-dom';
+import { rootSX, formControlSX, textFieldSX } from '../App.js';
 
 export default function ResidentialLanding() {
     const location = useLocation();
@@ -66,16 +67,6 @@ export default function ResidentialLanding() {
         }
     };
 
-    const formControlSX = {
-        width: '100%',
-        marginBottom: 1,
-    };
-
-    const textFieldSX = {
-        marginBottom: 1,
-        marginTop: 1,
-    };
-
     // https://stackoverflow.com/a/62073653
     const smallScreen = useMediaQuery(theme => theme.breakpoints.down("sm"));
     const mediumScreen = useMediaQuery(theme => theme.breakpoints.between("sm", "md"));
@@ -89,10 +80,8 @@ export default function ResidentialLanding() {
     ];
 
     return (
-        <Box style={{ backgroundColor: "#EEEEEE", minHeight: "calc(100vh - 90px)", display: "flex", flexDirection: "column" }}>
-            <Box sx={{ padding: 2, paddingBottom: 2, alignSelf: 'flex-start' }}>
-                <BreadcrumbNav paths={breadcrumbPaths} />
-            </Box>
+        <Box backgroundColor="#EEEEEE" sx={rootSX}>
+            <BreadcrumbNav paths={breadcrumbPaths} />
 
             <Grid item xs={12} flex={1}>
                 <Box sx={{

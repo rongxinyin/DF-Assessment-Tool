@@ -18,36 +18,22 @@ import {
 import { BackButton, NextButton, BreadcrumbNav } from './NavButtons.js';
 import { Line } from 'react-chartjs-2';
 import { useLocation } from 'react-router-dom';
+import { rootSX, formControlSX, textFieldSX } from '../App.js';
 
-export default () => {
+export default function Location() {
     const location = useLocation();
     const inputs = location.state || {};
     const houseType = inputs.houseType || 'individual';
     const [homeAge, setHomeAge] = useState(inputs.homeAge || 'new');
     const [zip, setZip] = useState(inputs.zip || '');
     const [resType, setResType] = useState(inputs.resType || '');
-    const [floorArea, setFloorArea] = useState(inputs.floorArea || 0);
+    // const [floorArea, setFloorArea] = useState(inputs.floorArea || 0);
     const [oat, setOat] = useState(inputs.oat || []);
     const [state, setState] = useState(inputs.state || '');
     const [climateZone, setClimateZone] = useState(inputs.climateZone || '');
     const [submitted, setSubmitted] = useState(false);
     const [nextDisabled, setNextDisabled] = useState(true);
     const [error, setError] = useState(null); const [apartmentCount, setApartmentCount] = useState(inputs.apartmentCount)
-
-    const textFieldSX = {
-        marginBottom: 1,
-        marginTop: 1,
-        /*
-    border: '2px solid #636363',
-    backgroundColor: '#FFFFFF',
-    borderRadius: '10px',
-    */
-    };
-
-    const formControlSX = {
-        width: '100%',
-        marginBottom: 1,
-    };
 
     const submitData = async () => {
         if (!zip) {
@@ -87,10 +73,8 @@ export default () => {
     ];
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100vh - 90px)' }}>
-            <Box sx={{ padding: 2, paddingBottom: 0.5 }}>
-                <BreadcrumbNav paths={breadcrumbPaths} />
-            </Box>
+        <Box sx={rootSX}>
+            <BreadcrumbNav paths={breadcrumbPaths} />
 
             <Grid container spacing={0} sx={{ flex: '1' }}>
                 <Grid
@@ -101,6 +85,7 @@ export default () => {
                     padding={4}
                 >
                     <form
+                        style={{ width: '100%' }}
                         onSubmit={(e) => {
                             e.preventDefault();
                             submitData();
@@ -114,7 +99,7 @@ export default () => {
                             Location
                         </Typography>
 
-                        <Grid container spacing={2}>
+                        <Grid item xs={12} container spacing={2}>
                             <Grid item xs={12}>
                                 <FormControl sx={formControlSX}>
                                     <Typography
@@ -357,7 +342,7 @@ export default () => {
                         ...inputs,
                         zip,
                         resType,
-                        floorArea,
+                        // floorArea,
                         oat,
                         houseType,
                         apartmentCount
@@ -371,7 +356,7 @@ export default () => {
                         ...inputs,
                         zip,
                         resType,
-                        floorArea,
+                        // floorArea,
                         oat,
                         homeAge,
                         houseType,

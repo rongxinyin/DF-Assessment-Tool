@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { BackButton, NextButton, BreadcrumbNav } from './NavButtons.js';
 import { useLocation } from 'react-router-dom';
-
+import { rootSX, formControlSX, textFieldSX } from '../App.js';
 
 export default function ApplianceSelector() {
     //previous page info (if not empty/if needed)
@@ -92,21 +92,9 @@ export default function ApplianceSelector() {
         { name: 'Appliances', path: '/residential/appliances' },
     ];
 
-    const formControlSX = {
-        width: '100%',
-        marginBottom: 1,
-    };
-
-    const textFieldSX = {
-        marginBottom: 1,
-        marginTop: 1,
-    };
-
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100vh - 90px)' }}>
-            <Box sx={{ padding: 2, paddingBottom: 0.5 }}>
-                <BreadcrumbNav paths={breadcrumbPaths} />
-            </Box>
+        <Box sx={rootSX}>
+            <BreadcrumbNav paths={breadcrumbPaths} />
 
             <Grid container spacing={0} style={{ flex: '1' }}>
                 <Grid container item md={6} xs={12}>

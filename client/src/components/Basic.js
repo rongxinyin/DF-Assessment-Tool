@@ -90,7 +90,7 @@ export default function Basic() {
         let newCSSB = CSSB;
         let CSSB_Obj = newCSSB[eventHour];
 
-        if (CSSB_Type == "OAT") {
+        if (CSSB_Type === "OAT") {
             CSSB_Obj["avg_temp"] = CSSB_Data;
         } else {
             CSSB_Obj["avg_demand"] = CSSB_Data;
@@ -134,12 +134,12 @@ export default function Basic() {
 
     const submitInputs = async () => {
         let inputValidity = checkIsValid();
-        if (inputValidity == "valid") {
+        if (inputValidity === "valid") {
             //If inputs are valid
             setGraphs([]);
             //Generate caseID
             let buildingTypeSize = "";
-            if (buildingType == "Office") {
+            if (buildingType === "Office") {
                 if (peakDemand < 200) {
                     buildingTypeSize = "SmallOffice";
                 } else if (peakDemand < 500) {
@@ -163,7 +163,7 @@ export default function Basic() {
             //GTA calculations
             let DR_output = await gtaCalculation(fullStateName, caseIDs, CSSB);
 
-            if (Object.keys(DR_output).length != 0) {
+            if (Object.keys(DR_output).length !== 0) {
                 //If data was found for these inputs
 
                 //Update analytics
@@ -251,7 +251,7 @@ export default function Basic() {
                     "Estimates could not be made with these inputs. Please try again."
                 );
             }
-        } else if (inputValidity == "missing input") {
+        } else if (inputValidity === "missing input") {
             //Inputs are incomplete
             alert("Please enter all the required inputs.");
         }

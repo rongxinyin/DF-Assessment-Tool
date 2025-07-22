@@ -6,7 +6,6 @@ import {
     Paper,
     TextField,
     Typography,
-    styled,
     Table,
     TableBody,
     TableCell,
@@ -20,15 +19,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { calculations } from "../logic/AdvancedCalculations.js";
 import { createVisualizations } from "./calculator-components/Visualizations.js";
-
-// visualization for boxes. will delete later
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-}));
 
 let RTU_key = 0;
 
@@ -74,7 +64,7 @@ export default function Advanced() {
 
     const handle_RTU_Inputs = (event, RTU_num, inputNum) => {
         let tempRTU_data = RTU_data;
-        if (inputNum == 5 || inputNum == 6) {
+        if (inputNum === 5 || inputNum === 6) {
             // convert the fan and motor efficiency to decimal
             tempRTU_data[RTU_num][inputNum] = Number(event.target.value / 100);
         } else {

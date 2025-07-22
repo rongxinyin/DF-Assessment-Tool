@@ -11,6 +11,7 @@ import { Line } from 'react-chartjs-2';
 import { BackButton, BreadcrumbNav } from './NavButtons.js';
 import { useLocation } from "react-router-dom";
 import { calculateACDR, calculateWaterHeaterDR } from '../logic/ACFunctions.js';
+import { rootSX } from '../App.js';
 
 export default function NewResults() {
     const location = useLocation();
@@ -56,7 +57,7 @@ export default function NewResults() {
         }
 
         fetchResults();
-    }, []);
+    });
 
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -122,14 +123,18 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
     const exportLinkStyle = {
         color: 'inherit',
         textDecoration: 'none'
-    }
+    };
+
+    const boxSX = {
+        borderRadius: "8px",
+        padding: "1rem",
+        margin: "0 auto",
+        border: "1px solid",
+    };
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100vh - 90px)' }}>
-            <Box sx={{ padding: 2, paddingBottom: 2, alignSelf: 'flex-start' }}>
-                <BreadcrumbNav paths={breadcrumbPaths} />
-            </Box>
-
+        <Box sx={rootSX}>
+            <BreadcrumbNav paths={breadcrumbPaths} />
 
             {/* Graph Section */}
             <Grid
@@ -141,14 +146,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
 
                 {/* Normal Plot */}
                 <Grid item xs={12} md={6}>
-                    <Box
-                        sx={{
-                            borderRadius: "8px",
-                            padding: "1rem",
-                            margin: "0 auto",
-                            border: "1px solid",
-                        }}
-                    >
+                    <Box sx={boxSX}>
                         <Typography
                             variant="h5"
                             color="#000000"
@@ -261,14 +259,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
 
                 {/* DR Plot */}
                 <Grid item xs={12} md={6}>
-                    <Box
-                        sx={{
-                            borderRadius: "8px",
-                            padding: "1rem",
-                            margin: "0 auto",
-                            border: "1px solid",
-                        }}
-                    >
+                    <Box sx={boxSX}>
                         <Typography
                             variant="h5"
                             color="#000000"
@@ -381,15 +372,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
 
                 {/* Savings Box */}
                 <Grid item xs={12} md={6} display="flex">
-                    <Box
-                        sx={{
-                            borderRadius: "8px",
-                            padding: "1rem",
-                            margin: "0 auto",
-                            border: "1px solid",
-                            flex: "1"
-                        }}
-                    >
+                    <Box width="100%" sx={boxSX}>
                         <Typography
                             variant="h5"
                             color="#000000"
@@ -421,14 +404,7 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
 
                 {/* Power Consumption Chart */}
                 <Grid item xs={12} md={6}>
-                    <Box
-                        sx={{
-                            borderRadius: "8px",
-                            padding: "1rem",
-                            margin: "0 auto",
-                            border: "1px solid",
-                        }}
-                    >
+                    <Box sx={boxSX}>
                         <Typography
                             variant="h5"
                             color="#000000"
@@ -530,6 +506,6 @@ ${normalEnergy},${drEnergy},${savings},${savings / normalEnergy * 100},${savings
                     </MenuItem>
                 </Menu>
             </Box>
-        </Box>
+        </Box >
     );
 }
