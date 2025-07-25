@@ -1,5 +1,5 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Typography } from "@mui/material";
+import React from "react";
 import InfoListComponent from "./InfoListComponent.js";
 
 const data = [
@@ -49,10 +49,10 @@ const data = [
 
 export default function FAQ() {
     return (
-        <Box bgcolor={"primary.main"} p={2}>
+        <Box p={2}>
             <Typography
                 variant="h4"
-                color="common.white"
+                color="typography.primary.main"
                 sx={{ marginTop: 5, marginBottom: 1 }}
             >
                 Frequently Asked Questions

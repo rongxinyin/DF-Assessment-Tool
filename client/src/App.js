@@ -10,7 +10,11 @@ import Home from "./components/Home.js";
 import NotFound from "./components/NotFound.js";
 import Benchmarking from "./components/Benchmarking.js";
 import BenchmarkingData from "./components/BenchmarkingData.js";
-import ResidentialLanding from "./components/ResidentialLanding.js";
+import HouseType from "./components/HouseType.js";
+import Location from "./components/Location.js";
+import ResultsPage from "./components/ResultsPage.js";
+import Appliances from "./components/Appliances.js";
+import Calculation from "./components/Calculation.js";
 
 import AppBar from "./components/SiteAppBar.js";
 
@@ -21,7 +25,17 @@ const theme = createTheme({
             textTransform: "none",
             fontSize: "medium",
         },
+        primary: {
+            main: "#000000",
+        },
+        secondary: {
+            main: "#007681",
+        },
+        tertiary: {
+            main: "#BED7DD",
+        },
     },
+    /*
     palette: {
         primary: {
             main: "#00303C", // dark teal
@@ -48,6 +62,22 @@ const theme = createTheme({
         },
     },
     mode: "dark",
+    */
+    palette: {
+        primary: {
+            main: "#000000",
+        },
+        secondary: {
+            main: "#EEEEEE",
+        },
+        tertiary: {
+            main: "#EEEEEE",
+        },
+        white: {
+            main: "#FFFFFF",
+        },
+    },
+    mode: "dark",
 });
 
 export default function App() {
@@ -68,10 +98,31 @@ export default function App() {
                             element={<BenchmarkingData />}
                         />
                         <Route path="/*" element={<NotFound />} />
-                        <Route path="/residential" element={<ResidentialLanding />} />
+
+                        <Route path="/residential/house_type" element={<HouseType />} />
+                        <Route path="/residential/location" element={<Location />} />
+                        <Route path="/residential/results" element={<ResultsPage />} />
+                        <Route path="/residential/calculation" element={<Calculation />} />
+                        <Route path="/residential/appliances" element={<Appliances />} />
                     </Routes>
                 </Suspense>
             </BrowserRouter>
         </ThemeProvider>
     );
+};
+
+export const formControlSX = {
+    width: '100%',
+    marginBottom: 1,
+};
+
+export const textFieldSX = {
+    marginBottom: 1,
+    marginTop: 1,
+};
+
+export const rootSX = {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1
 }
