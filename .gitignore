@@ -1,3 +1,17 @@
 node_modules/
 .env
 .DS_Store
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Build artifacts
+*.tsbuildinfo
+
+# Large reference data (kept locally, too big for git)
+reference/pg_iep20_dr_v4_2015-10-14
+reference/data_used_paper/SmallOffice-1980-2004-3C-New.csv
+reference/git_dr_v4/

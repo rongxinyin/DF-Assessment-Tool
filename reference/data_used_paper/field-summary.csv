@@ -1,0 +1,31 @@
+,site_name,total_floor_area_ft2,ASHRAE_CZ,bldg_size,year_built,W/ft2_Avg
+0,300 Capitol Mall,426000.0,3B,large,1984.0,0.14166666666666666
+1,Alameda County Water,51200.0,3C,medium-large,1914.0,1.5675862068965516
+2,Brier Corporate Center,104501.0,3B,large,2005.0,0.19409090909090906
+3,CHCCC,87000.0,3B,medium-large,1999.0,1.0366666666666668
+4,Cisco Systems,4466000.0,3C,large,1999.0,0.17666666666666667
+5,Contra Costa County 50 Douglas,90000.0,3C,medium-large,1985.0,0.575
+6,Contra Costa County Summit Center,131000.0,3C,large,1985.0,0.3
+7,"Contra Costa County, 2530 Arnold",131000.0,3C,large,1987.0,0.5564516129032256
+8,"Contra Costa County, 50 Douglas",90000.0,3C,medium-large,1985.0,0.5582608695652175
+9,Echelon San Jose Headquarter,75000.0,3C,medium-large,2001.0,0.8462962962962963
+10,GSA National Archives & Records Administration,238000.0,3C,large,1973.0,0.04
+11,GSA Phillip Burton San Francisco Federal Building,1424000.0,3C,large,1964.0,-0.060000000000000005
+12,GSA Ronald V. Dellums Oakland Federal Building,1105000.0,3C,large,1993.0,0.37333333333333335
+13,"Gilead Science, 300 Lake",83000.0,3C,medium-large,1990.0,0.19470588235294117
+14,"Gilead Science, 342 Lake",32000.0,3C,medium,1990.0,1.2022222222222223
+15,"Gilead Science, 357 Lake",33000.0,3C,medium,1990.0,1.0847826086956522
+16,Inland Regional Center,81079.0,3B,medium-large,1994.0,0.2613636363636363
+17,Lakeside Tower,112717.0,3B,large,1990.0,0.8340909090909089
+18,OSIsoft,60000.0,3C,medium-large,2014.0,-0.016666666666666666
+19,One Carnegie Plaza,62800.0,3B,medium-large,1988.0,0.14
+20,One Carnegie Plaza (smaller one),38808.0,3B,medium,1988.0,0.12545454545454546
+21,One Parkside,70069.0,3B,medium-large,1993.0,0.16727272727272727
+22,One Vanderbilt,73730.0,3B,medium-large,1988.0,0.12590909090909091
+23,"Oracle Corporation, Rocklin",100000.0,3B,medium-large,1998.0,0.6390909090909092
+24,Seattle Municipal tower,1200000.0,4C,large,1990.0,0.40291666666666665
+25,TCCSB,104500.0,3B,large,2000.0,0.5662499999999999
+26,Three Carnegie Plaza,83698.0,3B,medium-large,2003.0,0.44363636363636355
+27,Two Carnegie Plaza,68955.0,3B,medium-large,1990.0,0.12454545454545451
+28,Two Parkside,80750.0,3B,medium-large,2001.0,0.3677272727272728
+29,Vanderbilt Plaza,119035.0,3B,large,2002.0,0.7081818181818182
