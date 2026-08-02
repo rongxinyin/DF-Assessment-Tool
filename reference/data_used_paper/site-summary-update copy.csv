@@ -1,0 +1,1099 @@
+site_id,site_name,short_name,construction,year_built,year_renovated,zip_code,city,state,CEC_CZ,ASHRAE_CZ,bldg_type_sub,bldg_type,number_floor,total_floor_area_ft2,conditioned_floor_area_ft2,peak_kW,hvac_type,hvac_plant,hvac_capacity,hvac_system,hvac_size_tons_sf,dr_strategy_implemented_1,dr_strategy_implemented_2,dr_strategy_implemented_3,dr_strategy_implemented_4,measure_code,baseline_model,reference
+1,300 Capitol Mall,300 CMall,,1984,1996,95814,Sacramento,CA,12,3B,Office,Office,1,426000,383000,1580.00,6 AHU with economizer,centrifugal chiller,1@2398 ton,VAV with perimeter reheat,,"Chilled water temp 44 ¡F to 47 ¡F
+Annex building modify monitored average zone temp down by 1.5 ¡F
+Supply fan VFD* lock
+Loading deck fan off
+Lobby lights off
+Fountain pump off","Chilled water temp to 55 ¡F
+Annex building avg. zone temp down 3 ¡F",,,"CDB10, CDB20, CDA13, CDA11, CDA40",OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+2,Albertsons,Albertsons,,1928,,94602,Oakland,CA,3,3C,Supermarket,Supermarket,1,50000,50000,450.00,,,,,,Overhead light 35% off,Anti-sweat door heater night-mode,,,CDA40,OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+3,Bank of America Concord Data Center,B of A,,1985,,94520,Concord,CA,12,3B,Bank office,Office,3,616000,708000,5380.00,52 AHU 104 variable speed fans,"VSD chiller, 3 primary CV pumps, 3 secondary VSD pumps","1@300 ton
+1@800 ton
+1@1200 ton",sigle duct VAV with perimeter electric reheat,,"Supply air temp reset 55 ¡F to 59 ¡F
+Duct static pressure 2.2 IWC to 1.8 IWC",Supply air temp reset to 59 ¡F,,,"CDB40, CDB50",OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+4,Joe Serna Jr. Cal/EPA Headquarters Building,Cal EPA,steel frame,2000,,95814,Sacramento,CA,12,3B,Office,Office,1,950000,950000,1990.00,,,,,,Duct static pressure 1.0 IWC 7 0.5 IWC,Turn off light where daylight is available,,,CDB50,OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+5,CANMET Energy Technology Centre - Varennes,CETC,,1990,,,Varennes,"Quebec, (Canada)",#N/A,#N/A,Research Facility,Office,1,45000,18000,240.00,"12 supply fans, 6 return fans/ 75kW/75hp . 60000CFM VFD",chiller,"2@70ton
+a iced bank of 70t",,,"Unload chiller and cool with ice storage
+Two air handling units off
+Electric humidifier off",,,,CDA11,OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+6,Cisco Systems,Cisco,,1999,,95134,San Jose,CA,4,3C,Office/Tech Lab,Office,24,4466000,4466000,27860.00,4 sets of supply fans(75-100hp) and return fans (25-30hp) for each building,"2-3 chiller units (400-650tons)
+for each building","2-3 chiller units (400-650tons)
+for each building",,,"VAV zone setup 2 ¡F 
+Computer Room AH setup 2 ¡F
+Boiler pump off & stairwell fan-coils off
+Boiler pump off & stairwell fan-coils off 
+Sweep lighting where daylight is available. 
+Stairwell, lobby, hallway lights off",,,,"CDB10, CDA40",OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+7,Contra Costa County 50 Douglas,50 Douglas,,1985,,94553,Martinez,CA,3,3C,Office,Office,1,90000,90000,500.00,3 roof top paskage units with DX cooling,"75 ton has 4 equal compressor stage, 90ton unit has 6 equal compressor stage","2@75 ton
+1@90 ton",sigle duct VAV with perimeter electric reheat,,Global zone setup 76 ¡F to 78 ¡F,Global zone setup to 80 ¡F,,,CDB10,OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+8,Contra Costa County Summit Center,Summit Ctr,,1985,,94553,Martinez,CA,3,3C,Office,Office,1,131000,131000,500.00,4 roof top paskage units with DX cooling,each unit has 8 equal compressor stage,4@60 ton,sigle duct VAV with perimeter electric reheat,,Global zone setup 76 ¡F 7 78 ¡F,"Global zone setup 7 80 ¡F
+2 of 3 Rooftop units off Lobby
+common area light off",,,CDB10,OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+9,Echelon San Jose Headquarter,Echelon,steel frame,2001,,95126,San Jose,CA,4,3C,Office,Office,1,75000,75000,410.00,total 4800 yond og packed units with VFD,,1@4800 ton,,,"Zone set point increase
+Dim office lighting",2 of 3 Rooftop units off Lobby,,,"CDB10, CDA40",OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+10,GSA Phillip Burton San Francisco Federal Building,450 GG,,1964,2000,94102,San Francisco,CA,3,3C,Federal Office,Office,1,1424000,1424000,2130.00,"8 AHU, VFD at supply and return fans (partially constant volume), courtrooms are by 13 package units","3 water-cooled chillers, a air-cooled chillers, 6 cooling towers",,dual duct VAV,,"Global zone setup 72 ¡F to 74 ¡F
+Global zone setback 70 ¡F to 68 ¡F",Global zone setup to 78 ¡F,,,"CDB10, CDB11",OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+11,GSA National Archives & Records Administration,NARA,,1973,,94066,San Bruno,CA,3,3C,Archive Storage,Office,1,238000,202000,280.00,15 AHU (SF/RF set) 10-40 hp VFD (3 of them),"water cooled chillers, 2 hp pumps, one rooftop unit, 5 hp","2@30 ton
+1@50 ton",,,Global zone setup 75 ¡F to 76 ¡F,Global zone setup to 78 ¡F,,,CDB10,OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+12,GSA Ronald V. Dellums Oakland Federal Building,OFB,steel frame,1993,,94612,Oakland,CA,3,3C,Federal Office,Office,1,1105000,978000,4100.00,"11 AHU 
+22 varaible speed fans
+47 smaller CV fans",chillers,"3@980 ton
+2@450 ton","perimeter: dual duct VAV with reheat
+core: single duct VAV without reheat",,"Global zone setup 72 ¡F to 76 ¡F
+Global zone setback 70 ¡F to 68 ¡F","Global zone setup to 78 ¡F
+Global zone setback to 66 ¡F",,,"CDB10, CDB11",OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+13,Kadant Grantek,Kadant,,1989,,54304,Green Bay,Wisconsin,#N/A,6A,Material Process,Industrial,1,100000,0,1440.00,,,,,,Transfer pump off,,,,CDA13,OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+14,Monterey Commerce Center,Monterey,concrete,1998,,93940,Monterey,CA,3,3C,Commercial,Office,1,170000,170000,N/A,4 RTU,,,VAV,,Lobby lights 33% off,,,,CDA40,OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+15,OSIsoft,OSIsoft,,2014,,94577,San Leandro,CA,3,3C,Office,Office,1,60000,60000,300.00,3 RTU,,"2@60 ton
+1@30 ton",,,Global zone setup 72 ¡F to 76 ¡F,Global zone setup to 78 ¡F,,,CDB10,OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+16,Roche Palo Alto,Roche,,1965,,94304,Palo Alto,CA,4,3C,"Cafeteria
+Auditorium",Restaurant,3,192000,192000,750.00,constant volume fans,chilled water is supplied by cental plant outside of the buildings,,,,Building-A2 supply fans off (50%),"Building-FS supply fans off (50%)
+Building-SS supply fans off (50%)",,,CDA11,OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+17,UC Santa Barbara Davidson Library,UCSB,,1926,2016,93117,Santa Barbara,CA,5,3C,Library,Library,1,289000,289000,1090.00,,virtual central plant,,,,"Supply fan VFD 70% limit 
+Economizer 100% open","Supply fan VFD 60% limit
+Duct static pressure reset 0.4 IWC (partial) 
+Heating/cooling valve close",,,"CDA11, CDB50",OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+18,"US Postal Service, San Jose Process & Distribution Center",USPS,concrete,1998,,95110,San Jose,CA,4,3C,Distribution Center,,1,390000,390000,1630.00,"constant volume package DX units: 17.5 tons (210 MBH), 5.0 tons(60MBH)","Chillers: 364 tons x2,Constant volume CW Pumps: 20 HP x3, Constant volumeCHW Pumps: 30 HP x3, Constant Volume CHW booster pump: 10 HP x1, Constant volume Cooling tower: 2 motors in each unit (40 HP/10 HP)",2@364 ton,,,Chiller demand 75% limit,Chiller demand 50% limit,,,CDA12,OAT_MA,"Piette, M. A., Watson, D. S., Motegi, N., & Bourassa, N. (2005). Automated Demand Response and Commissioning."
+19,Alameda County Water,ACWD,,1914,,94538,Fremont,CA,3,3C,"Office, lab",Office+Lab,1,51200,51200,347.00,,,,,,None.,"Boiler disabled
+CHW setpoint raised to 50 ¡F
+Current limiting to 70%. 
+SAT increased from 55 ¡F to 65 ¡F for AHUs 1, 2, 3 and Lab AHU.
+DSP setpoint decreased from 1.5"" to 1.0"".
+Zone setpoint increased to 75 ¡F.",Zone setpoint increased to 78 ¡F,Extend shed control 2 hours(until 8 pm),"CDB10, CDB20, CDB40, CDB50",OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+20,"Bank of America, Concord Technology Center",B of A,,1985,,94520,Concord,CA,12,3B,"Office, data center",Office+DataCenter,4,616000,708000,5680.00,,,,,,None.,None.,"Reduce DSP from 2.2"" to 1.4"".
+Lock fan VFD 3 minutes after the DSP reset.
+CHW setpoint increased
+5 ¡F at the secondary loop.Lock cooling valve position at the AHU.",None.,"CDA11, CDB20, CDB50, CDB60",OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+21,"Chabot Space and Science Center, Building 1&2",Chabot,,2000,,94619,Oakland,CA,3,3C,Museum,Museum,2,86000,86000,333.00,,,,,,"Free cooling when the OAT is below 62 ¡F
+Pre-cooling until noon at 70 ¡F average
+zone temp.","Drift zone setpoint to 74 ¡F, 4/3 ¡F each hour","Drift zone setpoint to 78F, 4/3 ¡F each hour",None.,"CDB10, CDB11",OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+22,"Contra Costa County, 2530 Arnold",2530 Arnold,,1987,,94553,Martinez,CA,3,3C,Office,Office,1,131000,131000,528.00,,,,,,None.,Zone setpoint increased 2 ¡F. (76 ¡F to 78 ¡F),Zone setpoint 4 ¡F up. (80 ¡F),VAV boxes are released one by one over a short interval.,CDB10,OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+23,"Contra Costa County, 50 Douglas",50 Douglas,,1985,,94553,Martinez,CA,3,3C,Office,Office,1,90000,90000,422.00,,,,,,None.,Zone setpoint increased 2 ¡F. (76 ¡F to 78 ¡F),Zone setpoint 4 ¡F up. (80 ¡F),VAV boxes are released one by one over a short interval.,CDB10,OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+24,"Echelon, San Jose Headquarter",Echelon,,2001,,95126,San Jose,CA,4,3C,"Corporate
+Headquarter",Office,1,75000,75000,403.00,,,,,,None.,"Hallway lighting turned off where there is ambient light
+Daylit office lights turned off
+Inner office lights dimmed to 20%","1 of 3 RTU turned off.
+DSP reduced from 1.5"" to 0.8""
+SAT increased from 55 to 65¡F.",None.,"CDA40, CDA12, CDB50, CDB40",OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+25,Fremont Unified School Irvington,Irvington,,1961,,94538,Fremont,CA,3,3C,Highschool,School,1,186000,186000,N/A,,,,,,"Precooling to 72 ¡F until
+11:50 a.m.",Raise temperature to 78¡F until 2:50 p.m.,"Turn off systems at 2:50pm. School closes at
+3pm. Office areas drift.",None.,"CDB10, CDB11",OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+26,"Gilead Science, 300 Lake",Gilead 300,,1990,,94404,Foster City,CA,3,3C,Office,Office,1,83000,83000,N/A,,,,,,"Shed control
+starts at 11 am.","AHU increase SAT from 55¡F
+to 65 ¡F.",Same as moderate price.,None.,"CDB10, CDB40",OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+27,"Gilead Science, 342 Lake",Gilead 342,,1990,,94404,Foster City,CA,3,3C,"Office, Lab",Office+Lab,1,32000,32000,464.00,,,,,,Shed control starts at 11 am,"AHU increase SAT from 55¡F to 65 ¡F.
+Zone setpoint increase to 75¡F (70 - 75 ¡F normal).",Same as moderate price.,None.,"CDB10, CDB40",OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+28,"Gilead Science, 357 Lake",Gilead 357,,1990,,94404,Foster City,CA,3,3C,"Office, Lab",Office+Lab,1,33000,33000,664.00,,,,,,Shed control starts at 11 am,"AHU SAT increased from 55¡F to 65 ¡F.
+Zone setpoint increased to 75¡F (70 - 75 ¡F normal).",Same as moderate price.,None.,"CDB10, CDB40",OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+29,IKEA East Palo Alto Store,IKEA,,2000,,94303,Palo Alto,CA,4,3C,Retail,Retail,1,300000,300000,2238.00,,,,,,None.,"Zone setpoint increased 2 ¡F
+at each RTU.","Zone setpoints increased
+to 76 ¡F.",None.,CDB10,OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+30,LBNL OSF,LBNL OSF,,1999,,94612,Oakland,CA,3,3C,"Data center, Office",Office+DataCenter,1,90000,70000,2189.00,,,,,,"Zone setpoint - 0 to 2¡F decrease
+in the morning for pre cooling.",Zone setpoint 2 - 6 ¡F up.,Zone setpoints increased a maximum of 6 ¡F up.,None.,"CDB10, CDB11",OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+31,"Oracle Corporation, Rocklin",Oracle,,1998,,95765,Rocklin,CA,11,3B,Office,Office,2,100000,100000,808.00,,,,,,None.,"DSP reduced 20% at supply fans.
+Shut off 3 of 12 RTUs
+in the sales area (building has 23 RTUs total).
+Shut off 5 RTUs in the sales area after October 6th.
+Limit chiller demand to 80%.","Zone setpoints increased 3¡F.
+Turn off every fourth light fixture in the sales area.
+Limit chiller demand to 65%.",None.,"CDA12, CDB10, CDB50, CDA40",OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+32,"Target, Hayward Store",Target,,1902,,94541,Hayward,CA,3,3C,Retail,Retail,1,130000,130000,428.00,,,,,,None.,,,None.,"CDB10, CDA40",OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+33,"United States Postal Service, San Jose Process and Distribution Center",USPS,,1998,,95110,San Jose,CA,4,3C,Postal service,Office,1,390000,390000,1676.00,,,,,,None.,,,The chiller demand limit will be increased in 5% increments with 15-30 minutes per step change,CDA12,OAT_MA,"Piette, M. A., D. Watson, N. Motegi, S. Kiliccote, and P. Xu. 2006. Automated Critical Peak Pricing Field Tests: Program Description and Results."
+34,"Bank of America, Concord",Office/Data Center,,1985,,94520,Concord,CA,12,3B,"Office, data center",Office+DataCenter,4,616000,708000,5712.00,,,,,,,,,,"CDB20, CDB40, CDB50, CDB60, CDA11",OAT_MA,"Piette, M A, D Watson, N Motegi, S Kiliccote, Mary Ann Piette, David Watson, Naoya Motegi, and Sila Kiliccote. 2007. Automated Critical Peak Pricing Field Tests: 2006 Pilot Program Description and Results."
+35,Chabot Space and Science Center,Chabot,,2000,,94619,Oakland,CA,3,3C,Museum,Museum,2,86000,86000,336.00,,,,,,,,,,"CDB10, CDB11",OAT_MA,"Piette, M A, D Watson, N Motegi, S Kiliccote, Mary Ann Piette, David Watson, Naoya Motegi, and Sila Kiliccote. 2007. Automated Critical Peak Pricing Field Tests: 2006 Pilot Program Description and Results."
+36,MDF,MDF,,1981,,94553,Martinez,CA,3,3C,Detention Facility,Detention Facility,1,172300,172300,561.00,,,,,,,,,,CDB10,OAT_MA,"Piette, M A, D Watson, N Motegi, S Kiliccote, Mary Ann Piette, David Watson, Naoya Motegi, and Sila Kiliccote. 2007. Automated Critical Peak Pricing Field Tests: 2006 Pilot Program Description and Results."
+37,Fremont Unified School Centerville,Centerville,,1980,,94536,Fremont,CA,3,3C,Junior High school,School,1,NA,NA,332.00,,,,,,,,,,"CDB10, CDB11",OAT_MA,"Piette, M A, D Watson, N Motegi, S Kiliccote, Mary Ann Piette, David Watson, Naoya Motegi, and Sila Kiliccote. 2007. Automated Critical Peak Pricing Field Tests: 2006 Pilot Program Description and Results."
+38,"IKEA, East Palo Alto Store",IKEA,,2000,,94303,Palo Alto,CA,4,3C,Furniture retail,Retail Furniture,1,300000,300000,1191.00,,,,,,,,,,CDB10,OAT_MA,"Piette, M A, D Watson, N Motegi, S Kiliccote, Mary Ann Piette, David Watson, Naoya Motegi, and Sila Kiliccote. 2007. Automated Critical Peak Pricing Field Tests: 2006 Pilot Program Description and Results."
+39,"IKEA, Emeryville Store",IKEA,,2000,,94608,Emeryville,CA,3,3C,Furniture retail,Retail Furniture,1,274000,274000,1466.00,,,,,,,,,,CDB10,OAT_MA,"Piette, M A, D Watson, N Motegi, S Kiliccote, Mary Ann Piette, David Watson, Naoya Motegi, and Sila Kiliccote. 2007. Automated Critical Peak Pricing Field Tests: 2006 Pilot Program Description and Results."
+40,Solectron Corporation,Solectron,,1993,,95035,Milpitas,CA,3,3C,"Office, Manufacture",Office,9,499206,499206,4655.00,,,,,,,,,,CDB10,OAT_MA,"Piette, M A, D Watson, N Motegi, S Kiliccote, Mary Ann Piette, David Watson, Naoya Motegi, and Sila Kiliccote. 2007. Automated Critical Peak Pricing Field Tests: 2006 Pilot Program Description and Results."
+41,Svenhard's Swedish Bakery,Svenhard's,,1988,,94612,Oakland,CA,3,3C,Bakery,Restaurant,1,101000,101000,696.00,,,,,,,,,,CDA40,OAT_MA,"Piette, M A, D Watson, N Motegi, S Kiliccote, Mary Ann Piette, David Watson, Naoya Motegi, and Sila Kiliccote. 2007. Automated Critical Peak Pricing Field Tests: 2006 Pilot Program Description and Results."
+42,"Sybase, Corporate Head",Sybase,,2002,,94568,Pleasanton,CA,3,3C,Hi-tech office,Office,2,425000,425000,1995.00,,,,,,,,,,CDA40,OAT_MA,"Piette, M A, D Watson, N Motegi, S Kiliccote, Mary Ann Piette, David Watson, Naoya Motegi, and Sila Kiliccote. 2007. Automated Critical Peak Pricing Field Tests: 2006 Pilot Program Description and Results."
+43,"Target, Antioch Store",Target Antioch,,2004,,94531,Antioch,CA,12,3B,Retail,Retail,1,140686,140686,572.00,,,,,,,,,,"CDB10, CDA11",OAT_MA,"Piette, M A, D Watson, N Motegi, S Kiliccote, Mary Ann Piette, David Watson, Naoya Motegi, and Sila Kiliccote. 2007. Automated Critical Peak Pricing Field Tests: 2006 Pilot Program Description and Results."
+44,"Target, Bakersfield Store",Target Bakersfield,,2000,,93304,Bakersfield,CA,13,3B,Retail,Retail,1,143941,143941,645.00,,,,,,,,,,"CDB10, CDA11, CDA40",OAT_MA,"Piette, M A, D Watson, N Motegi, S Kiliccote, Mary Ann Piette, David Watson, Naoya Motegi, and Sila Kiliccote. 2007. Automated Critical Peak Pricing Field Tests: 2006 Pilot Program Description and Results."
+45,Trane,Trane,,2000,,95677,Rocklin,CA,11,3B,"Warehouse, office",Warehouse,,25000,,319.23,Ten constant volume RTUÕs each with 2 stage compressors,,,,,"Precool, reset thermostat",,,,"CDB10, CDB11",OAT_MA,"Page, Janie, Sila Kiliccote, Han Dudley, Mary Ann Piette, Albert K. Chiu, Bashar Kellow, Ed Koch, and Paul Lipkin Akuacom. 2011. Automated Demand Response Technology Demonstration for Small and Medium Commercial Buildings."
+46,LimeAmps,LimeAmps,,1990,,95401,Santa Rosa,CA,2,3C,Convenience store,Retail,,3531,,33.83,2 single stage constant volume 4 ton units; compressors at ground level,,,,,"Duty cycle HVAC, deli counter, and ice machine",,,,"CDA12, CDA30",OAT_MA,"Page, Janie, Sila Kiliccote, Han Dudley, Mary Ann Piette, Albert K. Chiu, Bashar Kellow, Ed Koch, and Paul Lipkin Akuacom. 2011. Automated Demand Response Technology Demonstration for Small and Medium Commercial Buildings."
+47,LimeAmps Sebastopol,LimeAmps,,1990,,95472,Sebastopol,CA,1,4C,Restaurant,Restaurant,,4200,,44.79,3 packaged units: Two 5 ton units and one 4 ton unit,,,,,"Duty cycle HVAC, walk_in cooler",,,,"CDA12, CDA30",OAT_MA,"Page, Janie, Sila Kiliccote, Han Dudley, Mary Ann Piette, Albert K. Chiu, Bashar Kellow, Ed Koch, and Paul Lipkin Akuacom. 2011. Automated Demand Response Technology Demonstration for Small and Medium Commercial Buildings."
+48,Our Home Spaces,,,1990,,94945,Novato,CA,2,3C,Small office,Office,,800,,6.09,,,,,,Reset thermostat,,,,CDB10,OAT_MA,"Page, Janie, Sila Kiliccote, Han Dudley, Mary Ann Piette, Albert K. Chiu, Bashar Kellow, Ed Koch, and Paul Lipkin Akuacom. 2011. Automated Demand Response Technology Demonstration for Small and Medium Commercial Buildings."
+49,InThrMa,,,1990,,94565,Pittsburg,CA,12,3B,Pre-school,School,,18250,,56.96,2 constant volume units,,,,,"Reset thermostats,
+duty cycle appliances",,,,"CDB10, CDA30",OAT_MA,"Page, Janie, Sila Kiliccote, Han Dudley, Mary Ann Piette, Albert K. Chiu, Bashar Kellow, Ed Koch, and Paul Lipkin Akuacom. 2011. Automated Demand Response Technology Demonstration for Small and Medium Commercial Buildings."
+50,Lutron,Lutron,,1990,,94612,Oakland,CA,3,3C,Small office,Office,,20000,,71.38,,,,,,Reduce lighting levels by zones,,,,CDA40,OAT_MA,"Page, Janie, Sila Kiliccote, Han Dudley, Mary Ann Piette, Albert K. Chiu, Bashar Kellow, Ed Koch, and Paul Lipkin Akuacom. 2011. Automated Demand Response Technology Demonstration for Small and Medium Commercial Buildings."
+51,Enmetric,Enmetric,,1990,,94303,Palo Alto,CA,4,3C,Small office,Office,,13000,,25.84,,,,,,Control MELs (plug loads),,,,CDA30,OAT_MA,"Page, Janie, Sila Kiliccote, Han Dudley, Mary Ann Piette, Albert K. Chiu, Bashar Kellow, Ed Koch, and Paul Lipkin Akuacom. 2011. Automated Demand Response Technology Demonstration for Small and Medium Commercial Buildings."
+52,EnergyETC,EnergyETC,,1993,,94587,Union City,CA,3,3C,Small office,Office,,2200,,6.59,One constant volume single compressor RTU,,,,,Reset thermostat,,,,CDB10,OAT_MA,"Page, Janie, Sila Kiliccote, Han Dudley, Mary Ann Piette, Albert K. Chiu, Bashar Kellow, Ed Koch, and Paul Lipkin Akuacom. 2011. Automated Demand Response Technology Demonstration for Small and Medium Commercial Buildings."
+53,Applied Power Technologies,Applied Power Technologies,,1974,,95008,Campbell,CA,4,3C,Small office,Office,,2070,,18.24,"2 RTUÕs rated 20A and 16A, respectively",,,,,"Reduce lighting levels by zone, reset
+thermostat",,,,"CDB10, CDA40",OAT_MA,"Page, Janie, Sila Kiliccote, Han Dudley, Mary Ann Piette, Albert K. Chiu, Bashar Kellow, Ed Koch, and Paul Lipkin Akuacom. 2011. Automated Demand Response Technology Demonstration for Small and Medium Commercial Buildings."
+54,HD Supply,,,1990,,93901,Salinas,CA,3,3C,"Food warehouse, small retail",Retail,,6000,,25.83,,,,,,"Reset thermostat, duty cycle freezers,
+control MELs",,,,"CDB10, CDA30",OAT_MA,"Page, Janie, Sila Kiliccote, Han Dudley, Mary Ann Piette, Albert K. Chiu, Bashar Kellow, Ed Koch, and Paul Lipkin Akuacom. 2011. Automated Demand Response Technology Demonstration for Small and Medium Commercial Buildings."
+55,NetApp,NetApp,,2013,,94089,Sunnyvale,CA,4,3C,data center,DataCenter,,101355,,,,,,,,Space HVAC setpoints are raised to 78*F from 75*F. 50% of lights are turned off (and kept off by programming).,,,,"CDB10, CDA40",OAT_MA,"Ghatikar, G., Piette, M. A., Fujita, S., McKane, A., Dudley, J. H., Radspieler, A., É Shroyer, D. (2009). Demand Response and Open Automated Demand Response Opportunities for Data Centers. https://doi.org/10.2172/981725"
+56,LBNL 50B,,concrete,1990,2012,94720,Berkeley,CA,3,3C,data center,DataCenter,,5000,,550.00,NetApp,SDSC,UC Berkeley,,,"Server and CRAC unit shutdown
+Load Shifting or Queuing IT jobs Ð Server idling
+Temperature set point adjustment
+Shutdown and idling of IT storage clusters",,,,"CDB10, CDA30",10/10 baselines with morning adjustment,"Ghatikar, Girish, Venkata Ganti, Nance Matson, and Mary Ann Piette. 2012. Demand Response Opportunities and Enabling Technologies for Data Centers: Findings from Field Studies."
+57,San Diego Supercomputer Center,SDSC,,1985,,92037,La Jolla,CA,7,3B,,DataCenter,,19000,,2300.00,42%,28%,40%,,,Load migration between heterogeneous systems.,,,,CDA30,10/10 baselines with morning adjustment,"Ghatikar, Girish, Venkata Ganti, Nance Matson, and Mary Ann Piette. 2012. Demand Response Opportunities and Enabling Technologies for Data Centers: Findings from Field Studies."
+58,University of California,UC Berkeley,,1990,,94702,Berkeley,CA,3,3C,,DataCenter,,10000,,1000.00,6%,1%,5%,,,Load migration between homogeneous systems6,,,,CDA30,10/10 baselines with morning adjustment,"Ghatikar, Girish, Venkata Ganti, Nance Matson, and Mary Ann Piette. 2012. Demand Response Opportunities and Enabling Technologies for Data Centers: Findings from Field Studies."
+59,Three Carnegie Plaza,,concrete,2003,,92408,San Bernardino,CA,10,3B,Office,Office,,83698,,311.00,Packaged DX Units,,2 @ 50 Ton,VAV,,,,,,"CDB10, CDB11",AVHOAT,"Yin, Rongxin, Peng Xu, Mary Ann Piette, and Sila Kiliccote. 2010. ÒStudy on Auto-DR and Pre-Cooling of Commercial Buildings with Thermal Mass in California.Ó Energy and Buildings 42(7):967Ð75."
+60,Two Carnegie Plaza,,concrete,1990,,92408,San Bernardino,CA,10,3B,Office,Office,,68955,,293.00,Packaged DX Units,,"2 @ 55 Ton
+2 @ 50 Ton",VAV,,,,,,"CDB10, CDB11",AVHOAT,"Yin, Rongxin, Peng Xu, Mary Ann Piette, and Sila Kiliccote. 2010. ÒStudy on Auto-DR and Pre-Cooling of Commercial Buildings with Thermal Mass in California.Ó Energy and Buildings 42(7):967Ð75."
+61,One Carnegie Plaza,,concrete,1988,,92408,San Bernardino,CA,10,3B,Office,Office,,62800,,368.00,Packaged DX Units,,"2 @ 55 Ton
+2 @ 50 Ton",VAV,,,,,,"CDB10, CDB11",AVHOAT,"Yin, Rongxin, Peng Xu, Mary Ann Piette, and Sila Kiliccote. 2010. ÒStudy on Auto-DR and Pre-Cooling of Commercial Buildings with Thermal Mass in California.Ó Energy and Buildings 42(7):967Ð75."
+62,One Carnegie Plaza (smaller one),,concrete,1988,,92408,San Bernardino,CA,10,3B,Office,Office,,38808,,221.00,Packaged DX Units,,"1 @ 50 Ton
+1 @ 60 Ton",VAV,,,,,,"CDB10, CDB11",AVHOAT,"Yin, Rongxin, Peng Xu, Mary Ann Piette, and Sila Kiliccote. 2010. ÒStudy on Auto-DR and Pre-Cooling of Commercial Buildings with Thermal Mass in California.Ó Energy and Buildings 42(7):967Ð75."
+63,One Vanderbilt,,steel frame,1988,,92408,San Bernardino,CA,10,3B,Office,Office,,73730,,445.00,Packaged DX Units,,"3 @ 55 Ton
+1 @ 60 Ton",VAV,,,,,,"CDB10, CDB11",AVHOAT,"Yin, Rongxin, Peng Xu, Mary Ann Piette, and Sila Kiliccote. 2010. ÒStudy on Auto-DR and Pre-Cooling of Commercial Buildings with Thermal Mass in California.Ó Energy and Buildings 42(7):967Ð75."
+64,One Parkside,,steel frame,1993,,92408,San Bernardino,CA,10,3B,Office,Office,,70069,,342.00,Packaged DX Units,,4 @ 55 Ton,VAV,,,,,,"CDB10, CDB11",AVHOAT,"Yin, Rongxin, Peng Xu, Mary Ann Piette, and Sila Kiliccote. 2010. ÒStudy on Auto-DR and Pre-Cooling of Commercial Buildings with Thermal Mass in California.Ó Energy and Buildings 42(7):967Ð75."
+65,Lakeside Tower,,steel frame,1990,,92408,San Bernardino,CA,10,3B,Office,Office,,112717,,558.00,Central Chiller (reciprocating),,2 @ 175 Ton,VAV,,,,,,"CDB10, CDB11",AVHOAT,"Yin, Rongxin, Peng Xu, Mary Ann Piette, and Sila Kiliccote. 2010. ÒStudy on Auto-DR and Pre-Cooling of Commercial Buildings with Thermal Mass in California.Ó Energy and Buildings 42(7):967Ð75."
+66,Two Parkside,,steel frame,2001,,92408,San Bernardino,CA,10,3B,Office (90%)+Classroom (10%),Office,,80750,,417.00,Packaged DX Units,,2 @ 90 Ton,VAV,,,,,,"CDB10, CDB11",AVHOAT,"Yin, Rongxin, Peng Xu, Mary Ann Piette, and Sila Kiliccote. 2010. ÒStudy on Auto-DR and Pre-Cooling of Commercial Buildings with Thermal Mass in California.Ó Energy and Buildings 42(7):967Ð75."
+67,Brier Corporate Center,,steel frame,2005,,92408,San Bernardino,CA,10,3B,Office+Data Center,Office+DataCenter,,104501,,473.00,Packaged DX Units,,"1 @ 80 Ton
+2 @ 75 Ton",VAV,,,,,,"CDB10, CDB11",AVHOAT,"Yin, Rongxin, Peng Xu, Mary Ann Piette, and Sila Kiliccote. 2010. ÒStudy on Auto-DR and Pre-Cooling of Commercial Buildings with Thermal Mass in California.Ó Energy and Buildings 42(7):967Ð75."
+68,Vanderbilt Plaza,,steel frame,2002,,92408,San Bernardino,CA,10,3B,Office (75%)+Classroom (25%),Office,,119035,,563.00,Packaged DX Units,,"2 @ 55 Ton
+2 @ 50 Ton",VAV,,,,,,"CDB10, CDB11",AVHOAT,"Yin, Rongxin, Peng Xu, Mary Ann Piette, and Sila Kiliccote. 2010. ÒStudy on Auto-DR and Pre-Cooling of Commercial Buildings with Thermal Mass in California.Ó Energy and Buildings 42(7):967Ð75."
+69,Inland Regional Center,,concrete,1994,,92408,San Bernardino,CA,10,3B,Office (75%)+Auditorium (25%),Office,,81079,,524.00,Packaged DX Units,,"2 @ 105 Ton
+2 @ 90 Ton",VAV,,,,,,"CDB10, CDB11",AVHOAT,"Yin, Rongxin, Peng Xu, Mary Ann Piette, and Sila Kiliccote. 2010. ÒStudy on Auto-DR and Pre-Cooling of Commercial Buildings with Thermal Mass in California.Ó Energy and Buildings 42(7):967Ð75."
+70,CHCCC,Cigna,concrete,1999,,93277,Visalia,CA,13,3B,Office,Office,,87000,,700.00,rooftop AHU,,8@ 50Ton,VAV,,The pre-cooling and zone temperature reset strategies,,,,"CDB10, CDB11",baseline days for each test day were selected based on similarity of peak outside air temperature,"Xu, P, Yin, R., Brown, C., & Kim, D. E. (2009). Demand Shifting with Thermal Mass in Large Commercial Buildings in a California Hot Climate Zone."
+71,TCCSB,TCCSB,steel frame,2000,,92408,San Bernadino,CA,10,3B,Office,Office,,104500,,500.00,Packaged DX Units,,,VAV,,,,,,"CDB10, CDB11",baseline days for each test day were selected based on similarity of peak outside air temperature,
+72,Santa Rosa Federal Building,,concrete,1975,,95404,Santa Rosa,CA,2,3C,Office,Office,,80000,,350.00,chiller,,"3@ 75Ton
+2@ 60Ton",VAV,,The pre-cooling and zone temperature reset strategies,,,,"CDB10, CDB11",baseline days for each test day were selected based on similarity of peak outside air temperature,"Xu, Peng, Haves, P., Piette, M., Berkeley National Laboratory, L., Zagreus, L., & of California at Berkeley, U. (2006). DEMAND SHIFTING WITH THERMAL MASS IN LARGE COMMERICAL BUILDINGS: FILED TESTS, SIMULATIONS AND AUDITS California Energy Commission."
+73,McCuen Center One,McCuen Properties,,2008,,95864,Sacramento,CA,12,3B,Office+courtroom,Office,,84000,,300.00,rooftop package units,,,VAV,,The pre-cooling and zone temperature reset strategies,,,,"CDB10, CDB11",baseline days for each test day were selected based on similarity of peak outside air temperature,
+74,Retail C1,Retail C1,,1990,,92101,San Diego,CA,7,3B,retail,Retail,,4000,,31.00,4 RTUs,,,,,Pre-cool to 70 DegF 1 hr prior to the event,"Increase zone temperature setpoint to 78 DegF, turn
+fans to AUTO mode, group RTUs by two's and15 min. duty cycle. Turn off 50% of 89-Watt fluorescent fixtures and 100% 32-Watt fluorescent U-tube
+fixtures. Shut off hot water heater.","Stagger out slowly to
+avoid a rebound",,"CDB10, CDA12, CDA40","CBP baseline model
+Morning adjusted CBP
+OAT regression","Schwarzenegger, A. (2008). AUTOMATION OF CAPACITY BIDDING WITH AN AGGREGATOR USING OPEN AUTOMATED DEMAND RESPONSE PIER FINAL PROJECT REPORT California Energy Commission."
+75,Retail C2,Retail C2,,1990,,92101,San Diego,CA,7,3B,retail,Retail,,5800,,59.00,4 RTUs,,,,,Pre-cool to 70 DegF 1 hr prior to the event,"Increase zone temperature setpoint to 78 DegF, turn fans to AUTO mode, group RTUs by two's and15 min. duty cycle. Turn off 75% of 89-Watt fluorescent fixtures and 50% 32-Watt fluorescent U-tube
+fixtures. Shut off hot water heater.",Stagger out slowly to avoid a rebound,,"CDB10, CDA12, CDA40","CBP baseline model
+Morning adjusted CBP
+OAT regression","Schwarzenegger, A. (2008). AUTOMATION OF CAPACITY BIDDING WITH AN AGGREGATOR USING OPEN AUTOMATED DEMAND RESPONSE PIER FINAL PROJECT REPORT California Energy Commission."
+76,Retail C3,Retail C3,,1990,,92101,San Diego,CA,7,3B,retail,Retail,,5400,,62.00,4 RTUs,,,,,Pre-cool to 70 DegF 1 hr prior to the event,"Increase zone temperature setpoint to 78 DegF, turn fans to AUTO mode, group RTUs by two's and 15 min. duty cycle. Turn off 50% of 89-Watt fluorescent fixtures and 100% 32-Watt fluorescent U-tube
+fixtures. Shut off hot water heater.",Stagger out slowly to avoid a rebound,,"CDB10, CDA12, CDA40","CBP baseline model
+Morning adjusted CBP
+OAT regression","Schwarzenegger, A. (2008). AUTOMATION OF CAPACITY BIDDING WITH AN AGGREGATOR USING OPEN AUTOMATED DEMAND RESPONSE PIER FINAL PROJECT REPORT California Energy Commission."
+77,Retail C4,Retail C4,,1990,,92101,San Diego,CA,7,3B,retail,Retail,,5000,,40.00,5 RTUs,,,,,Pre-cool to 70 DegF 1 hr prior to the event,"Increase zone temperature setpoint to 78 DegF, turn fans to AUTO mode, group RTUs by two's and 15 min. duty cycle. Turn off 50% of all lighting. Shut
+off hot water heater.",Stagger out slowly to avoid a rebound,,"CDB10, CDA12, CDA40","CBP baseline model
+Morning adjusted CBP
+OAT regression","Schwarzenegger, A. (2008). AUTOMATION OF CAPACITY BIDDING WITH AN AGGREGATOR USING OPEN AUTOMATED DEMAND RESPONSE PIER FINAL PROJECT REPORT California Energy Commission."
+78,Retail C5,Retail C5,,1990,,92101,San Diego,CA,7,3B,retail,Retail,,4436,,10.00,4 RTUs,,,,,Pre-cool to 70 DegF 1 hr prior to the event,"Increase zone temperature setpoint to 78 DegF, turn fans to AUTO mode, group RTUs by two's and 15 min. duty cycle. Turn off 50% of 89-Watt fluorescent fixtures and 100% 32-Watt fluorescent U-tube fixtures and 100% halogen fixtures. Shut off hot
+water heater.",Stagger out slowly to avoid a rebound,,"CDB10, CDA12, CDA40","CBP baseline model
+Morning adjusted CBP
+OAT regression","Schwarzenegger, A. (2008). AUTOMATION OF CAPACITY BIDDING WITH AN AGGREGATOR USING OPEN AUTOMATED DEMAND RESPONSE PIER FINAL PROJECT REPORT California Energy Commission."
+79,Retail C6,Retail C6,,1990,,92101,San Diego,CA,7,3B,retail,Retail,,23000,,112.00,1 AHU,,,,,Pre-cool to 70 DegF 1 hr prior to the event,"Increase zone temperature setpoint to 78 DegF, disable the baler, shut off hot water heater. Turn off 50% of 59-Watt fluorescent fixtures.",No,,"CDB10, CDA12, CDA40","CBP baseline model
+Morning adjusted CBP
+OAT regression","Schwarzenegger, A. (2008). AUTOMATION OF CAPACITY BIDDING WITH AN AGGREGATOR USING OPEN AUTOMATED DEMAND RESPONSE PIER FINAL PROJECT REPORT California Energy Commission."
+80,GSA,GSA,steel frame,1993,,94612,Oakland,CA,3,3C,Office,Office,,978000,,4100.00,,,,,,"Global zone set- point increase
+Direct control of fans",,,,CDB10,"OAT regression (Whole-Building Level Method)
+Component Level Method","Piette, M A, Watson, D. S., Motegi, N., & Bourassa, N. (2005). Findings from the 2004 Fully Automated Demand Response Tests in Large Facilities."
+81,University of California at Merced,UCM,,2005,,95340,Merced,CA,12,3B,,Education,,800000,,3000.00,,,,VAV,,chilled water storage + GTA,,,,"CDB10, CDA12","three-in-ten (3/10) baseline
+morning-adjusted outside air
+temperature regression (OAT_MA),","Granderson, J., Dudley, J. H., Kiliccote, S., & Piette, M. A. (2009). Chilled Water Storage System and Demand Response at the University of California at Merced and published in the Proceedings."
+82,Taco Bell,,,1990,,92675,San Juan Capistrano,CA,6,3B,restaurant,Restaurant,,2200,,,,,,,,precool+GTA,,,,"CDB10, CDB11","3/10_MA
+OAT_MA
+3/10","Kiliccote, S, Piette, M. A., Dudley, J. H., Koch, E., & Akuacom, D. H. (2009). Open Automated Demand Response for Small Commercial Buildings."
+83,SDH,UC Berkeley Sutardja Dai Hall,,2009,,94720,Berkeley,CA,3,3C,Large Commercial,Office,,141000,,480.00,,,,,,"Control of VAVs, fans, Lighting w/ a BAS",,,,"CDA40, CDA11","3/10_MA
+OAT_MA
+3/10","Kiliccote, Sila, Lanzisera, S., Liao, A., Schetrit, O., & Piette, M. A. (2014). Fast DR: Controlling Small Loads over the Internet."
+84,Small Commercial 1,Small Commercial 1,,1990,,95110,San Jose,CA,4,3C,Small Commercial 1,Office,,5900,,,,,,,,"Control of Tstats
+(Split system)",,,,CDB10,OAT,"Kiliccote, Sila, Lanzisera, S., Liao, A., Schetrit, O., & Piette, M. A. (2014). Fast DR: Controlling Small Loads over the Internet."
+85,Small Commercial 2,Small Commercial 2,,1990,,95110,San Jose,CA,4,3C,Small Commercial 2,Office,,6250,,,,,,,,Control of Tstats,,,,CDB10,OAT,"Kiliccote, Sila, Lanzisera, S., Liao, A., Schetrit, O., & Piette, M. A. (2014). Fast DR: Controlling Small Loads over the Internet."
+86,"Small Commercial
+3","Small Commercial
+3",,1990,,95110,San Jose,CA,4,3C,"Small Commercial
+3",Office,,14400,,,,,,,,Control of Tstats,,,,CDB10,OAT,"Kiliccote, Sila, Lanzisera, S., Liao, A., Schetrit, O., & Piette, M. A. (2014). Fast DR: Controlling Small Loads over the Internet."
+87,Small Commercial 4,Small Commercial 4,,1990,,95110,San Jose,CA,4,3C,Small Commercial 4,Office,,9500,,,,,,,,Control of Tstats,,,,CDB10,OAT,"Kiliccote, Sila, Lanzisera, S., Liao, A., Schetrit, O., & Piette, M. A. (2014). Fast DR: Controlling Small Loads over the Internet."
+88,Residential 1,Residential 1,,1990,,95202,Stockton,CA,12,3B,Residential 1,Residential,,2076,,,,,,,,"VRV limiting -
+mini split system",,,,CDA12,OAT,"Kiliccote, Sila, Lanzisera, S., Liao, A., Schetrit, O., & Piette, M. A. (2014). Fast DR: Controlling Small Loads over the Internet."
+89,"Residential
+2","Residential
+2",,1990,,95202,Stockton,CA,12,3B,"Residential
+2",Residential,,1690,,,,,,,,"compressor
+off/on",,,,CDA12,OAT,"Kiliccote, Sila, Lanzisera, S., Liao, A., Schetrit, O., & Piette, M. A. (2014). Fast DR: Controlling Small Loads over the Internet."
+90,"Residential
+3","Residential
+3",,1990,,95202,Stockton,CA,12,3B,"Residential
+3",Residential,,1140,,,,,,,,"compressor
+off/on",,,,CDA12,OAT,"Kiliccote, Sila, Lanzisera, S., Liao, A., Schetrit, O., & Piette, M. A. (2014). Fast DR: Controlling Small Loads over the Internet."
+91,Residential 4,Residential 4,,1990,,94612,Oakland,CA,3,3C,Residential 4,Residential,,1400,,,,,,,,,,,,CDA12,OAT,"Kiliccote, Sila, Lanzisera, S., Liao, A., Schetrit, O., & Piette, M. A. (2014). Fast DR: Controlling Small Loads over the Internet."
+92,McKinstry,McK,,1950,,98134,Seattle,WA,#N/A,4C,office,Office,,100000,,347.00,23 RTU,,,7VAV+16 CAV,,Uniformly turn off half of the 23 roof-top units for 15 minutes and alternate with the remaining units every 15 minutes,Stage turning on equipment every 2 minutes,,,CDA12,OAT,"Kiliccote, S, Piette, M. A., & Dudley, J. H. (2009). Northwest Open Automated Demand Response Technology Demonstration Project."
+93,Target-T1284,Target,,1990,,98125,Seattle,WA,#N/A,4C,retail,Retail,,165667,,685.00,RTU,,,VAV,,"Turn off 50% of sales area lights, turn off two out of 12 roof- top units and decrease setpoints by 2 ¼F",,,,"CDB10, CDA40",Average of similar day baseline,"Kiliccote, S, Piette, M. A., & Dudley, J. H. (2009). Northwest Open Automated Demand Response Technology Demonstration Project."
+94,Target-T0637,Target,,1990,,98126,Seattle,WA,#N/A,4C,retail,Retail,,99471,,225.00,RTU,,,VAV,,"Turn off 50% of sales area lights, turn off two out of 12 roof- top units and decrease setpoints by 2 ¼F",,,,"CDB10, CDA40",Average of similar day baseline,"Kiliccote, S, Piette, M. A., & Dudley, J. H. (2009). Northwest Open Automated Demand Response Technology Demonstration Project."
+95,Seattle Municipal tower,SMT,,1990,,98104,Seattle,WA,#N/A,4C,office,Office,,1200000,,6168.00,48 AHU,,,690 VAV,,Decrease setpoints from 72 ¼F to 68 ¼F on selected 24 floors out of 62 floors. Cycle VAV boxes (690) and corresponding air handling units (AHUs) (48).,Set setpoints back 1¼ every 15 minutes and bring back quarter of the equipment on line every five minutes.,,,CDB10,Average of similar day baseline,"Kiliccote, S, Piette, M. A., & Dudley, J. H. (2009). Northwest Open Automated Demand Response Technology Demonstration Project."
+96,Seattle University,SU,,1990,,98122,Seattle,WA,#N/A,4C,education,Education,,99840,,841.00,4 AHU,,,102 VAV,,Pre-heat at 5 am at 74 ¼F (only on the day-ahead days because pending signal for day-of events are received at 6 am) Decrease set point to 68 ¼F. Cycle cabinet heaters (7) and unit heaters (2) 20 minutes every 30 minute. Cycle through half of variable air volume (VAV)/Air terminal boxes (75) and AHU fans (4) every half hour. Set CO2 setpoint up by 200 ppm. Turn off hot water panel radiator.,"Return setpoints to original levels (maximum rate of setpoint change is 1¼ per 15 minutes) and turn half of units on, then turn remainder of units on five minutes later",,,CDB10,Average of similar day baseline,"Kiliccote, S, Piette, M. A., & Dudley, J. H. (2009). Northwest Open Automated Demand Response Technology Demonstration Project."
+97,NY Office 1,,,1990,,,New York,NY,#N/A,4A,office,Office,,160000,1400000,6190.00,,,"3@1350 ton
+1@900 ton",CAV with reheat,,Table 4 summarized,,,,"CDB10, CDA40, CDA13",NYISO's Weather-Sensitive Customer Baseline6,"Kim, Joyce Jihyun, Rongxin Yin, and Sila Kiliccote. 2013. LBNL-6470E Automated Demand Response Technologies and Demonstration in New York City Using OpenADR."
+98,NY Office 2,,,1990,,,New York,NY,#N/A,4A,office,Office,,1700000,,3940.00,,,"1@2300 ton
+1@2100 ton
+1@1600 ton",VAV with reheat,,,,,,"CDB10, CDA40, CDA13",NYISO's Weather-Sensitive Customer Baseline7,"Kim, Joyce Jihyun, Rongxin Yin, and Sila Kiliccote. 2013. LBNL-6470E Automated Demand Response Technologies and Demonstration in New York City Using OpenADR."
+99,NY Office 3,,,1990,,,New York,NY,#N/A,4A,office,Office,,1400000,,4640.00,VSD,,1@400 ton,VAV with reheat,,,,,,"CDB10, CDA40, CDA13",NYISO's Weather-Sensitive Customer Baseline8,"Kim, Joyce Jihyun, Rongxin Yin, and Sila Kiliccote. 2013. LBNL-6470E Automated Demand Response Technologies and Demonstration in New York City Using OpenADR."
+100,NYU,,,1990,,,New York,NY,#N/A,4A,campus,Education,,122000,,600.00,VSD,,1@400 ton,VAV with reheat,,,,,,"CDB10, CDA40, CDA13",NYISO's Weather-Sensitive Customer Baseline9,"Kim, Joyce Jihyun, Rongxin Yin, and Sila Kiliccote. 2013. LBNL-6470E Automated Demand Response Technologies and Demonstration in New York City Using OpenADR."
+101,71 Stevenson,71 Stevenson,,1987,,94105,San Francisco,CA,3,3C,office,Office,,323000,323000,1063.00,,,,,,global temperature adjustment of 4 ûF and static reset of 0.2 in. w.g.,,,,"CDB10, CDB50",10/10_MA_CBL,PGE ADR Project
+102,CDPH Richmond Building P,CDPH Richmond LEED Silver EStart 100,,2005,,94804,Richmond,CA,3,3C,State Government,Office,,205153,205153,1889.00,,,,,,"Global temperature adjustment of 78F, Reduce VFD speeds by 10%, Supply temperature reset of 4 degrees, Chiller water temperature increase of
+6 degrees",,,,"CDB10, CDA11, CDB40, CDB20",10/10_MA_CBL,PGE ADR Project
+103,CDPH Richmond Building A-K,CDPH Richmond,,2009,,94804,Richmond,CA,3,3C,State Government,Office,,492000,492000,3497.00,,,,,,"Global temperature adjustment of 78F, Reduce VFD speeds by 10%, Supply temperature reset of 4 degrees, Chiller water temperature increase of
+6 degrees",,,,"CDB10, CDA11, CDB40, CDB20",10/10_MA_CBL,PGE ADR Project
+104,"Kilroy LP, 100 1st Street",Kilroy LP,,1988,,94105,San Francisco,CA,3,3C,office,Office,,446490,446490,1598.00,,,,,,Reduce AHU and central plant demand to 50%,,,,"CDA11, CDA12",10/10_MA_CBL,PGE ADR Project
+105,"Kilroy LP, 303 2nd Street",Kilroy LP,,1988,,94107,San Francisco,CA,3,3C,office,Office,,740047,740047,2692.00,,,,,,Reduce AHU and central plant demand to 50%,,,,"CDA11, CDA12",10/10_MA_CBL,PGE ADR Project
+106,"Kilroy LP, 370 3rd Street",Kilroy LP,,1975,,94107,San Francisco,CA,3,3C,office,Office,,408331,408331,1407.00,,,,,,Reduce AHU and central plant demand to 50%,,,,"CDA11, CDA12",10/10_MA_CBL,PGE ADR Project
+107,"Kilroy LP, 201 3rd Street",Kilroy LP,,1983,,94107,San Francisco,CA,3,3C,office,Office,,346538,346538,881.00,,,,,,Reduce AHU and central plant demand to 50%,,,,"CDA11, CDA12",10/10_MA_CBL,PGE ADR Project
+108,VISA 800 Metro Center,Visa,,1996,,94404,Foster City,CA,3,3C,office,Office,,296086,296086,948.00,,,,,,"Raise temperature by 4 degrees, Lower duct static pressure, Dim down lights by 30%",,,,"CDB10, CDA40, CDB50",10/10_MA_CBL,PGE ADR Project
+109,VISA 900 Metro Center,Visa,,1993,,94404,Foster City,CA,3,3C,office,Office,,277767,277767,1308.00,,,,,,"Raise temperature by 4 degrees, Lower duct static pressure, Dim down lights by 40%",,,,"CDB10, CDA40, CDB50",10/10_MA_CBL,PGE ADR Project
+110,VISA 801 Metro Center,Visa,LEED,2002,,94404,Foster City,CA,3,3C,office,Office,,208398,208398,720.00,,,,,,"Raise temperature by 4 degrees, Lower duct static pressure, Dim down lights by 40%",,,,"CDB10, CDA40, CDB50",10/10_MA_CBL,PGE ADR Project
+111,VISA 901 Metro Center,Visa,,1999,,94404,Foster City,CA,3,3C,office,Office,,167436,167436,576.00,,,,,,"Raise temperature by 4 degrees, Lower duct static pressure, Dim down lights by 40%",,,,"CDB10, CDA40, CDB50",10/10_MA_CBL,PGE ADR Project
+112,VISA 800 Metro Center GTA,Visa,,1996,,94404,Foster City,CA,3,3C,office,Office,,296086,296086,948.00,,,,,,"Raise temperature by 4 degrees, Lower duct static pressure",,,,"CDB10, CDB50",10/10_MA_CBL,PGE ADR Project
+113,VISA 900 Metro Center GTA,Visa,,1993,,94404,Foster City,CA,3,3C,office,Office,,277767,277767,1308.00,,,,,,"Raise temperature by 4 degrees, Lower duct static pressure",,,,"CDB10, CDB50",10/10_MA_CBL,PGE ADR Project
+114,VISA 801 Metro Center GTA,Visa,LEED,2002,,94404,Foster City,CA,3,3C,office,Office,,208398,208398,720.00,,,,,,"Raise temperature by 4 degrees, Lower duct static pressure",,,,"CDB10, CDB50",10/10_MA_CBL,PGE ADR Project
+115,VISA 901 Metro Center GTA,Visa,,1999,,94404,Foster City,CA,3,3C,office,Office,,167436,167436,576.00,,,,,,"Raise temperature by 4 degrees, Lower duct static pressure",,,,"CDB10, CDB50",10/10_MA_CBL,PGE ADR Project
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,

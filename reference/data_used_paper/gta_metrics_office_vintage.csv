@@ -1,0 +1,10 @@
+Building Type,Vintage,Climate,w_ft_2,percentage
+SmallOffice,1980-2004,3B,0.746,0.125
+SmallOffice,90.1-2004,3B,0.474,0.126
+SmallOffice,90.1-2013,3B,0.337,0.125
+MediumOffice,1980-2004,3B,0.993,0.181
+MediumOffice,90.1-2004,3B,0.732,0.188
+MediumOffice,90.1-2013,3B,0.607,0.196
+LargeOffice,1980-2004,3B,0.27,0.073
+LargeOffice,90.1-2004,3B,0.268,0.067
+LargeOffice,90.1-2013,3B,0.251,0.073

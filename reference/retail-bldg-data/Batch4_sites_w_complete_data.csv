@@ -1,0 +1,289 @@
+﻿location_format_short_name,DOE Climate Zone,location_status,mail_address_line1,mail_address_line2,mail_city,mail_region,mail_postal_code,location_format,merchandise_level,total_building_area,net_selling_area,total_stock_area,last_remodel_date,last_remodel_type,milestone_grand_open_date,milestone_constturnover_date,number of HVAC,DR Program,Baseline Notes
+T0013,3A,Open,13131 Montfort Dr,NA,Dallas,TX,75240,Pfresh,1,137484,69674,19989,10/17/2010,MR,8/19/1969,7/11/1969,16,Standard Offer Program,
+T0055,3A,Open,6464 E NORTHWEST HWY STE 212,NA,Dallas,TX,75214,Pfresh,1,125587,74710,18913,10/26/2017,Remodel,7/15/1977,6/6/1977,21,Standard Offer Program,
+T0193,3B,Open,13831 Brookhurst St,NA,Garden Grove,CA,92843,Pfresh,1,112129,68708,16088,10/6/2011,MR,4/17/1983,3/9/1983,14,SCE Demand Response Auction Mechanism (DRAM),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"
+T0199,3B,Open,1200 N Sepulveda Blvd,NA,Manhattan Beach,CA,90266,Pfresh,1,135827,80936,27064,11/2/2017,Remodel,4/17/1983,3/9/1983,19,SCE Demand Response Auction Mechanism (DRAM),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"
+T0233,2B,Open,12602 N Paradise Village Pkwy W,NA,Phoenix,AZ,85032,Pfresh,1,120065,77536,14869,9/6/2019,Remodel,10/13/1985,9/4/1985,26,Peak Solutions,
+T0290,3B,Open,2169 W Redondo Beach Blvd,NA,Gardena,CA,90247,Pfresh,1,143512,85254,25230,4/13/2018,Remodel,9/13/1987,8/5/1987,16,SCE Demand Response Auction Mechanism (DRAM),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"
+T0307,3B,Open,67750 E Palm Canyon Dr,NA,Cathedral City,CA,92234,Pfresh,1,120265,76103,15193,10/6/2011,RS,7/26/1987,6/17/1987,19,SCE Demand Response Auction Mechanism (DRAM),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"
+T0332,3B,Open,4301 Century Blvd,NA,Pittsburg,CA,94565,Gen Merch,1,101581,65852,14477,10/14/2015,MR,2/21/1988,1/13/1988,15,Capacity Bidding Program (CBP),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"
+T0336,3B,Open,3750 Barranca Pkwy,NA,Irvine,CA,92606,Pfresh,1,111769,71527,15043,10/14/2010,MR,7/24/1988,6/15/1988,17,SCE Demand Response Auction Mechanism (DRAM),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"
+T0656,2A,Open,13658 University Plaza St,NA,Tampa,FL,33613,Pfresh,1,117886,73212,21185,3/22/2012,MR,7/28/1991,6/19/1991,16,NDRT - Networked Demand Response TECO,
+T0666,5A,Open,6000 Sawmill Rd,NA,Dublin,OH,43017,Pfresh,1,140750,85468,25350,7/21/2011,RS,10/13/1991,9/4/1991,25,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T0674,4A,Open,3000 W Deyoung St,NA,Marion,IL,62959,Pfresh,1,112313,74825,14577,6/21/2012,MR,10/13/1991,10/9/1991,12,MISO Load Modifying Resource,
+T0798,2A,Open,6295 W Waters Ave,NA,Tampa,FL,33634,Pfresh,1,134638,83273,19693,10/6/2011,RS,3/10/1996,1/31/1996,21,NDRT - Networked Demand Response TECO,
+T0810,5A,Open,6560 E State St,NA,Rockford,IL,61108,Pfresh,1,136661,78097,24997,7/20/2018,Remodel,7/26/1992,6/17/1992,27,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T0812,2A,Open,187 Brandon Town Center Dr,NA,Brandon,FL,33511,Pfresh,1,113892,76779,14589,7/22/2010,RS,7/26/1992,6/17/1992,16,NDRT - Networked Demand Response TECO,
+T0824,2A,Open,708 E Expressway 83,NA,McAllen,TX,78503,Gen Merch,1,135324,73531,28506,4/10/2016,Remodel,10/11/1992,9/2/1992,22,ERS 30,
+T0871,5A,Open,5001 N Big Hollow Rd,NA,Peoria,IL,61615,Pfresh,1,117484,76197,14371,10/26/2018,Remodel,10/10/1993,9/1/1993,19,MISO Load Modifying Resource,
+T0875,3A,Open,2417 N Haskell Ave,NA,Dallas,TX,75204,Pfresh,1,129565,80019,20462,6/23/2016,Remodel,10/10/1993,9/1/1993,20,Standard Offer Program,
+T0876,3A,Open,1101 Ira E Woods Ave,NA,Grapevine,TX,76051,Pfresh,1,117209,74812,13983,5/1/2017,Remodel,10/10/1993,9/1/1993,19,Standard Offer Program,
+T0884,4B,Open,1851 E Highway 69,NA,Prescott,AZ,86301,Gen Merch,1,89170,55920,12096,7/20/2018,Remodel,10/9/1994,8/31/1994,14,Peak Solutions,
+T0895,5A,Open,1615 N State Route 50,NA,Bourbonnais,IL,60914,Pfresh,1,106251,68218,14472,6/21/2019,Remodel,7/24/1994,7/20/1994,18,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T0935,5B,Open,1650 S Milton Rd,NA,Flagstaff,AZ,86001,Pfresh,1,106679,63047,17368,11/2/2018,Remodel,7/24/1994,6/15/1994,20,Peak Solutions,
+T0943,5A,Open,2102 N Prospect Ave,NA,Champaign,IL,61822,Pfresh,1,116798,75552,14630,5/1/2020,Remodel,7/23/1995,6/14/1995,19,MISO Load Modifying Resource,
+T0947,3A,Open,9440 Marsh Ln,NA,Dallas,TX,75220,Pfresh,1,123290,79502,14658,8/3/2017,Remodel,10/9/1994,8/31/1994,22,Standard Offer Program,
+T0984,5A,Open,1015 N Court St,NA,Medina,OH,44256,Pfresh,1,116349,68595,16428,10/10/2013,RS,7/23/1995,6/14/1995,20,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T0985,5A,Open,18200 Royalton Rd,NA,Strongsville,OH,44136,Pfresh,1,116936,75672,14617,3/21/2013,RS,7/23/1995,6/14/1995,16,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T0989,5A,Open,270 Airport Pkwy,NA,Heath,OH,43056,Pfresh,1,96604,58275,14574,10/6/2011,MR,7/23/1995,6/14/1995,15,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1010,5A,Open,1575 Niagara Falls Blvd,NA,Amherst,NY,14228,Pfresh,1,129477,82060,16420,3/24/2011,RS,3/8/1998,1/28/1998,14,"Commercial System Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1013,5A,Open,2626 Delaware Ave,NA,Buffalo,NY,14216,Pfresh,1,122755,73405,20253,10/26/2018,Remodel,10/6/1996,8/28/1996,19,"Commercial System Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1014,5A,Open,1750 Walden Ave,NA,Cheektowaga,NY,14225,Pfresh,1,119841,74849,16969,7/20/2018,Remodel,10/6/1996,8/28/1996,18,"Commercial System Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1016,4A,Open,721 Southpark Blvd,NA,Colonial Heights,VA,23834,Pfresh,1,116798,75665,14960,6/21/2012,MR,7/28/1996,7/24/1996,16,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1036,5A,Open,555 S Rand Rd,NA,Lake Zurich,IL,60047,Pfresh,1,117597,75392,15393,10/14/2010,MR,10/12/1997,9/3/1997,16,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1037,4A,Open,900 E Kemper Rd,NA,Springdale,OH,45246,Pfresh,1,125114,72938,17148,10/11/2012,MR,7/25/1999,6/16/1999,21,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1051,2A,Open,3625 W Gandy Blvd,NA,Tampa,FL,33611,Pfresh,1,104431,57624,21328,10/26/2018,Remodel,10/6/1996,8/28/1996,19,NDRT - Networked Demand Response TECO,
+T1057,5A,Open,5622 Amanda Ln,NA,Orchard Park,NY,14127,Pfresh,1,143024,85123,26574,7/21/2011,RS,10/12/1997,9/3/1997,16,"Commercial System Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1066,2A,Open,121 Louis Henna Blvd,NA,Round Rock,TX,78664,Pfresh,1,121688,82977,14761,10/6/2011,MR,7/27/1997,6/18/1997,13,Standard Offer Program,
+T1070,5A,Open,3050 N Lewis Ave,NA,Waukegan,IL,60087,Pfresh,1,96602,58193,14664,10/6/2011,MR,3/9/1997,1/29/1997,13,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1072,5A,Open,4199 Morse Xing,NA,Columbus,OH,43219,Pfresh,1,143673,84611,32508,7/23/2021,Remodel,7/27/1997,6/18/1997,19,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1091,5A,Open,9841 Waterstone Blvd,NA,Cincinnati,OH,45249,Pfresh,1,129249,81192,15322,3/22/2012,RS,10/12/1997,9/3/1997,18,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1092,4A,Open,8680 Beechmont Ave,NA,Cincinnati,OH,45255,Pfresh,1,134108,83984,19611,3/21/2013,RS,10/12/1997,9/3/1997,15,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1125,5A,Open,239 Golf Mill Ctr,NA,Niles,IL,60714,Pfresh,1,103578,62204,14583,9/27/2019,Remodel,10/11/1998,9/2/1998,17,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1129,5A,Open,5700 Executive Blvd,NA,Huber Heights,OH,45424,Pfresh,1,123455,79721,15769,3/22/2012,MR,7/26/1998,6/17/1998,20,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1150,4A,Open,13505 20th Ave,NA,College Point,NY,11356,Pfresh,1,139899,45868,45696,8/3/2017,Remodel,10/11/1998,9/2/1998,24,"Commercial System Relief, Distribution Load Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1157,5A,Open,2325 Marketplace Dr,NA,Rochester,NY,14623,Pfresh,1,122593,79557,14848,3/22/2012,MR,10/11/1998,9/2/1998,20,"Commercial System Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1159,4A,Open,125 Witchwood Dr,NA,North Wales,PA,19454,Pfresh,1,138309,82884,17926,10/26/2017,Remodel,10/10/1999,9/1/1999,30,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1194,5A,Open,600 Greece Ridge Center Dr,NA,Rochester,NY,14626,Pfresh,1,123024,80037,14495,3/22/2012,MR,10/10/1999,9/1/1999,21,"Commercial System Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1195,5A,Open,2161 N Nine Mile Point Rd,NA,Fairport,NY,14450,Pfresh,1,122991,79528,15018,10/26/2018,Remodel,10/10/1999,9/1/1999,25,"Commercial System Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1196,4A,Open,401 Easton Rd,NA,Warrington,PA,18976,Pfresh,1,124640,76970,16266,10/26/2017,Remodel,10/10/1999,9/1/1999,21,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1204,2A,Open,8234 Agora Pkwy,NA,Selma,TX,78154,Pfresh,1,124283,79878,15687,3/21/2013,MR,7/23/2000,6/14/2000,21,CPS San Antonio- Summer,
+T1218,5A,Open,105 Blazier Dr,NA,Pittsburgh,PA,15237,Gen Merch,1,123720,79466,15419,10/8/2015,Remodel,10/10/1999,9/1/1999,21,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1225,4A,Open,4601 Commonwealth Centre Pkwy,NA,Midlothian,VA,23112,Pfresh,1,123423,80551,15148,6/21/2012,MR,10/10/1999,10/6/1999,22,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1234,4A,Open,2340 Legge Blvd,NA,Winchester,VA,22601,Pfresh,1,122945,79367,14225,4/15/2010,MR,10/10/1999,9/1/1999,21,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1236,5A,Open,1485 Polaris Pkwy,NA,Columbus,OH,43240,Pfresh,1,136075,79413,16162,7/23/2021,Remodel,10/10/1999,9/1/1999,30,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1252,5A,Open,2300 Miamisburg Centerville Rd,NA,Dayton,OH,45459,Pfresh,1,124224,80046,14877,5/1/2020,Remodel,3/5/2000,3/1/2000,24,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1253,5A,Open,360 Waterfront Dr E,NA,Homestead,PA,15120,Pfresh,1,124635,80330,15129,7/20/2018,Remodel,3/5/2000,1/26/2000,29,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1260,5A,Open,155 Mountaineer Dr,NA,Stroudsburg,PA,18360,Pfresh,1,125826,79902,16844,7/20/2018,Remodel,3/5/2000,1/26/2000,22,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1271,5A,Open,3031 Route 50,NA,Saratoga Springs,NY,12866,Pfresh,1,124291,80121,15306,3/24/2011,MR,7/23/2000,6/14/2000,22,"Commercial System Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1275,4A,Open,4028 Wards Rd,NA,Lynchburg,VA,24502,Pfresh,1,125351,80027,17036,7/20/2018,Remodel,7/23/2000,6/14/2000,22,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1296,5A,Open,1 N Galleria Dr,Ste 140,Middletown,NY,10941,Pfresh,1,125909,79249,16794,3/22/2012,MR,7/29/2001,6/20/2001,22,"Commercial System Relief, Distribution Load Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1324,5A,Open,1285 Som Center Rd,NA,Mayfield Heights,OH,44124,Pfresh,1,125504,81663,14820,6/27/2013,MR,3/11/2001,1/31/2001,24,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1325,5A,Open,35830 Detroit Rd,NA,Avon,OH,44011,Pfresh,1,128728,81330,14846,6/27/2013,MR,3/11/2001,1/31/2001,24,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1354,2A,Open,18255 Blanco Rd,NA,San Antonio,TX,78258,SuperTarget,1,174022,93084,22686,10/26/2017,Remodel,7/29/2001,6/20/2001,34,CPS San Antonio- Summer,
+T1385,5A,Open,1400 E Lake Cook Rd,NA,Wheeling,IL,60090,Pfresh,1,138907,80772,17728,4/15/2010,MR,3/10/2002,1/30/2002,29,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1395,3A,Open,725 Hebron Pkwy,NA,Lewisville,TX,75057,SuperTarget,1,182818,95743,32585,3/6/2002,Relocation,3/10/2002,1/30/2002,33,ERS 30,
+T1401,4A,Open,519 Gateway Dr,NA,Brooklyn,NY,11239,Pfresh,1,148771,85482,48481,9/21/2017,Remodel,10/13/2002,9/4/2002,26,"Commercial System Relief, Distribution Load Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1443,4A,Open,1 Mifflin St,NA,Philadelphia,PA,19148,Pfresh,1,135033,73632,27351,7/6/2017,Remodel,7/28/2002,6/19/2002,20,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1447,4A,Open,3245 Geier Dr,NA,Cincinnati,OH,45209,Pfresh,1,125566,80091,16510,3/27/2020,Remodel,7/28/2002,6/19/2002,20,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1492,6A,Open,1 Sangertown Sq Ste 3,NA,New Hartford,NY,13413,Pfresh,1,125630,79907,16477,3/22/2012,MR,10/13/2002,9/4/2002,24,"Commercial System Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1508,6A,Open,40 Catherwood Rd,NA,Ithaca,NY,14850,Pfresh,1,125564,79554,16381,7/20/2018,Remodel,10/13/2002,9/4/2002,23,"Commercial System Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1510,5A,Open,1600 N Cedar Crest Blvd,NA,Allentown,PA,18104,Pfresh,1,143127,84824,19447,5/22/2020,Remodel,10/12/2003,9/3/2003,29,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1533,4A,Open,6600 Richmond Hwy,NA,Alexandria,VA,22306,Pfresh,1,125807,79856,16832,4/12/2019,Remodel,10/12/2003,9/3/2003,18,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1534,5A,Open,7644 Voice of America Center Dr,NA,West Chester,OH,45069,Pfresh,1,125661,81127,16499,6/21/2012,MR,7/27/2003,7/23/2003,24,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1535,2A,Open,6128 Broadway St,NA,Galveston,TX,77551,Pfresh,1,125160,79278,16257,10/6/2011,MR,3/9/2003,1/29/2003,19,Standard Offer Program,
+T1545,4A,Open,9040 Colerain Ave,NA,Cincinnati,OH,45251,Pfresh,1,124789,80832,15933,6/21/2012,MR,7/27/2003,7/23/2003,23,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1799,5A,Open,9833 N Alpine Rd,NA,Machesney Park,IL,61115,Pfresh,1,125089,79623,16211,7/20/2018,Remodel,7/27/2003,6/18/2003,22,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1804,5A,Open,14070 Cedar Rd,NA,University Heights,OH,44118,Pfresh,2,176137,85860,36793,3/21/2013,MR,7/27/2003,6/18/2003,24,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1808,5A,Open,50 Spring Valley Market Pl,NA,Spring Valley,NY,10977,Pfresh,1,135843,78572,26103,4/13/2018,Remodel,7/27/2003,6/18/2003,24,"Commercial System Relief, Distribution Load Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1818,4A,Open,1150 Old Country Rd,NA,Riverhead,NY,11901,Pfresh,1,125836,78877,16904,6/5/2020,Remodel,10/12/2003,9/3/2003,20,"Commercial System Relief, Distribution Load Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1846,3B,Open,3424 College Ave,NA,San Diego,CA,92115,Pfresh,1,129649,77786,20451,4/13/2018,Remodel,10/12/2003,9/3/2003,19,Capacity Bidding Program (CBP),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"
+T1856,5A,Open,2001 South Rd,NA,Poughkeepsie,NY,12601,Pfresh,1,127996,76790,19245,5/1/2020,Remodel,7/25/2004,6/17/2004,11,"Commercial System Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1857,4A,Open,1090 Stafford Market Pl,NA,Stafford,VA,22556,Pfresh,1,125719,79735,15981,4/15/2010,RS,3/7/2004,1/9/2004,18,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1887,4A,Open,500 East Sandford Blvd,NA,Mount Vernon,NY,10550,Pfresh,1,141849,81088,25354,7/21/2011,RS,10/10/2004,9/2/2004,16,"Commercial System Relief, Distribution Load Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T1946,5A,Open,3369 Princeton Rd,NA,Hamilton,OH,45011,Pfresh,1,124268,79837,14524,6/21/2012,RS,10/10/2004,10/6/2004,17,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1969,5A,Open,4211 Trueman Blvd,NA,Hilliard,OH,43026,Pfresh,1,125491,80666,15500,10/26/2018,Remodel,7/24/2005,6/16/2005,16,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T1972,5A,Open,3955 E Broad St,NA,Whitehall,OH,43213,Pfresh,1,124433,79571,14933,10/6/2011,RS,3/6/2005,1/27/2005,17,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T2095,3A,Open,9010 N 121st East Ave,NA,Owasso,OK,74055,Pfresh,1,123733,76959,14484,10/10/2013,RS,10/9/2005,9/1/2005,17,Peak Performers,
+T2161,5A,Open,18855 N Market Place Dr,NA,Aurora,OH,44202,Pfresh,1,126842,82722,15021,6/27/2013,RS,7/23/2006,6/15/2006,17,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T2176,2B,Open,1800 E Rio Salado Pkwy,Ste 120,Tempe,AZ,85281,Pfresh,1,138288,83900,23161,3/24/2011,RS,7/29/2007,6/21/2007,20,SRP Business Demand Response Program,
+T2211,5A,Open,500 Skyview Centre Pkwy,NA,Rochester,NY,14622,Pfresh,1,127096,82314,15212,6/21/2012,RS,10/8/2006,10/4/2006,17,"Commercial System Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T2239,2A,Open,22832 US Highway 281 N,NA,San Antonio,TX,78258,SuperTarget,1,176060,93369,31073,5/8/2020,Remodel,7/29/2007,6/21/2007,24,CPS San Antonio- Summer,
+T2266,5A,Open,20900 Westgate Mall,NA,Fairview Park,OH,44126,Pfresh,1,127146,82387,14937,3/21/2013,RS,7/29/2007,6/21/2007,17,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T2270,4B,Open,4400 Town Center Blvd,NA,El Dorado Hills,CA,95762,Pfresh,1,128529,82589,23951,6/3/2010,RS,10/14/2007,9/6/2007,17,Capacity Bidding Program (CBP),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"
+T2283,3A,Open,3092 N Eastman Rd,Ste 100,Longview,TX,75605,Pfresh,1,129962,81779,18181,10/12/2014,MR,10/14/2007,9/6/2007,18,SPP Operating Reserves,
+T2302,5A,Open,4220 N 5th Street Hwy,NA,Temple,PA,19560,Pfresh,1,127280,82325,15450,10/6/2011,RS,10/12/2008,9/4/2008,16,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T2304,3B,Open,200 Westminster Mall,NA,Westminster,CA,92683,Pfresh,2,175257,94633,29340,7/20/2018,Remodel,7/29/2007,6/21/2007,11,SCE Demand Response Auction Mechanism (DRAM),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"
+T2319,3B,Open,950 E 33rd St,NA,Signal Hill,CA,90755,Pfresh,1,135519,82769,19692,3/11/2010,RS,7/29/2007,6/21/2007,16,SCE Demand Response Auction Mechanism (DRAM),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"
+T2320,2A,Open,1801 Gulf Fwy,NA,Dickinson,TX,77539,SuperTarget,1,177334,103649,27737,NA,NA,3/9/2008,1/31/2008,23,ERS 30,
+T2324,5A,Open,3657 W Genesee St,NA,Syracuse,NY,13219,Pfresh,1,128021,82227,15028,3/22/2012,RS,10/14/2007,9/6/2007,17,"Commercial System Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T2330,4A,Open,5601 Belleville Crossing St,NA,Belleville,IL,62226,Pfresh,1,127354,82072,15467,10/6/2011,RS,10/14/2007,9/6/2007,17,AMIL- LMR,
+T2334,3A,Open,39739 Lyndon B Johnson Fwy,NA,Dallas,TX,75237,Pfresh,1,127726,82479,15016,9/9/2010,RS,3/9/2008,1/31/2008,16,Standard Offer Program,
+T2335,3A,Open,2025 N Central Expy,NA,Mckinney,TX,75070,SuperTarget,1,175345,101330,26730,6/1/2017,Remodel,10/14/2007,9/6/2007,23,Standard Offer Program,
+T2346,5A,Open,762 Arlington Rdg,NA,Akron,OH,44312,Pfresh,1,126842,82289,15007,10/12/2014,MR,10/14/2007,9/6/2007,17,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T2347,3B,Open,16858 Golden Valley Pkwy,NA,Lathrop,CA,95330,Pfresh,1,126787,82277,15014,10/6/2011,RS,7/27/2008,6/19/2008,16,Capacity Bidding Program (CBP),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"
+T2359,3B,Open,1405 W Pacheco Blvd,NA,Los Banos,CA,93635,Pfresh,1,131909,82322,20113,10/6/2011,RS,7/27/2008,6/19/2008,16,Capacity Bidding Program (CBP),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"
+T2397,3B,Open,1000 W Imperial Hwy,NA,La Habra,CA,90631,Pfresh,1,136307,82356,31507,10/11/2019,Remodel,7/27/2008,6/19/2008,16,SCE Demand Response Auction Mechanism (DRAM),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"
+T2400,2B,Open,995 S Cotton Ln,NA,Goodyear,AZ,85338,SuperTarget,1,177965,102712,27653,NA,NA,10/12/2008,9/4/2008,23,Peak Solutions,
+T2424,3B,Open,6750 Cherry Ave,NA,Long Beach,CA,90805,Pfresh,1,127645,81131,22455,5/8/2020,Remodel,10/12/2008,9/4/2008,16,SCE Demand Response Auction Mechanism (DRAM),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"
+T2459,6A,Open,60 Smithfield Blvd,Ste 49,Plattsburgh,NY,12901,Pfresh,1,127296,82135,14696,3/22/2012,RS,10/12/2008,9/4/2008,17,"Commercial System Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T2467,2A,Open,746 NW Loop 410,NA,San Antonio,TX,78216,Pfresh,1,128863,81855,16782,6/27/2013,RS,10/12/2008,9/4/2008,18,CPS San Antonio- Summer,
+T2475,4A,Open,700 Exterior St,NA,Bronx,NY,10451,Pfresh,1,187458,87391,49843,6/2/2011,RS,7/26/2009,6/18/2009,22,"Commercial System Relief, Distribution Load Relief, Special Case Resources","Special Case Resource (SCR):  ACL (Average Coincident Load) is average of highest twenty resource loads during top forty NYCA peak
+load hours in same season (Summer/Winter) of previous year.  ACL minus event meter load determines curtailment.
+
+Commercial System Relief Program (CSRP) and Distribution Load Relief Program (DLRP):  Customer Baseline Load (CBL): Average of the usage ofeach hourly interval of the top 5 days out of the last 10 eligible
+weekdays.
+
+
+
+"
+T2486,5A,Open,400 Corwin Nixon Blvd,NA,South Lebanon,OH,45065,Gen Merch,1,132458,85822,15710,NA,NA,3/8/2009,1/29/2009,13,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T2527,4A,Open,2450 Shoppers Ln,NA,Wyncote,PA,19095,Pfresh,1,134610,85782,18097,NA,NA,7/26/2009,6/18/2009,14,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T2529,5A,Open,4599 Perkiomen Ave,NA,Reading,PA,19606,Pfresh,1,133986,85807,16756,NA,NA,7/26/2009,6/18/2009,14,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T2542,3A,Open,10019 S Memorial Dr,NA,Tulsa,OK,74133,SuperTarget,1,187127,103504,34558,NA,NA,10/11/2009,9/3/2009,16,Peak Performers,
+T2550,3A,Open,3440 W FM 544,NA,Wylie,TX,75098,SuperTarget,1,185440,103940,33361,NA,NA,7/26/2009,6/18/2009,17,Standard Offer Program,
+T2559,5A,Open,2555 Sycamore Rd,NA,Dekalb,IL,60115,Pfresh,1,129144,82554,16788,9/3/2009,Rebuild,10/11/2009,9/3/2009,15,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T2770,4A,Open,4554 Virginia Beach Blvd,Ste 500,Virginia Beach,VA,23462,Pfresh,1,139002,86658,19838,NA,NA,10/14/2012,9/6/2012,14,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T2781,5A,Open,1101 W Jackson Blvd,NA,Chicago,IL,60607,Pfresh,1,169048,89292,30489,NA,NA,10/14/2012,9/6/2012,18,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T2790,4A,Open,2905 District Ave S,Ste 400,Fairfax,VA,22031,Pfresh,1,164437,86814,35761,NA,NA,10/14/2012,9/6/2012,17,"Base Capacity (starting 6/1/20).  Emergency Load Response Program (ELRP) through May 31, 2020",Annual Peak Load Contribution (PLC) sets baseline.  PLC determined by weather adjusted meter load during 5 1-hour coincident peak intervals June-Sept of prior summer.  Performance is calculated based on firm service level (FSL) relative to PLC.
+T2802,3B,Open,280 E Via Rancho Pkwy,NA,Escondido,CA,92025,Pfresh,3,150041,78679,23298,NA,NA,10/14/2012,9/6/2012,12,Capacity Bidding Program (CBP),"10 of 10 non-holiday, non-weekend, non-event day with day of adjustment"

@@ -1,0 +1,38 @@
+﻿site_id,doe_climate_zone,location_status,mail_address_line1,mail_address_line2,mail_city,mail_region,mail_postal_code,location_format,merchandise_level,total_building_area,net_selling_area,total_stock_area,last_remodel_date,last_remodel_type,milestone_grand_open_date,milestone_constturnover_date,number_of_HVAC,percent_of_submeterd_HVAC,Program,utility
+T0363,2B,Open,9000 E Talking Stick Way,,Scottsdale,AZ,85250,Pfresh,1,105730,66896,17461,9/1/2017,Remodel,2/19/1989,1/11/1989,19,,SRP Business Demand Response,Salt River Project/80062
+T0950,2B,Open,4515 E Thomas Rd,,Phoenix,AZ,85018,Pfresh,1,122482,79393,15561,5/1/2020,Remodel,3/12/1995,2/1/1995,20,,SRP Business Demand Response,Salt River Project/80062
+T2365,2B,Open,21398 S Ellsworth Loop Rd,,Queen Creek,AZ,85142,SuperTarget,1,177961,96354,27727,6/7/2019,Remodel,3/9/2008,1/31/2008,23,,SRP Business Demand Response,Salt River Project/80062
+T0314,3B,Open,3173 E Shields Ave,,Fresno,CA,93726,Pfresh,1,106044,61737,18866,7/20/2018,Remodel,10/11/1987,9/2/1987,13,,"DRAM through 2020, CBP 2021",PG&E
+T1410,3B,Open,1288 Camino Del Rio N,,San Diego,CA,92108,Pfresh,2,206493,93652,42511,7/3/2019,Remodel,7/28/2002,6/19/2002,8,,CBP,SDGE
+T2232,3B,Open,3060 Plaza Bonita Rd,,National City,CA,91950,Pfresh,1,139058,82165,22433,10/26/2018,Remodel,7/27/2008,6/19/2008,6,,CBP,SDGE
+T0626,3C,Open,2155 Morrill Ave,,San Jose,CA,95132,Pfresh,1,108268,67284,12914,5/8/2020,Remodel,7/29/1990,6/20/1990,19,,"DRAM through 2020, CBP 2021",PG&E
+T1407,3C,Open,133 Serramonte Ctr,,Daly City,CA,94015,Pfresh,1,157321,76106,38122,10/6/2016,Remodel,3/10/2002,1/30/2002,11,,"DRAM through 2020, CBP 2021",PG&E
+T1426,3C,Open,450 N Capitol Ave,,San Jose,CA,95133,Pfresh,1,137143,79716,27272,7/22/2010,MR,10/13/2002,9/4/2002,22,,"DRAM through 2020, CBP 2021",PG&E
+T1427,3C,Open,1600 Saratoga Ave,,San Jose,CA,95129,Pfresh,2,166559,89298,27587,5/3/2019,Remodel,10/13/2002,9/4/2002,23,,"DRAM through 2020, CBP 2021",PG&E
+T1927,3C,Open,879 Blossom Hill Rd,,San Jose,CA,95123,Pfresh,2,166839,84217,36165,10/18/2019,Remodel,10/10/2004,9/2/2004,22,,"DRAM through 2020, CBP 2021",PG&E
+T2584,3C,Open,298 W McKinley Ave,,Sunnyvale,CA,94086,Pfresh,1,174835,87380,35220,9/3/2009,Rebuild,11/15/2009,10/8/2009,19,,"DRAM through 2020, CBP 2021",PG&E
+T2768,3C,Open,2675 Geary Blvd,,San Francisco,CA,94118,Pfresh,2,108207,54965,19877,NA,NA,10/13/2013,9/5/2013,1,,"DRAM through 2020, CBP 2021",PG&E
+T1782,3A,Open,10711 E 71st St,,Tulsa,OK,74133,SuperTarget,1,174678,94771,25508,3/6/2002,Relocation,3/10/2002,1/30/2002,32,,Peak Performers,AEP Public Service Organization of Oklahoma
+T1509,4A,Open,4250 Rusty Rd,,Saint Louis,MO,63128,Pfresh,1,126232,79962,17020,11/1/2019,Remodel,10/13/2002,9/4/2002,23,,Ameren Missouri BDRP,Ameren Missouri
+T2255,4A,Open,1851 Vernaci Dr,,Washington,MO,63090,Pfresh,1,126992,82319,15021,10/6/2011,RS,7/29/2007,6/21/2007,16,,Ameren Missouri BDRP,Ameren Missouri
+T2423,4A,Open,9040 N Skyview Ave,,Kansas City,MO,64154,Pfresh,1,126934,82598,15043,3/27/2020,Remodel,7/27/2008,7/23/2008,17,,Evergy/KCPL,EVRG
+T2488,4A,Open,6150 Glenway Ave,,Cincinnati,OH,45211,Pfresh,1,138021,86394,20789,7/20/2018,Remodel,3/8/2009,1/29/2009,15,,PJM ELRP,DUKE
+T2557,4A,Open,9099 Plainfield Rd,,Blue Ash,OH,45236,Pfresh,1,137553,86062,19448,NA,NA,10/9/2011,9/1/2011,14,,PJM ELRP,Duke Energy/1326/1327
+T1043,4A,Open,1025 Middleton Rd,,Aberdeen,MD,21001,Pfresh,1,96598,57629,14183,4/15/2010,MR,10/12/1997,9/3/1997,14,,PJM ELRP,BGE
+T1257,4A,Open,17213 Cole Rd,,Hagerstown,MD,21740,Pfresh,1,105032,63664,13942,4/15/2010,MR,3/5/2000,1/26/2000,20,,PJM ELRP,PE-MD
+T0699,5B,Open,1611 Blue Lakes Blvd N,,Twin Falls,ID,83301,Gen Merch,1,114209,74906,12894,7/26/2019,Remodel,7/26/1992,6/17/1992,17,,Flex Peak,Idaho Power
+T2206,5B,Open,16300 N Market Place Blvd,,Nampa,ID,83687,Gen Merch,1,127305,82683,13925,NA,NA,10/8/2006,8/31/2006,16,,Flex Peak,Idaho Power
+T0833,5A,Open,313 E Townline Rd,,Vernon Hills,IL,60061,SuperTarget,1,170716,94566,30889,5/4/2018,Remodel,3/14/1993,2/5/1993,27,,PJM ELRP,COMED
+T0924,6A,Open,4097 E Blue Grass Rd,,Mount Pleasant,MI,48858,Pfresh,1,89192,56887,12100,3/22/2012,RS,10/9/1994,8/31/1994,16,,Consumers MI Emergency Demand Response,Consumers Energy MI
+T1318,6A,Open,1300 Ulster Ave,,Kingston,NY,12401,Pfresh,1,126091,78508,17519,6/21/2012,MR,3/11/2001,3/7/2001,23,,CSRP,CHGE
+T0158,2A,Open,5850 Eastex Fwy,,Beaumont,TX,77708,Pfresh,1,119900,77114,13975,10/12/2014,MR,2/28/1982,1/20/1982,14,,MISO Load Modifying Resource (LMR),"Entergy Texas, Inc./8104"
+T0882,2A,Open,202 Highway 332 W,,Lake Jackson,TX,77566,Pfresh,1,116381,75518,14582,10/6/2011,MR,10/10/1993,9/1/1993,15,,SOP,CNP
+T0955,2A,Open,4323 San Felipe St,,Houston,TX,77027,Pfresh,1,124471,73233,21697,4/12/2019,Remodel,3/12/1995,2/1/1995,19,,SOP,CNP
+T1531,2A,Open,5401 Bosque Blvd,,Waco,TX,76710,Pfresh,1,142525,85562,20256,7/6/2014,MR,3/9/2003,1/29/2003,28,,SOP,ONCOR
+T2374,2A,Open,201 E Central Texas Expy,Ste 300,Harker Heights,TX,76548,Pfresh,1,132347,82292,20406,10/12/2014,MR,7/27/2008,6/19/2008,17,,SOP,ONCOR
+T1339,3A,Open,1600 W Arbrook Blvd,,Arlington,TX,76015,SuperTarget,1,182300,93983,34192,10/6/2016,Remodel,7/29/2001,6/20/2001,11,,SOP,ONCOR
+T1368,3A,Open,1401 W Glade Rd,,Euless,TX,76039,SuperTarget,1,174818,93285,27645,6/29/2017,Remodel,10/14/2001,9/5/2001,35,,SOP,ONCOR
+T1922,3A,Open,200 NW John Jones Dr,,Burleson,TX,76028,Pfresh,1,123715,79782,14538,7/27/2017,Remodel,10/10/2004,9/2/2004,16,,SOP,ONCOR
+T2425,3A,Open,751 Alta Mere Dr,,Fort Worth,TX,76116,Pfresh,1,127092,82124,15019,10/6/2011,RS,7/27/2008,6/19/2008,18,,SOP,ONCOR
+T0770,3B,Open,4001 N Midland Dr,,Midland,TX,79707,Gen Merch,1,116224,75023,14617,10/14/2015,MR,3/10/1996,1/31/1996,18,,SOP,ONCOR
+T0221,4B,Open,8201 I-40 W,,Amarillo,TX,79121,Pfresh,1,110464,72153,13359,7/6/2014,MR,2/24/1985,1/16/1985,11,,SPP Operating Reserves (2021),Xcel Energy
